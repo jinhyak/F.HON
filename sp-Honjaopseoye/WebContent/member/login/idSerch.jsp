@@ -1,13 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>	
+<%
+    String clientId = "rMQSr12DQcrxNQeItZQ5";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&rMQSr12DQcrxNQeItZQ5=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%
-	//String user_pw = request.getParameter("mem_pw");
-%>
 <head>
 <%@ include file="../../include/include/commonUI.jsp"%>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
 	function btn_find() {
@@ -25,22 +36,25 @@
 			//$("#f_phone").submit();
 			var param = $("#f_phone").serialize();
 			$.ajax({
-				url : "../../member/empty/check.test",
+				url : "../../member/check.hon",
 				method : "post",
 				data : param,
-				success : function(result) {
+				success : function(result) {// 0 -1 1
+					alert("result="+result); //공백이 들어옴
 					if (result == '0') {
 						alert("존재하지 않는 이름입니다.");
 						$("#ins_name").focus();
 					} else if (result == '-1') {
 						alert("존재하지 않는 전화번호 입니다.");
 						$("#mem_tel").focus();
-					} else { //아이디 찾기 성공
+					} else if(result == "" || result == null) { 
+						alert("error");
+					} else {
 						location.href = "./idFound.jsp";
 					}
 				},
 				error : function(xhrObject) {
-					alert(xhrObject.responseText);
+					alert("Error : "+xhrObject.responseText);
 				}
 			})
 			return true;
@@ -62,7 +76,7 @@
 		} else {
 			var param = $("#f_email").serialize();
 			$.ajax({
-				url : "../../member/empty/check2.test",
+				url : "../../member/check2.hon",
 				method : "post",
 				data : param,
 				success : function(result) {
