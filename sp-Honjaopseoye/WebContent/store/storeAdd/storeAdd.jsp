@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../include/include/commonUI.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	$(document).ready(function(){
+	/* $(document).ready(function(){
 		$('.ui.dropdown')
 		  .dropdown()
 		;
-	})
+	}) */
 
 	function chooseMenu(){
 		var chooseMenu = $("input[type=radio][name=frequency]:checked").val();
 		
 		$.ajax({
 			method:"POST"
-		   ,url:"../storeAdd/"+chooseMenu+"Add.jsp" //check박스의 값을 받아 해당하는 입력 페이지를 부름
+		   ,url:"./"+chooseMenu+"Add.jsp" //check박스의 값을 받아 해당하는 입력 페이지를 부름
 		   ,success:function(result){
 			   $("#storeInput").html(result);
 		   }
@@ -31,6 +30,7 @@
 </script>
 </head>
 <body style="min-width: 588px;">
+<%@include file="../../include/include/subtop.jsp"%>
 <div class="ui segment">
 
 <!-- ====================본문===================== -->
@@ -70,11 +70,12 @@
 	<!--================== 선택매뉴 끝 =============== -->
 	<!-- ====================가게정보 입력 시작===================== -->
 	<div class="column" id="storeInput">
-		ajax처리
+		
 	</div>
   	<!-- ====================가게정보 입력 끝===================== -->
   </div>
 <!-- ====================본문===================== -->
 </div>
+<%@include file="../../include/include/bottom.jsp" %>
 </body>
 </html>
