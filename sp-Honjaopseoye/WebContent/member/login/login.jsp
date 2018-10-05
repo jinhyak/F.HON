@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+
 <%
 	String s_name = null;
 	String s_id = null;
@@ -38,7 +42,7 @@
 			var param = $("#f_login").serialize();
 			$.ajax({
 				 method:"post"
-				,url:"../../member/empty/login.test"
+				,url:"../../member/login.hon"
 				,data:param
 				,success:function(data){
 					if(data=='0'){
@@ -46,7 +50,7 @@
 						$("#mem_id").focus();
 					}
 					else if(data=='-1'){
-						alert("비밀번호가 틀렸습니다")
+						alert("존재하지 않는 비밀번호 입니다.")
 						$("#mem_pw").focus();
 					}
 					else{
@@ -60,6 +64,7 @@
 			})
 			return true;
 		}
+		
 	}
 </script>
 
@@ -106,18 +111,13 @@
 			<a href="javascript:alert('비번찾기')">비번찾기</a>
 		</div>
 	</div>
-	<div class="ui container" style="text-align: center;width:222px">
-		<div class="row">
-			<img src="../../image/naver_Id.PNG" width="222px" style="padding-bottom: 5px;">
-		</div>
-		<div class="row" style="text-align: center;">
-			<a id="kakao-login-btn" style="justify-content:center;"></a>
-		</div>
-	</div>
+	
 	<a href="http://developers.kakao.com/logout"></a>
 	<script type='text/javascript'>
 	//<![CDATA[
+	
 		Kakao.init('2e932cab0576b49285b3e1a591eb63f1');
+	
 		Kakao.Auth.createLoginButton({
 			container : '#kakao-login-btn',
 			success : function(authObj) {
