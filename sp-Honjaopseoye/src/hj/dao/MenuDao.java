@@ -45,7 +45,19 @@ public class MenuDao {
 		if (result == 1) {
 			sqlSessionTemplate.commit();
 			logger.info("qInsert: " + result);
-			return result;
+		}
+		return result;
+	}
+
+/* [[[[[[[[[[[[[[[[[[[[[[[[[[[[ 공지사항 글쓰기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
+	public int nInsert(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		logger.info("nInsert 호출 성공");
+		int result = 0;
+		result = sqlSessionTemplate.insert("nInsert", pMap);
+		if (result == 1) {
+			sqlSessionTemplate.commit();
+			logger.info("nInsert: " + result);
 		}
 		return result;
 	}
