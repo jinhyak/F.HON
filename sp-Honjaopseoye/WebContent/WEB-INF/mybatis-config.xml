@@ -8,5 +8,6 @@
 		<mapper resource="hj/mapper/group.xml"/>
 		<mapper resource="hj/mapper/store.xml"/>
 		<mapper resource="hj/mapper/menu.xml"/>
+		<mapper resource="hj/mapper/message.xml"/>
 	</mappers>
 </configuration>

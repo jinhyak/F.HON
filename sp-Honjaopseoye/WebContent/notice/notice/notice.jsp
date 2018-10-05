@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <%@ include file="../include/subtop.jsp" %>
+ <%@ include file="../../include/include/subtop.jsp" %>
  
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
@@ -87,6 +87,6 @@
 	</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 </div>
-<%@ include file="../include/bottom.jsp" %>
+<%@ include file="../../include/include/bottom.jsp" %>
 </body>
 </html>

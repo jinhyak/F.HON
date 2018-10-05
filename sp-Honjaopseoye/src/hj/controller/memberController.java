@@ -46,6 +46,7 @@ public class memberController {
 	}
 	
 /*아이디 중복 체크*/
+	@ResponseBody
 	@RequestMapping("/id_sel.hon")
 	public String id_sel(Model mod
 			, @RequestParam("id") String pMap
@@ -59,6 +60,7 @@ public class memberController {
 	}
 	
 /*전화번호 중복 체크*/
+	@ResponseBody
 	@RequestMapping("/id_tel.hon")
 	public String id_tel(Model mod
 			, @RequestParam("tel") String pMap

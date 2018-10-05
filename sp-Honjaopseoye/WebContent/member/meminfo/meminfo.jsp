@@ -285,6 +285,6 @@ $(document).ready(function(){
     });
 </script>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<%@ include file="../../include/bottom.jsp" %>
+<%@ include file="../../include/include/bottom.jsp" %>
 </body>
 </html>

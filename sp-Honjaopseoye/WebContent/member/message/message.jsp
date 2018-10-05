@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="../../include/include/commonUI.jsp" %>
 <%
-	String fri_id = null;
-	String mem_id =null;
+	String fri_id = "test2";
+	String mem_id = "test";
 	if(request.getParameter("mem_id")!=null){
 		mem_id = request.getParameter("mem_id");
 	};
@@ -61,7 +61,7 @@ var Lastno=0;
 			alert(param);
 			$.ajax({
 				 method:"post"
-				,url:"../../message/empty/insert.test"
+				,url:"../../message/insert.hon"
 				,data:param
 				,success:function(data){
 					if(data==1){
@@ -89,7 +89,7 @@ var Lastno=0;
 			$.ajax({
 				method:"post",
 				data:param,
-				url:"../../message/empty/msgListByRecent.test",
+				url:"../../message/msgListByRecent.hon",
 				success:function(data){
 					if(data==""){
 					}

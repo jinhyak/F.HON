@@ -15,42 +15,34 @@ public class MessageDao{
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
-	public List<Map<String, Object>> select(Map<String, Object> pMap) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	//메시지 보내기
 	public int insert(Map<String, Object> pMap) throws IOException {
 		int result = 0;
-		result = sqlSessionTemplate.insert("messagemap.insert",pMap);
+		result = sqlSessionTemplate.insert("msg_insert",pMap);
 		return result;
 	}
-
-	public int update(Map<String, Object> pMap) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int delete(Map<String, Object> pMap) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	//최근 채팅 내역 불러오기
 	public List<Map<String, Object>> msgListByRecent(Map<String,Object> pMap) throws IOException{
 		List<Map<String,Object>> list = null;
 		list = sqlSessionTemplate.selectList("msgListByRecent", pMap);
+		
+		//채팅내영을 불러오면 메시지를 읽음 처리해야 하므로 readMsg함수를 호출
 		readMsg(pMap);
 		return list;
 	}
+	//읽은 메시지 처리
 	public int readMsg(Map<String, Object> pMap) throws IOException {
 		int result = 0;
 		result = sqlSessionTemplate.update("readMsg", pMap);
 		return result;
 	}
+	//모든 안 읽은 메시지 불러오기
 	public String allUnReadMsg(Map<String,Object> pMap) throws IOException {
 		String result = "";
 		result = sqlSessionTemplate.selectOne("allUnReadMsg", pMap);
 		return result;
 	}
+	//최근 친구와 내가 오간 메시지 내역 불러오기
 	public List<Map<String, Object>> getmsgBox(Map<String,Object> pMap) throws IOException{
 		List<Map<String, Object>> list = null;
 		list = sqlSessionTemplate.selectList("getmsgBox", pMap);
@@ -58,7 +50,8 @@ public class MessageDao{
 			Map<String, Object> xMap = list.get(i);
 			for(int j=0;j<list.size();j++) {
 				Map<String, Object> yMap = list.get(j);
-				if(xMap.get("MSG_FROM").toString().equals(yMap.get("MSG_TO").toString())&&xMap.get("MSG_TO").toString().equals(yMap.get("MSG_FROM").toString())) {
+				if(xMap.get("MSG_FROM").toString().equals(yMap.get("MSG_TO").toString())
+						&&xMap.get("MSG_TO").toString().equals(yMap.get("MSG_FROM").toString())) {
 					if(Integer.parseInt(xMap.get("MSG_NO").toString())<Integer.parseInt(yMap.get("MSG_NO").toString())) {
 						list.remove(xMap);
 						i--;
@@ -72,7 +65,12 @@ public class MessageDao{
 			}
 		}
 		return list;
-		
+	}
+	//해당 친구에 대한 안읽은 메시지 처리
+	public String unReadMsg(Map<String,Object> pMap) throws IOException {
+		String result = "";
+		result = sqlSessionTemplate.selectOne("unReadMsg", pMap);
+		return result;
 	}
 
 }

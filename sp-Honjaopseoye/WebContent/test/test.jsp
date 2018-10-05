@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
   <!-- Standard Meta -->
-<%@include file="../include/commonUI.jsp" %>
+<%@include file="../../include/include/commonUI.jsp" %>
   <!-- Site Properties -->
 </head>
 <body>

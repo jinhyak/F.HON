@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.mapper.friendMapper">
-	<select id="fSelect" parameterType="map">
-		SELECT mem_id
-		FROM members
-		WHERE mem_id = 
-		(select fri_id from friend_info where mem_id=#{mem_id})
+<mapper namespace="friendmap">
+	<!-- 친구 찾기 검색 -->
+	<select id="fri_search" parameterType="java.util.Map" resultType="java.util.Map">
+        select mem_id,mem_name, mem_birth, mem_email
+        from 
+        (select members.mem_id,members.mem_name,members.mem_birth,members.mem_email 
+        from members where mem_id!= #{mem_id} and mem_id not in (select fri_id as fri_id from friend where mem_id=#{mem_id})
+        ) 
+        where mem_id like '%'||#{value}||'%'
+        or mem_name like '%'||#{value}||'%'
 	</select>
-	<insert id="fInsert" parameterType="map">
-		INSERT INTO fiend(fri_id)
-		VALUES (#{mem_id})
+	<!-- 친구 추가 -->
+	<insert id="fri_add" parameterType="map">
+		insert into friend(fri_id,mem_id,fri_name,fri_email,fri_birth)
+		values(#{fri_id},#{mem_id},#{fri_name},#{fri_email},#{fri_birth})
 	</insert>
-	<select id="fView" parameterType="map">
-		SELECT mem_id,mem_name,mem_email,mem_birth,mem_gender
-		FROM members
-		WHERE mem_id = #{mem_id}
+	<!-- 내가 가진 친구 목록 뿌려 주기 -->
+	<select id="fri_select" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from friend where mem_id=#{mem_id}
 	</select>
-	<select id="mSelect" parameterType="map">
-		SELECT msg_from, msg_read
-		FROM msg
-		WHERE msg_from = #{msg_from}
-	</select>
-	<select id="mView" parameterType="map">
-		SELECT msg_to,msg_cotent,msg_read
-		FROM msg
-		WHERE msg_from = #{msg_from}
-	</select>
-	<insert id="mInsert" parameterType="map">
-		INSERT INTO msg(msg_no,msg_from,msg_to,msg_content,msg_read)
-		VALUES (seq_msg_no,msg_from,msg_to,msg_content,msg_read)
+	<!-- 친구 삭제 -->
+	<delete id="fri_del">
+		delete from friend where mem_id=#{mem_id} and fri_id=#{fri_id}
+	</delete>
+	<!-- 친구 추가1(추가 되었을 때 또 추가 ) - 이건 트리거로 사용하면될듯 -->
+	<insert id="friadd" parameterType="map">
+		insert into friend(fri_id,mem_id,fri_name,fri_email,fri_birth)
+		values(#{mem_id},#{fri_id},#{mem_name},#{mem_email},#{mem_birth})
 	</insert>
 </mapper>

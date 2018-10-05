@@ -36,7 +36,7 @@ if(list!=null){
 		$.ajax({
 			 method:"post"
 			,data:param
-			,url:"../../friend/empty/insert.test"
+			,url:"../../friend/insert.hon"
 			,success:function(data){
 				if(data==1){
 					alert("친구가 성공적으로 추가되었습니다")

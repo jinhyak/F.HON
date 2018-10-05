@@ -59,11 +59,11 @@
 			,data:{"id": $('#id').val()}
 			,success:function(data){
 				alert("result:" + data);
-				if(data=='2'){
+				if(data=='1'){
 					alert('사용할 수 있는 ID입니다')
 					id_check=data
 				}
-				else if(data=='1'){
+				else if(data=='0'){
 					alert("사용중인 ID입니다.")
 					id_check=data
 				}
@@ -82,6 +82,7 @@
 			,url:"../id_tel.hon"
 			,data:{"tel": $('#tel').val()}
 			,success:function(data){
+				alert(data);
 				if(data=='1'){
 					alert('사용할 수 있는 번호입니다')
 					tel_check = data
@@ -444,6 +445,6 @@
         $('#datepicker').datepicker(); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
     });
 </script>
-<%@include file="../../include/bottom.jsp" %>
+<%@include file="../../include/include/bottom.jsp" %>
 </body>
 </html>

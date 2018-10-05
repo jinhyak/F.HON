@@ -12,9 +12,11 @@
 			<value>messages_ko_KR</value>
 		</property>
 	</bean>
-	<bean id="mem-logic" class="hj.logic.MemberLogic"/>
+<!-- 
 	<bean id="gro-logic" class="hj.logic.GroupLogic"/>
 	<bean id="fri-logic" class="hj.logic.FriendLogic"/>
 	<bean id="sto-logic" class="hj.logic.StoreLogic"/>
 	<bean id="gro-logic" class="hj.logic.GroupLogic"/>
+ 	<bean id="mem-logic" class="hj.logic.MemberLogic"/>
+ -->
 </beans>

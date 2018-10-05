@@ -68,17 +68,17 @@ var msg_count=0;
 <body>
   <div class="ui fixed inverted menu">
     <div class="ui container">
-      <a href="../../main/main.jsp" class="header item">
+      <a href="../../main/main/main.jsp" class="header item">
         <img class="logo" src="../../image/logo.png" style="width:100px; heigth:100px">
       </a>
-      <a href="../../main/main.jsp" class="item">Home</a>
+      <a href="../../main/main/main.jsp" class="item">Home</a>
       <div class="ui simple dropdown item">
       	  메뉴 <i class="dropdown icon"></i>
         <div class="menu">
           <a class="item" href="javascript:mlist()">회원정보</a>
           <a class="item" href="../../notice/notice.jsp">공지사항</a>
-          <a class="item" href="#">혼자페이지</a>
-          <a class="item" href="#">만남페이지</a>
+          <a class="item" href="../../main/honja/honja_main.jsp">혼자페이지</a>
+          <a class="item" href="../../main/together/together.jsp">만남페이지</a>
           <div class="divider"></div>
           <div class="header">보조 메뉴</div>
           <div class="item">
@@ -103,7 +103,7 @@ var msg_count=0;
   <script type="text/javascript">
   	function mlist(){
   		if(mem_id!='비회원'){
-  		location.href="../../member/meminfo/mlist.jsp";
+  		location.href="../../member/meminfo/meminfo.jsp";
   		}
   		else{
   			alert("로그인 후 이용 가능합니다")
@@ -121,7 +121,7 @@ var msg_count=0;
   		var param = "mem_id="+mem_id
   		$.ajax({
   			method:"post",
-  			url:"../../message/empty/allUnReadMsg.test",
+  			url:"../../message/allUnReadMsg.hon",
   			data:param,
   			success:function(data){
   				$("#msg_count").text(msg_count);

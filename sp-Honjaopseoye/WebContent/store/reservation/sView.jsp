@@ -158,6 +158,6 @@ $('.blue.button').click(function () {
 .ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 20px; }
 .ui-datepicker select.ui-datepicker-year{ width:50%; font-size: 20px; }
 </style>
-<%@ include file="../../include/bottom.jsp" %>
+<%@ include file="../../include/include/bottom.jsp" %>
 </body>
 </html>

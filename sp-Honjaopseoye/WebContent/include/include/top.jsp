@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ include file="../include/commonUI.jsp" %>
+<%@ include file="../../include/include/commonUI.jsp" %>
 <title>상단</title>
 <%@include file="./commonUI.jsp" %>
 <title>상단</title>
@@ -27,7 +27,7 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-	        <a class="active item" href="../notice/notice.jsp">공지사항</a>
+	        <a class="active item" href="../../notice/notice/notice.jsp">공지사항</a>
 	        <a class="item" href="../notice/qna.jsp">Q&A</a>
 	        <a class="item" href="#">혼밥하자</a>
 	        <a class="item" href="#">인사하자</a>
@@ -43,8 +43,8 @@
        <!-- 나중에 컨테이너 처리 할거임 -->
        		<div class="ui text container"> 
        	  <%=s_name%>님 환영합니다.
-          <a class="ui inverted button" href="../member/login/logout.jsp">로그아웃</a>
-          <a class="ui inverted button" href="../member/meminfo/mlist.jsp">정보수정</a>
+          <a class="ui inverted button" href="../../member/login/logout.jsp">로그아웃</a>
+          <a class="ui inverted button" href="../../member/meminfo/mlist.jsp">정보수정</a>
         	</div>
         </div>
       </div>

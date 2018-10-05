@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -26,42 +26,22 @@
 						</div>
 						<div class="center aligned column">
 							<div class="ui large header">
-							 	혼자옵서예
+							 	회원정보
 							</div>
 						</div>
 						<div class="right aligned column">
 						</div>
 						<div class="right aligned column">
 						</div>
-						<div class="right aligned column">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-							<div class="ui segment button" style="width:100%" onclick="location.href='./mlist.jsp'">
-								<a href="#"> 회원 정보 </a>
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%">
+								<a href="./notice.jsp"> 공지사항 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./mdelete.jsp'">
-								<a href="#"> 회원 탈퇴 </a>
-							</div>
-						</div>
-						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./flist.jsp'">
-								<a href="#"> 친구 찾기 </a>
-							</div>
-						</div>
-						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./fdelete.jsp'">
-								<a href="#"> 친구 관리 </a>
-							</div>
-						</div>
-						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./gList.jsp'">
-								<a href="#"> 그룹 관리 </a>
-							</div>
-						</div>
-						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./gCreate.jsp'">
-								<a href="#"> 그룹 만들기 </a>
+							<div class="ui segment button" style="width:100%">
+								<a href="./qna.jsp"> QnA </a>
 							</div>
 						</div>
 					</div>	
@@ -72,40 +52,32 @@
 		<div class="column"style="width:80%;">
 			<div class="ui field">
 				<div class="ui segment">
-					<div class="ui one column grid">
+					<div class="ui center aligned one column grid">
 						<div class="center aligned column">
 							<div class="ui segment">
 								<div class="ui large header">
-							 	         친구 관리
+							 	         QNA
 								</div>
 							</div>
 						</div>
-						<div class="column">
-							<div class="ui segment" style="width:100%;height:100%">
+						<div class="center aligned column">
+							<div class="ui segment" style="width:100%;height:1000px">
+							
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-								<div class="ui stackable one column grid" style="margin-top:20px;margin-bottom:50px">
-									<div class="left aligned column">
-										<h2 class="ui dividing header" style="margin-left:50px;">친구 목록</h2>
-									</div>
-									<div class="ui middle selection list" id="fri_search" style="width:100%;padding-left: 80px;padding-right: 80px;">
-									</div>
-									<script type="text/javascript">
-											alert(mem_id);
-											var param="mem_id="+mem_id;
-											$.ajax({
-												 method:"post"
-												,data:param
-												,url:"../../friend/empty/select.test"
-												,success:function(data){
-													$("#fri_search").html(data);
-												}
-												,error:function(data){
-													alert("실패");
-												}
-											})
-									</script>
+								
+								
+								
+								
+								<a href="#"> 회원 정보 form </a>
+								
+								
+								
+								
+								
+								
+								
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-								</div>
+		
 							</div>
 						</div>
 					</div>	
@@ -115,6 +87,6 @@
 	</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 </div>
-<%@ include file="../../include/bottom.jsp" %>
+<%@ include file="../../include/include/bottom.jsp" %>
 </body>
 </html>

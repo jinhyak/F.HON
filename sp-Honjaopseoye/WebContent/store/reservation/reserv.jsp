@@ -10,6 +10,6 @@
 <%@ include file="../../include/include/subtop.jsp" %>
 
 
-<%@ include file="../../include/bottom.jsp"%>
+<%@ include file="../../include/include/bottom.jsp"%>
 </body>
 </html>

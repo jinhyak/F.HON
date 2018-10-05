@@ -38,8 +38,8 @@
       
        <div class="ui text container"> 
        	<div id="loginForm">
-          <a class="ui inverted button" href="../member/login/login.jsp">로그인</a>
-          <a class="ui inverted button" href="../member/join/gaip.jsp">회원가입</a>
+          <a class="ui inverted button" href="../../member/login/login.jsp">로그인</a>
+          <a class="ui inverted button" href="../../member/join/gaip.jsp">회원가입</a>
         </div>
         </div>
           <!-- ########################로그인 버튼 있는 로그인 폼 끝################################# --> 

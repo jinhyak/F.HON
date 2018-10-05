@@ -38,6 +38,9 @@
 	<bean id="FriendDao" class="hj.dao.FriendDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
+	<bean id="MessageDao" class="hj.dao.MessageDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
 	<!-- <bean id="GroupDao" class="hj.dao.GroupDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>

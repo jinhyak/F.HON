@@ -46,7 +46,7 @@ if(list!=null){
 		alert(param);
 		$.ajax({
 			method:"post",
-			url:"../../friend/empty/delete.test",
+			url:"../../friend/delete.hon",
 			data:param,
 			success:function(data){
 				if(data==1){
