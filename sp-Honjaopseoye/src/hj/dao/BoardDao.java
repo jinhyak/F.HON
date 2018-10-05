@@ -23,4 +23,9 @@ public class BoardDao{
 			this.sqlSessionTemplate = sqlSessionTemplate;
 		}
 
+		public List<Map<String, Object>> pView(Map<String, Object> pMap) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 }

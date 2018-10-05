@@ -1,4 +1,4 @@
-package hj.controller;
+package hj.logic;
 
 import java.util.List;
 import java.util.Map;

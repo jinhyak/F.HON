@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -15,308 +14,210 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import hj.dao.MemberDao;
-import hj.logic.testLogic;
-import hj.util.HangulConversion;
 
 @Controller
-@RequestMapping("/member")
+
+@RequestMapping(value = "/member")
 public class memberController {
 	Logger logger = Logger.getLogger(memberController.class);
-	
+
 	@Autowired
-	private testLogic testLogic = null;
+	public MemberDao mDao = null;
 	
-	@Autowired
-	private MemberDao memberDao = null;
+	@RequestMapping("/Naver") 
+	public String check() throws IOException {
 	
-/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½×½ï¿½Æ®*/
-	@RequestMapping("/empty.hon")
-	public String empty(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
-		List<Map<String,Object>> emptyList = null;
-		logger.info("emptyï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		//tLogic.test(pMap);
-		/*try {
-			mDao.check(pMap);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		return "redirect:./join/addr_result.jsp";
-	}
-	
-/*ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½ Ã¼Å©*/
-	@RequestMapping("/id_sel.hon")
-	public String id_sel(Model mod
-			, @RequestParam("id") String pMap
-			, HttpServletResponse res) {
-		logger.info("id_sel ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		String result = "";
-		logger.info("pMap" + pMap);
-		result = String.valueOf(memberDao.id_sel(pMap));
-		logger.info("result: "+result);
-		return result;
-	}
-	
-/*ï¿½ï¿½È­ï¿½ï¿½È£ ï¿½ßºï¿½ Ã¼Å©*/
-	@RequestMapping("/id_tel.hon")
-	public String id_tel(Model mod
-			, @RequestParam("tel") String pMap
-			, HttpServletResponse res) {
-		logger.info("id_tel ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		String result = "";
-		logger.info("pMap" + pMap);
-		result = String.valueOf(memberDao.tel_sel(pMap));
-		return result;
-	}
-
-/*ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½*/
-	@RequestMapping(value="join.hon", method=RequestMethod.POST)
-	public int join(Model mod
-			, @RequestParam Map<String,Object> pMap
-			, HttpServletResponse res) {
-		int result = 0;
-		logger.info("join ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		result = memberDao.insert(pMap);
-		return result;
-	}
-	
-/*ï¿½Ö¼Ò°Ë»ï¿½*/
-	@RequestMapping(value="doAddress.hon", method=RequestMethod.POST)
-	public String doAddress(Model mod
-			, @RequestParam Map<String,Object> pMap
-			, HttpServletResponse res) {
-		List<Map<String, Object>> result = null;
-		logger.info("doAddress ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		result = memberDao.doselect(pMap);
-		logger.info("data: "+result);
-		mod.addAttribute("result",result);
-		//return "addr_result";
-		return "forward:/member/join/result/result.jsp";
-	}
-	@RequestMapping(value="siAddress.hon", method=RequestMethod.POST)
-	public String siAddress(Model mod
-			, @RequestParam Map<String,Object> pMap
-			, HttpServletResponse res) {
-		List<Map<String, Object>> result = null;
-		logger.info("siAddress ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		result = memberDao.siSelect(pMap);
-		logger.info("data: "+result);
-		mod.addAttribute("result",result);
-		return "forward:/member/join/result/result.jsp";
-	}
-	@RequestMapping(value="dongAddress.hon", method=RequestMethod.POST)
-	public String dongAddress(Model mod
-			, @RequestParam Map<String,Object> pMap
-			, HttpServletResponse res) {
-		List<Map<String, Object>> result = null;
-		logger.info("dongAddress ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		result = memberDao.dongSelect(pMap);
-		logger.info("data: "+result);
-		mod.addAttribute("result",result);
-		return "forward:/member/join/result/result.jsp";
-	}
-	@RequestMapping(value="deAddress.hon", method=RequestMethod.POST)
-	public String deAddress(Model mod
-			, @RequestParam Map<String,Object> pMap
-			, HttpServletResponse res) {
-		List<Map<String, Object>> result = null;
-		logger.info("deAddress ï¿½Ş¼Òµï¿½ È£ï¿½ï¿½");
-		result = memberDao.detailSelect(pMap);
-		logger.info("data: "+result);
-		mod.addAttribute("result",result);
-		logger.info(mod);
-		return "forward:/member/join/result/addr_result.jsp";
-	}
-	
-	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ì•„ì´ë”” ì°¾ê¸°(ì „í™”ë²ˆí˜¸ë¡œ) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		//ë¡œì§ì„ ê±°ì¹  í•„ìš”ê°€ ì—†ê¸° ë•Œë¬¸ì— ê¸°ì¡´ urlì— ìˆë˜ empty ì œê±°
-		@RequestMapping(value = "/check.hon", method= {RequestMethod.POST, RequestMethod.GET}) //POST, GET ëª¨ë‘ ë°›ì„ ìˆ˜ ìˆìŒ
-		public String check(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
-			logger.info("check í˜¸ì¶œ ì„±ê³µ");
-			String resultPage = ""; //ê²°ê³¼ í˜ì´ì§€ ë‹´ì„ ë³€ìˆ˜
-			String result = "";
-			List<Map<String, Object>> list = null;
-			result = mDao.check(pMap);
-			logger.info(result);
-			if ("1".equals(result)) { //1ì´ë©´ ì´ë¦„ê³¼ ì•„ì´ë”” ë™ì¼
-				logger.info(pMap.get("ins_name").toString());
-				logger.info(pMap.get("mem_tel").toString());
-				// ë°”ë¡œ Daoì˜ idSearch() ì´ë™
-				list = mDao.idSearch(pMap);
-				logger.info("Controller : " + list);
-				if (list != null) {// list => ì´ë¦„ê³¼ ì•„ì´ë””ê°€ ì¡´ì¬ì—¬ë¶€
-					logger.info("Controller");
-					HttpSession mem_session = req.getSession();
-					mem_session.setAttribute("idSearch", list);
-				}
-				resultPage = "/member/login/idFound.jsp"; 
-			} else if ("-1".equals(result)) {
-				logger.info("resultëŠ”" + result);
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			} else if ("0".equals(result)) {
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			}
-			logger.info(resultPage);
-			if ("-1".equals(result) || "0".equals(result)) {// redirectì¸ì§€ forwardì¸ì§€ ë‚˜ëˆ„ê¸° ìœ„í•´ 
-				logger.info("redirectë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			} else {
-				logger.info("forwardë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			}
-		}
-
-		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ì•„ì´ë”” ì°¾ê¸°2(ì´ë©”ì¼ë¡œ) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		@RequestMapping(value = "/check2.hon", method= {RequestMethod.POST, RequestMethod.GET})
-		public String check2(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
-			logger.info("check2 í˜¸ì¶œ ì„±ê³µ"); 
-			String resultPage = "";
-			String result = "";
-			List<Map<String, Object>> list = null;
-			result = mDao.check2(pMap);
-			logger.info(result);
-			if ("1".equals(result)) {
-				logger.info(pMap.get("e_name").toString());
-				logger.info(pMap.get("e_mail").toString());
-				// ë°”ë¡œ Daoì˜ idSearch() ì´ë™
-				list = mDao.e_idSearch(pMap);
-				logger.info("Controller : " + list);
-				if (list != null) {// list => ì´ë¦„ê³¼ ì•„ì´ë””
-					logger.info("Controller");
-					HttpSession mem_session = req.getSession();
-					mem_session.setAttribute("e_idSearch", list);
-				}
-				resultPage = "/member/login/idFound2.jsp";
-			} else if ("-1".equals(result)) {
-				logger.info("resultëŠ”" + result);
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			} else if ("0".equals(result)) {
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			}
-			logger.info(resultPage);
-			if ("-1".equals(result) || "0".equals(result)) {// redirectì¸ì§€ forwardì¸ì§€ ë‚˜ëˆ„ê¸° ìœ„í•´ resultê°’ìœ¼ë¡œ êµ¬ë¶„
-				logger.info("redirectë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			} else {
-				logger.info("forwardë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			}
-		}
+			return "";
 		
-		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°(ì „í™”ë²ˆí˜¸ë¡œ) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		@RequestMapping(value = "/pwCheck.hon", method= {RequestMethod.POST, RequestMethod.GET})
-		public String pwCheck(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
-			logger.info("pwCheck í˜¸ì¶œ ì„±ê³µ");
-			String resultPage = "";
-			String result = "";
-			List<Map<String, Object>> list = null;
-			result = mDao.pwCheck(pMap);
-			logger.info(result);
-			if ("1".equals(result)) {
-				logger.info(pMap.get("mem_id").toString());
-				logger.info(pMap.get("mem_tel").toString());
-				// ë°”ë¡œ Daoì˜ idSearch() ì´ë™
-				result = mDao.proc_pw3(pMap);
-				logger.info("Controller : " + result);
-				if (result != null) {
-					logger.info("Controller");
-					HttpSession mem_session = req.getSession();
-					mem_session.setAttribute("pwSearch", result);
-				}
-				resultPage = "/member/login/pwFound.jsp";
-			} else if ("-1".equals(result)) {
-				logger.info("resultëŠ”" + result);
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			} else if ("0".equals(result)) {
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			}
-			logger.info(resultPage);
-			if ("-1".equals(result) || "0".equals(result)) {// redirectì¸ì§€ forwardì¸ì§€ ë‚˜ëˆ„ê¸° ìœ„í•´ resultê°’ìœ¼ë¡œ êµ¬ë¶„
-				logger.info("redirectë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			} else {
-				logger.info("forwardë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			}
-		}
-		
-		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°(ì´ë©”ì¼ë¡œ) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		@RequestMapping(value = "/pwCheck2.hon", method= {RequestMethod.POST, RequestMethod.GET})
-		public String pwCheck2(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
-			logger.info("pwCheck2 í˜¸ì¶œ ì„±ê³µ");
-			String resultPage = "";
-			String result = "";
-			List<Map<String, Object>> list = null;
-			result = mDao.pwCheck2(pMap);
-			logger.info(result);
-			if ("1".equals(result)) {
-				logger.info(pMap.get("e_id").toString());
-				logger.info(pMap.get("e_mail").toString());
-				// ë°”ë¡œ Daoì˜ idSearch() ì´ë™
-				result = mDao.proc_epw(pMap);
-				logger.info("Controller : " + result);
-				if (result != null) {
-					logger.info("Controller");
-					HttpSession mem_session = req.getSession();
-					mem_session.setAttribute("e_pwSearch", result);
-				}
-				resultPage = "/member/login/pwFound2.jsp";
-			} else if ("-1".equals(result)) {
-				logger.info("resultëŠ”" + result);
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			} else if ("0".equals(result)) {
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			}
-			logger.info(resultPage);
-			if ("-1".equals(result) || "0".equals(result)) {// redirectì¸ì§€ forwardì¸ì§€ ë‚˜ëˆ„ê¸° ìœ„í•´ resultê°’ìœ¼ë¡œ êµ¬ë¶„
-				logger.info("redirectë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			} else {
-				logger.info("forwardë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			}
-		}
-		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ login @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		@RequestMapping(value = "/login.hon", method= {RequestMethod.POST, RequestMethod.GET})
-		public String login(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
-			logger.info("login í˜¸ì¶œ ì„±ê³µ");
-			String resultPage = "";
-			String result = "";
-			List<Map<String, Object>> list = null;
-			result = mDao.login(pMap);
-			logger.info(result);
-			if ("1".equals(result)) {
-				logger.info(pMap.get("mem_id").toString());
-				logger.info(pMap.get("mem_pw").toString());
-				// ë°”ë¡œ Daoì˜ idSearch() ì´ë™
-				list = mDao.select(pMap);
-				logger.info("Controller : " + result);
-				if (list != null) {
-					logger.info("Controller");
-					HttpSession mem_session = req.getSession();
-					mem_session.setAttribute("memList", list);
-				}
-				resultPage = "/member/login/pwFound2.jsp";
-			} else if ("-1".equals(result)) {
-				logger.info("resultëŠ”" + result);
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			} else if ("0".equals(result)) {
-				resultPage = "/member/login/result/result.jsp?result=" + result;
-			}
-			logger.info(resultPage);
-			if ("-1".equals(result) || "0".equals(result)) {// redirectì¸ì§€ forwardì¸ì§€ ë‚˜ëˆ„ê¸° ìœ„í•´ 
-				logger.info("redirectë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			} else {
-				logger.info("forwardë¡œ ë³´ë‚´ëŠ”ì¤‘");
-				return "forward:" + resultPage;
-			}
-		}
-		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ notice @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+	}
 	
+	
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ¾ÆÀÌµğ Ã£±â(ÀüÈ­¹øÈ£·Î) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	//·ÎÁ÷À» °ÅÄ¥ ÇÊ¿ä°¡ ¾ø±â ¶§¹®¿¡ ±âÁ¸ url¿¡ ÀÖ´ø empty Á¦°Å
+	@RequestMapping(value = "/check.hon", method= {RequestMethod.POST, RequestMethod.GET}) //POST, GET ¸ğµÎ ¹ŞÀ» ¼ö ÀÖÀ½
+	public String check(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
+		logger.info("check È£Ãâ ¼º°ø");
+		String resultPage = ""; //°á°ú ÆäÀÌÁö ´ãÀ» º¯¼ö
+		String result = "";
+		List<Map<String, Object>> list = null;
+		result = mDao.check(pMap);
+		logger.info(result);
+		if ("1".equals(result)) { //1ÀÌ¸é ÀÌ¸§°ú ¾ÆÀÌµğ µ¿ÀÏ
+			logger.info(pMap.get("ins_name").toString());
+			logger.info(pMap.get("mem_tel").toString());
+			// ¹Ù·Î DaoÀÇ idSearch() ÀÌµ¿
+			list = mDao.idSearch(pMap);
+			logger.info("Controller : " + list);
+			if (list != null) {// list => ÀÌ¸§°ú ¾ÆÀÌµğ°¡ Á¸Àç¿©ºÎ
+				logger.info("Controller");
+				HttpSession mem_session = req.getSession();
+				mem_session.setAttribute("idSearch", list);
+			}
+			resultPage = "/member/login/idFound.jsp"; 
+		} else if ("-1".equals(result)) {
+			logger.info("result´Â" + result);
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		} else if ("0".equals(result)) {
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		}
+		logger.info(resultPage);
+		if ("-1".equals(result) || "0".equals(result)) {// redirectÀÎÁö forwardÀÎÁö ³ª´©±â À§ÇØ 
+			logger.info("redirect·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		} else {
+			logger.info("forward·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		}
+	}
+
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ¾ÆÀÌµğ Ã£±â2(ÀÌ¸ŞÀÏ·Î) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@RequestMapping(value = "/check2.hon", method= {RequestMethod.POST, RequestMethod.GET})
+	public String check2(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
+		logger.info("check2 È£Ãâ ¼º°ø"); 
+		String resultPage = "";
+		String result = "";
+		List<Map<String, Object>> list = null;
+		result = mDao.check2(pMap);
+		logger.info(result);
+		if ("1".equals(result)) {
+			logger.info(pMap.get("e_name").toString());
+			logger.info(pMap.get("e_mail").toString());
+			// ¹Ù·Î DaoÀÇ idSearch() ÀÌµ¿
+			list = mDao.e_idSearch(pMap);
+			logger.info("Controller : " + list);
+			if (list != null) {// list => ÀÌ¸§°ú ¾ÆÀÌµğ
+				logger.info("Controller");
+				HttpSession mem_session = req.getSession();
+				mem_session.setAttribute("e_idSearch", list);
+			}
+			resultPage = "/member/login/idFound2.jsp";
+		} else if ("-1".equals(result)) {
+			logger.info("result´Â" + result);
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		} else if ("0".equals(result)) {
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		}
+		logger.info(resultPage);
+		if ("-1".equals(result) || "0".equals(result)) {// redirectÀÎÁö forwardÀÎÁö ³ª´©±â À§ÇØ result°ªÀ¸·Î ±¸ºĞ
+			logger.info("redirect·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		} else {
+			logger.info("forward·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		}
+	}
+	
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ºñ¹Ğ¹øÈ£ Ã£±â(ÀüÈ­¹øÈ£·Î) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@RequestMapping(value = "/pwCheck.hon", method= {RequestMethod.POST, RequestMethod.GET})
+	public String pwCheck(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
+		logger.info("pwCheck È£Ãâ ¼º°ø");
+		String resultPage = "";
+		String result = "";
+		List<Map<String, Object>> list = null;
+		result = mDao.pwCheck(pMap);
+		logger.info(result);
+		if ("1".equals(result)) {
+			logger.info(pMap.get("mem_id").toString());
+			logger.info(pMap.get("mem_tel").toString());
+			// ¹Ù·Î DaoÀÇ idSearch() ÀÌµ¿
+			result = mDao.proc_pw3(pMap);
+			logger.info("Controller : " + result);
+			if (result != null) {
+				logger.info("Controller");
+				HttpSession mem_session = req.getSession();
+				mem_session.setAttribute("pwSearch", result);
+			}
+			resultPage = "/member/login/pwFound.jsp";
+		} else if ("-1".equals(result)) {
+			logger.info("result´Â" + result);
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		} else if ("0".equals(result)) {
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		}
+		logger.info(resultPage);
+		if ("-1".equals(result) || "0".equals(result)) {// redirectÀÎÁö forwardÀÎÁö ³ª´©±â À§ÇØ result°ªÀ¸·Î ±¸ºĞ
+			logger.info("redirect·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		} else {
+			logger.info("forward·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		}
+	}
+	
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ºñ¹Ğ¹øÈ£ Ã£±â(ÀÌ¸ŞÀÏ·Î) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@RequestMapping(value = "/pwCheck2.hon", method= {RequestMethod.POST, RequestMethod.GET})
+	public String pwCheck2(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
+		logger.info("pwCheck2 È£Ãâ ¼º°ø");
+		String resultPage = "";
+		String result = "";
+		List<Map<String, Object>> list = null;
+		result = mDao.pwCheck2(pMap);
+		logger.info(result);
+		if ("1".equals(result)) {
+			logger.info(pMap.get("e_id").toString());
+			logger.info(pMap.get("e_mail").toString());
+			// ¹Ù·Î DaoÀÇ idSearch() ÀÌµ¿
+			result = mDao.proc_epw(pMap);
+			logger.info("Controller : " + result);
+			if (result != null) {
+				logger.info("Controller");
+				HttpSession mem_session = req.getSession();
+				mem_session.setAttribute("e_pwSearch", result);
+			}
+			resultPage = "/member/login/pwFound2.jsp";
+		} else if ("-1".equals(result)) {
+			logger.info("result´Â" + result);
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		} else if ("0".equals(result)) {
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		}
+		logger.info(resultPage);
+		if ("-1".equals(result) || "0".equals(result)) {// redirectÀÎÁö forwardÀÎÁö ³ª´©±â À§ÇØ result°ªÀ¸·Î ±¸ºĞ
+			logger.info("redirect·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		} else {
+			logger.info("forward·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		}
+	}
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ login @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@RequestMapping(value = "/login.hon", method= {RequestMethod.POST, RequestMethod.GET})
+	public String login(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
+		logger.info("login È£Ãâ ¼º°ø");
+		String resultPage = "";
+		String result = "";
+		List<Map<String, Object>> list = null;
+		result = mDao.login(pMap);
+		logger.info(result);
+		if ("1".equals(result)) {
+			logger.info(pMap.get("mem_id").toString());
+			logger.info(pMap.get("mem_pw").toString());
+			// ¹Ù·Î DaoÀÇ idSearch() ÀÌµ¿
+			list = mDao.select(pMap);
+			logger.info("Controller : " + result);
+			if (list != null) {
+				logger.info("Controller");
+				HttpSession mem_session = req.getSession();
+				mem_session.setAttribute("memList", list);
+			}
+			resultPage = "/member/login/pwFound2.jsp";
+		} else if ("-1".equals(result)) {
+			logger.info("result´Â" + result);
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		} else if ("0".equals(result)) {
+			resultPage = "/member/login/result/result.jsp?result=" + result;
+		}
+		logger.info(resultPage);
+		if ("-1".equals(result) || "0".equals(result)) {// redirectÀÎÁö forwardÀÎÁö ³ª´©±â À§ÇØ 
+			logger.info("redirect·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		} else {
+			logger.info("forward·Î º¸³»´ÂÁß");
+			return "forward:" + resultPage;
+		}
+	}
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ notice @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 }

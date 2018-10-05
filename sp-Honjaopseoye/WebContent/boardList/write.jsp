@@ -49,7 +49,7 @@ $(document).ready(function(){
 		// 이미지 등록 처리
 		$.ajax({
 			method:"POST"
-		   ,url:"../board/empty/imageAjax.test"
+		   ,url:"../pInsert.hon"
 		   ,data:formData
 		   ,enctype:"multipart/form-data"
 		   ,contentType: false

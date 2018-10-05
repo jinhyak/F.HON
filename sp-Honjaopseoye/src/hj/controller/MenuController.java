@@ -19,7 +19,7 @@ import hj.logic.MenuLogic;
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
-	Logger logger = Logger.getLogger(MemberController.class);
+	Logger logger = Logger.getLogger(MenuController.class);
 
 	@Autowired
 	private MenuLogic menuLogic = null;
