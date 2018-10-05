@@ -1,6 +1,7 @@
 package hj.dao;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +92,7 @@ public class MemberDao {
 
 	public List<Map<String, Object>> select(Map<String, Object> pMap) throws IOException {
 		logger.info(pMap);
-		logger.info("mdao : select 筌롫뗄�꺖占쎈굡 占쎌깈�빊占� 占쎄쉐�⑨옙");
+		logger.info("mdao : select call");
 		List<Map<String, Object>> memberList = null;
 		memberList = sqlSessionTemplate.selectList("membermap.select", pMap);
 		return memberList;
@@ -100,7 +101,7 @@ public class MemberDao {
 	public String login(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info(pMap);
-		logger.info("mdao : login 筌롫뗄�꺖占쎈굡 占쎌깈�빊占� 占쎄쉐�⑨옙");
+		logger.info("mdao : login call" );
 		result = sqlSessionTemplate.selectOne("membermap.login", pMap);
 		logger.info(result);
 
@@ -108,22 +109,21 @@ public class MemberDao {
 	}
 
 	public String check(Map<String, Object> pMap) throws IOException {
+		logger.info("Dao : check 호출 성공");
 		String result = "";
 		logger.info("check" + pMap);
-		logger.info("mdao : check 筌롫뗄�꺖占쎈굡 占쎌깈�빊占� 占쎄쉐�⑨옙");
+		logger.info("mdao : check 메소드 호출 성공");
 		result = sqlSessionTemplate.selectOne("membermap.check", pMap);
-		logger.info("result占쎈뮉" + result);
-
+		logger.info("result는" + result);
 		return result;
 	}
 
 	public String check2(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("check2" + pMap);
-		logger.info("mdao : check 筌롫뗄�꺖占쎈굡 占쎌깈�빊占� 占쎄쉐�⑨옙");
+		logger.info("mdao : check 메소드 호출 성공");
 		result = sqlSessionTemplate.selectOne("membermap.check2", pMap);
-		logger.info("result占쎈뮉" + result);
-
+		logger.info("result는" + result);
 		return result;
 	}
 
@@ -135,6 +135,7 @@ public class MemberDao {
 		idSearch = sqlSessionTemplate.selectList("idSearch", pMap);
 		// String user_pw = idSearch.get(0).get("mem_pw").toString();
 		logger.info("idSearch : " + idSearch);
+		sqlSessionTemplate.close();
 		return idSearch;
 	}
 
@@ -145,66 +146,59 @@ public class MemberDao {
 		logger.info(pMap.get("e_mail"));
 		e_idSearch = sqlSessionTemplate.selectList("e_idSearch", pMap);
 		logger.info("e_idSearch : " + e_idSearch);
+		sqlSessionTemplate.close();
 		return e_idSearch;
 	}
 
 	public String pwCheck(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("pwCheck" + pMap);
-		logger.info("mdao : pwCheck 筌롫뗄�꺖占쎈굡 占쎌깈�빊占� 占쎄쉐�⑨옙");
+		logger.info("mdao : pwCheck 메소드 호출 성공");
 		result = sqlSessionTemplate.selectOne("membermap.pwCheck", pMap);
-		logger.info("result占쎈뮉" + result);
-
+		logger.info("result는" + result);
+		
 		return result;
 	}
 
 	public String pwCheck2(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("pwCheck2" + pMap);
-		logger.info("mdao : pwCheck2 筌롫뗄�꺖占쎈굡 占쎌깈�빊占� 占쎄쉐�⑨옙");
+		logger.info("mdao : pwCheck2 메소드 호출 성공");
 		result = sqlSessionTemplate.selectOne("membermap.pwCheck2", pMap);
-		logger.info("result占쎈뮉" + result);
-
+		logger.info("result는" + result);
 		return result;
 	}
 
-	public List<Map<String, Object>> pwSearch(Map<String, Object> pMap) throws IOException {
-		logger.info("pwSearch:" + pMap);
-		logger.info(pMap.get("mem_id"));
-		logger.info(pMap.get("mem_tel"));
-		List<Map<String, Object>> pwSearch = null;
-		pwSearch = sqlSessionTemplate.selectList("pwSearch", pMap);
-		// String user_pw = idSearch.get(0).get("mem_pw").toString();
-		logger.info("pwSearch : " + pwSearch);
-		return pwSearch;
+	public String proc_pw3(Map<String, Object> pMap) throws IOException {
+		logger.info("proc_pw3:" + pMap);
+		String res = "";
+		logger.info(pMap.get("mem_id").toString());
+		logger.info(pMap.get("mem_tel").toString());
+		sqlSessionTemplate.selectOne("proc_pw", pMap);
+		res = pMap.get("res").toString();
+		logger.info("proc_pw : " + res);
+		sqlSessionTemplate.close();
+		return res;
 	}
 
-	public List<Map<String, Object>> e_pwSearch(Map<String, Object> pMap) throws IOException {
-		logger.info("e_pwSearch:" + pMap);
-		List<Map<String, Object>> e_pwSearch = null;
-		logger.info(pMap.get("e_id"));
-		logger.info(pMap.get("e_mail"));
-		e_pwSearch = sqlSessionTemplate.selectList("e_pwSearch", pMap);
-		logger.info("e_idSearch : " + e_pwSearch);
-		return e_pwSearch;
-	}
-	
-	public List<Map<String, Object>> getMemberList(Map<String, Object> pMap) throws IOException {
-		logger.info("getMemberList:" + pMap);
-		List<Map<String, Object>> getMemberList = null;
-		logger.info(pMap.get("mem_id"));
-		getMemberList = sqlSessionTemplate.selectList("getMemberList", pMap);
-		logger.info("e_idSearch : " + getMemberList);
-		return getMemberList;
+	public String proc_epw(Map<String, Object> pMap) throws IOException {
+		logger.info("proc_epw:" + pMap);
+		String res = "";
+		logger.info(pMap.get("e_id").toString());
+		logger.info(pMap.get("e_mail").toString());
+		sqlSessionTemplate.selectOne("proc_epw", pMap);
+		res = pMap.get("res").toString();
+		logger.info("proc_epw : " + res);
+		sqlSessionTemplate.close();
+		return res;
 	}
 
-	public static void main(String[] args) throws IOException {
-			   MemberDao md = new MemberDao();
-			   Map<String, Object> pMap = new HashMap<String,Object>();
-			   pMap.put("mem_id", "test1");
-			   pMap.put("mem_pw", "123");
-			   String id = "test1";
-			   System.out.println(md.id_sel(id));
-			   //System.out.println(md.getMemberList(pMap));
-		}
+	public List<Map<String, Object>> noticeList(Map<String, Object> pMap){
+		logger.info("noticeList 호출 성공");
+		List<Map<String, Object>> getNoticeList = new ArrayList<Map<String,Object>>();
+		getNoticeList = sqlSessionTemplate.selectList("noticeList", pMap);
+		return getNoticeList;
+	}
+
+
 }

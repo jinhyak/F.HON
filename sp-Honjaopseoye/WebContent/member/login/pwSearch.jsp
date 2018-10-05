@@ -3,9 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
 <%@ include file="../../include/include/commonUI.jsp"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <script type="text/javascript">
 	function btn_find() {
 		if ($("#mem_id").val() == null || $("#mem_id").val() == "") {
@@ -19,10 +19,9 @@
 			$("#mem_tel").focus();
 			return false;
 		} else {
-			//$("#f_phone").submit();
 			var param = $("#f_phone").serialize();
 			$.ajax({
-				url : "../../member/empty/pwCheck.test",
+				url : "../../member/pwCheck.hon",
 				method : "post",
 				data : param,
 				success : function(result) {
@@ -59,7 +58,7 @@
 		} else {
 			var param = $("#f_email").serialize();
 			$.ajax({
-				url : "../../member/empty/pwCheck2.test",
+				url : "../../member/pwCheck2.hon",
 				method : "post",
 				data : param,
 				success : function(result) {
@@ -202,14 +201,14 @@
                                                 style="margin-left: 5px; width: 250px">
                                           </div>
                                        </div>
-                                       <div class="ui column container" style="padding-bottom: 8px;">
+                                       <div class="ui column container" >
                                           <span style="margin-right: 31px"><label>휴대전화</label></span>
                                           <div class="ui input focus" 
                                              style="width: 250px">
                                              <input type="text" placeholder="전화번호를 입력해주세요." id="mem_tel" name="mem_tel">
                                           </div>
                                        </div>
-                                       <div style="margin-top: 10px; margin-left: 170px;">
+                                       <div style="margin-top: 10px; margin-left: 90px;">
                                           <button class="ui gray button" id="btn_search" type="button" onClick="btn_find()"
                                               style="width: 250px;">비밀번호 찾기</button>
                                        </div>
@@ -248,7 +247,7 @@
                                                 style="margin-left: 45px;">
                                           </div>
                                           <div style="margin-top: 10px; margin-left: 90px;">
-                                             <button class="ui gray button" type="button" style="width: 250px;" onClick="btn_efind()">비밀번호   찾기</button>
+                                             <button class="ui gray button" type="button" style="width: 263px;" onClick="btn_efind()">비밀번호   찾기</button>
                                           </div>
                                        </div>
                                     </div>

@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page import="java.util.*" %>  
 <%@ include file="../../include/include/commonUI.jsp"%>
 <% 
    String smem_id = null;
    String smem_name = null;
    if(session.getAttribute("idSearch")!=null){
+	   System.out.println(session.getAttribute("idSearch"));
       List<Map<String, Object>> sid = (List<Map<String, Object>>)session.getAttribute("idSearch");
       smem_id = sid.get(0).get("MEM_ID").toString();
       smem_name = sid.get(0).get("MEM_NAME").toString();
