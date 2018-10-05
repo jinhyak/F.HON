@@ -55,7 +55,7 @@
 					}
 					else{
 						alert("로그인에 성공하셨습니다.")
-						location.href="../../main/main.jsp"
+						location.href="../../main/main/main.jsp"
 					}
 				}
 				,error:function(data){

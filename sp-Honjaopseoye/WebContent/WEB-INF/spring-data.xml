@@ -41,7 +41,7 @@
 	<bean id="MessageDao" class="hj.dao.MessageDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
-	<!-- <bean id="GroupDao" class="hj.dao.GroupDao">
+	<bean id="GroupDao" class="hj.dao.GroupDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
 	<bean id="StoreDao" class="hj.dao.StoreDao">
@@ -49,7 +49,10 @@
 	</bean>
 	<bean id="BoardDao" class="hj.dao.BoardDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
-	</bean> -->
+	</bean>
+	<bean id="MenuDao" class="hj.dao.MenuDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
 	<!-- DAO계층은 mvc패턴에 속하지 않기 때문에 따로 빈생성을 해줘야한다. -->
 <!-- ====================================================================== -->
 <!-- DAO Bean Create -->

@@ -245,11 +245,12 @@ $(document).ready(function(){
 		$.ajax({
 			 method:"post"
 			,data:param
-			,url:"../../member/empty/update.test"
+			,url:"../iUpdate.hon"
 			,success:function(data){
-					alert(data);
+				alert(data);
 				if(data=='1'){
 					alert('회원정보가 수정되었습니다.')
+					location.href="../../main/main/main.jsp"
 				}
 				else{
 					alert("회원정보 수정에 실패하셨습니다")

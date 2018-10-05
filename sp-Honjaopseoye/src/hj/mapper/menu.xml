@@ -5,35 +5,34 @@
 	<select id="nSelect" parameterType="map" resultType="map">
 		select
 		noti_no,noti_title,noti_writer,noti_hit,noti_date
-		from notice 
-		where admin_id = #{admin_id}
+		from notice
 	</select>
 	<select id="qSelect" parameterType="map" resultType="map">
-		select fqa_title,fqa_writer,fqa_date
-		from fqa
+		select qna_title,qna_writer,qna_date
+		from qna
 	</select>
 	<select id="qInsert" parameterType="map" resultType="map">
-		insert into fqa(fqa_no,fqa_title,fqa_category,fqa_pw,fqa_writer,fqa_hit,fqa_date,fqa_step,fqa_depth,fqa_group,admin_id)
-		values (seq_fqa_no,fqa_title,#{드롭박스},fqa_pw,#{mem_id},fqa_hit,to_char(sysdate,"YYYY-MM-DD"),0,0,fqa_group,admin_id)
+		insert into qna(qna_no,qna_title,qna_category,qna_pw,qna_writer,qna_hit,qna_date,qna_step,qna_depth,qna_group,admin_id)
+		values (seq_qna_no,qna_title,#{드롭박스},qna_pw,#{mem_id},qna_hit,to_char(sysdate,"YYYY-MM-DD"),0,0,qna_group,admin_id)
 	</select>
 	<update id="qhit" parameterType="int">
-		update fqa
-		set fqa_hit = fqa_hit + 1
-		where fqa_no =:x
+		update qna
+		set qna_hit = qna_hit + 1
+		where qna_no =:x
 	</update>
-	<select id="qGroup" parameterType="map" resultType="int">
+	<select id="getGroup" parameterType="map" resultType="int">
 		SELECT
-		NVL((SELECT /*index_desc(fqa 인덱스 부여 fqa_group*/ fqa_group
-		FROM fqa
-		WHERE rownum = 1
-		AND fqa_group > 0),0)+1 fqa_group
-		FROM dual
+        NVL((SELECT /*index_desc(qna 인덱스 부여 qna_group*/ qna_group
+        FROM qna
+        WHERE rownum = 1
+        AND qna_group > 0),0)+1 qna_group
+        FROM dual
 	</select>
 	<update id="qStep" parameterType="map">
-		update fqa
-		set fqa_step = fqa_step+1
-		where fqa_group = #{fqa_group} 
-		and fqa_step > #{fqa_step} 
+		update qna
+        set qna_step = qna_step+1
+        where qna_group = #{qna_group} 
+        and qna_step > #{qna_step} 
 	</update>
 </mapper>
 

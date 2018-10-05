@@ -59,7 +59,7 @@
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%">
-								<a href="../boardList/boardList.jsp"> 게시판 등록 </a>
+								<a href="../../boardList/boardList.jsp"> 게시판 등록 </a>
 							</div>
 						</div>
 					</div>

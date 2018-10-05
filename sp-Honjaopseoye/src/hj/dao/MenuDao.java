@@ -19,10 +19,9 @@ public class MenuDao {
 /* [[[[[[[[[[[[[[[[[[[[[[[[[[[[ 관리자 공지사항 ]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
 	
 	public List<Map<String, Object>> nSelect(Map<String, Object> pMap) {
-		logger.info("rInsert 호출 성공");
+		logger.info("nSelect 호출 성공");
 		List<Map<String, Object>> nList = new ArrayList<Map<String, Object>>();
 		nList = sqlSessionTemplate.selectList("nSelect", pMap);
-		sqlSessionTemplate.commit();
 		logger.info("nSelect: " + nList);
 		return nList;
 	}
@@ -60,6 +59,34 @@ public class MenuDao {
 			logger.info("nInsert: " + result);
 		}
 		return result;
+	}
+	
+/* [[[[[[[[[[[[[[[[[[[[[[[[[[[[ 계층형 게시글 ]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
+	public int step(String pMap) {
+		logger.info("step Update");
+		int result = 0;
+		result = sqlSessionTemplate.update(pMap);
+		sqlSessionTemplate.commit();
+		return result;	
+	}
+	public int depth(String pMap) {
+		logger.info("depth Update");
+		int result = 0;
+		result = sqlSessionTemplate.update(pMap);
+		sqlSessionTemplate.commit();
+		return result;
+	}
+	public int group(String pMap) {
+		logger.info("group Update");
+		int result = 0;
+		result = sqlSessionTemplate.update(pMap);
+		sqlSessionTemplate.commit();
+		return result;
+	}
+	public int getGroup(Map<String, Object> pMap) {
+		int b_group = 0;
+		b_group = sqlSessionTemplate.selectOne("getGroup");
+		return b_group;
 	}
 
 }

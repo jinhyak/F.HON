@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $('#dt_reserv_list').dataTable({
       //url:'../../member/empty/getReservList.test',
-      "ajax":{ "url":"selelct.test", "type":"POST" },
+      "ajax":{ "url":"qSelelct.hon", "type":"POST" },
        columns:[
 			{"data":'QNA_NO',"className":'dt-body-center'},
 			{"data":'QNA_TITLE',"className":'dt-body-center'},

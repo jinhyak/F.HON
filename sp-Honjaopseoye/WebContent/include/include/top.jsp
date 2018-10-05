@@ -28,9 +28,9 @@
           <i class="sidebar icon"></i>
         </a>
 	        <a class="active item" href="../../notice/notice/notice.jsp">공지사항</a>
-	        <a class="item" href="../notice/qna.jsp">Q&A</a>
-	        <a class="item" href="#">혼밥하자</a>
-	        <a class="item" href="#">인사하자</a>
+	        <a class="item" href="../../notice/qna/qna.jsp">Q&A</a>
+	        <a class="item" href="../../main/honja/honja_main.jsp">혼밥하자</a>
+	        <a class="item" href="../../main/together/together.jsp">인사하자</a>
 	        <div class="ui grid">
 	        <div class="four wide two wide large screen one wide widescreen column"></div>
 	        <div class="four wide two wide large screen one wide widescreen column">
@@ -44,7 +44,7 @@
        		<div class="ui text container"> 
        	  <%=s_name%>님 환영합니다.
           <a class="ui inverted button" href="../../member/login/logout.jsp">로그아웃</a>
-          <a class="ui inverted button" href="../../member/meminfo/mlist.jsp">정보수정</a>
+          <a class="ui inverted button" href="../../member/meminfo/meminfo.jsp">정보수정</a>
         	</div>
         </div>
       </div>

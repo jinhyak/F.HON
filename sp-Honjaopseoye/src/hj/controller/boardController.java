@@ -35,7 +35,7 @@ public class boardController {
 	@RequestMapping("/postList.kjh")
 	public String postList(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
 		List<Map<String,Object>> postList = null;
-		if(pMap.containsKey(/*"去逛|去贱|去愁"*/)) {
+		if(pMap.containsKey("")) {
 			pMap.put("sb_keyword", HangulConversion.toKor(pMap.get("sb_keyword").toString()));
 		}
 		try {
@@ -58,7 +58,8 @@ public class boardController {
 	@RequestMapping(value="/pInsert.hon", method = RequestMethod.POST)
 	public String pInsert(@RequestParam Map<String,Object> pMap) {
 		logger.info("pInsert 龋免 己傍");
-		
+		List<Map<String,Object>> pInsert = null;
+		pInsert = boardDao.pInsert(pMap);
 		return "forward:boardlist.jsp";
 	}
 	
@@ -74,4 +75,6 @@ public class boardController {
 		mod.addAttribute("pView", pView);
 		return "redirect:wView.jsp";
 	}
+	
+
 }

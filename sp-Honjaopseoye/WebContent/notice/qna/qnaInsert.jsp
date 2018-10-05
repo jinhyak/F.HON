@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
     
     <%
-    request.setAttribute("qna_writer","beyonce200");
-    
-    
-    
+    //request.setAttribute("qna_writer",);
     %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,19 +13,6 @@
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
 <script src="../Semantic/semantic.js"></script>
 <title>글쓰기</title>
-<!--이미지 미리보기 스크립트 구간 -->
-<script type="text/javascript">
-
-// 이미지 미리보기
-$(document).ready(function(){
-	
-	
-}) /* 레디 끝  */
-
-
-
-</script>
-<!-- 이미지 미리보기 스크립트 구간  끝-->
 
 <!-- 바디 스타일 -->
 <style>
@@ -52,7 +36,7 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
-<form method="Post" action="qnaInsert.test" id="qna_board" name="qna_board">
+<form method="Post" action="qInsert.hon" id="qna_board" name="qna_board">
 
 <!-- 입력 게시판 테이블   -->
 <table align="center" border="1" width="800px" height="1000px" bgcolor="white">
@@ -87,12 +71,6 @@ $(document).ready(function(){
 <tr>
 <!-- 콤보박스  -->
 <td width="800px" height="400px">
-<select name="qna_category" id="qna_category">
-<option value="혼놀">혼놀</option>
-<option value="혼술">혼술</option>
-<option value="혼밥" selected="selected">혼밥</option>
-</select>
-&nbsp;&nbsp;
 <!-- 제목입력  -->
 <div class="ui input focus">
 <input type="text" placeholder="제목입력" style="width:730px; height:23px;" id="qna_title" name="qna_title">

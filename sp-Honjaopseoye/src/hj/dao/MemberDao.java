@@ -74,14 +74,14 @@ public class MemberDao {
 	}
 
 /*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[회원 정보 수정]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
-	public int update(Map<String, Object> pMap) {
+	public int iUpdate(Map<String, Object> pMap) {
 		int result = 0;
 		result = sqlSessionTemplate.delete("update", pMap);
 		logger.info("result : " + result);
 		return result;
 	}
 
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ \]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public int delete(Map<String, Object> pMap) throws IOException {
 		logger.info("delete 호출성공");
 		int result = 0;
@@ -98,13 +98,13 @@ public class MemberDao {
 		return memberList;
 	}
 
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 로그인 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String login(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info(pMap);
 		logger.info("mdao : login call" );
 		result = sqlSessionTemplate.selectOne("membermap.login", pMap);
 		logger.info(result);
-
 		return result;
 	}
 
@@ -117,7 +117,7 @@ public class MemberDao {
 		logger.info("result는" + result);
 		return result;
 	}
-
+	
 	public String check2(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("check2" + pMap);
@@ -127,6 +127,7 @@ public class MemberDao {
 		return result;
 	}
 
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 아이디 찾기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public List<Map<String, Object>> idSearch(Map<String, Object> pMap) throws IOException {
 		logger.info("idSearch:" + pMap);
 		logger.info(pMap.get("ins_name"));
@@ -139,6 +140,7 @@ public class MemberDao {
 		return idSearch;
 	}
 
+	/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ e아이디 찾기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public List<Map<String, Object>> e_idSearch(Map<String, Object> pMap) throws IOException {
 		logger.info("e_idSearch:" + pMap);
 		List<Map<String, Object>> e_idSearch = null;
@@ -150,6 +152,8 @@ public class MemberDao {
 		return e_idSearch;
 	}
 
+	
+	/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 비번 찾기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String pwCheck(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("pwCheck" + pMap);
@@ -160,6 +164,7 @@ public class MemberDao {
 		return result;
 	}
 
+	/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ t비번 찾기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String pwCheck2(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("pwCheck2" + pMap);
@@ -200,5 +205,5 @@ public class MemberDao {
 		return getNoticeList;
 	}
 
-
+	
 }
