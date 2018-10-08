@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zDB.mybatis.maps.boardMapper">
+	<!-- 모든 게시글 목록 조회 -->
+	<!-- 혼밥 -->
+	<select id="getBabBoardList" parameterType="map" resultType="map">
+	SELECT 
+	   bab_no,
+       bab_id,
+       bab_title,
+       bab_category,
+       bab_hit,
+       bab_date
+  	  FROM bab_board
+	</select>
+	<!-- 혼술 -->
+	<select id="getSulBoardList" parameterType="map" resultType="map">
+	 SELECT 
+       sul_no,
+       sul_id,
+       sul_title,
+       sul_category,
+       sul_hit,
+       sul_date
+      FROM sul_board
+	</select>
+	<!-- 혼놀 -->
+	<select id="getNolBoardList" parameterType="map" resultType="map">
+	SELECT 
+	   nol_no,
+       nol_id,
+       nol_title,
+       nol_category,
+       nol_hit,
+       nol_date
+      FROM nol_board
+	</select>
+	<!-- 모든 게시글 목록 조회 끝 -->
+	<!-- 해당 아이디 게시글 목록 조회  datatable 재검토 필요-->
+	<!-- 혼밥  -->
+	<select id="getBabBoardIdList" parameterType="map" resultType="map">
+	SELECT 
+	   bab_no,
+       bab_id,
+       bab_title,
+       bab_category,
+       bab_hit,
+       bab_date
+      FROM bab_board
+     WHERE bab_id = #{bab_id}
+	</select>
+	<!-- 혼술  -->
+	<select id="getSulBoardIdList" parameterType="map" resultType="map">
+	SELECT 
+       sul_no,
+       sul_id,
+       sul_title,
+       sul_category,
+       sul_hit,
+       sul_date
+     FROM sul_board
+    WHERE sul_id = #{sul_id}
+	</select>
+	<!-- 혼놀  -->
+	<select id="getNolBoardIdList" parameterType="map" resultType="map">
+	SELECT 
+       nol_no,
+       nol_id,
+       nol_title,
+       nol_category,
+       nol_hit,
+       nol_date
+  	  FROM nol_board
+	 WHERE nol_id = #{nol_id}
+	</select>
+	<!-- 해당 아이디 게시글 목록 조회 끝 -->
+	<!-- 선택 게시글 목록 내용 조회 -->
+	<!-- 혼밥 -->
+	<select id="getBabBoardOneList" parameterType="map" resultType="map">
+	SELECT 
+	   bab_no,
+	   bab_id,
+	   bab_title,
+	   bab_category,
+       bab_hit,
+       bab_date,
+       bab_text,
+       bab_url
+ 	  FROM bab_board
+ 	 WHERE bab_no = #{bab_no}
+	</select>
+ 	 <!-- 혼술 -->
+	<select id="getSulBoardOneList" parameterType="map" resultType="map">
+	SELECT 
+	   sul_no,
+	   sul_id,
+	   sul_title,
+	   sul_category,
+       sul_hit,
+       sul_date,
+       sul_text,
+       sul_url
+      FROM sul_board
+     WHERE sul_no = #{sul_no}
+	</select>
+	<!-- 혼놀 -->
+	<select id="getNolBoardOneList" parameterType="map" resultType="map">
+	SELECT 
+	   nol_no,
+	   nol_id,
+	   nol_title,
+	   nol_category,
+       nol_hit,
+       nol_date,
+       nol_text,
+       nol_url
+ 	  FROM nol_board
+	 WHERE nol_no = #{nol_no}
+	</select>
+	<!-- 선택 게시글 목록 내용 조회 끝 -->
+	<!-- 게시글 등록 -->
+	<!-- 혼밥 -->
+	<insert id="getBabBoardInsert" parameterType="map">
+	INSERT INTO 
+	bab_board
+	( 
+	bab_no, bab_id, bab_title, bab_category, 
+	bab_pw, bab_hit, bab_date, bab_step, bab_depth,
+    bab_group, bab_text, bab_url
+    )
+	VALUES 
+	(
+	seq_bab_no.nextval, #{bab_id}, #{bab_title}, #{bab_category}, 
+	#{bab_pw}, 0, TO_CHAR(sysdate, 'YYYY-MM-DD-HH24:MI'),'1', '1', '1',
+	#{bab_text}, #{bab_url}
+	)
+	</insert>
+	<!-- 혼술 -->
+	<insert id="getSulBoardInsert" parameterType="map">
+	INSERT INTO 
+	sul_board
+	( 
+	sul_no, sul_id, sul_title, sul_category,
+    sul_pw, sul_hit, sul_date, sul_step,
+    sul_depth, sul_group, sul_text, sul_url 
+    )
+	VALUES 
+	(
+	seq_sul_no.nextval, #{sul_id}, #{sul_title}, #{sul_category}, 
+	#{sul_pw}, 0, TO_CHAR(sysdate, 'YYYY-MM-DD-HH24:MI'),'1', '1', '1',
+	#{sul_text}, #{sul_url}
+	)
+	</insert>
+	<!-- 혼놀 -->
+	<insert id="getNolBoardInsert" parameterType="map">
+	INSERT INTO 
+	nol_board
+	( 
+	nol_no, nol_id, nol_title, nol_category,
+    no_pw, nol_hit, nol_date, nol_step,
+    nol_depth, nol_group, nol_text, nol_url 
+    )
+	VALUES 
+	(
+	seq_nol_no.nextval, #{nol_id}, #{nol_title}, #{nol_category}, 
+	#{no_pw}, 0, TO_CHAR(sysdate, 'YYYY-MM-DD-HH24:MI'),'1', '1', '1',
+	#{nol_text}, #{nol_url}
+	)
+	</insert>
+	<!-- 게시글 등록 끝 -->
+	<!-- 선택 게시글 삭제 -->
+	<!-- 혼밥 -->
+	<delete id="getBabBoardDelete" parameterType="map">
+	DELETE bab_board
+	WHERE bab_no = #{bab_no}
+	  AND bab_id = #{bab_id}
+	</delete>
+	<!-- 혼술 -->
+	<delete id="getSulBoardDelete" parameterType="map">
+	DELETE sul_board
+	WHERE sul_no = #{sul_no}
+	  AND sul_id = #{sul_id}
+	</delete>
+	<!-- 혼놀 -->
+	<delete id="getNolBoardDelete" parameterType="map">
+	DELETE nol_board
+	WHERE nol_no = #{nol_no}
+	  AND nol_id = #{nol_id}
+	</delete>
+	<!-- 선택 게시글 삭제 끝 -->
+	<!-- 선택 게시글 수정 -->
+	<!-- 혼밥 -->
+	<update id="getBabBoardUpdate" parameterType="map">
+	UPDATE bab_board
+  	   SET 
+   	   bab_title = #{bab_title},
+   	   bab_text = #{bab_text},
+       bab_url = #{bab_url}
+	 WHERE bab_id = #{bab_id}
+   	   AND bab_no = #{bab_no}
+	</update>
+	<!-- 혼술 -->
+	<update id="getSulBoardUpdate" parameterType="map">
+	UPDATE sul_board
+  	   SET 
+   	   sul_title = #{sul_title},
+   	   sul_text = #{sul_text},
+       sul_url = #{sul_url}
+	 WHERE sul_id = #{sul_id}
+   	   AND sul_no = #{sul_no}
+	</update>
+	<!-- 혼놀 -->
+	<update id="getNolBoardUpdate" parameterType="map">
+	UPDATE nol_board
+  	   SET 
+   	   nol_title = #{nol_title},
+   	   nol_text = #{nol_text},
+       nol_url = #{nol_url}
+	 WHERE nol_id = #{nol_id}
+   	   AND nol_no = #{nol_no}
+	</update>
+	<!-- 선택 게시글 수정 끝 -->
+</mapper>

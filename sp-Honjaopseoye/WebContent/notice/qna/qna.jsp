@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>최종 테이스</title>
 
-<link rel="stylesheet" type="text/css" href="../Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="../Semantic/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../Semantic/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="../../Semantic/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../../Semantic/jquery.dataTables.min.js"></script>
 
 </head>
 <script type="text/javascript">
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $('#dt_reserv_list').dataTable({
       //url:'../../member/empty/getReservList.test',
-      "ajax":{ "url":"selelct.test", "type":"POST" },
+      "ajax":{ "url":"selelct.hon", "type":"POST" },
        columns:[
 			{"data":'QNA_NO',"className":'dt-body-center'},
 			{"data":'QNA_TITLE',"className":'dt-body-center'},
@@ -62,7 +62,7 @@ $(document).ready(function() {
     $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // 티바디를 누르면..
        var data = table.row(this).data();
        var QNA_NO = data.QNA_NO;
-       location.href='./qnaread.test?qna_no='+QNA_NO;
+       location.href='./qnaread.hon?qna_no='+QNA_NO;
     });
 });
 </script>

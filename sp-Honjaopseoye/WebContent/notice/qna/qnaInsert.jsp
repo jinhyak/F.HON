@@ -52,7 +52,7 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
-<form method="Post" action="qnaInsert.test" id="qna_board" name="qna_board">
+<form method="Post" action="qnaInsert.hon" id="qna_board" name="qna_board">
 
 <!-- 입력 게시판 테이블   -->
 <table align="center" border="1" width="800px" height="1000px" bgcolor="white">

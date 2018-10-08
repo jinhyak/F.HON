@@ -7,13 +7,13 @@
 			<value>oracle.jdbc.OracleDriver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:oracle:thin:@192.168.0.26:1521:orcl11</value>
+			<value>jdbc:oracle:thin:@192.168.0.24:1521:orcl11</value>
 		</property>
 		<property name="username"><!-- public void setUserName(){} -->
-			<value>test</value>
+			<value>scott</value>
 		</property>
 		<property name="password">
-			<value>123</value>
+			<value>tiger</value>
 		</property>
 	</bean>
 <!-- ====================================================================== -->
@@ -32,7 +32,7 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
-	<bean id="MemberDao" class="hj.dao.MemberDao">
+<bean id="MemberDao" class="hj.dao.MemberDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
 	<bean id="FriendDao" class="hj.dao.FriendDao">
@@ -41,13 +41,19 @@
 	<bean id="MessageDao" class="hj.dao.MessageDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
-	<!-- <bean id="GroupDao" class="hj.dao.GroupDao">
+	<bean id="BoardDao" class="hj.dao.BoardDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+		<bean id="MenuDao" class="hj.dao.MenuDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+<!-- 	<bean id="QnADao" class="hj.dao.QnADao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean> -->
+<!-- <bean id="GroupDao" class="hj.dao.GroupDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
 	<bean id="StoreDao" class="hj.dao.StoreDao">
-		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
-	</bean>
-	<bean id="BoardDao" class="hj.dao.BoardDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean> -->
 	<!-- DAO계층은 mvc패턴에 속하지 않기 때문에 따로 빈생성을 해줘야한다. -->

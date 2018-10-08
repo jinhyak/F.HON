@@ -9,5 +9,7 @@
 		<mapper resource="hj/mapper/store.xml"/>
 		<mapper resource="hj/mapper/menu.xml"/>
 		<mapper resource="hj/mapper/message.xml"/>
+		<mapper resource="hj/mapper/board.xml"/>
+		<mapper resource="hj/mapper/qna.xml"/>
 	</mappers>
 </configuration>
