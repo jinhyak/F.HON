@@ -18,6 +18,7 @@ import hj.dao.BoardDao;
 @Service
 public class BoardLogic {
 	
+	// 로그
 	Logger logger = Logger.getLogger(BoardLogic.class);
 	
 	

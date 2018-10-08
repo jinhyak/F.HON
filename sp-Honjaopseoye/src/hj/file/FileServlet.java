@@ -34,12 +34,12 @@ public class FileServlet extends HttpServlet {
 		logger.info(" file 저장완료");
 		
 	}
-	
+	// post
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException,IOException {
 		doService(req, res);
 	}
-	
+	// get
 	public void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException,IOException {
 		doService(req, res);

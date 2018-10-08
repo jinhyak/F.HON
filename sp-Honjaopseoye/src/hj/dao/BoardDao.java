@@ -11,6 +11,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 public class BoardDao{
 		Logger logger = Logger.getLogger(BoardDao.class);
 		
+		// DB
 		private SqlSessionTemplate sqlSessionTemplate;
 		
 		public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {

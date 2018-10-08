@@ -135,7 +135,7 @@
 	#{bab_text}, #{bab_url}
 	)
 	</insert>
-	<!-- 혼술 -->
+	<!-- 혼술임 -->
 	<insert id="getSulBoardInsert" parameterType="map">
 	INSERT INTO 
 	sul_board

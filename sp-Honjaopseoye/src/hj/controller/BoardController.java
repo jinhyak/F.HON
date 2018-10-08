@@ -123,7 +123,7 @@ public class BoardController {
 				HttpServletRequest req, HttpServletResponse res) 
 						throws ServletException, IOException {
 			
-			// 테스트용
+			// 테스트용 임
 			HangulConversion hc = new HangulConversion();
 			
 			String name = "beyonce";

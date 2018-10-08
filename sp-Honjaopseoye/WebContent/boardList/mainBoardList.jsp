@@ -42,7 +42,7 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
-<!-- 로고 -->
+<!-- 로고 임-->
 <table align="center" width="850px" height="200px">
 <tr><td align="center"><img src="./images/logo.png"></td></tr>
 </table>

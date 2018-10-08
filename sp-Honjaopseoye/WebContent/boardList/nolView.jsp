@@ -50,7 +50,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<!-- 상단 끝 -->
+<!-- 상단 끝놀게시판 -->
 
 <br>
 <br>

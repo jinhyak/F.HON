@@ -10,6 +10,7 @@ public class QnADao {
 	
 	Logger logger = Logger.getLogger(QnADao.class);
 	
+	// DB
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {

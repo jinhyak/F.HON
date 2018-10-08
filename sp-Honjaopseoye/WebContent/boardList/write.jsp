@@ -12,7 +12,7 @@
 <!--이미지 미리보기 스크립트 구간 -->
 <script type="text/javascript">
 
-// 이미지 미리보기
+// 이미지 미리보기임
 $(document).ready(function(){
 	
 	var text = document.f_board.t_text;

@@ -66,7 +66,7 @@ $(document).ready(function(){
 	      }   
 	   });
 
-
+//
 	    var table = $('#dt_reserv_list').DataTable(); // 테이블
 	    $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // 티바디를 누르면..
 	       var data = table.row(this).data();
