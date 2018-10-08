@@ -1,8 +1,10 @@
 package hj.logic;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -17,5 +19,21 @@ public class MemberLogic {
 	
 	@Autowired
 	private MemberDao memberDao = null;
+
+	public Cookie select(Map<String, Object> pMap, HttpServletResponse res) {
+		logger.info("로그인 select 로직");
+		String list = null;
+		try {
+			list = memberDao.select(pMap);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Cookie memList = new Cookie("memList",String.valueOf(list));
+		memList.setMaxAge(60*60*24);
+		res.addCookie(memList);
+		logger.info("dao를 지나고");
+		return memList;
+	}
 	
 }

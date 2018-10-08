@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hj.dao.MemberDao;
+import hj.logic.MemberLogic;
 import hj.logic.testLogic;
 
 @Controller
@@ -27,7 +29,8 @@ public class memberController {
 	
 	@Autowired
 	private testLogic testLogic = null;
-	
+	@Autowired
+	private MemberLogic memberLogic = null;	
 	@Autowired
 	private MemberDao memberDao = null;
 	
@@ -290,24 +293,25 @@ public class memberController {
 	}
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ login @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@RequestMapping(value = "/login.hon", method= {RequestMethod.POST, RequestMethod.GET})
-	public String login(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
+	public String login(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		logger.info("login 호출 성공");
 		String resultPage = "";
 		String result = "";
-		List<Map<String, Object>> list = null;
+		Cookie list = null;
 		result = memberDao.login(pMap);
 		logger.info(result);
 		if ("1".equals(result)) {
 			logger.info(pMap.get("mem_id").toString());
 			logger.info(pMap.get("mem_pw").toString());
 			// 바로 Dao의 idSearch() 이동
-			list = memberDao.select(pMap);
+			list = memberLogic.select(pMap,res);
+			//list = memberDao.select(pMap);
 			logger.info("Controller : " + result);
-			if (list != null) {
+			/*if (list != null) {
 				logger.info("Controller");
 				HttpSession mem_session = req.getSession();
 				mem_session.setAttribute("memList", list);
-			}
+			}*/
 			resultPage = "/member/login/pwFound2.jsp";
 		} else if ("-1".equals(result)) {
 			logger.info("result는" + result);

@@ -81,7 +81,7 @@ public class MemberDao {
 		return result;
 	}
 
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ \]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 회원 탈퇴 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public int delete(Map<String, Object> pMap) throws IOException {
 		logger.info("delete 호출성공");
 		int result = 0;
@@ -90,12 +90,14 @@ public class MemberDao {
 		return result;
 	}
 
-	public List<Map<String, Object>> select(Map<String, Object> pMap) throws IOException {
+	public String select(Map<String, Object> pMap) throws IOException {
 		logger.info(pMap);
 		logger.info("mdao : select call");
-		List<Map<String, Object>> memberList = null;
+		String rMap = null;
+		List<Map<String,Object>> memberList = null;
 		memberList = sqlSessionTemplate.selectList("membermap.select", pMap);
-		return memberList;
+		rMap = memberList.toString();
+		return rMap;
 	}
 
 /*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 로그인 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
