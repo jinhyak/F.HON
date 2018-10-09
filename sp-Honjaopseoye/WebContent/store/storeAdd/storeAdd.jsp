@@ -31,10 +31,10 @@
 </head>
 <body style="min-width: 588px;">
 <%@include file="../../include/include/subtop.jsp"%>
-<div class="ui segment">
+<div class="ui basic segment">
 
 <!-- ====================본문===================== -->
-  <div class="ui basic segment text container one column grid">
+  <div class="ui basic segment text container one column grid"style="margin-top: 35px;">
   	<div class="column">
   		<h3>매장을 등록하세요</h3>
   	</div>

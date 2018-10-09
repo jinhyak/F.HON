@@ -37,7 +37,7 @@ $(document).ready(function(){
 			 // 이미지 등록 처리
 		     $.ajax({
 		       method:"POST" // 포스트 방식
-		      ,url:"storeImg.si" // 서블릿		        
+		      ,url:"../storeImg.hon" // 서블릿		        
 		      ,data:imgData // 폼 필드
 	          ,enctype:"multipart/form-data" // 멀티파트로 
 	          ,contentType: false
@@ -49,7 +49,7 @@ $(document).ready(function(){
 	        	var formData = $("#f_matjip").serialize();
 	        	alert(formData)
 	  			$.ajax({
-	  				url:"../store/add/addStore.test",
+	  				url:"../storeAdd.hon",
 	  			 	method: "POST",
 	  				data: formData,
 	  				success:function(result){

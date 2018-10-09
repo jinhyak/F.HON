@@ -20,7 +20,7 @@ $(document).ready(function(){
 	function fileName(){
 		
 		var fileName = $('#fileinput').val();
-		var clean = fileName.split('\\').pop();
+		var clean = fileName.split('\\').pop();//경로 잘라서 이미지 이름만 나오게함
 		
 		$('#store_img').attr('value',clean);
 	}
@@ -37,7 +37,7 @@ $(document).ready(function(){
 			 // 이미지 등록 처리
 		     $.ajax({
 		       method:"POST" // 포스트 방식
-		      ,url:"storeImg.si" // 서블릿		        
+		      ,url:"../storeImg.hon" // 서블릿		        
 		      ,data:imgData // 폼 필드
 	          ,enctype:"multipart/form-data" // 멀티파트로 
 	          ,contentType: false
@@ -47,14 +47,14 @@ $(document).ready(function(){
 	        	  $('#store_img').attr('value',result);
 	        	  alert($('#store_img').val());
 	        	var formData = $("#f_matjip").serialize();
-	        	alert(formData)
+	        	//alert(formData)
 	  			$.ajax({
-	  				url:"../store/storeAdd.hon",
+	  				url:"../storeAdd.hon",
 	  			 	method: "POST",
 	  				data: formData,
 	  				success:function(result){
 	  					
-	  					alert(result)
+	  					//alert(result)
 	  					if(result=='1'){
 	  						alert("등록되었습니다");
 	  						location.href="../../main/main/main.jsp";
@@ -142,11 +142,8 @@ $(document).ready(function(){
 	/* ------------------------------------------------------유효성 검사 끝-------------------------------------- */
 	/* -------------------------------------------------지도 script코드 시작-------------------------------------*/
 	function locationInput(){
-
-		
 			$('#modal_location').modal({
 				centered:false
-				
 			})
 			.modal('show');
 			
@@ -161,7 +158,6 @@ $(document).ready(function(){
 			// 지도를 생성합니다    
 		 	var map = new daum.maps.Map(mapContainer, mapOption);
 	
-	
 		$('#addr_btn').click(function(){
 		var value = $.trim($('#search_addr').val())
 		if(value==""){
@@ -169,7 +165,6 @@ $(document).ready(function(){
 			return;
 		}
 		else{
-		
 			alert(value)
 			// 장소 검색 객체를 생성합니다
 			var ps = new daum.maps.services.Places(); 
@@ -186,10 +181,8 @@ $(document).ready(function(){
 	        	var bounds = new daum.maps.LatLngBounds();
 	
 	        	for (var i=0; i<data.length; i++) {
-	            	  
 	            	bounds.extend(new daum.maps.LatLng(data[i].y, data[i].x));
 	        	}       
-	        	
 	        	
 	        	// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	        	map.setBounds(bounds);
@@ -197,9 +190,7 @@ $(document).ready(function(){
 	        	
 	        	// 지도를 클릭한 위치에 표출할 마커입니다
 	        	var marker = new daum.maps.Marker({
-	        		
 	        	}); 
-	        	
 	        	// 지도에 클릭 이벤트를 등록합니다
 	        	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 	        	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
@@ -233,23 +224,15 @@ $(document).ready(function(){
 	        	    //콜백함수 실행
         	    	geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
 
-	        	    
 	        		});/////end of addListner
-	        	    
 	        	
 	    		}//end of if
 	    		else{
 	    			alert('주소를 다시 검색하세요');
 	    		}
-	    		
 			}//////// end of placesSearchCB
-	
-			
 		}/////////////end of else
 		});////////////////////end of click
-		
-		
-		
 	}/////////end of locationInput()
 	
 
@@ -335,7 +318,7 @@ $(document).ready(function(){
   			<div class="ui label">
    				<h2>대표이미지</h2>
   			</div>
-  				<input type="text" placeholder="이미지파일 이름이 영문이여야 합니다." readonly="readonly" id="store_img" name="store_img">
+  				<input type="text" placeholder="이미지파일이 없습니다" readonly="readonly" id="store_img" name="store_img">
   				<label class="ui button" for="fileinput" style="padding-top: 20px; width:150px;">
   					<i class="ui upload icon"></i> 
     				이미지등록
@@ -396,7 +379,7 @@ $(document).ready(function(){
 <div class="ui modal" id="modal_location">
 	<i class="close icon"></i>
 	<div class="header">
-			<h3>위도경도 등록창</h3>
+			<h3>주소 등록창</h3>
 	</div>
 	<div class="content">
 		<div class="body">
