@@ -163,7 +163,7 @@
 	VALUES 
 	(
 	seq_nol_no.nextval, #{nol_id}, #{nol_title}, #{nol_category}, 
-	#{no_pw}, 0, TO_CHAR(sysdate, 'YYYY-MM-DD-HH24:MI'),'1', '1', '1',
+	#{nol_pw}, 0, TO_CHAR(sysdate, 'YYYY-MM-DD-HH24:MI'),'1', '1', '1',
 	#{nol_text}, #{nol_url}
 	)
 	</insert>

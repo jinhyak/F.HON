@@ -31,7 +31,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../Semantic/semantic.css" />
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
 <script src="../Semantic/semantic.js"></script>
@@ -40,8 +40,24 @@
 
 $(document).ready(function(){
 	
+	var no = '<%=no %>';
+	var id = '<%=id %>';
+	var category = '<%= category%>';
+	
+	// 메인 이동
 	$("#list_sel").click(function(){
 		location.href="./mainBoardList.jsp";
+	});
+	
+	// 수정하기 버튼
+	$("#update_btn").click(function(){
+		location.href='../boardList/boardUpdateSub.hon?key='+ category + "&num=" + no;
+	});
+	
+	// 삭제하기 버튼
+	$("#delete_btn").click(function(){
+		alert(no + " , " + id + " , " + category);
+		location.href='../boardList/boardDelete.hon?no='+no+"&id="+id+"&category="+category;
 	});
 	
 })
@@ -190,7 +206,12 @@ var v = '<%= url%>';
 <!-- 목록 -->
 </td>
 </tr>
-
+<tr>
+<td>
+<input type="button" value="수정" id="update_btn">
+<input type="button" value="삭제" id="delete_btn">
+</td>
+</tr>
 </tbody>
 <!-- 작성 내용 끝 -->
 

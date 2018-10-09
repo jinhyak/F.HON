@@ -126,7 +126,7 @@ public class BoardController {
 			// 테스트용 임
 			HangulConversion hc = new HangulConversion();
 			
-			String name = "beyonce";
+			String name = "beyonce200";
 			String pw = "1234";
 			
 			String n_url = hc.toUTF(url);
@@ -192,6 +192,180 @@ public class BoardController {
 			return "redirect:mainBoardList.jsp";
 			
 		}
-	
-	
+
+		
+		// <혼밥>, <혼술>, <혼놀> DELETE Controller
+		@RequestMapping("/boardDelete.hon")
+		public String conBoardDelete(Map<String, Object> pMap,
+				@RequestParam String category, @RequestParam String id,
+				@RequestParam String no) 
+						throws ServletException, IOException{
+			
+			logger.info("Controller - conBoardDelete 메소드 진입");
+			
+			int result = 0;
+			logger.info("가져온 값 = 카테고리 :  " + category + " id : " + id + " num : " + no);
+			pMap = new HashMap<String, Object>();
+			
+			if("혼밥".equals(category)) {
+				
+				logger.info("혼밥 게시글 삭제 시작");
+				pMap.put("bab_id", id);
+				pMap.put("bab_no", no);
+				pMap.put("bab_category", category);
+				result = boardLogic.boardDeleteLogic(pMap, category);
+				logger.info("혼밥 게시글 삭제 끝");
+				
+			} else if("혼술".equals(category)) {
+				
+				logger.info("혼술 게시글 삭제 시작");
+				pMap.put("sul_id", id);
+				pMap.put("sul_no", no);
+				pMap.put("sul_category", category);
+				result = boardLogic.boardDeleteLogic(pMap, category);
+				logger.info("혼술 게시글 삭제 끝");
+				
+			} else if("혼놀".equals(category)) {
+				
+				logger.info("혼놀 게시글 삭제 시작");
+				pMap.put("nol_id", id);
+				pMap.put("nol_no", no);
+				pMap.put("nol_category", category);
+				result = boardLogic.boardDeleteLogic(pMap, category);
+				logger.info("혼놀 게시글 삭제 끝");
+				
+			} else {
+				logger.info("<<오류발생>> key값을 확인하세요~");
+			}
+			
+			logger.info("삭제 성공 여부 : " + result);
+			logger.info("Controller - conBoardDelete 메소드 종료");
+			return "redirect:mainBoardList.jsp";
+		}
+		
+		
+		
+		// <혼밥>, <혼술>, <혼놀> UPDATE Controller
+				@RequestMapping("/Update.hon")
+				public String conBoardUpdate(Map<String, Object> pMap,
+						@RequestParam String category,
+						@RequestParam String num, @RequestParam String title,
+						@RequestParam String t_text, @RequestParam String url,
+						HttpServletRequest req, HttpServletResponse res) 
+								throws ServletException, IOException{
+					
+					logger.info("Controller ----------- conBoardUpdate 메소드 진입");
+					HangulConversion hc = new HangulConversion();
+					
+					String id = "beyonce200";
+					String pw = "1234";
+					String n_category = hc.toUTF(category);
+					String n_url = hc.toUTF(url);
+					String n_title = hc.toUTF(title);
+					String n_t_text = hc.toUTF(t_text);
+					
+					
+					
+					int result = 0;
+					logger.info("가져온 값  :  "+ n_t_text + n_title + n_category + " id : " + id + " num : " + num + " , :" + n_url );
+					pMap = new HashMap<String, Object>();
+					
+					if("혼밥".equals(n_category)) {
+						
+						logger.info("<혼밥>  if 게시글 수정 시작");
+						pMap.put("bab_id", id);
+						pMap.put("bab_no", num);
+						pMap.put("bab_title", n_title);
+						pMap.put("bab_text", n_t_text);
+						pMap.put("bab_url", n_url);
+						result = boardLogic.boardUpdateLogic(pMap, n_category);
+						logger.info("<혼밥> 게시글 수정 끝");
+						
+					} else if("혼술".equals(n_category)) {
+						
+						logger.info("혼술 게시글 수정 시작");
+						pMap.put("sul_id", id);
+						pMap.put("sul_no", num);
+						pMap.put("sul_title", n_title);
+						pMap.put("sul_text", n_t_text);
+						pMap.put("sul_url", n_url);
+						result = boardLogic.boardUpdateLogic(pMap, n_category);
+						logger.info("<혼술> if  게시글 수정 끝");
+						
+					} else if("혼놀".equals(n_category)) {
+						
+						logger.info("<혼놀> if 게시글 수정 시작");
+						pMap.put("nol_id", id);
+						pMap.put("nol_no", num);
+						pMap.put("nol_title", n_title);
+						pMap.put("nol_text", n_t_text);
+						pMap.put("nol_url", n_url);
+						result = boardLogic.boardUpdateLogic(pMap, n_category);
+						logger.info("<혼놀> 게시글 수정 끝");
+						
+					} else {
+						
+						logger.info("<<오류발생>> key값을 확인하세요~");
+						
+					}
+					
+					logger.info("수정 성공 여부 : " + result);
+					logger.info("Controller - conBoardUpdate 메소드 종료");
+					
+					return "redirect:mainBoardList.jsp";
+				}
+				
+				// <혼밥>, <혼술>, <혼놀> 해당 게시글 조회 Controller
+				@RequestMapping("/boardUpdateSub.hon")
+				public String conBoardUpdateSub(@RequestParam String key, @RequestParam String num,
+						Map<String, Object> pMap, HttpServletRequest req, HttpServletResponse res) 
+								throws ServletException, IOException {
+					
+					logger.info("conBoardUpdateSub 메소드 진입");
+					
+					// 해당 페이지 key값 받아오기....
+					logger.info("key 값 : " + key + ", " + "Number 값 : " + num);
+					List<Map<String, Object>> conBoardUpdateSubList = null;
+					pMap = new HashMap<String,Object>();
+					
+					if("혼밥".equals(key)) {
+						
+						logger.info("conBoardUpdateSubList if <혼밥> 진입");
+						pMap.put("bab_no", num);
+						
+						conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
+						logger.info("conBoardUpdateSubList값 : " + conBoardUpdateSubList.size());
+						
+					} else if("혼술".equals(key)) {
+						
+						logger.info("conBoardUpdateSubList if <혼술> 진입");
+						pMap.put("sul_no", num);
+						
+						conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
+						logger.info("conBoardUpdateSubList값 : " + conBoardUpdateSubList.size());
+						
+					} else if("혼놀".equals(key)) {
+						
+						logger.info("conBoardUpdateSubList if <혼놀> 진입");
+						pMap.put("nol_no", num);
+						
+						conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
+						logger.info("conBoardUpdateSubList값 : " + conBoardUpdateSubList.size());
+						
+					} else {
+						
+						logger.info("conBoardUpdateSub - <<오류 발생>> : 파라미터값을 확인하세요"+ "key : " + key + ", num :" + num);
+						
+					}
+					
+					req.setAttribute("conBoardUpdateSubList", conBoardUpdateSubList);
+					req.setAttribute("categoryKey", key);
+					
+					logger.info(" Controller - conBoardUpdateSub 메소드를 종료합니다.");
+					
+					return "forward:writeModify.jsp";
+					
+				}
 }
+		
+	

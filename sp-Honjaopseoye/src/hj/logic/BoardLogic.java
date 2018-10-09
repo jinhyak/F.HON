@@ -111,7 +111,7 @@ public class BoardLogic {
 	public int boardInsertLogic(Map<String, Object> pMap, String key) 
 			throws ServletException, IOException {
 				
-				logger.info("boardInsertLogic Logic 메소드 진입 - 게시글 해당 등록 Logic");
+				logger.info("boardInsertLogic Logic 메소드 진입 - 해당 게시글 등록 Logic");
 				
 				int result = 0;
 				
@@ -123,6 +123,36 @@ public class BoardLogic {
 				
 				return result;
 			}
+	
+	
+	public int boardDeleteLogic(Map<String, Object> pMap, String key) 
+			throws ServletException, IOException {
+		logger.info("boardDeleteLogic Logic 메소드 진입 - 게시글 삭제 Logic");
+		
+		int result = 0;
+		
+		result = boardDao.getBoardDelete(pMap, key);
+		
+		logger.info("<Logic> 받아온 key값" + key);
+		logger.info("<Logic> boardDeleteLogic 메소드 종료 합니다. 결과: " + result);
+		
+		return result;
+	}
+	
+	
+	public int boardUpdateLogic(Map<String, Object> pMap, String key) 
+			throws ServletException, IOException {
+		logger.info("boardUpdateLogic Logic 메소드 진입 - 게시글 삭제 Logic");
+		
+		int result = 0;
+		
+		result = boardDao.getBoardUpdate(pMap, key);
+		
+		logger.info("<Logic> 받아온 key값" + key);
+		logger.info("<Logic> boardUpdateLogic 메소드 종료 합니다. 결과: " + result);
+		
+		return result;
+	}
 	
 }
 
