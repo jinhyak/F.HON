@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 
 public class QnADao {
-	
+
 	Logger logger = Logger.getLogger(QnADao.class);
 	
 	// DB
@@ -17,114 +17,109 @@ public class QnADao {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 	
+	/* QnA CRUD */
+
+//* ============================== [[[¸ğµç °Ô½Ã±Û ¸ñ·Ï Á¶È¸]]] ==============================	
 	
-	/* QnA CRUD
-	 * 
-	 * 
-	 */
-	
-	
-	// ëª¨ë“  ê²Œì‹œê¸€ ì¡°íšŒ  =========================================================================
-	
-	// <QnA> ëª¨ë“  ê²Œì‹œê¸€ ì¡°íšŒ  (SELECT)
+	// <QnA> ¸ğµç °Ô½Ã±Û Á¶È¸  (SELECT)
 	public List<Map<String, Object>> getQnAList(Map<String, Object> pMap){
 		
-		logger.info("<QnA>: getQnAList ë©”ì†Œë“œ ì§„ì… - QnA ê²Œì‹œê¸€ ì „ì²´ ëª©ë¡ ì¡°íšŒ");
+		logger.info("<QnA>: getQnAList ¸Ş¼Òµå ÁøÀÔ - QnA °Ô½Ã±Û ÀüÃ¼ ¸ñ·Ï Á¶È¸");
 		List<Map<String, Object>> getQnAList = null;
 		
 		getQnAList = sqlSessionTemplate.selectList("getQnAList", pMap);
-		logger.info("<QnA> ì „ì²´ ì¡°íšŒ ëª©ë¡: " + getQnAList.size());
+		logger.info("<QnA> ÀüÃ¼ Á¶È¸ ¸ñ·Ï: " + getQnAList.size());
 		
 		return getQnAList;
 	}
 	
-	// ëª¨ë“  ê²Œì‹œê¸€ ì¡°íšŒ ë ========================================================================
+	// ¸ğµç °Ô½Ã±Û Á¶È¸ ³¡ ========================================================================
 	
 	
 	
 	
 	
-	// í•´ë‹¹ ì•„ì´ë”” ê²Œì‹œê¸€ ì¡°íšŒ =====================================================================
+	// ÇØ´ç ¾ÆÀÌµğ °Ô½Ã±Û Á¶È¸ =====================================================================
 	
-	// <QnA> í•´ë‹¹ ì•„ì´ë”” ê²Œì‹œê¸€ ì¡°íšŒ  (SELECT) - WHERE
+	// <QnA> ÇØ´ç ¾ÆÀÌµğ °Ô½Ã±Û Á¶È¸  (SELECT) - WHERE
 	public List<Map<String, Object>> getQnAIdList(Map<String, Object> pMap){
 		
-		logger.info("<QnA>: getQnAIdList ë©”ì†Œë“œ ì§„ì… - í•´ë‹¹ ì•„ì´ë”” ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ");
+		logger.info("<QnA>: getQnAIdList ¸Ş¼Òµå ÁøÀÔ - ÇØ´ç ¾ÆÀÌµğ °Ô½Ã±Û ¸ñ·Ï Á¶È¸");
 		List<Map<String, Object>> getQnAIdList = null;
 				
 		getQnAIdList = sqlSessionTemplate.selectList("getQnAIdList", pMap);
-		logger.info("<QnA> í•´ë‹¹ ì•„ì´ë”” ì¡°íšŒ ëª©ë¡: " + getQnAIdList.size());
+		logger.info("<QnA> ÇØ´ç ¾ÆÀÌµğ Á¶È¸ ¸ñ·Ï: " + getQnAIdList.size());
 				
 		return getQnAIdList;
 	}
 	
-	// í•´ë‹¹ ì•„ì´ë”” ê²Œì‹œê¸€ ì¡°íšŒ ë ====================================================================
+	// ÇØ´ç ¾ÆÀÌµğ °Ô½Ã±Û Á¶È¸ ³¡ ====================================================================
 	
 	
 	
 	
 	
-	// ê²Œì‹œê¸€ ë“±ë¡  =============================================================================
+	// °Ô½Ã±Û µî·Ï  =============================================================================
 	
-	// <QnA> ê²Œì‹œê¸€ ë“±ë¡
+	// <QnA> °Ô½Ã±Û µî·Ï
 	public int getQnAInsert(Map<String, Object> pMap) {
 		
-		logger.info("<QnA> getQnAInsert ë©”ì†Œë“œ ì§„ì… - ê²Œì‹œê¸€ ë“±ë¡");
+		logger.info("<QnA> getQnAInsert ¸Ş¼Òµå ÁøÀÔ - °Ô½Ã±Û µî·Ï");
 		int result = 0; 
 		
 		// <QnA> INSERT
-		logger.info("<QnA> INSERT ì‹¤í–‰");
+		logger.info("<QnA> INSERT ½ÇÇà");
 		result = sqlSessionTemplate.insert("getQnAInsert", pMap);
-		logger.info("<QnA> INSERT ê²°ê³¼: " + result);
-		logger.info("<QnA> getQnAInsert INSERT ì¢…ë£Œ");
+		logger.info("<QnA> INSERT °á°ú: " + result);
+		logger.info("<QnA> getQnAInsert INSERT Á¾·á");
 			
 		return result;
 	}
 	
-	// ê²Œì‹œê¸€ ë“±ë¡ ë ===========================================================================
+	// °Ô½Ã±Û µî·Ï ³¡ ===========================================================================
 	
 	
 	
 	
 	
-	// ì„ íƒ ê²Œì‹œê¸€ ì‚­ì œ ==========================================================================
+	// ¼±ÅÃ °Ô½Ã±Û »èÁ¦ ==========================================================================
 	
-	// <QnA> ì„ íƒ ê²Œì‹œê¸€ ì‚­ì œ
+	// <QnA> ¼±ÅÃ °Ô½Ã±Û »èÁ¦
 	public int getQnADelete(Map<String, Object> pMap) {
 		
-		logger.info("<QnA> getQnADelete ë©”ì†Œë“œ ì§„ì… - ê²Œì‹œê¸€ ë“±ë¡");
+		logger.info("<QnA> getQnADelete ¸Ş¼Òµå ÁøÀÔ - °Ô½Ã±Û µî·Ï");
 		int result = 0; 
 		
 		// <QnA> DELETE
-		logger.info("<QnA> DELETE ì‹¤í–‰");
+		logger.info("<QnA> DELETE ½ÇÇà");
 		result = sqlSessionTemplate.insert("getQnADelete", pMap);
-		logger.info("<QnA> DELETE ê²°ê³¼: " + result);
-		logger.info("<QnA> getQnADelete DELETE ì¢…ë£Œ");
+		logger.info("<QnA> DELETE °á°ú: " + result);
+		logger.info("<QnA> getQnADelete DELETE Á¾·á");
 			
 		return result;
 	}
 	
-	// ì„ íƒ ê²Œì‹œê¸€ ì‚­ì œ ë ========================================================================
+	// ¼±ÅÃ °Ô½Ã±Û »èÁ¦ ³¡ ========================================================================
 	
 	
 	
 	
 	
-	// <QnA> ì„ íƒ ê²Œì‹œê¸€ ìˆ˜ì •
+	// <QnA> ¼±ÅÃ °Ô½Ã±Û ¼öÁ¤
 	public int getQnAUpdate(Map<String, Object> pMap) {
 		
-		logger.info("<QnA> getQnAUpdate ë©”ì†Œë“œ ì§„ì… - ê²Œì‹œê¸€ ë“±ë¡");
+		logger.info("<QnA> getQnAUpdate ¸Ş¼Òµå ÁøÀÔ - °Ô½Ã±Û µî·Ï");
 		int result = 0; 
 		
 		// <QnA> UPDATE
-		logger.info("<QnA> UPDATE ì‹¤í–‰");
+		logger.info("<QnA> UPDATE ½ÇÇà");
 		result = sqlSessionTemplate.insert("getQnAUpdate", pMap);
-		logger.info("<QnA> UPDATE ê²°ê³¼: " + result);
-		logger.info("<QnA> getQnAUpdate UPDATE ì¢…ë£Œ");
+		logger.info("<QnA> UPDATE °á°ú: " + result);
+		logger.info("<QnA> getQnAUpdate UPDATE Á¾·á");
 			
 		return result;
 	}
 	
-	// ì„ íƒ ê²Œì‹œê¸€ ì‚­ì œ ë ========================================================================
+	// ¼±ÅÃ °Ô½Ã±Û »èÁ¦ ³¡ ========================================================================
 	
 }

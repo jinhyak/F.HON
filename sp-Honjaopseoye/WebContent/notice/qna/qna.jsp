@@ -23,11 +23,7 @@ $(document).ready(function() {
 
     $('#dt_reserv_list').dataTable({
       //url:'../../member/empty/getReservList.test',
-<<<<<<< HEAD
       "ajax":{ "url":"qSelelct.hon", "type":"POST" },
-=======
-      "ajax":{ "url":"selelct.hon", "type":"POST" },
->>>>>>> refs/remotes/origin/2018-10-10_수요일_YUN_게시판_CRUD_완성본
        columns:[
 			{"data":'QNA_NO',"className":'dt-body-center'},
 			{"data":'QNA_TITLE',"className":'dt-body-center'},

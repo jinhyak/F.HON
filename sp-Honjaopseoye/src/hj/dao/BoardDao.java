@@ -1,11 +1,8 @@
 package hj.dao;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-=======
->>>>>>> refs/remotes/origin/2018-10-10_수요일_YUN_게시판_CRUD_완성본
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,47 +20,10 @@ public class BoardDao{
 		public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 			this.sqlSessionTemplate = sqlSessionTemplate;
 		}
-		
-<<<<<<< HEAD
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ ������ �󼼺��� ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
-		public List<Map<String, Object>> pView(Map<String, Object> pMap) {
-			// TODO Auto-generated method stub
-			
-			return null;
-		}
-		
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ ������ �󼼺��� ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
-		public int delete(Map<String, Object> pMap) {
-			logger.info("delete ȣ�⼺��");
-			int result = 0;
-			result = sqlSessionTemplate.delete("delete", pMap);
-			logger.info("result : " + result);
-			return result;
-		}
 
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ ������ �ϱ� ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
-		public List<Map<String, Object>> pInsert(Map<String, Object> pMap) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ ����Ʈ ����Ʈ���� ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
-		public List<Map<String, Object>> postList(Map<String, Object> pMap) {
-			// TODO Auto-generated method stub
-			logger.info("postList ȣ�⼺��");
-			List<Map<String, Object>> postList = null;
-			postList = sqlSessionTemplate.selectList("postList", pMap);
-			logger.info("result : " + postList);
-			return postList;
-		}
-
-=======
+//* ============================== [[[모든 게시글 목록 조회]]] ==============================
 		
-		// 모든 게시글 목록 조회 ================================================================
-		
-		 /* 혼밥, 혼술, 혼놀 모든 게시글을 조회 합니다. 
-         *  
-         */
+		 /* 혼밥, 혼술, 혼놀 모든 게시글을 조회 합니다.*/
 		
 		// <혼밥> 모든 게시글 목록 조회 (SELECT)
 		public List<Map<String, Object>> getBabBoardList(Map<String, Object> pMap){
@@ -344,5 +304,4 @@ public class BoardDao{
 		
 		// 선택 게시글 수정 끝 ====================================================================
 		
->>>>>>> refs/remotes/origin/2018-10-10_수요일_YUN_게시판_CRUD_완성본
 }

@@ -27,7 +27,7 @@ public class MemberDao {
 		return result;
 	}
 
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[비밀번호 중복 체크]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 전화번호 중복 체크 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public int tel_sel(String pMap) {
 		logger.info("tel_sel 호출 성공");
 		int result = 0;
@@ -35,8 +35,9 @@ public class MemberDao {
 		return result;
 	}
 
+	
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 회원 가입 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public int insert(Map<String, Object> pMap) {
-		/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[트리거 사용]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 		int result = 0;
 		result = sqlSessionTemplate.insert("join", pMap);
 		//result = sqlSessionTemplate.insert("grade", pMap);
@@ -44,7 +45,7 @@ public class MemberDao {
 		return result;
 	}
 
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[주소록 호출]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 주소록 호출 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public List<Map<String, Object>> doselect(Map<String, Object> pMap) {
 		logger.info("doselect 호출 성공");
 		List<Map<String, Object>> list = null;
@@ -90,6 +91,7 @@ public class MemberDao {
 		return result;
 	}
 
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 로그인(id, pw, 이름 등 정보 조회) ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String select(Map<String, Object> pMap) throws IOException {
 		logger.info(pMap);
 		logger.info("mdao : select call");
@@ -100,7 +102,7 @@ public class MemberDao {
 		return rMap;
 	}
 
-/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 로그인 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 로그인(아이디, 비밀번호 맞는지 체크) ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String login(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info(pMap);
@@ -138,7 +140,6 @@ public class MemberDao {
 		idSearch = sqlSessionTemplate.selectList("idSearch", pMap);
 		// String user_pw = idSearch.get(0).get("mem_pw").toString();
 		logger.info("idSearch : " + idSearch);
-		sqlSessionTemplate.close();
 		return idSearch;
 	}
 
@@ -155,7 +156,7 @@ public class MemberDao {
 	}
 
 	
-	/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 비번 찾기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 비밀번호 찾기 접근(아이디, 전화번호) ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String pwCheck(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("pwCheck" + pMap);
@@ -166,7 +167,7 @@ public class MemberDao {
 		return result;
 	}
 
-	/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ t비번 찾기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 비밀번호 찾기 접근(이메일, 아이디) ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String pwCheck2(Map<String, Object> pMap) throws IOException {
 		String result = "";
 		logger.info("pwCheck2" + pMap);
@@ -175,7 +176,7 @@ public class MemberDao {
 		logger.info("result는" + result);
 		return result;
 	}
-
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 비밀번호 찾기(아이디, 전화번호) ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String proc_pw3(Map<String, Object> pMap) throws IOException {
 		logger.info("proc_pw3:" + pMap);
 		String res = "";
@@ -187,7 +188,7 @@ public class MemberDao {
 		sqlSessionTemplate.close();
 		return res;
 	}
-
+/*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 비밀번호 찾기(이메일, 아이디) ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
 	public String proc_epw(Map<String, Object> pMap) throws IOException {
 		logger.info("proc_epw:" + pMap);
 		String res = "";
@@ -198,13 +199,6 @@ public class MemberDao {
 		logger.info("proc_epw : " + res);
 		sqlSessionTemplate.close();
 		return res;
-	}
-
-	public List<Map<String, Object>> noticeList(Map<String, Object> pMap){
-		logger.info("noticeList 호출 성공");
-		List<Map<String, Object>> getNoticeList = new ArrayList<Map<String,Object>>();
-		getNoticeList = sqlSessionTemplate.selectList("noticeList", pMap);
-		return getNoticeList;
 	}
 
 	

@@ -144,7 +144,24 @@ public class memberController {
 		mod.addAttribute("result",result);
 		return result;
 	}
-	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 아이디 찾기(전화번호로) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+/*회원 탈퇴*/
+	@RequestMapping(value="delete.hon", method=RequestMethod.POST)
+	public int delete(Model mod
+			, @RequestParam Map<String,Object> pMap
+			, HttpServletResponse res) {
+		int result = 0;
+		logger.info("delete 메소드 호출");
+		try {
+			result = memberDao.delete(pMap);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 아이디 찾기(전화번호로) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@RequestMapping(value = "/check.hon", method= {RequestMethod.POST, RequestMethod.GET}) //POST, GET 모두 받을 수 있음
 	public String check(@RequestParam Map<String, Object> pMap, Model mod, HttpServletRequest req) throws IOException {
 		logger.info("check 호출 성공");
@@ -153,6 +170,7 @@ public class memberController {
 		List<Map<String, Object>> list = null;
 		result = memberDao.check(pMap);
 		logger.info(result);
+		req.setAttribute("result", result);
 		if ("1".equals(result)) { //1이면 이름과 아이디 동일
 			logger.info(pMap.get("ins_name").toString());
 			logger.info(pMap.get("mem_tel").toString());
@@ -167,9 +185,10 @@ public class memberController {
 			resultPage = "/member/login/idFound.jsp"; 
 		} else if ("-1".equals(result)) {
 			logger.info("result는" + result);
-			resultPage = "/member/login/result/result.jsp?result=" + result;
+			resultPage = "/member/meminfo/result/result.jsp?result=" + result;
 		} else if ("0".equals(result)) {
-			resultPage = "/member/login/result/result.jsp?result=" + result;
+			logger.info("result는" + result);
+			resultPage = "/member/meminfo/result/result.jsp?result=" + result;
 		}
 		logger.info(resultPage);
 		if ("-1".equals(result) || "0".equals(result)) {// redirect인지 forward인지 나누기 위해 

@@ -157,7 +157,7 @@
 	nol_board
 	( 
 	nol_no, nol_id, nol_title, nol_category,
-    no_pw, nol_hit, nol_date, nol_step,
+    nol_pw, nol_hit, nol_date, nol_step,
     nol_depth, nol_group, nol_text, nol_url 
     )
 	VALUES 

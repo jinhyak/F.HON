@@ -28,342 +28,342 @@ public class BoardController {
 	@Autowired
 	BoardLogic boardLogic = null;
 	
-	// jsonì„ ë„˜ê²¨ì¤€ë‹¤.
+	// jsonÀ» ³Ñ°ÜÁØ´Ù.
 	
-	// <í˜¼ë°¥>, <í˜¼ìˆ >, <í˜¼ë†€> ëª¨ë“  ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ Controller
-	@ResponseBody
-	@RequestMapping("/board.hon")
-	public Map<String, List<Map<String, Object>>> conBoardList(@RequestParam String key, Map<String, Object> pMap,
-			HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-		logger.info("conBoardList ë©”ì†Œë“œ ì§„ì…");
-		
-		// í•´ë‹¹ í˜ì´ì§€ keyê°’ ë°›ì•„ì˜¤ê¸°....
-		logger.info("key ê°’ : " + key);
-		
-		List<Map<String, Object>> conBoardList = null;
-		 Map<String, List<Map<String, Object>>> pMapList = new HashMap<String, List<Map<String, Object>>>();
-		 
-		// Jsonì— ì „ë‹¬í•  ë°ì´í„° ê°’
-		conBoardList = boardLogic.boardListLogic(pMap, key);
-		logger.info("conBoardListê°’ : " + conBoardList.size());
-		
-		pMapList.put("data", conBoardList);
-		logger.info(" Controller - conBoardList ë©”ì†Œë“œë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤.");
-		
-		return pMapList;
-		
-	}
-	
-	
-	
-	// <í˜¼ë°¥>, <í˜¼ìˆ >, <í˜¼ë†€> í•´ë‹¹ ê²Œì‹œê¸€ ì¡°íšŒ Controller
-	@RequestMapping("/boardOne.hon")
-	public String conBoardOneList(@RequestParam String key, @RequestParam String num,
-			Map<String, Object> pMap, HttpServletRequest req, HttpServletResponse res) 
-					throws ServletException, IOException {
-		
-		String viewList = null;
-		logger.info("conBoardOneList ë©”ì†Œë“œ ì§„ì…");
-		
-		// í•´ë‹¹ í˜ì´ì§€ keyê°’ ë°›ì•„ì˜¤ê¸°....
-		logger.info("key ê°’ : " + key + ", " + "Number ê°’ : " + num);
-		List<Map<String, Object>> conBoardOneList = null;
-		pMap = new HashMap<String,Object>();
-		
-		if("í˜¼ë°¥".equals(key)) {
+		// <È¥¹ä>, <È¥¼ú>, <È¥³î> ¸ğµç °Ô½Ã±Û ¸ñ·Ï Á¶È¸ Controller
+		@ResponseBody
+		@RequestMapping("/board.hon")
+		public Map<String, List<Map<String, Object>>> conBoardList(@RequestParam String key, Map<String, Object> pMap,
+				HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 			
-			logger.info("conBoardOneList if <í˜¼ë°¥> ì§„ì…");
-			viewList = "forward:babView.jsp";
-			pMap.put("bab_no", num);
+			logger.info("conBoardList ¸Ş¼Òµå ÁøÀÔ");
 			
-			conBoardOneList = boardLogic.boardOneListLogic(pMap, key);
-			logger.info("conBoardOneListê°’ : " + conBoardOneList.size());
+			// ÇØ´ç ÆäÀÌÁö key°ª ¹Ş¾Æ¿À±â....
+			logger.info("key °ª : " + key);
 			
-		} else if("í˜¼ìˆ ".equals(key)) {
+			List<Map<String, Object>> conBoardList = null;
+			 Map<String, List<Map<String, Object>>> pMapList = new HashMap<String, List<Map<String, Object>>>();
+			 
+			// Json¿¡ Àü´ŞÇÒ µ¥ÀÌÅÍ °ª
+			conBoardList = boardLogic.boardListLogic(pMap, key);
+			logger.info("conBoardList°ª : " + conBoardList.size());
 			
-			logger.info("conBoardOneList if <í˜¼ìˆ > ì§„ì…");
-			viewList = "forward:sulView.jsp";
-			pMap.put("sul_no", num);
+			pMapList.put("data", conBoardList);
+			logger.info(" Controller - conBoardList ¸Ş¼Òµå¸¦ Á¾·áÇÕ´Ï´Ù.");
 			
-			conBoardOneList = boardLogic.boardOneListLogic(pMap, key);
-			logger.info("conBoardOneListê°’ : " + conBoardOneList.size());
-			
-		} else if("í˜¼ë†€".equals(key)) {
-			
-			logger.info("conBoardOneList if <í˜¼ë†€> ì§„ì…");
-			viewList = "forward:nolView.jsp";
-			pMap.put("nol_no", num);
-			
-			conBoardOneList = boardLogic.boardOneListLogic(pMap, key);
-			logger.info("conBoardOneListê°’ : " + conBoardOneList.size());
-			
-		} else {
-			
-			logger.info("conBoardOneList - <<ì˜¤ë¥˜ ë°œìƒ>> : íŒŒë¼ë¯¸í„°ê°’ì„ í™•ì¸í•˜ì„¸ìš”"+ "key : " + key + ", num :" + num);
+			return pMapList;
 			
 		}
 		
-		req.setAttribute("conBoardOneList", conBoardOneList);
 		
-		logger.info(" Controller - conBoardOneList ë©”ì†Œë“œë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 		
-		return viewList;
-		
-	}
-	
-	
-	
-	// <í˜¼ë°¥>, <í˜¼ìˆ >, <í˜¼ë†€> INSERT Controller
-		@RequestMapping("/boardInsert.hon")
-		public String conBoardInsert(@RequestParam String key,
-				@RequestParam String url, @RequestParam String category,
-				@RequestParam String title, @RequestParam String t_text,
-				Map<String, Object> pMap,
-				HttpServletRequest req, HttpServletResponse res) 
+		// <È¥¹ä>, <È¥¼ú>, <È¥³î> ÇØ´ç °Ô½Ã±Û Á¶È¸ Controller
+		@RequestMapping("/boardOne.hon")
+		public String conBoardOneList(@RequestParam String key, @RequestParam String num,
+				Map<String, Object> pMap, HttpServletRequest req, HttpServletResponse res) 
 						throws ServletException, IOException {
 			
-			// í…ŒìŠ¤íŠ¸ìš© ì„
-			HangulConversion hc = new HangulConversion();
+			String viewList = null;
+			logger.info("conBoardOneList ¸Ş¼Òµå ÁøÀÔ");
 			
-			String name = "beyonce200";
-			String pw = "1234";
+			// ÇØ´ç ÆäÀÌÁö key°ª ¹Ş¾Æ¿À±â....
+			logger.info("key °ª : " + key + ", " + "Number °ª : " + num);
+			List<Map<String, Object>> conBoardOneList = null;
+			pMap = new HashMap<String,Object>();
 			
-			String n_url = hc.toUTF(url);
-			String n_category = hc.toUTF(category);
-			String n_title = hc.toUTF(title);
-			String n_t_text = hc.toUTF(t_text);
-			
-			
-			int result = 0;
-			logger.info("conBoardInsert ë©”ì†Œë“œ ì§„ì…");
-			
-			// í•´ë‹¹ í˜ì´ì§€ keyê°’ ë°›ì•„ì˜¤ê¸°....
-			logger.info("key ê°’ : " + key);
-			logger.info("íŒŒë¼ë¯¸í„° ê°’ : " + "í…ìŠ¤íŠ¸ ê°’ : " + n_t_text + "\n ì œëª©: "  + n_title + " ì¹´í…Œê³ ë¦¬: " + n_category + " URL :" + n_url);
-			pMap = new HashMap<String, Object>();
-			
-			if("í˜¼ë°¥".equals(key)) {
+			if("È¥¹ä".equals(key)) {
 				
-				pMap.put("bab_id", name);
-				pMap.put("bab_title", n_title);
-				pMap.put("bab_category", n_category);
-				pMap.put("bab_pw", pw);
-				pMap.put("bab_text", n_t_text);
-				pMap.put("bab_url", n_url);
+				logger.info("conBoardOneList if <È¥¹ä> ÁøÀÔ");
+				viewList = "forward:babView.jsp";
+				pMap.put("bab_no", num);
 				
-				logger.info("<í˜¼ë°¥> INSERT ì¤€ë¹„ì¤‘");
-				result = boardLogic.boardInsertLogic(pMap, key);
+				conBoardOneList = boardLogic.boardOneListLogic(pMap, key);
+				logger.info("conBoardOneList°ª : " + conBoardOneList.size());
 				
-			} else if("í˜¼ìˆ ".equals(key)) {
+			} else if("È¥¼ú".equals(key)) {
 				
-				pMap.put("sul_id", name);
-				pMap.put("sul_title", n_title);
-				pMap.put("sul_category", n_category);
-				pMap.put("sul_pw", pw);
-				pMap.put("sul_text", n_t_text);
-				pMap.put("sul_url", n_url);
+				logger.info("conBoardOneList if <È¥¼ú> ÁøÀÔ");
+				viewList = "forward:sulView.jsp";
+				pMap.put("sul_no", num);
 				
-				logger.info("<í˜¼ìˆ > INSERT ì¤€ë¹„ì¤‘");
-				result = boardLogic.boardInsertLogic(pMap, key);
+				conBoardOneList = boardLogic.boardOneListLogic(pMap, key);
+				logger.info("conBoardOneList°ª : " + conBoardOneList.size());
 				
-			} else if("í˜¼ë†€".equals(key)) {
+			} else if("È¥³î".equals(key)) {
 				
-				pMap.put("nol_id", name);
-				pMap.put("nol_title", n_title);
-				pMap.put("nol_category", n_category);
-				pMap.put("nol_pw", pw);
-				pMap.put("nol_text", n_t_text);
-				pMap.put("nol_url", n_url);
+				logger.info("conBoardOneList if <È¥³î> ÁøÀÔ");
+				viewList = "forward:nolView.jsp";
+				pMap.put("nol_no", num);
 				
-				logger.info("<í˜¼ë†€> INSERT ì¤€ë¹„ì¤‘");
-				result = boardLogic.boardInsertLogic(pMap, key);
+				conBoardOneList = boardLogic.boardOneListLogic(pMap, key);
+				logger.info("conBoardOneList°ª : " + conBoardOneList.size());
 				
 			} else {
 				
-				logger.info("<<ì˜¤ë¥˜ ë°œìƒ>> key ê°’ í™•ì¸ : " + key);
+				logger.info("conBoardOneList - <<¿À·ù ¹ß»ı>> : ÆÄ¶ó¹ÌÅÍ°ªÀ» È®ÀÎÇÏ¼¼¿ä"+ "key : " + key + ", num :" + num);
 				
 			}
 			
-			logger.info("result ê°’ : " + result);
+			req.setAttribute("conBoardOneList", conBoardOneList);
 			
-			logger.info(" Controller - conBoardInsert ë©”ì†Œë“œë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+			logger.info(" Controller - conBoardOneList ¸Ş¼Òµå¸¦ Á¾·áÇÕ´Ï´Ù.");
 			
-			return "redirect:mainBoardList.jsp";
+			return viewList;
 			
-		}
-
-		
-		// <í˜¼ë°¥>, <í˜¼ìˆ >, <í˜¼ë†€> DELETE Controller
-		@RequestMapping("/boardDelete.hon")
-		public String conBoardDelete(Map<String, Object> pMap,
-				@RequestParam String category, @RequestParam String id,
-				@RequestParam String no) 
-						throws ServletException, IOException{
-			
-			logger.info("Controller - conBoardDelete ë©”ì†Œë“œ ì§„ì…");
-			
-			int result = 0;
-			logger.info("ê°€ì ¸ì˜¨ ê°’ = ì¹´í…Œê³ ë¦¬ :  " + category + " id : " + id + " num : " + no);
-			pMap = new HashMap<String, Object>();
-			
-			if("í˜¼ë°¥".equals(category)) {
-				
-				logger.info("í˜¼ë°¥ ê²Œì‹œê¸€ ì‚­ì œ ì‹œì‘");
-				pMap.put("bab_id", id);
-				pMap.put("bab_no", no);
-				pMap.put("bab_category", category);
-				result = boardLogic.boardDeleteLogic(pMap, category);
-				logger.info("í˜¼ë°¥ ê²Œì‹œê¸€ ì‚­ì œ ë");
-				
-			} else if("í˜¼ìˆ ".equals(category)) {
-				
-				logger.info("í˜¼ìˆ  ê²Œì‹œê¸€ ì‚­ì œ ì‹œì‘");
-				pMap.put("sul_id", id);
-				pMap.put("sul_no", no);
-				pMap.put("sul_category", category);
-				result = boardLogic.boardDeleteLogic(pMap, category);
-				logger.info("í˜¼ìˆ  ê²Œì‹œê¸€ ì‚­ì œ ë");
-				
-			} else if("í˜¼ë†€".equals(category)) {
-				
-				logger.info("í˜¼ë†€ ê²Œì‹œê¸€ ì‚­ì œ ì‹œì‘");
-				pMap.put("nol_id", id);
-				pMap.put("nol_no", no);
-				pMap.put("nol_category", category);
-				result = boardLogic.boardDeleteLogic(pMap, category);
-				logger.info("í˜¼ë†€ ê²Œì‹œê¸€ ì‚­ì œ ë");
-				
-			} else {
-				logger.info("<<ì˜¤ë¥˜ë°œìƒ>> keyê°’ì„ í™•ì¸í•˜ì„¸ìš”~");
-			}
-			
-			logger.info("ì‚­ì œ ì„±ê³µ ì—¬ë¶€ : " + result);
-			logger.info("Controller - conBoardDelete ë©”ì†Œë“œ ì¢…ë£Œ");
-			return "redirect:mainBoardList.jsp";
 		}
 		
 		
 		
-		// <í˜¼ë°¥>, <í˜¼ìˆ >, <í˜¼ë†€> UPDATE Controller
-				@RequestMapping("/Update.hon")
-				public String conBoardUpdate(Map<String, Object> pMap,
-						@RequestParam String category,
-						@RequestParam String num, @RequestParam String title,
-						@RequestParam String t_text, @RequestParam String url,
-						HttpServletRequest req, HttpServletResponse res) 
-								throws ServletException, IOException{
+		// <È¥¹ä>, <È¥¼ú>, <È¥³î> INSERT Controller
+			@RequestMapping("/boardInsert.hon")
+			public String conBoardInsert(@RequestParam String key,
+					@RequestParam String url, @RequestParam String category,
+					@RequestParam String title, @RequestParam String t_text,
+					Map<String, Object> pMap,
+					HttpServletRequest req, HttpServletResponse res) 
+							throws ServletException, IOException {
+				
+				// Å×½ºÆ®¿ë ÀÓ
+				HangulConversion hc = new HangulConversion();
+				
+				String name = "beyonce200";
+				String pw = "1234";
+				
+				String n_url = hc.toUTF(url);
+				String n_category = hc.toUTF(category);
+				String n_title = hc.toUTF(title);
+				String n_t_text = hc.toUTF(t_text);
+				
+				
+				int result = 0;
+				logger.info("conBoardInsert ¸Ş¼Òµå ÁøÀÔ");
+				
+				// ÇØ´ç ÆäÀÌÁö key°ª ¹Ş¾Æ¿À±â....
+				logger.info("key °ª : " + key);
+				logger.info("ÆÄ¶ó¹ÌÅÍ °ª : " + "ÅØ½ºÆ® °ª : " + n_t_text + "\n Á¦¸ñ: "  + n_title + " Ä«Å×°í¸®: " + n_category + " URL :" + n_url);
+				pMap = new HashMap<String, Object>();
+				
+				if("È¥¹ä".equals(key)) {
 					
-					logger.info("Controller ----------- conBoardUpdate ë©”ì†Œë“œ ì§„ì…");
-					HangulConversion hc = new HangulConversion();
+					pMap.put("bab_id", name);
+					pMap.put("bab_title", n_title);
+					pMap.put("bab_category", n_category);
+					pMap.put("bab_pw", pw);
+					pMap.put("bab_text", n_t_text);
+					pMap.put("bab_url", n_url);
 					
-					String id = "beyonce200";
-					String pw = "1234";
-					String n_category = hc.toUTF(category);
-					String n_url = hc.toUTF(url);
-					String n_title = hc.toUTF(title);
-					String n_t_text = hc.toUTF(t_text);
+					logger.info("<È¥¹ä> INSERT ÁØºñÁß");
+					result = boardLogic.boardInsertLogic(pMap, key);
 					
+				} else if("È¥¼ú".equals(key)) {
 					
+					pMap.put("sul_id", name);
+					pMap.put("sul_title", n_title);
+					pMap.put("sul_category", n_category);
+					pMap.put("sul_pw", pw);
+					pMap.put("sul_text", n_t_text);
+					pMap.put("sul_url", n_url);
 					
-					int result = 0;
-					logger.info("ê°€ì ¸ì˜¨ ê°’  :  "+ n_t_text + n_title + n_category + " id : " + id + " num : " + num + " , :" + n_url );
-					pMap = new HashMap<String, Object>();
+					logger.info("<È¥¼ú> INSERT ÁØºñÁß");
+					result = boardLogic.boardInsertLogic(pMap, key);
 					
-					if("í˜¼ë°¥".equals(n_category)) {
-						
-						logger.info("<í˜¼ë°¥>  if ê²Œì‹œê¸€ ìˆ˜ì • ì‹œì‘");
-						pMap.put("bab_id", id);
-						pMap.put("bab_no", num);
-						pMap.put("bab_title", n_title);
-						pMap.put("bab_text", n_t_text);
-						pMap.put("bab_url", n_url);
-						result = boardLogic.boardUpdateLogic(pMap, n_category);
-						logger.info("<í˜¼ë°¥> ê²Œì‹œê¸€ ìˆ˜ì • ë");
-						
-					} else if("í˜¼ìˆ ".equals(n_category)) {
-						
-						logger.info("í˜¼ìˆ  ê²Œì‹œê¸€ ìˆ˜ì • ì‹œì‘");
-						pMap.put("sul_id", id);
-						pMap.put("sul_no", num);
-						pMap.put("sul_title", n_title);
-						pMap.put("sul_text", n_t_text);
-						pMap.put("sul_url", n_url);
-						result = boardLogic.boardUpdateLogic(pMap, n_category);
-						logger.info("<í˜¼ìˆ > if  ê²Œì‹œê¸€ ìˆ˜ì • ë");
-						
-					} else if("í˜¼ë†€".equals(n_category)) {
-						
-						logger.info("<í˜¼ë†€> if ê²Œì‹œê¸€ ìˆ˜ì • ì‹œì‘");
-						pMap.put("nol_id", id);
-						pMap.put("nol_no", num);
-						pMap.put("nol_title", n_title);
-						pMap.put("nol_text", n_t_text);
-						pMap.put("nol_url", n_url);
-						result = boardLogic.boardUpdateLogic(pMap, n_category);
-						logger.info("<í˜¼ë†€> ê²Œì‹œê¸€ ìˆ˜ì • ë");
-						
-					} else {
-						
-						logger.info("<<ì˜¤ë¥˜ë°œìƒ>> keyê°’ì„ í™•ì¸í•˜ì„¸ìš”~");
-						
-					}
+				} else if("È¥³î".equals(key)) {
 					
-					logger.info("ìˆ˜ì • ì„±ê³µ ì—¬ë¶€ : " + result);
-					logger.info("Controller - conBoardUpdate ë©”ì†Œë“œ ì¢…ë£Œ");
+					pMap.put("nol_id", name);
+					pMap.put("nol_title", n_title);
+					pMap.put("nol_category", n_category);
+					pMap.put("nol_pw", pw);
+					pMap.put("nol_text", n_t_text);
+					pMap.put("nol_url", n_url);
 					
-					return "redirect:mainBoardList.jsp";
+					logger.info("<È¥³î> INSERT ÁØºñÁß");
+					result = boardLogic.boardInsertLogic(pMap, key);
+					
+				} else {
+					
+					logger.info("<<¿À·ù ¹ß»ı>> key °ª È®ÀÎ : " + key);
+					
 				}
 				
-				// <í˜¼ë°¥>, <í˜¼ìˆ >, <í˜¼ë†€> í•´ë‹¹ ê²Œì‹œê¸€ ì¡°íšŒ Controller
-				@RequestMapping("/boardUpdateSub.hon")
-				public String conBoardUpdateSub(@RequestParam String key, @RequestParam String num,
-						Map<String, Object> pMap, HttpServletRequest req, HttpServletResponse res) 
-								throws ServletException, IOException {
+				logger.info("result °ª : " + result);
+				
+				logger.info(" Controller - conBoardInsert ¸Ş¼Òµå¸¦ Á¾·áÇÕ´Ï´Ù.");
+				
+				return "redirect:mainBoardList.jsp";
+				
+			}
+
+			
+			// <È¥¹ä>, <È¥¼ú>, <È¥³î> DELETE Controller
+			@RequestMapping("/boardDelete.hon")
+			public String conBoardDelete(Map<String, Object> pMap,
+					@RequestParam String category, @RequestParam String id,
+					@RequestParam String no) 
+							throws ServletException, IOException{
+				
+				logger.info("Controller - conBoardDelete ¸Ş¼Òµå ÁøÀÔ");
+				
+				int result = 0;
+				logger.info("°¡Á®¿Â °ª = Ä«Å×°í¸® :  " + category + " id : " + id + " num : " + no);
+				pMap = new HashMap<String, Object>();
+				
+				if("È¥¹ä".equals(category)) {
 					
-					logger.info("conBoardUpdateSub ë©”ì†Œë“œ ì§„ì…");
+					logger.info("È¥¹ä °Ô½Ã±Û »èÁ¦ ½ÃÀÛ");
+					pMap.put("bab_id", id);
+					pMap.put("bab_no", no);
+					pMap.put("bab_category", category);
+					result = boardLogic.boardDeleteLogic(pMap, category);
+					logger.info("È¥¹ä °Ô½Ã±Û »èÁ¦ ³¡");
 					
-					// í•´ë‹¹ í˜ì´ì§€ keyê°’ ë°›ì•„ì˜¤ê¸°....
-					logger.info("key ê°’ : " + key + ", " + "Number ê°’ : " + num);
-					List<Map<String, Object>> conBoardUpdateSubList = null;
-					pMap = new HashMap<String,Object>();
+				} else if("È¥¼ú".equals(category)) {
 					
-					if("í˜¼ë°¥".equals(key)) {
+					logger.info("È¥¼ú °Ô½Ã±Û »èÁ¦ ½ÃÀÛ");
+					pMap.put("sul_id", id);
+					pMap.put("sul_no", no);
+					pMap.put("sul_category", category);
+					result = boardLogic.boardDeleteLogic(pMap, category);
+					logger.info("È¥¼ú °Ô½Ã±Û »èÁ¦ ³¡");
+					
+				} else if("È¥³î".equals(category)) {
+					
+					logger.info("È¥³î °Ô½Ã±Û »èÁ¦ ½ÃÀÛ");
+					pMap.put("nol_id", id);
+					pMap.put("nol_no", no);
+					pMap.put("nol_category", category);
+					result = boardLogic.boardDeleteLogic(pMap, category);
+					logger.info("È¥³î °Ô½Ã±Û »èÁ¦ ³¡");
+					
+				} else {
+					logger.info("<<¿À·ù¹ß»ı>> key°ªÀ» È®ÀÎÇÏ¼¼¿ä~");
+				}
+				
+				logger.info("»èÁ¦ ¼º°ø ¿©ºÎ : " + result);
+				logger.info("Controller - conBoardDelete ¸Ş¼Òµå Á¾·á");
+				return "redirect:mainBoardList.jsp";
+			}
+			
+			
+			
+			// <È¥¹ä>, <È¥¼ú>, <È¥³î> UPDATE Controller
+					@RequestMapping("/Update.hon")
+					public String conBoardUpdate(Map<String, Object> pMap,
+							@RequestParam String category,
+							@RequestParam String num, @RequestParam String title,
+							@RequestParam String t_text, @RequestParam String url,
+							HttpServletRequest req, HttpServletResponse res) 
+									throws ServletException, IOException{
 						
-						logger.info("conBoardUpdateSubList if <í˜¼ë°¥> ì§„ì…");
-						pMap.put("bab_no", num);
+						logger.info("Controller ----------- conBoardUpdate ¸Ş¼Òµå ÁøÀÔ");
+						HangulConversion hc = new HangulConversion();
 						
-						conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
-						logger.info("conBoardUpdateSubListê°’ : " + conBoardUpdateSubList.size());
+						String id = "beyonce200";
+						String pw = "1234";
+						String n_category = hc.toUTF(category);
+						String n_url = hc.toUTF(url);
+						String n_title = hc.toUTF(title);
+						String n_t_text = hc.toUTF(t_text);
 						
-					} else if("í˜¼ìˆ ".equals(key)) {
 						
-						logger.info("conBoardUpdateSubList if <í˜¼ìˆ > ì§„ì…");
-						pMap.put("sul_no", num);
 						
-						conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
-						logger.info("conBoardUpdateSubListê°’ : " + conBoardUpdateSubList.size());
+						int result = 0;
+						logger.info("°¡Á®¿Â °ª  :  "+ n_t_text + n_title + n_category + " id : " + id + " num : " + num + " , :" + n_url );
+						pMap = new HashMap<String, Object>();
 						
-					} else if("í˜¼ë†€".equals(key)) {
+						if("È¥¹ä".equals(n_category)) {
+							
+							logger.info("<È¥¹ä>  if °Ô½Ã±Û ¼öÁ¤ ½ÃÀÛ");
+							pMap.put("bab_id", id);
+							pMap.put("bab_no", num);
+							pMap.put("bab_title", n_title);
+							pMap.put("bab_text", n_t_text);
+							pMap.put("bab_url", n_url);
+							result = boardLogic.boardUpdateLogic(pMap, n_category);
+							logger.info("<È¥¹ä> °Ô½Ã±Û ¼öÁ¤ ³¡");
+							
+						} else if("È¥¼ú".equals(n_category)) {
+							
+							logger.info("È¥¼ú °Ô½Ã±Û ¼öÁ¤ ½ÃÀÛ");
+							pMap.put("sul_id", id);
+							pMap.put("sul_no", num);
+							pMap.put("sul_title", n_title);
+							pMap.put("sul_text", n_t_text);
+							pMap.put("sul_url", n_url);
+							result = boardLogic.boardUpdateLogic(pMap, n_category);
+							logger.info("<È¥¼ú> if  °Ô½Ã±Û ¼öÁ¤ ³¡");
+							
+						} else if("È¥³î".equals(n_category)) {
+							
+							logger.info("<È¥³î> if °Ô½Ã±Û ¼öÁ¤ ½ÃÀÛ");
+							pMap.put("nol_id", id);
+							pMap.put("nol_no", num);
+							pMap.put("nol_title", n_title);
+							pMap.put("nol_text", n_t_text);
+							pMap.put("nol_url", n_url);
+							result = boardLogic.boardUpdateLogic(pMap, n_category);
+							logger.info("<È¥³î> °Ô½Ã±Û ¼öÁ¤ ³¡");
+							
+						} else {
+							
+							logger.info("<<¿À·ù¹ß»ı>> key°ªÀ» È®ÀÎÇÏ¼¼¿ä~");
+							
+						}
 						
-						logger.info("conBoardUpdateSubList if <í˜¼ë†€> ì§„ì…");
-						pMap.put("nol_no", num);
+						logger.info("¼öÁ¤ ¼º°ø ¿©ºÎ : " + result);
+						logger.info("Controller - conBoardUpdate ¸Ş¼Òµå Á¾·á");
 						
-						conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
-						logger.info("conBoardUpdateSubListê°’ : " + conBoardUpdateSubList.size());
-						
-					} else {
-						
-						logger.info("conBoardUpdateSub - <<ì˜¤ë¥˜ ë°œìƒ>> : íŒŒë¼ë¯¸í„°ê°’ì„ í™•ì¸í•˜ì„¸ìš”"+ "key : " + key + ", num :" + num);
-						
+						return "redirect:mainBoardList.jsp";
 					}
 					
-					req.setAttribute("conBoardUpdateSubList", conBoardUpdateSubList);
-					req.setAttribute("categoryKey", key);
-					
-					logger.info(" Controller - conBoardUpdateSub ë©”ì†Œë“œë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤.");
-					
-					return "forward:writeModify.jsp";
+					// <È¥¹ä>, <È¥¼ú>, <È¥³î> ÇØ´ç °Ô½Ã±Û Á¶È¸ Controller
+					@RequestMapping("/boardUpdateSub.hon")
+					public String conBoardUpdateSub(@RequestParam String key, @RequestParam String num,
+							Map<String, Object> pMap, HttpServletRequest req, HttpServletResponse res) 
+									throws ServletException, IOException {
+						
+						logger.info("conBoardUpdateSub ¸Ş¼Òµå ÁøÀÔ");
+						
+						// ÇØ´ç ÆäÀÌÁö key°ª ¹Ş¾Æ¿À±â....
+						logger.info("key °ª : " + key + ", " + "Number °ª : " + num);
+						List<Map<String, Object>> conBoardUpdateSubList = null;
+						pMap = new HashMap<String,Object>();
+						
+						if("È¥¹ä".equals(key)) {
+							
+							logger.info("conBoardUpdateSubList if <È¥¹ä> ÁøÀÔ");
+							pMap.put("bab_no", num);
+							
+							conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
+							logger.info("conBoardUpdateSubList°ª : " + conBoardUpdateSubList.size());
+							
+						} else if("È¥¼ú".equals(key)) {
+							
+							logger.info("conBoardUpdateSubList if <È¥¼ú> ÁøÀÔ");
+							pMap.put("sul_no", num);
+							
+							conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
+							logger.info("conBoardUpdateSubList°ª : " + conBoardUpdateSubList.size());
+							
+						} else if("È¥³î".equals(key)) {
+							
+							logger.info("conBoardUpdateSubList if <È¥³î> ÁøÀÔ");
+							pMap.put("nol_no", num);
+							
+							conBoardUpdateSubList = boardLogic.boardOneListLogic(pMap, key);
+							logger.info("conBoardUpdateSubList°ª : " + conBoardUpdateSubList.size());
+							
+						} else {
+							
+							logger.info("conBoardUpdateSub - <<¿À·ù ¹ß»ı>> : ÆÄ¶ó¹ÌÅÍ°ªÀ» È®ÀÎÇÏ¼¼¿ä"+ "key : " + key + ", num :" + num);
+							
+						}
+						
+						req.setAttribute("conBoardUpdateSubList", conBoardUpdateSubList);
+						req.setAttribute("categoryKey", key);
+						
+						logger.info(" Controller - conBoardUpdateSub ¸Ş¼Òµå¸¦ Á¾·áÇÕ´Ï´Ù.");
+						
+						return "forward:writeModify.jsp";
 					
 				}
 }
