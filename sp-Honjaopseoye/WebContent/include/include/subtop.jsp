@@ -76,7 +76,7 @@ var msg_count=0;
       	  메뉴 <i class="dropdown icon"></i>
         <div class="menu">
           <a class="item" href="javascript:mlist()">회원정보</a>
-          <a class="item" href="../../notice/notice.jsp">공지사항</a>
+          <a class="item" href="../../notice/notice/notice.jsp">공지사항</a>
           <a class="item" href="../../main/honja/honja_main.jsp">혼자페이지</a>
           <a class="item" href="../../main/together/together.jsp">만남페이지</a>
           <div class="divider"></div>

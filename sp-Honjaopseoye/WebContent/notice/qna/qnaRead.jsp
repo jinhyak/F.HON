@@ -5,7 +5,7 @@
     
     
 <%
-
+System.out.print("?");
 
 String qna_no = null;
 String qna_title = null;

@@ -1,5 +1,6 @@
 package hj.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,20 +61,22 @@ public class MenuController {
 		logger.info("qInsert 메소드 호출");
 		int result = 0;
 		//result = menuLogic.qInsert(req, pMap);
-		return "forward:qnaRead.jsp";
+		return "forward:/notice/qna/qnaRead.jsp";
 	}
 
 	/* 문의 게시판 */
 	@ResponseBody
-	@RequestMapping(value="/qSelect.hon", method= RequestMethod.POST)
-	public String qSelect(Model mod
+	@RequestMapping(value="/qSelect.hon", method= {RequestMethod.POST,RequestMethod.GET})
+	public Map<String,Object> qSelect(Model mod
 			, @RequestParam Map<String, Object> pMap
 			, HttpServletResponse res){
 			logger.info("qSelect 메소드 호출");
 			List<Map<String,Object>> list = null;
 			list = menuLogic.qSelect(pMap);
 			mod.addAttribute("list", list);
-			return "redirect:qna.jsp";
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("data", list);
+			return map;
 	}
 
 }

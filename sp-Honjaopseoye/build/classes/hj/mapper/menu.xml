@@ -8,12 +8,12 @@
 		from notice
 	</select>
 	<select id="qSelect" parameterType="map" resultType="map">
-		select qna_title,qna_writer,qna_date
+		select qna_title,qna_writer,qna_date,qna_depth,qna_step,qna_group
 		from qna
 	</select>
 	<select id="qInsert" parameterType="map" resultType="map">
-		insert into qna(qna_no,qna_title,qna_category,qna_pw,qna_writer,qna_hit,qna_date,qna_step,qna_depth,qna_group,admin_id)
-		values (seq_qna_no,qna_title,#{드롭박스},qna_pw,#{mem_id},qna_hit,to_char(sysdate,"YYYY-MM-DD"),0,0,qna_group,admin_id)
+		insert into qna(qna_no,qna_title,qna_category,qna_pw,qna_writer,qna_hit,qna_date,qna_step,qna_depth,qna_group)
+		values (seq_qna_no,#{qna_title},#{qna_category},#{qna_pw},#{mem_id},0,to_char(sysdate,"YYYY-MM-DD"),0,#{qna_depth},#{qna_group})
 	</select>
 	<update id="qhit" parameterType="int">
 		update qna

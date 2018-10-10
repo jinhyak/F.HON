@@ -31,7 +31,6 @@ public class MenuDao {
 		logger.info("qSelect 호출 성공");
 		List<Map<String, Object>> qList = new ArrayList<Map<String, Object>>();
 		qList = sqlSessionTemplate.selectList("qSelect", pMap);
-		sqlSessionTemplate.commit();
 		logger.info("qSelect: " + qList);
 		return qList;
 	}
@@ -69,24 +68,12 @@ public class MenuDao {
 		sqlSessionTemplate.commit();
 		return result;	
 	}
-	public int depth(String pMap) {
-		logger.info("depth Update");
-		int result = 0;
-		result = sqlSessionTemplate.update(pMap);
-		sqlSessionTemplate.commit();
-		return result;
-	}
-	public int group(String pMap) {
-		logger.info("group Update");
-		int result = 0;
-		result = sqlSessionTemplate.update(pMap);
-		sqlSessionTemplate.commit();
-		return result;
-	}
+
 	public int getGroup(Map<String, Object> pMap) {
-		int b_group = 0;
-		b_group = sqlSessionTemplate.selectOne("getGroup");
-		return b_group;
+		logger.info("group Select");
+		int gno = 0;
+		gno = sqlSessionTemplate.selectOne("getGroup");
+		return gno;
 	}
 
 }
