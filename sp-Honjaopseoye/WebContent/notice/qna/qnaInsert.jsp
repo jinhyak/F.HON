@@ -36,7 +36,11 @@
 <br>
 <br>
 <br>
+<<<<<<< HEAD
 <form method="Post" action="qInsert.hon" id="qna_board" name="qna_board">
+=======
+<form method="Post" action="qnaInsert.hon" id="qna_board" name="qna_board">
+>>>>>>> refs/remotes/origin/2018-10-10_수요일_YUN_게시판_CRUD_완성본
 
 <!-- 입력 게시판 테이블   -->
 <table align="center" border="1" width="800px" height="1000px" bgcolor="white">

@@ -12,6 +12,12 @@
 			<value>messages_ko_KR</value>
 		</property>
 	</bean>
+<!-- 	<bean class="hj.logic.BoardLogic" id="board-logic">
+		<property name="Board"></property>
+	</bean>
+	<bean class="hj.logic.QnALogic" id="qna-logic">
+		<property name="Board"></property>
+	</bean> -->
 <!-- 
 	<bean id="gro-logic" class="hj.logic.GroupLogic"/>
 	<bean id="fri-logic" class="hj.logic.FriendLogic"/>

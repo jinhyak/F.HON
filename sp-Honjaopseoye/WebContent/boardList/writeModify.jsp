@@ -1,6 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="java.util.List, java.util.Map, java.util.HashMap, java.util.ArrayList" %>
+
+<%
+	
+	String no = null;
+	String id = null;
+	String title = null;
+	String category = null;
+	String hit = null;
+	String date = null;
+	String text = null;
+	String url = null;
+
+
+	/* DB데이터 뿌리기  */
+	List<Map<String, Object>> conBoardUpdateSubList = (List<Map<String, Object>>)request.getAttribute("conBoardUpdateSubList");
+	
+	String key = (String)request.getAttribute("categoryKey");
+	
+	if(key.equals("혼밥")){
+		
+		no = conBoardUpdateSubList.get(0).get("BAB_NO").toString();
+		id = conBoardUpdateSubList.get(0).get("BAB_ID").toString();
+		title = conBoardUpdateSubList.get(0).get("BAB_TITLE").toString();
+		category = conBoardUpdateSubList.get(0).get("BAB_CATEGORY").toString();
+		hit = conBoardUpdateSubList.get(0).get("BAB_HIT").toString();
+		date = conBoardUpdateSubList.get(0).get("BAB_DATE").toString();
+		text = conBoardUpdateSubList.get(0).get("BAB_TEXT").toString(); 
+		url = conBoardUpdateSubList.get(0).get("BAB_URL").toString(); 
+		
+	} else if(key.equals("혼술")){
+		
+		no = conBoardUpdateSubList.get(0).get("SUL_NO").toString();
+	   	id = conBoardUpdateSubList.get(0).get("SUL_ID").toString();
+	   	title = conBoardUpdateSubList.get(0).get("SUL_TITLE").toString();
+	   	category = conBoardUpdateSubList.get(0).get("SUL_CATEGORY").toString();
+	   	hit = conBoardUpdateSubList.get(0).get("SUL_HIT").toString();
+	   	date = conBoardUpdateSubList.get(0).get("SUL_DATE").toString();
+	   	text = conBoardUpdateSubList.get(0).get("SUL_TEXT").toString(); 
+	   	url = conBoardUpdateSubList.get(0).get("SUL_URL").toString(); 
+		
+		
+	} else if(key.equals("혼놀")){
+		
+		no = conBoardUpdateSubList.get(0).get("NOL_NO").toString();
+	   	id = conBoardUpdateSubList.get(0).get("NOL_ID").toString();
+	   	title = conBoardUpdateSubList.get(0).get("NOL_TITLE").toString();
+	   	category = conBoardUpdateSubList.get(0).get("NOL_CATEGORY").toString();
+	   	hit = conBoardUpdateSubList.get(0).get("NOL_HIT").toString();
+	   	date = conBoardUpdateSubList.get(0).get("NOL_DATE").toString();
+	   	text = conBoardUpdateSubList.get(0).get("NOL_TEXT").toString(); 
+	   	url = conBoardUpdateSubList.get(0).get("NOL_URL").toString(); 
+		
+	}
+
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,9 +70,9 @@
 
 // 이미지 미리보기임
 $(document).ready(function(){
-	
+	var no = '<%=no %>';
 	var text = document.f_board.t_text;
-	
+	text.value += '<%=text %>'; 
  	$(function() {
 		$("#img_file").change(function() {
 			readURL(this);
@@ -39,7 +95,6 @@ $(document).ready(function(){
 				
 	} // readURL함수  
 	
-	
 	$("#b_img").click(function(){
 		
 		var formData = new FormData(document.getElementById('f_board'));
@@ -49,11 +104,7 @@ $(document).ready(function(){
 		// 이미지 등록 처리
 		$.ajax({
 			method:"POST"
-<<<<<<< HEAD
-		   ,url:"../pInsert.hon"
-=======
 		   ,url:"imageInsert.file"
->>>>>>> refs/remotes/origin/2018-10-10_수요일_YUN_게시판_CRUD_완성본
 		   ,data:formData
 		   ,enctype:"multipart/form-data"
 		   ,contentType: false
@@ -70,7 +121,6 @@ $(document).ready(function(){
 		   }
 		});
 		
-	
 	});
 	
 	
@@ -78,13 +128,14 @@ $(document).ready(function(){
 		location.href="./mainBoardList.jsp";
 	});
 	
-	$("#b_insert").click(function(){
-	var category = $("#category").val();
-		alert(category);
+	$("#b_up").click(function(){
+/* 	var t_category = $("#category").val();
+	var t_title =  $("#title").val();
+	var t_url = $("#url").val();
+	var text_a = text.value 
+		alert(category + t_title + t_url + text_a + no);
 		alert("저장하러갑니다.");
-		$("#f_board").attr('method', 'post');
-		$("#f_board").attr('action', '../boardList/boardInsert.hon?key='+ category)
-		$("#f_board").submit();
+		location.href='../boardList/Update.hon?num=' + no +"&category=" + t_category + "&title=" + t_title + "&url=" + t_url+"&text="+ text_a; */
 		
 	});
 	
@@ -117,7 +168,7 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
-<form id="f_board" name="f_board">
+<form id="f_board" name="f_board" action="../boardList/Update.hon?num=<%=no %>" method="post">
 
 <!-- 입력 게시판 테이블   -->
 <table align="center" border="1" width="800px" height="1000px" bgcolor="white">
@@ -144,7 +195,7 @@ $(document).ready(function(){
 <!-- 기능 메뉴 -->
 <td width="800px" height="100px">
 
-<input type="text" style="width: 260px; height: 18px;" placeholder="동영상URL" id="url" name="url">
+<input type="text" style="width: 260px; height: 18px;" placeholder="동영상URL" id="url" name="url" value="<%=url %>">
 <input type="file" id="img_file" name="img_file" accept=".gif, .jpg, .png">
 </td>
 <!-- 기능 메뉴 끝 -->
@@ -162,7 +213,7 @@ $(document).ready(function(){
 &nbsp;&nbsp;
 <!-- 제목입력  -->
 <div class="ui input focus">
-<input type="text" placeholder="제목입력" style="width:730px; height:23px;" id="title" name="title">
+<input type="text" placeholder="제목입력" value="<%=title %>" style="width:730px; height:23px;" id="title" name="title">
 </div>
 <!-- 글 입력 -->
 <textarea style="width: 800px; height:600px;" id="t_text" name="t_text"></textarea>
@@ -206,7 +257,7 @@ $(document).ready(function(){
         <td width="800px" height="100px">
         <button class="negative ui button" id="b_cancel" name="b_cancel">취소하기</button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class="positive ui button" id="b_insert" name="b_insert">등록하기</button>
+		<button class="positive ui button" id="b_insert" name="b_up">등록하기</button>
         </td>
         </tr>
         

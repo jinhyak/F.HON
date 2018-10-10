@@ -1,21 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List, java.util.Map, java.util.HashMap, java.util.ArrayList" %>
 
    <%
    
-   String bab_no = "1";
-   String bab_date = "2018-09-27 13:11";
-   String bab_id = "beyonce";
-   String bab_title = request.getParameter("bab_title"); // 제목
-   String t_text = request.getParameter("t_text"); // 글
-   String post_url = request.getParameter("post_url"); // 동영상 URL
-   String bab_category = request.getParameter("bab_category"); // 구분 
+   String no = null;
+   String id = null;
+   String title = null;
+   String category = null;
+   String hit = null;
+   String date = null;
+   String text = null;
+   String url = null;
+   
+   
+	/* DB데이터 뿌리기  */
+   	List<Map<String, Object>> conBoardOneList = (List<Map<String, Object>>)request.getAttribute("conBoardOneList");
+   	
+   	no = conBoardOneList.get(0).get("BAB_NO").toString();
+   	id = conBoardOneList.get(0).get("BAB_ID").toString();
+   	title = conBoardOneList.get(0).get("BAB_TITLE").toString();
+   	category = conBoardOneList.get(0).get("BAB_CATEGORY").toString();
+   	hit = conBoardOneList.get(0).get("BAB_HIT").toString();
+   	date = conBoardOneList.get(0).get("BAB_DATE").toString();
+   	text = conBoardOneList.get(0).get("BAB_TEXT").toString(); 
+   	url = conBoardOneList.get(0).get("BAB_URL").toString(); 
+   
    %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../Semantic/semantic.css" />
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
 <script src="../Semantic/semantic.js"></script>
@@ -24,8 +40,24 @@
 
 $(document).ready(function(){
 	
+	var no = '<%=no %>';
+	var id = '<%=id %>';
+	var category = '<%= category%>';
+	
+	// 메인 이동
 	$("#list_sel").click(function(){
-		location.href="./boardList.jsp";
+		location.href="./mainBoardList.jsp";
+	});
+	
+	// 수정하기 버튼
+	$("#update_btn").click(function(){
+		location.href='../boardList/boardUpdateSub.hon?key='+ category + "&num=" + no;
+	});
+	
+	// 삭제하기 버튼
+	$("#delete_btn").click(function(){
+		alert(no + " , " + id + " , " + category);
+		location.href='../boardList/boardDelete.hon?no='+no+"&id="+id+"&category="+category;
 	});
 	
 })
@@ -34,7 +66,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<!-- 상단 끝 -->
+<!-- 상단 끝임 -->
 
 <br>
 <br>
@@ -60,13 +92,13 @@ $(document).ready(function(){
 
 <!-- 상위 -->
 <tr>
-<td align="left" rowspan="2"><p><font color="gray">No. <%= bab_no%></font></p></td>
-<td align="center" rowspan="2"><p><font color="gray"><%=bab_category%></font></p></td>
-<td align="center" colspan="2" rowspan="2" width="600px" height="80px"><font size="6" color="gray"><%= bab_title%></font></td>
-<td align="center" colspan="3"><font color="gray">작성일: <%= bab_date%></font></td>
+<td align="left" rowspan="2"><p><font color="gray">No. <%= no%></font></p></td>
+<td align="center" rowspan="2"><p><font color="gray"><%=category%></font></p></td>
+<td align="center" colspan="2" rowspan="2" width="600px" height="80px"><font size="6" color="gray"><%= title%></font></td>
+<td align="center" colspan="3"><font color="gray">작성일: <%= date%></font></td>
 </tr>
 <tr>
-<td align="center" colspan="3"><font color="gray">작성자 : <%= bab_id%></font></td>
+<td align="center" colspan="3"><font color="gray">작성자 : <%= id%></font></td>
 </tr>
 
 <!-- 부가 -->
@@ -88,7 +120,7 @@ $(document).ready(function(){
 <!-- 상단부터 순서대로....  -->
 <td>
 <pre>
-<%= t_text%>
+<%= text%>
 </pre>
 </td>
 
@@ -99,7 +131,7 @@ $(document).ready(function(){
 <div id="player"></div>
 
 <script>
-var v = '<%= post_url%>';
+var v = '<%= url%>';
       var tag = document.createElement('script');
 
       tag.src = "https://www.youtube.com/iframe_api";
@@ -174,10 +206,14 @@ var v = '<%= post_url%>';
 <!-- 목록 -->
 </td>
 </tr>
-
+<tr>
+<td>
+<input type="button" value="수정" id="update_btn">
+<input type="button" value="삭제" id="delete_btn">
+</td>
+</tr>
 </tbody>
 <!-- 작성 내용 끝 -->
-
 
 <!-- 댓글  -->
 <tfoot align="center" style="width:1000px; height:200px;">

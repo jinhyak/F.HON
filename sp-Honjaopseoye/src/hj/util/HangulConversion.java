@@ -1,7 +1,7 @@
 package hj.util;
 
 public class HangulConversion {
-	//영문 인코딩 타입으로 읽어서 한글 인코딩으로 타입으로 전환
+	
 	public static String toKor(String en) {
 		if(en==null) return null;
 		try {
