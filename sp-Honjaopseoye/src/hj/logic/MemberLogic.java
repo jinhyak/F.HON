@@ -1,6 +1,7 @@
 package hj.logic;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -25,12 +26,14 @@ public class MemberLogic {
 		String list = null;
 		try {
 			list = memberDao.select(pMap);
+			logger.info("list : "+list);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Cookie memList = new Cookie("memList",String.valueOf(list));
+		Cookie memList = new Cookie("memList",URLEncoder.encode(list));
 		memList.setMaxAge(60*60*24);
+		memList.setPath("/");
 		res.addCookie(memList);
 		logger.info("dao를 지나고");
 		return memList;

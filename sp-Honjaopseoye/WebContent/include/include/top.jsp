@@ -13,14 +13,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>상단</title>
 <%@ include file="../../include/include/commonUI.jsp" %>
-<title>상단</title>
 <%@include file="./commonUI.jsp" %>
-<title>상단</title>
+<script>
+        jQuery(document).ready(function($) {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+        });
+    </script>
 <style>
 </style>
 </head>
 <body>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="../../Semantic/jquery.counterup.min.js"></script>
 <div class="ui inverted vertical masthead center aligned segment" style="position-top: fixed">
     <div class="ui container">
       <div class="ui large secondary inverted pointing menu">
@@ -50,15 +59,28 @@
       </div>
     </div>
     <div class="ui text container">
-      <h1 class="ui inverted header">
-       <br>
-        <br>
-         <br>
-          <br>
-        혼밥 혼술 입니당
-      </h1>
-      <br>
-       <br>
+        <!-- 숫자 카운팅 -->
+<h2 class="ui icon header" style="magin-right:100px;">
+  <i class="circular users icon"></i>
+  <div class="content">
+    <div class="sub header">글자를 넣어보자</div>
+  <span class="counter">1,234,567</span><span>명</span>
+  </div>
+</h2>
+	        <h2 class="ui icon header" style="magin-left:100px;">
+  <i class="settings icon"></i>
+  <div class="content">
+    <div class="sub header">글자를 넣어보자</div>
+  <span>$</span><span class="counter">1.99</span>
+  </div>
+</h2>
+	        <h2 class="ui icon header">
+  <i class="plug icon"></i>
+  <div class="content">
+    <div class="sub header">글자를 넣어보자</div>
+  	<span class="counter">12345</span>
+  </div>
+</h2>
     </div>
 </div>
 </body>

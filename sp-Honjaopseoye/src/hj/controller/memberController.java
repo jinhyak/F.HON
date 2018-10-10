@@ -325,7 +325,7 @@ public class memberController {
 			// 바로 Dao의 idSearch() 이동
 			list = memberLogic.select(pMap,res);
 			//list = memberDao.select(pMap);
-			logger.info("Controller : " + result);
+			logger.info("Controller : " + list);
 			/*if (list != null) {
 				logger.info("Controller");
 				HttpSession mem_session = req.getSession();
