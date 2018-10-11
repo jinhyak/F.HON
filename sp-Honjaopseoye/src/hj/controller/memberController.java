@@ -297,21 +297,21 @@ public class memberController {
 		logger.info("login 호출 성공");
 		String resultPage = "";
 		String result = "";
-		Cookie list = null;
+		List<Map<String,Object>> list = null;
 		result = memberDao.login(pMap);
 		logger.info(result);
 		if ("1".equals(result)) {
 			logger.info(pMap.get("mem_id").toString());
 			logger.info(pMap.get("mem_pw").toString());
 			// 바로 Dao의 idSearch() 이동
-			list = memberLogic.select(pMap,res);
-			//list = memberDao.select(pMap);
+			//list = memberLogic.select(pMap,res);
+			list = memberDao.select(pMap);
 			logger.info("Controller : " + result);
-			/*if (list != null) {
+			if (list != null) {
 				logger.info("Controller");
 				HttpSession mem_session = req.getSession();
 				mem_session.setAttribute("memList", list);
-			}*/
+			}
 			resultPage = "/member/login/pwFound2.jsp";
 		} else if ("-1".equals(result)) {
 			logger.info("result는" + result);

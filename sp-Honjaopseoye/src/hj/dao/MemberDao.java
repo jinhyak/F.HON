@@ -90,14 +90,12 @@ public class MemberDao {
 		return result;
 	}
 
-	public String select(Map<String, Object> pMap) throws IOException {
+	public List<Map<String, Object>> select(Map<String, Object> pMap) throws IOException {
 		logger.info(pMap);
 		logger.info("mdao : select call");
-		String rMap = null;
 		List<Map<String,Object>> memberList = null;
 		memberList = sqlSessionTemplate.selectList("membermap.select", pMap);
-		rMap = memberList.toString();
-		return rMap;
+		return memberList;
 	}
 
 /*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 로그인 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/

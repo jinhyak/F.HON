@@ -78,7 +78,7 @@ var msg_count=0;
           <a class="item" href="javascript:mlist()">회원정보</a>
           <a class="item" href="../../notice/notice/notice.jsp">공지사항</a>
           <a class="item" href="../../main/honja/honja_main.jsp">혼자페이지</a>
-          <a class="item" href="../../main/together/together.jsp">만남페이지</a>
+          <a class="item" href="../../main/together/together_main.jsp">만남페이지</a>
           <div class="divider"></div>
           <div class="header">보조 메뉴</div>
           <div class="item">

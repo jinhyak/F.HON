@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
-    
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ÃÖÁ¾ Å×ÀÌ½º</title>
-
-<link rel="stylesheet" type="text/css" href="../Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="../Semantic/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../Semantic/jquery.dataTables.min.js"></script>
-
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../../Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="../../Semantic/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../../Semantic/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="../../Semantic/semantic.css" />
+<script src="../../Semantic/semantic.js"></script>
 </head>
+<body>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $('#dt_reserv_list').dataTable({
       //url:'../../member/empty/getReservList.test',
-      "ajax":{ "url":"qSelelct.hon", "type":"POST" },
+      "ajax":{ "url":"/sp_Honjaopseoye/notice/qSelelct.hon", "type":"POST" },
        columns:[
 			{"data":'QNA_NO',"className":'dt-body-center'},
 			{"data":'QNA_TITLE',"className":'dt-body-center'},
@@ -33,44 +33,103 @@ $(document).ready(function() {
 			{"data":'QNA_HIT',"className":'dt-body-center'}
              ],
       "language": {     
-          "sEmptyTable":     "µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù",
+          "sEmptyTable":     "ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤",
             "sInfo":           "_START_ - _END_ / _TOTAL_",
             "sInfoEmpty":      "0 - 0 / 0",
-            "sInfoFiltered":   "(ÃÑ _MAX_ °³)",
+            "sInfoFiltered":   "(ì´ _MAX_ ê°œ)",
             "sInfoPostFix":    "",
             "sInfoThousands":  ",",
-            "sLengthMenu":     "ÆäÀÌÁö´ç ÁÙ¼ö _MENU_",
-            "sLoadingRecords": "ÀĞ´ÂÁß...",
-            "sProcessing":     "Ã³¸®Áß...",
-            "sSearch":         "°Ë»ö:",
-            "sZeroRecords":    "°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù",
+            "sLengthMenu":     "í˜ì´ì§€ë‹¹ ì¤„ìˆ˜ _MENU_",
+            "sLoadingRecords": "ì½ëŠ”ì¤‘...",
+            "sProcessing":     "ì²˜ë¦¬ì¤‘...",
+            "sSearch":         "ê²€ìƒ‰:",
+            "sZeroRecords":    "ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤",
             "oPaginate": {
-                "sFirst":    "Ã³À½",
-                "sLast":     "¸¶Áö¸·",
-                "sNext":     "´ÙÀ½",
-                "sPrevious": "ÀÌÀü"
+                "sFirst":    "ì²˜ìŒ",
+                "sLast":     "ë§ˆì§€ë§‰",
+                "sNext":     "ë‹¤ìŒ",
+                "sPrevious": "ì´ì „"
             },
             "oAria": {
-                "sSortAscending":  ": ¿À¸§Â÷¼ø Á¤·Ä",
-                "sSortDescending": ": ³»¸²Â÷¼ø Á¤·Ä"
+                "sSortAscending":  ": ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬",
+                "sSortDescending": ": ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬"
             }
       }   
    });
 
 
-    var table = $('#dt_reserv_list').DataTable(); // Å×ÀÌºí
-    $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // Æ¼¹Ùµğ¸¦ ´©¸£¸é..
+    var table = $('#dt_reserv_list').DataTable(); // í…Œì´ë¸”
+    $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // í‹°ë°”ë””ë¥¼ ëˆ„ë¥´ë©´..
        var data = table.row(this).data();
        var QNA_NO = data.QNA_NO;
-       location.href='./qnaread.test?qna_no='+QNA_NO;
+       location.href='../../notice/qView.hon?qna_no='+QNA_NO;
     });
 });
 </script>
-<body>
+ <%@ include file="../../include/include/subtop.jsp" %>
+ 
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+	<div class="ui two attached stackable column grid" style="width:100%">
+		<div class="center aligned column"style="width:20%;">
+			<div class="ui field" style="height:800px">
+				<div class="ui segment">
+					<div class="ui one column grid">
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ë§ë¨¸ë¦¬ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+						<div class="center aligned column">
+						</div>
+						<div class="center aligned column">
+						</div>
+						<div class="center aligned column">
+						</div>
+						<div class="center aligned column">
+							<div class="ui large header">
+							 	íšŒì›ì •ë³´
+							</div>
+						</div>
+						<div class="right aligned column">
+						</div>
+						<div class="right aligned column">
+						</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ëª©ë¡ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%">
+								<a href="./notice.jsp"> ê³µì§€ì‚¬í•­ </a>
+							</div>
+						</div>
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%">
+								<a href="./qna.jsp"> QnA </a>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ contents @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<div class="column"style="width:80%;">
+			<div class="ui field">
+				<div class="ui segment">
+					<div class="ui center aligned one column grid">
+						<div class="center aligned column">
+							<div class="ui segment">
+								<div class="ui large header">
+							 	         QNA
+								</div>
+							</div>
+						</div>
+						<div class="center aligned column">
+							<div class="ui segment" style="width:100%;height:1000px">
+							
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ì—¬ê¸°ë§Œ ë°”ë€Œë©´ ë¨ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <form id="j_s"></form>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<table border="1" align="center">
+<tr>
+<td>
    <div class="ui field">
       <div class="ui stackable column grid">
          <div class="ui column">
@@ -83,34 +142,51 @@ $(document).ready(function() {
               </a>
             </div>
             <div id="reserv_list" class="ui blue bottom attached segment">
-               <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ¸»¸Ó¸® @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+               <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ë§ë¨¸ë¦¬ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
                <table id="dt_reserv_list" class="ui center aligned stackable selectable display datatable">
                  <thead>
                    <tr>
-                      <th style="width:100px;">±Û ¹øÈ£</th>
-                      <th style="width:100px;">Á¦¸ñ</th>
-                      <th style="width:300px;">ºĞ·ù</th>
-                      <th style="width:200px;">ÀÛ¼ºÀÚ</th>
-                      <th style="width:500px;">³¯Â¥</th>
-                      <th style="width:100px;">Á¶È¸¼ö</th>
+                      <th style="width:100px;">ê¸€ ë²ˆí˜¸</th>
+                      <th style="width:100px;">ì œëª©</th>
+                      <th style="width:300px;">ë¶„ë¥˜</th>
+                      <th style="width:200px;">ì‘ì„±ì</th>
+                      <th style="width:500px;">ë‚ ì§œ</th>
+                      <th style="width:100px;">ì¡°íšŒìˆ˜</th>
                     </tr>
                  </thead>
                     <tbody id="dt_reserv_tbody"></tbody>
                </table>
                <button class="ui primary button" id="insert_go">
-  ±Û¾²±â
+  ë¬¸ì˜í•˜ê¸°
 </button>
             </div>
          </div>
       </div>
    </div>
 </div>
+</td>
+</tr>
+</table>						
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ì—¬ê¸°ë§Œ ë°”ë€Œë©´ ë¨ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+</div>
+<%@ include file="../../include/include/bottom.jsp" %>
 <script type="text/javascript">
 $(".menu").find('a').click(function() {
-   $(".menu").find('a').attr('class','item');//active ÃÊ±âÈ­
-   $(this).attr('class','item active');//´©¸¥¸Ş´º active·Î º¯°æ
+   $(".menu").find('a').attr('class','item');//active ì´ˆê¸°í™”
+   $(this).attr('class','item active');//ëˆ„ë¥¸ë©”ë‰´ activeë¡œ ë³€ê²½
    if($(this).attr('id')=='m_reservation'){
-      location.href="./sView.jsp";
+      /* location.href="./s
+      
+      View.jsp"; */
    }
    else if($(this).attr('id')=='m_reserv_list'){
       $("#reserv_list").show();

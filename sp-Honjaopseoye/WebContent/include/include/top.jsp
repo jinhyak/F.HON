@@ -28,9 +28,9 @@
           <i class="sidebar icon"></i>
         </a>
 	        <a class="active item" href="../../notice/notice/notice.jsp">공지사항</a>
-	        <a class="item" href="../../notice/qna/qna.jsp">Q&A</a>
+	        <a class="item" href="../../notice/qna/qna2.jsp">Q&A</a>
 	        <a class="item" href="../../main/honja/honja_main.jsp">혼밥하자</a>
-	        <a class="item" href="../../main/together/together.jsp">인사하자</a>
+	        <a class="item" href="../../main/together/together_main.jsp">인사하자</a>
 	        <div class="ui grid">
 	        <div class="four wide two wide large screen one wide widescreen column"></div>
 	        <div class="four wide two wide large screen one wide widescreen column">
