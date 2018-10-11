@@ -5,6 +5,76 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+ $(document).ready(function(){
+    $('#notice').DataTable( {
+    	   "ajax": {
+    	       "url" : "/sp-Honjaopseoye/notice/nSelect.hon",
+    	       "dataSrc": "data",
+    	       "type" : "post"
+    	     	},
+    	    "columns": [
+    	   		          { "data": "NOTI_NO" },
+    	   		          { "data": "NOTI_CATEGORY" },
+    	   		          { "data": "NOTI_TITLE" },
+    	   		          { "data": "NOTI_WRITER" },
+    	   		          { "data": "NOTI_DATE" },
+    	   		          { "data": "NOTI_HIT" }
+    	   		        ],
+    	   		        
+    	   		   //@@@@@@@@@@@@@@@@@@@@@@@@@@@ 한글처리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  
+    	   		     "language": {//한글 처리     
+    	   	          "sEmptyTable":     "데이터가 없습니다",
+    	   	            "sInfo":           "_START_ - _END_ / _TOTAL_",
+    	   	            "sInfoEmpty":      "0 - 0 / 0",
+    	   	            "sInfoFiltered":   "(총 _MAX_ 개)",
+    	   	            "sInfoPostFix":    "",
+    	   	            "sInfoThousands":  ",",
+    	   	            "sLengthMenu":     "페이지당 줄수 _MENU_",
+    	   	            "sLoadingRecords": "읽는중...",
+    	   	            "sProcessing":     "처리중...",
+    	   	            "sSearch":         "검색:",
+    	   	            "sZeroRecords":    "검색 결과가 없습니다",
+    	   	            "oPaginate": {
+    	   	                "sFirst":    "처음",
+    	   	                "sLast":     "마지막",
+    	   	                "sNext":     "다음",
+    	   	                "sPrevious": "이전"
+    	   	            },
+    	   	            
+    	   	            //@@@@@@@@@@오름차순 정렬, 내림차순 정렬 @@@@@@@@@@@@@
+    	   	            "oAria": {
+    	   	                "sSortAscending":  ": 오름차순 정렬",
+    	   	                "sSortDescending": ": 내림차순 정렬"
+    	   	            }
+    	   	      }   
+
+    	   		        
+    	   		        
+    	   })
+    	   
+    
+    	var table = $('#notice').DataTable();
+       $('#notice tbody').on( 'click', 'tr', function (row) {
+           if ( $(this).hasClass('selected') ) { //singleSelected 처리
+               $(this).removeClass('selected');
+           
+           //////// 로우값 가져오기
+               var clickrow = table.row(this).data();
+               alert(clickrow.NOTI_NO+", "+clickrow.NOTI_TITLE+", "+clickrow.NOTI_CATEGORY+", "+clickrow.NOTI_DATE+", "+clickrow.NOTI_HIT+", "+clickrow.NOTI_WRITER);
+               location.href="../../notice/noticeDetail.hon?NOTI_NO="+clickrow.NOTI_NO;
+            		   
+           }
+           
+           else {
+               table.$('tr.selected').removeClass('selected');
+               $(this).addClass('selected');
+           }
+       } );
+ 
+    	    
+}); 
+</script>
 </head>
 <body>
  <%@ include file="../../include/include/subtop.jsp" %>

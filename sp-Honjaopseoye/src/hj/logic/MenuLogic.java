@@ -1,5 +1,6 @@
 package hj.logic;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -66,11 +67,17 @@ public class MenuLogic {
 		return result;
 	}
 
-	public List<Map<String, Object>> nSelect(Map<String, Object> pMap) {
-		// TODO Auto-generated method stub
-		logger.info("nSelect ∞Ê¿Ø");
-		List<Map<String, Object>> list = null;
-		list = menuDao.nSelect(pMap);
-		return list;
+	public List<Map<String, Object>> nSelect() {
+		logger.info("Logic : You Succeed in calling nSelect!!");
+		List<Map<String, Object>> getNselect = new ArrayList<Map<String, Object>>();
+		getNselect = menuDao.nSelect();
+		return getNselect;
+	}
+
+	public List<Map<String, Object>> nView(String NOTI_NO) {
+		logger.info("Logic : You Succeed in calling nView!!");
+		List<Map<String, Object>> notiList = new ArrayList<Map<String, Object>>();
+		notiList = menuDao.nView(NOTI_NO);
+		return notiList;
 	}
 }

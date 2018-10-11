@@ -10,7 +10,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b088e12dec9746ba7e26f57a6f7c9256"></script>
 <script type="text/javascript">
 
 //화면이 시작했을때 보여줄 지도(초기좌표같은거 설정해 주면 될듯)

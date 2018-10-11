@@ -42,13 +42,14 @@ public class MenuController {
 	/* 공지사항 */
 	@ResponseBody
 	@RequestMapping("/nSelect.hon")
-	public String nSelect(Model mod
-			, @RequestParam Map<String, Object> pMap) {
+	public Map<String, List<Map<String, Object>>> nSelect(Model mod) {
 		logger.info("nSelect 메소드 호출");
 		List<Map<String, Object>> list = null;
-		list = menuLogic.nSelect(pMap);
-		mod.addAttribute(list);
-		return "redirect:jsp";
+		list = menuLogic.nSelect();
+		Map<String, List<Map<String,Object>>> pMap = new HashMap<String, List<Map<String,Object>>>();
+		pMap.put("data", list);
+		logger.info(pMap);
+		return pMap;
 	}
 
 	/* 공지사항 글쓰기 */
