@@ -45,19 +45,19 @@ $(document).ready(function(){
 	          ,success:function(result){
 	        	  //데이터를 db에 넣어주는 ajax임 동시에하면 꼬여서 success에 넣어줌
 	        	  $('#store_img').attr('value',result);
-	        	  alert($('#store_img').val());
+	        	  //alert($('#store_img').val());
 	        	var formData = $("#f_matjip").serialize();
-	        	alert(formData)
+	        	//alert(formData)
 	  			$.ajax({
 	  				url:"../storeAdd.hon",
 	  			 	method: "POST",
 	  				data: formData,
 	  				success:function(result){
 	  					
-	  					alert(result)
+	  					//alert(result)
 	  					if(result=='1'){
 	  						alert("등록되었습니다");
-	  						location.href="../main/main.jsp";
+	  						location.href="../../main/main/main.jsp";
 	  					}
 	  					else{
 	  						alert("등록이 실패하였습니다");

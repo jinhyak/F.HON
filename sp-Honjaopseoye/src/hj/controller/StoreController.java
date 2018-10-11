@@ -2,15 +2,12 @@ package hj.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashMap;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -18,14 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import hj.dao.MessageDao;
 import hj.dao.StoreDao;
+import hj.logic.StoreLogic;
 
 @Controller
 @RequestMapping("/store")
@@ -34,6 +31,9 @@ public class StoreController{
 
 	@Autowired
 	private StoreDao storeDao = null;
+	
+	@Autowired
+	private StoreLogic storeLogic = null;
 
 /*메인페이지 이동 테스트*/
 	@RequestMapping("/empty.hon")
@@ -63,8 +63,9 @@ public class StoreController{
 		}
 		return String.valueOf(result);
 	}
+	//이미지등록
 	@ResponseBody
-	@RequestMapping("/storeImg.hon")
+	@RequestMapping(value= {"/storeImg.hon"},produces="text/html; charset=UTF-8")//리턴값으로 string가는데 한글이 깨져서 써줘야함
 	public String imgUpload(MultipartHttpServletRequest multi) {
 		logger.info("storeImg호출성공");
 		//저장경로 설정
@@ -100,5 +101,20 @@ public class StoreController{
 		
 		return null;
 	}
+	//가게 검색	
+	@RequestMapping(value= {"/storeSearch.hon"},produces="text/html; charset=UTF-8")
+	public String storeSearch(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
+		logger.info("pMap="+pMap);
+		List<Map<String,Object>> list = null;
+		try {
+			list = storeLogic.search8(pMap);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		logger.info("list"+list);
+		mod.addAttribute("list",list);//모델은 셋뷰네임 안하고 바로 경로써줌
+		return "forward:/main/honja/hotplace/hotplace_result.jsp";
+	}
+
 
 }

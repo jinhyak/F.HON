@@ -45,7 +45,7 @@ $(document).ready(function(){
 	          ,success:function(result){
 	        	  //데이터를 db에 넣어주는 ajax임 동시에하면 꼬여서 success에 넣어줌
 	        	  $('#store_img').attr('value',result);
-	        	  alert($('#store_img').val());
+	        	  //alert($('#store_img').val());
 	        	var formData = $("#f_matjip").serialize();
 	        	//alert(formData)
 	  			$.ajax({
@@ -241,7 +241,7 @@ $(document).ready(function(){
 	
 </script>
 <div class="ui stackable segment" >
-<form id="f_matjip" name="f_matjip" method="POST" action="../store/add/matjip.test">
+<form id="f_matjip" name="f_matjip" method="POST">
 		<div class="ui divider"></div>
 		<!-- ==========================가게 이름 등록=============================== -->
 		<div class="ui labeled input" style="width:100%;">

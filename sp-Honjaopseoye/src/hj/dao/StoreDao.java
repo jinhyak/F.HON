@@ -29,4 +29,10 @@ public class StoreDao {
 		logger.info("Dao insert호출 성공");
 		return result;
 	}
+	public List<Map<String, Object>> select8(Map<String, Object> pMap) throws IOException{
+		List<Map<String,Object>> list = null;
+		logger.info("select8호출 성공");
+		list = sqlSessionTemplate.selectList("select8", pMap);
+		return list;
+	}
 }

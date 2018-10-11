@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.mapper.storeMapper">
+<mapper namespace="storemap">
 	<!-- 예약하기 -->
 	<insert id="rInsert" parameterType="map">
 		INSERT INTO
@@ -36,7 +36,7 @@
 			VALUES(seq_store_no.nextval,#{store_name},#{store_tel},
 					#{store_business},#{store_price},#{store_img},
 					#{store_introduce},#{store_homepage},#{store_keyword},
-					#{store_addr},#{store_latitude},#{store_longitude},0,0)
+					#{store_addr},#{store_latitude},#{store_longitude},3,0)
 	</insert>
 	<!-- 가게 상세보기 -->
 	<select id="sView" parameterType="map">
@@ -46,6 +46,29 @@
 		jh.gprotocol AND st.store_no = 1)"업종"
 		FROM store
 		where store_no = 1
+	</select>
+	<!-- 8건만 핫플리스트에 띄우는 것만 검색하는 select문임 -->
+	<select id="select8" parameterType="map" resultType="map">
+		SELECT
+			nvl(store_score,0)as"store_score", store_no,
+			nvl(store_img,'noimg.png')as "store_img",
+			nvl(store_price,'가격정보 없음')as "store_price",store_name
+ 		FROM (select * from store 
+ 			<if test='searchWord != null'>
+ 				 WHERE store_name like '%'||#{searchWord}||'%'
+        		 OR store_keyword like '%'||#{searchWord}||'%'
+ 			</if>
+ 		ORDER BY nvl(store_score,0) desc)
+ 		<![CDATA[WHERE rownum <= 8 ]]>
+ 		
+ 	  	<if test="store_business != null">
+ 			<if test="store_business !=''">
+ 				AND store_business like '%'||#{store_business}||'%' 
+ 			</if>
+ 			<if test="store_price != ''">
+ 				AND store_price = #{store_price} 
+ 			</if>
+		</if>
 	</select>
 	<!-- sView -->
 	<!-- 프리미엄 가게보기 -->

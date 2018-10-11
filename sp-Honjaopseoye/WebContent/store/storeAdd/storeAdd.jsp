@@ -34,7 +34,7 @@
 <div class="ui basic segment">
 
 <!-- ====================본문===================== -->
-  <div class="ui basic segment text container one column grid"style="margin-top: 35px;">
+  <div class="ui basic segment text container one column grid"style="margin-top: 35px;padding-top: 50px;">
   	<div class="column">
   		<h3>매장을 등록하세요</h3>
   	</div>
