@@ -26,7 +26,7 @@ public class FileServlet extends HttpServlet {
 		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 컨트롤러를 정해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				//ctr = Mapping.mapping(req,wMap);
 		ServletContext cxt = getServletContext();
-		String path = "C:\\Users\\Yun\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\boardList\\images";
+		String path = "C:\\Users\\517\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\boardList\\images";
 		int maxsize = 1024 * 1024 * 100; // 파일의 용량
 		String encoding = "UTF-8"; // 파일 이름의 글자 타입
 		MultipartRequest multipartRequest = new MultipartRequest(req, path, maxsize, encoding, new DefaultFileRenamePolicy());

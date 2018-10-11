@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, java.util.Map, java.util.HashMap, java.util.ArrayList" %>
+<%@ page import="java.util.*" %>	
+<%
+	String smem_name = null;
+		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if ((List<Map<String, Object>>)memList != null) {
+		smem_name = memList.get(0).get("MEM_NAME").toString();
+	}
+%>
+
+
 
    <%
    
@@ -31,11 +41,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../Semantic/semantic.css" />
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
-<script src="../Semantic/semantic.js"></script>
-<title>글보기</title>
+<script src="../Semantic/semantic.js"></script> 
+<title>혼밥할래</title>
+</head>
+<body>
+<!-- 상단 끝임 -->
+
+<br>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -58,17 +73,12 @@ $(document).ready(function(){
 	$("#delete_btn").click(function(){
 		alert(no + " , " + id + " , " + category);
 		location.href='../boardList/boardDelete.hon?no='+no+"&id="+id+"&category="+category;
+		
 	});
 	
 })
 
-
 </script>
-</head>
-<body>
-<!-- 상단 끝임 -->
-
-<br>
 <br>
 <div align="center">
 <img src="./images/logo.png" width="800px" height="200px">
@@ -264,6 +274,8 @@ var v = '<%= url%>';
 <br>
 <br>
 <br>
+
+<%@ include file="/include/include/bottom.jsp" %>
 
 </body>
 </html>

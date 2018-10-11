@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>	
+<%
+	String smem_name = null;
+		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if ((List<Map<String, Object>>)memList != null) {
+		smem_name = memList.get(0).get("MEM_NAME").toString();
+	}
+%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,24 +16,40 @@
 <link rel="stylesheet" type="text/css" href="../Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
 <script type="text/javascript" src="../Semantic/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../Semantic/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="../Semantic/semantic.css" />
+<script src="../Semantic/semantic.js"></script>
 <title>혼놀 게시판</title>
+</head>
+<style>
+body {
+
+}
+</style>
+
+<body>
+
+
+<form id="key"></form>
+
+<br>
 <script type="text/javascript">
 
 $(document).ready(function(){
 	
 	$("#sul_go").click(function() {
-		alert("술로 이동~");
 		location.href="./sulBoard.jsp";
 	});
 	
 	$("#bab_go").click(function() {
-		alert("밥 이동~");
 		location.href="./babBoard.jsp";
 	});
 	
 	$("#main_go").click(function() {
-		alert("메인으로~");
 		location.href="./mainBoardList.jsp";
+	});
+	
+	$("#g_insert").click(function(){
+		location.href="./write.jsp";
 	});
 	
 	// 리스트 이벤트
@@ -78,12 +102,105 @@ $(document).ready(function(){
 })
 
 </script>
-</head>
-<body>
-<form id="key"></form>
+<br>
+<br>
+<br>
+<br>
+
+<!-- 전체 테이블 -->
+<table bgcolor="white" align="center">
+<thead>
+<tr>
+<td align="center"><img src="./images/logo.png"></td>
+</tr>
+</thead>
+<tbody align="center">
+<tr>
+<td align="center">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
+<div class="ui header" style="margin-left: 0px;margin-right: 0px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- 상위 버튼 -->
+<table>
+<tr>
+<td align="center">
+
+<!-- 조회수 -->
+
+<table width="890px" height="230px" align="center">
+<!-- 조회수 헤드  -->
+<thead>
+
+<tr>
+<td align="center" colspan="5" height="100px"><font size="5" color="black"><strong>월간 최고 조회수 리뷰 >.< 임당 </strong></font></td>
+</tr>
+
+</thead>
+<!-- 조회수 헤드  끝 -->
+<tr height="180px">
+<td align="center"><img src="./images/1.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="./images/2.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="./images/3.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="./images/4.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="./images/123.jpg" width="255px" height="200px"></td>
+</tr>
+<!-- 버튼 이벤트 라인  -->
+<tr>
+<td id="best_1" align="center" width="200px">
+<pre><font size="2" color="black"><strong>가산동 돈까스 맛집!! 리뷰</strong></font>
+
+조회수: 5250192</pre>
+</td>
+
+<td align="center" width="200px">
+<pre><font size="2" color="black"><strong>치맥은 역시 강남! 치밥 치맥집</strong></font>
+
+조회수: 4432134</pre>
+</td>
+
+<td align="center" width="200px">
+<pre><font size="2" color="black"><strong>혼밥 추천합니다!!</strong></font>
+
+조회수: 3387123</pre>
+</td>
+
+<td align="center" width="200px">
+<pre><font size="2" color="black"><strong>E마트 푸드코트 추천!</strong></font>
+
+조회수: 194720</pre>
+</td>
+
+<td align="center" width="200px">
+<pre><font size="2" color="black"><strong>삼겹살 짱</strong></font>
+
+조회수: 14720</pre>
+</td>
+
+<!-- 버튼 이벤트 라인 끝 -->
+</tr>
+
+</table>
+
+
+<!-- 조회수 끝 -->
+
+</table>
+   <table width="1300px" height="50px">
+   
+<tr>
+<td align="center" height="100px">공백</td>
+</tr>
+
+<tr>
+<td align="left">
+<button class="positive ui button" id="sul_go">혼술하기</button>
+<button class="positive ui button" id="nol_go">혼놀하기</button>
+<button class="positive ui button" id="main_go">메인가기</button>
+</td>
+</tr>
+
+</table>
+<!-- 상위 버튼  끝-->
    <div class="ui field">
       <div class="ui stackable column grid">
          <div class="ui column">
@@ -110,20 +227,22 @@ $(document).ready(function(){
                  </thead>
                     <tbody id="dt_reserv_tbody"></tbody>
                </table>
-               <button class="ui primary button" id="sul_go">
-  혼술하기
-</button>
-<button class="ui primary button" id="bab_go">
-  혼밥하기
-</button>
-<button class="ui primary button" id="main_go">
-  main
-</button>
             </div>
          </div>
       </div>
    </div>
 </div>
+</td>
+</tr>
+</tbody>
+<tr>
+<td width="600px" height="60px" align="right">
+	<button class="ui primary button" id="g_insert" name="g_insert"> 
+  글 쓰기
+</button>
+</td>
+</tr>
+</table>
 <script type="text/javascript">
 $(".menu").find('a').click(function() {
    $(".menu").find('a').attr('class','item');//active 초기화
@@ -141,6 +260,12 @@ $(".menu").find('a').click(function() {
 });
 </script>
 
+<br>
+<br>
+<br>
+<br>
+<br>
 
+<%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, java.util.Map, java.util.HashMap, java.util.ArrayList" %>
+<%
+	String smem_name = null;
+		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if ((List<Map<String, Object>>)memList != null) {
+		smem_name = memList.get(0).get("MEM_NAME").toString();
+	}
+%>
+
 
    <%
    
@@ -35,7 +43,12 @@
 <link rel="stylesheet" href="../Semantic/semantic.css" />
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
 <script src="../Semantic/semantic.js"></script>
-<title>글보기</title>
+<title>혼놀할래</title>
+</head>
+<body>
+<!-- 상단 끝놀게시판 -->
+
+<br>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -64,11 +77,6 @@ $(document).ready(function(){
 
 
 </script>
-</head>
-<body>
-<!-- 상단 끝놀게시판 -->
-
-<br>
 <br>
 <div align="center">
 <img src="./images/logo.png" width="800px" height="200px">
@@ -266,5 +274,6 @@ var v = '<%= url%>';
 <br>
 <br>
 
+<%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

@@ -42,7 +42,7 @@ public class BoardController {
 		logger.info("key 값 : " + key);
 		
 		List<Map<String, Object>> conBoardList = null;
-		 Map<String, List<Map<String, Object>>> pMapList = new HashMap<String, List<Map<String, Object>>>();
+		Map<String, List<Map<String, Object>>> pMapList = new HashMap<String, List<Map<String, Object>>>();
 		 
 		// Json에 전달할 데이터 값
 		conBoardList = boardLogic.boardListLogic(pMap, key);

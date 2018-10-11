@@ -1,13 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>	
+<%
+	String smem_name = null;
+		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if ((List<Map<String, Object>>)memList != null) {
+		smem_name = memList.get(0).get("MEM_NAME").toString();
+	}
+%>
+    
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../Semantic/semantic.css" />
+ <link rel="stylesheet" href="../Semantic/semantic.css" />
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
-<script src="../Semantic/semantic.js"></script>
-<title>리스트</title>
+<script src="../Semantic/semantic.js"></script> 
+<title>메인</title>
 </head>
 <script type="text/javascript">
 
@@ -33,12 +43,8 @@ $(document).ready(function(){
 
 </script>
 <body>
-<br>
-<input type="button" value="혼술" id="sul_go">
-<br>
-<input type="button" value="혼밥" id="bab_go">
-<br>
-<input type="button" value="혼놀" id="nol_go">
+
+
 <br>
 <br>
 <br>
@@ -116,13 +122,16 @@ $(document).ready(function(){
 
 <tr>
 <td>
+<button class="positive ui button" id="bab_go">혼밥</button>
+<button class="positive ui button" id="sul_go">혼술</button>
+<button class="positive ui button" id="nol_go">혼놀</button>
 <!-- 목록  -->
 <table align="center" class="ui unstackable table">
   <thead>
     <tr>
-    <th>게시글 번호</th>
-      <th>작성자</th>
+      <th>카테고리</th>
       <th>제목</th>
+      <th>작성자</th>
       <th class="right aligned">조회수</th>
     </tr>
   </thead>
@@ -131,89 +140,11 @@ $(document).ready(function(){
   <!-- 최신 1 -->
     <tr id="n_1" onMouseDown="this.style.backgroundColor='#F6CED8'"
           onMouseUp="this.style.backgroundColor=''">
-    <td>1</td>
-      <td>비트광부</td> <!-- 작성자 -->
+      <td>혼밥</td> <!-- 작성자 -->
       <td>님들아 님들아</td> <!-- 제목 -->
+      <td class="reft aligned">beyonce200</td> 
       <td class="right aligned">1</td> <!-- 조회수 -->
     </tr>
-    <!-- 최신 2 -->
-    <tr id="n_2" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>2</td>
-      <td>송해아조씨</td>
-      <td>전부부부부 노래자랑</td>
-      <td class="right aligned">5353</td>
-    </tr>
-    <!-- 최신 3 -->
-    <tr id="n_3" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>3</td>
-      <td>금잔디</td>
-      <td>잔디잔디금잔디</td>
-      <td class="right aligned">232</td>
-    </tr>
-    <!-- 최신 4 -->
-    <tr id="n_4" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>4</td>
-      <td>어딜가나</td>
-      <td>이번주어디가지</td>
-      <td class="right aligned">35554</td>
-    </tr>
-    <!-- 최신 5 -->
-    <tr id="n_5" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>5</td>
-      <td>삼총사</td>
-      <td>범인은이안에</td>
-      <td class="right aligned">45151</td>
-    </tr>
-    
-    <!-- 최신 6 -->
-    <tr id="n_6" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>6</td>
-      <td>너래쟁이</td>
-      <td>강남 최고의 맛집을 늬들이 아라?</td>
-      <td class="right aligned">6515</td>
-    </tr>
-    
-    <!-- 최신 7 -->
-    <tr id="n_7" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>7</td>
-      <td>감사합니다람쥐</td>
-      <td>도토리묵 먹을사람!</td>
-      <td class="right aligned">1151</td>
-    </tr>
-    
-    <!-- 최신 8 -->
-    <tr id="n_8" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>8</td>
-      <td>삼합회</td>
-      <td>진정한 회는 강릉!! 주문진</td>
-      <td class="right aligned">5112</td>
-    </tr>
-    
-    <!-- 최신 9 -->
-    <tr id="n_9" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>9</td>
-      <td>숲속의헌터</td>
-      <td>님들 직화구이 먹어봤삼?</td>
-      <td class="right aligned">7151</td>
-    </tr>
-    
-    <!-- 최신 10 -->
-    <tr id="n_10" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
-    <td>10</td>
-      <td>보글보글스폰지</td>
-      <td>오징어 물회 맛집은?</td>
-      <td class="right aligned">1551</td>
-    </tr>
-    
   </tbody>
   <!-- 게시글 목록 -->
   <tfoot>
@@ -261,7 +192,7 @@ $(document).ready(function(){
 </div>
 <!-- 검색 하기  끝-->
 </td>
-<td width="600px" height="60px" align="right">
+<td width="600px" height="60px" align="right" style="size: 10;">
 	<button class="ui primary button" id="g_insert" name="g_insert"> 
   글 쓰기
 </button>
@@ -278,5 +209,7 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
+
+<%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

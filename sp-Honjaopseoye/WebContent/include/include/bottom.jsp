@@ -5,6 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>하단</title>
+<script type="text/javascript">
+
+
+</script>
 </head>
 <body>
 <div class="ui inverted vertical footer segment">
@@ -13,10 +17,11 @@
         <div class="three wide column grid">
           <h4 class="ui inverted header">About</h4>
           <div class="ui inverted link list">
-            <a href="#" class="item">Sitemap</a>
-            <a href="#" class="item">Contact Us</a>
-            <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
+            <a href="/sp-Honjaopseoye/notice/qna/qna.jsp" class="item">Q&A 무러바~</a>
+            <a href="/sp-Honjaopseoye/boardList/babBoard.jsp" class="item">혼밥하기</a>
+            <a href="/sp-Honjaopseoye/boardList/sulBoard.jsp" class="item">혼술하기</a>
+            <a href="/sp-Honjaopseoye/boardList/nolBoard.jsp" class="item">혼놀하기</a>
+            <a href="/sp-Honjaopseoye/boardList/mainBoardList.jsp" class="item">메인가기</a>
           </div>
         </div>
         <div class="three wide column grid">

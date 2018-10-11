@@ -7,7 +7,7 @@
 			<value>oracle.jdbc.OracleDriver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:oracle:thin:@192.168.0.24:1521:orcl11</value>
+			<value>jdbc:oracle:thin:@192.168.0.26:1521:orcl11</value>
 		</property>
 		<property name="username"><!-- public void setUserName(){} -->
 			<value>scott</value>
@@ -47,9 +47,9 @@
 		<bean id="MenuDao" class="hj.dao.MenuDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
-<!-- 	<bean id="QnADao" class="hj.dao.QnADao">
+ 	<bean id="QnADao" class="hj.dao.QnADao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
-	</bean> -->
+	</bean> 
 <!-- <bean id="GroupDao" class="hj.dao.GroupDao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>

@@ -27,12 +27,12 @@ public class QnADao {
 	// 모든 게시글 조회  =========================================================================
 	
 	// <QnA> 모든 게시글 조회  (SELECT)
-	public List<Map<String, Object>> getQnAList(Map<String, Object> pMap){
+	public List<Map<String, Object>> getQnAList(){
 		
 		logger.info("<QnA>: getQnAList 메소드 진입 - QnA 게시글 전체 목록 조회");
 		List<Map<String, Object>> getQnAList = null;
 		
-		getQnAList = sqlSessionTemplate.selectList("getQnAList", pMap);
+		getQnAList = sqlSessionTemplate.selectList("getQnAList");
 		logger.info("<QnA> 전체 조회 목록: " + getQnAList.size());
 		
 		return getQnAList;

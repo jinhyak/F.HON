@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../Semantic/semantic.css" />
 <script src="../Semantic/js/jquery-1.12.0.js"></script>
 <script src="../Semantic/semantic.js"></script>
-<title>글쓰기</title>
+<title>게시글 쓰기</title>
 <!--이미지 미리보기 스크립트 구간 -->
 <script type="text/javascript">
 
@@ -223,3 +223,6 @@ $(document).ready(function(){
 <!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form 끝 @@@@@@@@@@@@@@@@@@@@ -->
 
 <!-- 하단  -->
+<%@ include file="/include/include/bottom.jsp" %>
+</body>
+</html>
