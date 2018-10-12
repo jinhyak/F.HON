@@ -107,7 +107,7 @@ public class StoreController{
 		logger.info("pMap="+pMap);
 		List<Map<String,Object>> list = null;
 		try {
-			list = storeLogic.search8(pMap);
+			list = storeLogic.searchStore8(pMap);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
