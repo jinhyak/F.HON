@@ -18,5 +18,6 @@
 		<mapper resource="zDB/mybatis/maps/friend.xml"/>
 		<mapper resource="zDB/mybatis/maps/message.xml"/>
 		<mapper resource="zDB/mybatis/maps/store.xml"/>
+		<mapper resource="zDB/mybatis/maps/reservation.xml"/>
 	</mappers>
 </configuration>

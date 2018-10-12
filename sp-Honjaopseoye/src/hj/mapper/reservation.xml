@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.reservationmap">
+	<select id="select" parameterType="map" resultType="map">
+		SELECT r.reserv_no, r.bang_no, b.bang_name, s.store_name, s.store_addr, s.store_tel,
+			   r.reserv_people, r.reserv_date, r.reserv_time
+		FROM reservation r, store s, bang b
+		WHERE r.bang_no = b.bang_no
+		AND r.store_no = s.store_no
+		AND bang_id = #{mem_id}
+	</select>
+	<select id="sel_history" parameterType="map" resultType="map">
+		SELECT h.reserv_no, h.bang_no, b.bang_name, s.store_name, s.store_addr, s.store_tel,
+			   h.reserv_people, h.reserv_date, h.reserv_time
+		FROM reservation_copy h, store s, bang b
+		WHERE h.bang_no = b.bang_no
+		AND h.store_no = s.store_no
+		AND bang_id = #{mem_id}
+	</select>
+	<insert id="insert" parameterType="java.util.Map">
+		insert into reservation(reserv_no, bang_no, reserv_people, reserv_time, store_no, reserv_date)
+		values(seq_reserv_no.nextval, #{bang_no}, #{reserv_people}, #{reserv_time}, #{store_no}, #{reserv_date})
+	</insert>
+	<delete id="delete" parameterType="java.util.Map">
+		DELETE FROM reservation
+		WHERE reserv_no = #{reserv_no}
+	</delete>
+</mapper>

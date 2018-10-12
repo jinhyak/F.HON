@@ -9,5 +9,6 @@
 		<mapper resource="hj/mapper/store.xml"/>
 		<mapper resource="hj/mapper/menu.xml"/>
 		<mapper resource="hj/mapper/message.xml"/>
+		<mapper resource="hj/mapper/reservation.xml"/>
 	</mappers>
 </configuration>
