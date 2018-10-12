@@ -114,6 +114,4 @@ public class StoreController{
 		mod.addAttribute("list",list);//모델은 셋뷰네임 안하고 바로 경로써줌
 		return "forward:/main/honja/hotplace/hotplace_result.jsp";
 	}
-
-	
 }

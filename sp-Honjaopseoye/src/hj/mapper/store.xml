@@ -31,6 +31,7 @@
 		</where>
 	</select>
 	<!-- 가게 등록하기 -->
+
 	<insert id="storeAdd" parameterType="map">
 		INSERT INTO store(store_no,store_name,store_tel,store_business,
 							  store_price,store_img,store_introduce,store_homepage,
@@ -39,7 +40,7 @@
 			VALUES(seq_store_no.nextval,#{store_name},#{store_tel},
 					#{store_business},#{store_price},#{store_img},
 					#{store_introduce},#{store_homepage},#{store_keyword},
-					#{store_addr},#{store_latitude},#{store_longitude},0,0)
+					#{store_addr},#{store_latitude},#{store_longitude},3,0)
 	</insert>
 	<!-- 가게 상세보기 -->
 	<select id="sView" parameterType="map">

@@ -10,6 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b088e12dec9746ba7e26f57a6f7c9256"></script>
 <script type="text/javascript">
 
 //화면이 시작했을때 보여줄 지도(초기좌표같은거 설정해 주면 될듯)
@@ -98,6 +99,13 @@ function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면�
 		else{
 			$(this).attr('class','ui toggle right floated button')
 			$('#showHot').attr('class','ui toggle right floated button')
+
+			$('.ui.sidebar').sidebar({
+					context: $('.top.segment')
+			       ,dimPage: false //사이드바 열때 화면색 변하는거 막음
+				,closable : false //pusher눌렀을때 sidebar 들어가는거 막음
+					}).sidebar('toggle');
+			
 			
 			//앞에는 놀,술,먹 셋중 하나 구분 뒤에는 검색어 
 			//로직에서 분기 해준다음 검색해야함

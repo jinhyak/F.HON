@@ -15,6 +15,7 @@ public class StoreDao {
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
+
 	public List<Map<String, Object>> select(Map<String, Object> pMap) throws IOException {
 		List<Map<String, Object>> list = null;
 		logger.info(pMap);
@@ -29,10 +30,10 @@ public class StoreDao {
 		logger.info("Dao insert호출 성공");
 		return result;
 	}
-	public List<Map<String, Object>> select8(Map<String, Object> pMap) throws IOException{
+	public List<Map<String, Object>> searchStore8(Map<String, Object> pMap) throws IOException{
 		List<Map<String,Object>> list = null;
-		logger.info("select8호출 성공");
-		list = sqlSessionTemplate.selectList("select8", pMap);
+		logger.info("selectStore8호출 성공");
+		list = sqlSessionTemplate.selectList("selectStore8", pMap);
 		return list;
 	}
 }
