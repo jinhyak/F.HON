@@ -67,50 +67,6 @@ public class BoardDao{
 		
 		
 		
-		// 해당 아이디 목록 게시글 조회 =============================================================
-		
-	/*	// <혼밥> 해당 아이디 게시글 목록 조회 (SELECT) - WHERE
-		public List<Map<String, Object>> getBabBoardIdList(Map<String, Object> pMap){
-			
-			logger.info("<혼밥>: Dao - getBabBoardIdList 메소드 진입 - 해당 아이디 게시글 목록 조회");
-			List<Map<String, Object>> getBabBoardIdList = null;
-					
-			getBabBoardIdList = sqlSessionTemplate.selectList("getBabBoardIdList", pMap);
-			logger.info("<혼밥> Dao - 해당 아이디 조회 목록: " + getBabBoardIdList.size());
-					
-			return getBabBoardIdList;
-		}
-		
-		// <혼술> 해당 아이디 게시글 목록 조회 (SELECT) - WHERE
-		public List<Map<String, Object>> getSulBoardIdList(Map<String, Object> pMap){
-				
-			logger.info("<혼술>: Dao - getSulBoardIdList 메소드 진입 - 해당 아이디 게시글 목록 조회");
-			List<Map<String, Object>> getSulBoardIdList = null;
-						
-			getSulBoardIdList = sqlSessionTemplate.selectList("getSulBoardIdList", pMap);
-			logger.info("<혼술> Dao - 해당 아이디 조회 목록: " + getSulBoardIdList.size());
-						
-			return getSulBoardIdList;
-		}
-		
-		// <혼놀> 해당 아이디 게시글 목록 조회 (SELECT) - WHERE
-		public List<Map<String, Object>> getNolBoardIdList(Map<String, Object> pMap){
-					
-			logger.info("<혼놀>: Dao - getNolBoardIdList 메소드 진입 - 해당 아이디 게시글 목록 조회");
-			List<Map<String, Object>> getNolBoardIdList = null;
-							
-			getNolBoardIdList = sqlSessionTemplate.selectList("getNolBoardIdList", pMap);
-			logger.info("<혼놀> Dao - 해당 아이디 조회 목록: " + getNolBoardIdList.size());
-							
-			return getNolBoardIdList;
-		}*/
-		
-		// 해당 아이디 목록 게시글 조회 끝 ============================================================
-		
-		
-		
-		
-		
 		// 선택 게시글 목록 내용 조회  ===============================================================
 		
 		// <혼밥> 선택 게시글 목록 내용 조회 (SELECT) - WHERE
@@ -150,16 +106,6 @@ public class BoardDao{
 		}
 		
 		// 선택 게시글 목록 내용 조회  끝 =============================================================
-		
-		
-		
-		
-		
-		// 해당 제목 목록 게시글 조회 ===============================================================
-		
-		// Update 준비중... 
-		
-		// 해당 제목 목록 게시글 조회 끝==============================================================
 		
 		
 		
@@ -303,5 +249,95 @@ public class BoardDao{
 		}
 		
 		// 선택 게시글 수정 끝 ====================================================================
+		
+		
+		
+		
+		
+		// 게시판 댓글 조회
+		
+		// <혼밥>
+		public List<Map<String, Object>> getBabCommentList(Map<String, Object>pMap){
+			
+			logger.info("getBabCommentList 메소드 < Dao > 진입");
+			List<Map<String, Object>> getBabCommentList = null;
+			
+			getBabCommentList = sqlSessionTemplate.selectList("getBabCommentList", pMap);
+			logger.info("<혼밥> Dao - 전체 조회 목록: " + getBabCommentList.size());
+			
+			return getBabCommentList;
+		}
+		
+		
+		// <혼술>
+		public List<Map<String, Object>> getSulCommentList(Map<String, Object>pMap){
+			
+			logger.info("getSulCommentList 메소드 < Dao > 진입");
+			List<Map<String, Object>> getSulCommentList = null;
+			
+			getSulCommentList = sqlSessionTemplate.selectList("getSulCommentList", pMap);
+			logger.info("<혼밥> Dao - 전체 조회 목록: " + getSulCommentList.size());
+			
+			return getSulCommentList;
+		}
+		
+		
+		
+		
+		
+		// <혼놀>
+		public List<Map<String, Object>> getNolCommentList(Map<String, Object>pMap){
+	
+			logger.info("getNolCommentList 메소드 < Dao > 진입");
+			List<Map<String, Object>> getNolCommentList = null;
+	
+			getNolCommentList = sqlSessionTemplate.selectList("getNolCommentList", pMap);
+			logger.info("<혼밥> Dao - 전체 조회 목록: " + getNolCommentList.size());
+	
+			return getNolCommentList;
+		}
+		
+		
+		
+		
+		// 게시판 댓글 입력
+		public int getCommentInsert(Map<String, Object> pMap) {
+			logger.info("getCommentInsert 메소드 < Dao > 진입");
+			int result = 0;
+			result = sqlSessionTemplate.insert("getCommentInsert", pMap);
+			logger.info("getCommentInsert 메소드 < Dao > 종료");
+			return result;
+		}
+		
+		
+		
+		
+		
+		
+		
+		// 게시판 댓글 삭제
+		
+		
+		
+		// 게시판 댓글 수정
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 }

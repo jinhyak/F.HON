@@ -72,7 +72,12 @@
 $(document).ready(function(){
 	var no = '<%=no %>';
 	var text = document.f_board.t_text;
-	text.value += '<%=text %>'; 
+	text.value = '<%=text %>'; 
+	var sel = document.f_board.category;
+	sel.value = '<%=category %>';
+	alert(sel);
+	
+	
  	$(function() {
 		$("#img_file").change(function() {
 			readURL(this);

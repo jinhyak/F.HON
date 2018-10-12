@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,7 +61,7 @@ public class BoardController {
 	// <혼밥>, <혼술>, <혼놀> 해당 게시글 조회 Controller
 	@RequestMapping("/boardOne.hon")
 	public String conBoardOneList(@RequestParam String key, @RequestParam String num,
-			Map<String, Object> pMap, HttpServletRequest req, HttpServletResponse res) 
+			Map<String, Object> pMap, Model model) 
 					throws ServletException, IOException {
 		
 		String viewList = null;
@@ -69,6 +70,7 @@ public class BoardController {
 		// 해당 페이지 key값 받아오기....
 		logger.info("key 값 : " + key + ", " + "Number 값 : " + num);
 		List<Map<String, Object>> conBoardOneList = null;
+		List<Map<String, Object>> conCommentList = null;
 		pMap = new HashMap<String,Object>();
 		
 		if("혼밥".equals(key)) {
@@ -78,8 +80,16 @@ public class BoardController {
 			pMap.put("bab_no", num);
 			
 			conBoardOneList = boardLogic.boardOneListLogic(pMap, key);
-			logger.info("conBoardOneList값 : " + conBoardOneList.size());
+			pMap.put("bab_re_category", key);
+			pMap.put("bab_re_board_no", num);
 			
+			logger.info("conBoardOneList -- 댓글 맵값 : " + pMap.get("bab_re_category") + " , " + pMap.get("bab_re_board_no"));
+			conCommentList = boardLogic.CommentListLogic(pMap,num, key);
+			
+			model.addAttribute("conCommentList", conCommentList);
+			
+			logger.info("conCommentList값 : " + conBoardOneList.size());
+			logger.info("conCommentList 메소드 종료");
 		} else if("혼술".equals(key)) {
 			
 			logger.info("conBoardOneList if <혼술> 진입");
@@ -104,7 +114,7 @@ public class BoardController {
 			
 		}
 		
-		req.setAttribute("conBoardOneList", conBoardOneList);
+		model.addAttribute("conBoardOneList", conBoardOneList);
 		
 		logger.info(" Controller - conBoardOneList 메소드를 종료합니다.");
 		
@@ -366,6 +376,72 @@ public class BoardController {
 					return "forward:writeModify.jsp";
 					
 				}
+				
+				// 댓글 SELECT 조회 =============================================================
+				public List<Map<String, Object>> conCommentList(Map<String, Object> pMap, 
+						String no, String category, HttpServletRequest req, HttpServletResponse res)
+				throws ServletException, IOException {
+					
+					logger.info("Controller - conCommentList 진입");
+					
+					List<Map<String, Object>> conCommentList = null;
+					conCommentList = boardLogic.CommentListLogic(pMap, no, category);
+					
+					logger.info("conCommentList 값이다: " + conCommentList.get(0));
+					logger.info("Controller - conCommentList 끝");
+					
+					return conCommentList;
+					
+				}
+				
+				// ===============================================================================
+				
+				
+				// 댓글 INSERT 입력
+				@RequestMapping("/commentInsert.hon")
+				public String conCommentInsert(Map<String, Object> pMap,
+						@RequestParam String bab_re_category, @RequestParam String bab_re_board_no,
+						@RequestParam String bab_re_content,
+						HttpServletRequest req, HttpServletResponse res) {
+					
+					logger.info("conCommentInsert 메소드 진입");
+					
+					List<Map<String, Object>> conCommentList = null;
+					pMap = new HashMap<String, Object>();
+					int result = 0;
+					
+					HangulConversion hc = new HangulConversion();
+					String bab_re_writer = "beyonce200";
+					
+			/*		String n_bab_re_category = hc.toUTF(bab_re_category);
+					String n_nobab_re_board_no = hc.toUTF(bab_re_board_no);
+					String n_bab_re_content = hc.toUTF(bab_re_content);*/
+					
+					logger.info("가져온 값: " + bab_re_category + " , " +
+							bab_re_board_no + " , " + bab_re_content);
+					
+					pMap.put("bab_re_board_no", bab_re_board_no);
+					conCommentList = boardLogic.CommentListLogic(pMap, bab_re_board_no, bab_re_category);
+					logger.info("리스트 조회 완료- 댓글 카운트 대기중...");
+					
+					pMap.put("bab_re_board_no", bab_re_board_no);
+					pMap.put("bab_re_category", bab_re_category);
+					pMap.put("bab_re_content", bab_re_content);
+					pMap.put("bab_re_writer", bab_re_writer);
+					pMap.put("bab_re_no", conCommentList.size());
+					
+					logger.info("저장완료 !: ");
+					result = boardLogic.CommentInsertLogic(pMap, bab_re_board_no, bab_re_category);
+					
+					logger.info("Controller - conCommentInsert 메소드 끝");
+					
+					
+//					return "babView.jsp";
+					return "";
+				}
+				
+				
+				
 }
 		
 	

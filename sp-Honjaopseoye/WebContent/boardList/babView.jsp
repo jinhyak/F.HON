@@ -35,6 +35,7 @@
    	date = conBoardOneList.get(0).get("BAB_DATE").toString();
    	text = conBoardOneList.get(0).get("BAB_TEXT").toString(); 
    	url = conBoardOneList.get(0).get("BAB_URL").toString(); 
+   	
    
    %>
     
@@ -218,8 +219,8 @@ var v = '<%= url%>';
 </tr>
 <tr>
 <td>
-<input type="button" value="수정" id="update_btn">
-<input type="button" value="삭제" id="delete_btn">
+<button class="ui primary button" id="update_btn">수정</button>
+<button class="ui primary button" id="delete_btn">삭제</button>
 </td>
 </tr>
 </tbody>
@@ -233,29 +234,105 @@ var v = '<%= url%>';
 
 <table align="center">
 <tr height="100px">
-<td><h2 class="ui dividing header">댓글 쓰기</h2></td>
+<td><h2 class="ui dividing header">댓글</h2></td>
 </tr>
 <tr>
 <tr height="100px">
 <td>
-<h2>
+
 <!-- 댓글 공간 -->
 <table align="center" width="900px" height="100px">
 <tr>
-<td>댓글 보는곳</td>
+<td>
+
+<!-- 댓글 뿌리기 -->
+
+<%
+
+	List<Map<String, Object>> conCommentList = 
+	(List<Map<String, Object>>)request.getAttribute("conCommentList");
+
+	String r_id = null;
+	String r_text = null;
+	String r_date = null; 
+	
+
+ for(int i = 0; i < conCommentList.size(); i++){
+	
+ 	r_id = conCommentList.get(i).get("BAB_RE_WRITER").toString();
+   	r_text = conCommentList.get(i).get("BAB_RE_CONTENT").toString(); 
+	r_date = conCommentList.get(i).get("BAB_RE_DATE").toString();
+	
+	
+	%>
+
+
+<table align="center" width="800px" height="8px">
+<tr>
+<td style="color: blue"><%=r_id %></td>
+</tr>
+<tr>
+<td><pre><%=r_text %></pre></td>
+<td><%=r_date %></td>
 </tr>
 </table>
+<% 
+
+}
+
+%>
+
+
+<!-- 댓글 뿌리기  -->
+
+</table>
 <!-- 댓글 공간 끝 -->
-</h2>
+
 </td>
 </tr>
 <tr>
 <td align="center">
-<textarea style="width:855px; height:85px; align-content:center;"></textarea>
+<textarea style="width:855px; height:85px; align-content:center;" id="bab_re_content" name="bab_re_content"></textarea>
 </td>
 <td align="center">
 &nbsp;&nbsp;&nbsp;&nbsp;
-<button class="positive ui button" id="bab_reply" name="bab_reply" style="width:100px;">댓글쓰기</button>
+<button class="positive ui button" id="bab_reply" name="bab_reply" onClick="bab_r()" style="width:100px;">댓글쓰기</button>
+<script type="text/javascript">
+
+function bab_r(){
+	
+	var bab_re_category = '<%=category %>';
+	var bab_re_board_no = '<%=no %>';
+	var bab_re_content = $("#bab_re_content").val();
+	
+	alert(bab_re_category + bab_re_board_no + bab_re_content);
+	
+	$.ajax({
+		method:"POST"
+	   ,url:'../boardList/commentInsert.hon'
+	   ,data:"bab_re_content="+bab_re_content+"&bab_re_category="+bab_re_category+"&bab_re_board_no="+bab_re_board_no
+	   ,success:function(){
+/* 		   alert("아작스 성공");
+		   location.reload(); // 새로고침
+		   var temp = JSON.stringify(result);
+		   var jsonDoc = JSON.parse(temp);// array
+		   for(){
+			   
+		   }
+		   var temp="<b>ㅇㄹㄴㅇㄹ</b>";
+		   $("#div_id").html(temp); */
+		   
+	   }
+	   ,error:function(xhrObject){
+		   location.reload();
+	/* 	   alert("error:"+xhrObject.responseText);
+		   alert("실패"); */
+	   }
+	   
+	});
+}
+
+</script>
 </td>
 </tr>
 </table>

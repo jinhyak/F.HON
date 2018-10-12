@@ -106,24 +106,26 @@ public class BoardLogic {
 
 	
 	
-	// INSERT
+	// 입력 로직
 	
-	public int boardInsertLogic(Map<String, Object> pMap, String key) 
+	public int boardInsertLogic(Map<String, Object> pMap, String key)
 			throws ServletException, IOException {
-				
-				logger.info("boardInsertLogic Logic 메소드 진입 - 해당 게시글 등록 Logic");
-				
-				int result = 0;
-				
-				// 받은 key값
-				logger.info("<Logic> 받아온 key값" + key);
-				
-				result = boardDao.getBoardInsert(pMap, key);
-				logger.info("<Logic> boardInsertLogic 메소드 종료 합니다. 결과: " + result);
-				
-				return result;
-			}
+
+		logger.info("boardInsertLogic Logic 메소드 진입 - 해당 게시글 등록 Logic");
+
+		int result = 0;
+
+		// 받은 key값
+		logger.info("<Logic> 받아온 key값" + key);
+
+		result = boardDao.getBoardInsert(pMap, key);
+		logger.info("<Logic> boardInsertLogic 메소드 종료 합니다. 결과: " + result);
+
+		return result;
+
+	}
 	
+	// 삭제 호직
 	
 	public int boardDeleteLogic(Map<String, Object> pMap, String key) 
 			throws ServletException, IOException {
@@ -140,6 +142,8 @@ public class BoardLogic {
 	}
 	
 	
+	// 업데이트 로직
+	
 	public int boardUpdateLogic(Map<String, Object> pMap, String key) 
 			throws ServletException, IOException {
 		logger.info("boardUpdateLogic Logic 메소드 진입 - 게시글 삭제 Logic");
@@ -153,6 +157,53 @@ public class BoardLogic {
 		
 		return result;
 	}
+
+	
+	// 댓글 처리 LOGIC
+	public List<Map<String, Object>> CommentListLogic(Map<String, Object> pMap, 
+			String no, String category) {
+		
+		logger.info("<Logic> CommentListLogic 진입");
+		List<Map<String, Object>> CommentListLogic = null;
+
+		if("혼밥".equals(category)) {
+			
+			logger.info("<Logic> 혼밥 댓글 <id> Logic");
+			CommentListLogic = boardDao.getBabCommentList(pMap);
+			
+		} else if("혼술".equals(category)) {
+			
+			logger.info("<Logic> 혼밥 댓글 <id> Logic");
+			CommentListLogic = boardDao.getSulCommentList(pMap);
+			
+		} else if("혼놀".equals(category)) {
+			
+			logger.info("<Logic> 혼밥 댓글 <id> Logic");
+			CommentListLogic = boardDao.getNolCommentList(pMap);
+			
+		} else {
+			
+			logger.info("<Logic> 혼밥 댓글 Logic 실패 key값 확임점 " + category);
+			
+		}
+		
+		logger.info("<Logic> CommentListLogic 종료");
+		
+		return CommentListLogic;
+	}
+	
+	public int CommentInsertLogic(Map<String, Object> pMap, String category, String no) {
+		
+		logger.info("<Logic> CommentInsertLogic 실행");
+		int result = 0;
+		result = boardDao.getCommentInsert(pMap);
+		logger.info("<Logic> CommentInsertLogic 종료");
+		return result;
+		
+	}
+	
+	
+	
 	
 }
 

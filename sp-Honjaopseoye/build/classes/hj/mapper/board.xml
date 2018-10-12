@@ -220,4 +220,57 @@
    	   AND nol_no = #{nol_no}
 	</update>
 	<!-- 선택 게시글 수정 끝 -->
+	<!-- 댓글 기능 -->
+	<!-- 댓글 조회 -->
+	<select id="getBabCommentList" parameterType="map" resultType="map">
+	SELECT 
+	bab_re_writer, 
+	bab_re_content, 
+	bab_re_date, 
+	bab_re_board_no 
+	  FROM bab_reply
+	 WHERE bab_re_board_no = #{bab_re_board_no}
+	 ORDER BY bab_re_no asc
+	</select>
+	<select id="getSulCommentList" parameterType="map" resultType="map">
+	SELECT 
+	sul_re_writer, 
+	sul_re_content,
+	sul_re_date 
+	  FROM sul_reply
+	</select>
+	<select id="getNolCommentList" parameterType="map" resultType="map">
+	SELECT 
+	nol_re_writer, 
+	nol_re_content,
+	nol_re_date 
+	  FROM nol_reply
+	</select>
+	<insert id="getCommentInsert" parameterType="map">
+	INSERT INTO BAB_REPLY
+	(
+	bab_re_no,
+	bab_re_group,
+	bab_re_depth,
+	bab_re_step,
+	bab_re_date,
+	bab_re_writer,
+	bab_re_content,
+	bab_re_category,
+	bab_re_board_no
+	)
+	VALUES
+	(
+	#{bab_re_no},
+	'1',
+	'1',
+	'1',
+	TO_CHAR(sysdate, 'YYYY-MM-DD-HH24:MI'),
+	#{bab_re_writer},
+	#{bab_re_content},
+	#{bab_re_category},
+	#{bab_re_board_no}
+	)
+	</insert>
+	<!-- 댓글 기능 끝 -->
 </mapper>
