@@ -56,6 +56,9 @@
 	<bean id="QnADao" class="hj.dao.QnADao">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
 	</bean>
+	<bean id="ReservationDao" class="hj.dao.ReservationDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
 	<!-- DAO계층은 mvc패턴에 속하지 않기 때문에 따로 빈생성을 해줘야한다. -->
 <!-- ====================================================================== -->
 <!-- DAO Bean Create -->
