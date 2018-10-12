@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; UTF-8">
 <title>예약하기</title>
 <script type="text/javascript">
-
 </script>
 </head>
 <body>
@@ -14,22 +13,33 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		<div class="ui field" style="height: 800px">
-			<div class="ui stackable two column grid">
-				<div class="ui column">
-					<div class="ui segment">
+		<div class="ui field">
+			<div class="ui blue three item inverted top attached tabular menu">
+			  <a id="m_reservation" class="item active">
+			  	예약하기
+			  </a>
+			  <a id="m_reserv_list" class="item">
+			  	예약조회
+			  </a>
+			  <a id="m_reserv_history" class="item">
+			  	예약내역
+			  </a>
+			</div>
+			<div id="reservation" class="ui blue bottom attached segment">
+				<div class="ui stackable two column grid">
+					<div class="ui column">
 						<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 말머리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="ui center aligned basic segment">
 						<div class="ui header"><h2>가게이름</h2></div>
 							<div class="ui large image">
-								<img id="large_img" src="../../image/person.PNG">
+								<img id="large_img" src="../../image/person.PNG" style="width:500px; height:400px;">
 							</div>
 							<p/>
 							<div class="ui tiny images">
-								<img class="ui image" src="../../image/with.jpg">
-								<img class="ui image" src="../../image/with.jpg">
-								<img class="ui image" src="../../image/with.jpg">
-								<img class="ui image" src="../../image/with.jpg">
+								<img id="tiny_img1" class="ui tiny image" src="../../image/person.PNG">
+								<img id="tiny_img2" class="ui tiny image" src="../../image/logo.png">
+								<img id="tiny_img3" class="ui tiny image" src="../../image/mapimage.png">
+								<img id="tiny_img4" class="ui tiny image" src="../../image/with.jpg">
 							</div>
 						</div>
 						<div class="ui divider"></div>
@@ -46,14 +56,13 @@
 						정원 : 15인~50인<br>
 						특이사항 : 마이크O, 빔프로젝트X<br>
 						외부노출여부 : NO<br>
-						<br>
-						* 중요사항 : 온라인상으로 룸 좌석 확정이 어려우며, 매장상으로 유선상 확인이 필요합니다.
-						자세한 내용은 토다이 명동점 (02-3783-4200)으로 문의주세요.<br>
 					</div>
-				</div>
 				<div class="ui column">
 					<div class="ui segment">
-						<div class="ui form" id="f_reserv">
+						<!-- <div class="ui form" id="f_reserv" name="f_reserv"> -->
+						<!-- <form id="f_reserv2"> -->
+							<input type="hidden" id="bang_no" name="bang_no" value="1">
+							<input type="hidden" id="store_no" name="store_no" value="1">
 						<div class="ui two column internally celled padded grid">
 							<div class="ui row">
 								<div class="ui three wide column">
@@ -61,7 +70,7 @@
 								</div>
 								<div class="ui column">
 								<div class="field">
-									<input type="text" id="datepicker" name="datepicker" placeholder="날짜를 선택하세요.">
+									<input type="text" id="datepicker" name="reserv_date" placeholder="날짜를 선택하세요.">
 								</div>
 								</div>
 							</div>
@@ -118,16 +127,34 @@
 								</div>
 							</div>
 							<div class="ui row">
-
-								<button class="ui green fluid button" id="btn_reserv" type="submit">예약하기</button>
+								<button class="ui green fluid submit button" id="btn_reserv">예약하기</button>
 							</div>
 							</div>
+						<!-- </form> -->
+						<!-- </div> -->
+						<div class="ui mini modal">
+						  <div class="header">예약하기</div>
+						  <div class="content">
+						    <p>예약이 완료되었습니다.</p>
+						    <p>예약 조회페이지로 이동하시겠습니까?</p>
+						  </div>
+						  <div class="actions">
+						    <div class="ui ok red button">확인</div>
+						    <div class="ui cancel green button">닫기</div>
+						  </div>
+						</div>
+					</div>
+					<div class="ui row">
+						<div class="ui segment">
+							<h3 style="color:red">* 중요사항 : 온라인상으로 룸 좌석 확정이 어려우며, 매장상으로 유선상 확인이 필요합니다.</h3>
+							<h4>자세한 내용은 토다이 명동점 (02-3783-4200)으로 문의주세요.</h4>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 <script type="text/javascript">
 $(function() {
 	$("#datepicker").datepicker({
@@ -151,6 +178,55 @@ $('.dropdown').dropdown();
 $('.blue.button').click(function () {
 	var time = $(this).val();
 	$("#reserv_time").attr('value', time);
+});
+$(".tiny.image").click(function () {
+	var value = $(this).attr('src');
+	$("#large_img").attr('src',value);
+});
+$("#btn_reserv").click(function () {
+	if($("#datepicker").val()=='') {
+		alert("날짜를 입력하세요");
+	} else if($("#reserv_time").val()=='') {
+		alert("시간을 입력하세요");
+	} else if($("#reserv_people").val()=='') {
+		alert("인원을 입력하세요");
+	} else {
+		var bang_no = $("#bang_no").val();
+		var store_no = $("#store_no").val();
+		var reserv_date = $("#datepicker").val();
+		var reserv_time = $("#reserv_time").val();
+		var reserv_people = $("#reserv_people").val();
+		var param = "bang_no="+bang_no+"&store_no="+store_no+
+					"&reserv_date="+reserv_date+"&reserv_time="+reserv_time+"&reserv_people="+reserv_people;
+		//alert(param);
+		$.ajax({
+			method:"GET",
+			url: "../../reservation/insert.hon",
+			data: param,
+			success: function(data){
+				//alert(data);
+				//alert("예약성공 조회페이지로 이동합니다.");
+				$('.mini.modal').modal({
+		    	    onApprove : function() {
+		    	    	location.href="./reserv.jsp";
+		    	    }
+		    	  }).modal('show');
+			}
+		});
+	}
+});
+$(".menu").find('a').click(function() {
+	$(".menu").find('a').attr('class','item');//active 초기화
+	$(this).attr('class','item active');//누른메뉴 active로 변경
+	if($(this).attr('id')=='m_reservation'){
+		$("#reservation").show();
+	}
+	else if($(this).attr('id')=='m_reserv_list'){
+		location.href="./reserv.jsp";
+	}
+	else if($(this).attr('id')=='m_reserv_history'){
+		location.href="./reserv_history.jsp";
+	}
 });
 </script>
 <style>
