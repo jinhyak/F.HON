@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<%@ include file ="../../include/include/commonUI2.jsp" %>
 <script type="text/javascript">
  $(document).ready(function(){
     $('#notice').DataTable( {
@@ -74,6 +75,7 @@
  
     	    
 }); 
+
 </script>
 </head>
 <body>
@@ -105,13 +107,13 @@
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="./notice.jsp"> 공지사항 </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='./notice.jsp'">
+								<a href="#"> 공지사항 </a>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="./qna.jsp"> QnA </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='./qna.jsp'">
+								<a href="#"> QnA </a>
 							</div>
 						</div>
 					</div>
@@ -134,20 +136,25 @@
 							<div class="ui segment" style="width:100%;height:1000px">
 							
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-								
-								
-								
-								
-								<a href="#"> 회원 정보 form </a>
-								
-								
-								
-								
-								
-								
-								
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		
+		<div id="c_notify" class="ui segment display" style="padding-bottom:5px;">
+		<!---------------------------------------------------------- 공지사항 본문 내용 시작--------------------------------------------------------------- -->
+		<div style="margin-top: 30px;">
+			<!-- ---------------============================= start of table ===================================------------------------------- -->
+			<table class="ui celled table" id="notice">
+				<thead>
+					<tr>
+						<th id="noti_no">번호</th>
+						<th id="noti_category">분류</th>
+						<th id="noti_title">제목</th>
+						<th id="noti_writer">작성자</th>
+						<th id="noti_date">등록일</th>
+						<th id="noti_hit">조회수</th>
+					</tr>
+				</thead>
+			</table>
+			<!------------------------------------------------------- end of table------------------------------------------------------------------------- -->
+		</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 							</div>
 						</div>
 					</div>	

@@ -2,7 +2,6 @@ package hj.controller;
 
 import java.io.File;
 import java.io.IOException;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,11 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import com.google.gson.Gson;
 
 import hj.dao.StoreDao;
 import hj.logic.StoreLogic;
@@ -35,20 +35,6 @@ public class StoreController{
 	@Autowired
 	private StoreLogic storeLogic = null;
 
-/*메인페이지 이동 테스트*/
-	@RequestMapping("/empty.hon")
-	public String empty(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
-		List<Map<String,Object>> emptyList = null;
-		logger.info("empty메소드 호출");
-		//tLogic.test(pMap);
-		/*try {
-			mDao.check(pMap);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		return "redirect:main.jsp";
-	}
 	//가게등록
 	@ResponseBody
 	@RequestMapping("/storeAdd.hon")
@@ -62,6 +48,19 @@ public class StoreController{
 			logger.info("@@@@@@@@@@@@    Dao 오류    @@@@@@@@@@@@@@@");
 		}
 		return String.valueOf(result);
+	}
+	@ResponseBody
+	public String select(Model mod,@RequestParam Map<String, Object> pMap) {
+		List<Map<String, Object>> list = null;
+		try {
+			list = storeDao.select(pMap);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Gson gs = new Gson();
+		String json = gs.toJson(list);
+		return json;
 	}
 	//이미지등록
 	@ResponseBody
@@ -116,5 +115,5 @@ public class StoreController{
 		return "forward:/main/honja/hotplace/hotplace_result.jsp";
 	}
 
-
+	
 }

@@ -4,8 +4,11 @@
 
 	<select id="nSelect" parameterType="map" resultType="map">
 		select
-		noti_no,noti_title,noti_writer,noti_hit,noti_date
+		noti_no,noti_category,noti_title,noti_writer,noti_hit,noti_date
 		from notice
+	</select>
+	<select id="nView" parameterType="map" resultType="map">
+		SELECT * FROM NOTICE WHERE NOTI_NO = #{NOTI_NO}
 	</select>
 	<select id="qSelect" parameterType="map" resultType="map">
 		select qna_title,qna_writer,qna_date,qna_depth,qna_step,qna_group

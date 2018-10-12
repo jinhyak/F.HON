@@ -1,42 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.mapper.groupMapper">
-	<select id="gSelect" parameterType="map">	
-	select bang_no,bang_name,bang_limit_people,bang_cur_people,bang_memo,bang_money,bang_addr,bang_date
-	,(select gstring from bang b, gubunja gb WHERE b.bang_age = gb.gprotocol AND  b.bang_no = 1)"연령대"
-    ,(select gstring from bang b, gubunja gb WHERE b.bang_topic = gb.gprotocol AND  b.bang_no = 1)"관심주제"
-    ,(select gstring from bang b, gubunja gb WHERE b.bang_time = gb.gprotocol AND  b.bang_no = 1)"시간대"    
-	from bang
-	where bang_no=#{bang_no}
-	</select>
-	<!-- 상세보기 필요없을듯? -->
-	<insert id="gInsert" parameterType="map">
-	insert into(bang_no,bang_id,bang_name,bang_limit_people,bang_cur_people,bang_memo,bang_money,bang_addr,bang_age,bang_topic,bang_time,bang_date)
-	values(seq_bang_no.nextval(),#{bang_id},#{bang_name},#{bang_limit_people},1,#{bang_memo},#{bang_money},#{bang_addr},#{bang_age},#{bang_topic},#{bang_time},to_char(sysdate,"YYYY-MM-DD"))
-	</insert>
-	<update id="gPlus" parameterType="int">
-		update bang
-		set bang_cur_people = bang_cur_people + 1
-		where bang_no =#{bang_no}
-	</update>
-	<update id="gMinus" parameterType="int">
-		update bang
-		set bang_cur_people = bang_cur_people - 1
-		where bang_no =#{bang_no}
-	</update>
-	<update id="gUpdate" parameterType="map">
-		update bang
-		set bang_no = #{bang_no}  
-		,bang_name = #{bang_name} 
-		,bang_limit_people = #{bang_limit_people}
-		,bang_memo = #{bang_memo}
-		,bang_money = #{bang_memo}
-		,bang_age = #{bang_age}
-		,bang_topic = #{bang_topic}
-		,bang_time = #{bang_time}
-	</update>
-	<insert id="report" parameterType="map">
-		INSERT INTO police(pol_no,pol_reason,pol_from,pol_to)
-		VALUES(seq_pol_no.nextval,#{pol_reason},#{pol_from},#{pol_to})
-	</insert>
+<mapper namespace="groupMapper">
+<!-- 지도 옆에 목록에 뿌려질 그룹방 전체목록 list -->
+<select id="listSelect"  resultType="map">
+	select b.bang_no BANG_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
+		   s.store_name STORE_NAME, s.store_addr STORE_ADDR, s.store_business STORE_BUSINESS,
+   		   b.bang_topic BANG_TOPIC, s.store_keyword STORE_KEYWORD, 
+   		   b.bang_gender BANG_GENDER, b.bang_age BANG_AGE, b.bang_money BANG_MONEY, 
+   		   b.bang_date BANG_DATE, b.bang_time BANG_TIME,
+   		   b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
+	from   bang b, store s
+	where  b.store_no = s.store_no
+</select>
+	
+<!-- 모임방 검색시 검색어-string value 받음 -->
+<select id="searchSelect" parameterType="string" resultType="map">	
+	select b.bang_no BANG_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
+		   s.store_name STORE_NAME, s.store_addr STORE_ADDR, s.store_business STORE_BUSINESS,
+	       b.bang_topic BANG_TOPIC, s.store_keyword STORE_KEYWORD, 
+	       b.bang_gender BANG_GENDER, b.bang_age BANG_AGE, b.bang_money BANG_MONEY, 
+	       b.bang_date BANG_DATE, b.bang_time BANG_TIME,
+	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
+	from   bang b, store s
+	<where>  
+		b.store_no = s.store_no
+		<if test='value != null'>
+			and (store_addr like '%'||#{value}||'%'
+			 or  bang_name like '%'||#{value}||'%'
+			 or  bang_memo like '%'||#{value}||'%'
+			 or  store_keyword like '%'||#{value}||'%'
+			 or  store_business like '%'||#{value}||'%')
+		</if>
+   </where>
+</select>
+
+<!-- 지도 위 분류 필터에 따른 검색 - 다중체크시 모든 key값과 :keyword 값을 받음 프로코콜값 -->
+<select id="filterSelect" parameterType="map" resultType="map">	
+	select b.bang_no BANG_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
+		   s.store_name STORE_NAME, s.store_addr STORE_ADDR, s.store_business STORE_BUSINESS,
+	       b.bang_topic BANG_TOPIC, s.store_keyword STORE_KEYWORD, 
+	       b.bang_gender BANG_GENDER, b.bang_age BANG_AGE, b.bang_money BANG_MONEY, 
+	       b.bang_date BANG_DATE, b.bang_time BANG_TIME,
+	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
+	from   bang b, store s
+	<where>
+		   b.store_no = s.store_no        
+	 	<if test='key!=null and key.equals("bang_topic")'>
+	    	AND b.bang_topic LIKE '%'||#{keyword}||'%'
+	 	</if>		
+	 	<if test='key!=null and key.equals("bang_gender")'>
+	    	AND b.bang_gender LIKE '%'||#{keyword}||'%'
+	 	</if>		
+	 	<if test='key!=null and key.equals("bang_age")'>
+	    	AND b.bang_age LIKE '%'||#{keyword}||'%'
+	 	</if>	
+	 	<if test='key!=null and key.equals("bang_money")'>
+	    	AND b.bang_money LIKE '%'||#{keyword}||'%'
+	 	</if>	
+	 	<if test='key!=null and keyword.equals("bang_limit_people")'>
+	    	AND b.bang_limit_people LIKE '%'||#{keyword}||'%'
+	 	</if>	
+	 	<if test='key!=null and key.equals("store_business")'>
+	    	AND s.store_business LIKE '%'||#{keyword}||'%'
+	 	</if>	
+ 	</where>
+</select>
+
+<!-- 지도 옆 목록에서 방 선택시 store_no, bang_no 받음 -->
+<select id="groupSelect" parameterType="map" resultType="map">	
+	select b.bang_no BANG_NO, s.store_no STORE_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
+	       s.store_name STORE_NAME, s.store_addr STORE_ADDR,
+	       (select gstring from store s, gubunja gb WHERE s.store_business = gb.gprotocol AND  s.store_no = #{store_no}) STORE_BUSINESS,
+	       (select gstring from bang b, gubunja gb WHERE b.bang_topic = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_TOPIC,
+	       s.store_keyword STORE_KEYWORD, 
+	       (select gstring from bang b, gubunja gb WHERE b.bang_gender = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_GENDER,
+	       (select gstring from bang b, gubunja gb WHERE b.bang_age = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_AGE,
+           b.bang_money BANG_MONEY, b.bang_date BANG_DATE, 
+	       (select gstring from bang b, gubunja gb WHERE b.bang_time = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_TIME,
+	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
+	from   bang b, store s
+	where  b.store_no = s.store_no
+	and    b.bang_no = #{bang_no}
+</select>
+
+<!-- 방 선택후 친구목록보기 버튼 클릭시 보여줄 친구내용 -->
+<select id="friendSelect" parameterType="string" resultType="map">
+	select *
+	from   bang_info
+	where  bang_no = #{bang_no}
+</select>
+
+<!-- 모임방 개설생성 버튼 누를시 input에 박은값들 다 받음 -->
+<insert id="groupInsert" parameterType="map">
+	insert into bang
+	values(seq_bang_no.nextval, #{mem_id}, #{bang_name}, #{bang_limit_people}, 1,
+		   #{bang_memo}, #{bang_money}, #{store_no}, #{bang_age}, #{bang_topic}, #{bang_time}, #{bang_date}, #{bang_gender})
+</insert>
+
+<!-- 방등록시 주소등록 누를시 가게 주소정보 -->
+<select id="storeSelect" parameterType="map" resultType="map">
+	select * 
+	from store
+	<where>
+		store_img is not null
+		<if test='value != null'>
+			or store_addr LIKE '%'||#{value}||'%'
+			or store_name LIKE '%'||#{value}||'%'
+			or store_keyword LIKE '%'||#{value}||'%'
+		</if>
+	</where>
+</select>
+
+<!-- 모임 참석버튼 누를시 info에 인서트 -->
+<insert id="groupAttend" parameterType="map">
+	insert into bang_info
+	values(#{bang_no}, #{mem_id}, #{mem_memo})
+</insert>
+
+<!-- 모임 취소버튼 누를시 info에 델리트 -->
+<delete id="groupAbsent" parameterType="string">
+	delete from bang_info
+	where mem_id = #{mem_id}
+</delete>
+
+<!-- 모임방 삭제버튼(방장만) -->
+<delete id="groupDelete" parameterType="string">
+	delete from bang
+	where bang_no = #{bang_no}
+</delete>
+
+<!-- 모임방 수정(뱡장) 가게수정은 불가 방폭파후 다시생성 -->
+<update id="groupUpdate" parameterType="map">
+	update bang
+	set
+		bang_name  = #{bang_name}, 
+		bang_memo  = #{bang_memo},
+		bang_money = #{bang_money},
+		bang_age   = #{bang_age},
+		bang_topic = #{bang_topic},
+		bang_date  = #{bang_date},
+		bang_time  = #{bang_time},
+		bang_gender   = #{bang_gender},
+		bang_limit_people = #{bang_limit_people}
+	where bang_id = #{bang_id}
+</update>
+
+
+	
+<insert id="report" parameterType="map">
+	INSERT INTO police(pol_no,pol_reason,pol_from,pol_to)
+	VALUES(seq_pol_no.nextval,#{pol_reason},#{pol_from},#{pol_to})
+</insert>
+<update id="groupPlus" parameterType="int">
+	update bang
+	set bang_cur_people = bang_cur_people + 1
+	where bang_no =#{bang_no}
+</update>
+<update id="groupMinus" parameterType="int">
+	update bang
+	set bang_cur_people = bang_cur_people - 1
+	where bang_no =#{bang_no}
+</update>
 </mapper>

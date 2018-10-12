@@ -33,7 +33,6 @@
 <script type="text/javascript">
 	function cancel() {
 		history.back();
-		
 	}
 </script>
 <style type="text/css">
@@ -42,11 +41,10 @@
 </head>
 <body>
 	<div class="ui top attached tabular menu">
-		<div class="active item" style="width: 200px; margin-top: 50px;">1:1문의</div>
+		<div class="active item" style="width: 200px; margin-top: 50px;">공지사항</div>
 	</div>
 	<div class="ui bottom attached active tab segment">
 		<form class="ui form">
-			<h4 class="ui dividing header">문의 내용</h4>
 			<div style="margin-left: 10px">
 				<!-- ====================== start of 작성자 =============================== -->
 				<div class="field">
@@ -112,11 +110,8 @@
 				<!-- ====================== end of 내용 =============================== -->
 				<div
 					style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
-					<div class="ui primary submit button">보내기</div>
-					<div id="btn_cancel" class="ui blue button" onClick="cancel()">취소</div>
 				</div>
 			</div>
 		</form>
-	</div>
 </body>
 </html>

@@ -51,6 +51,16 @@ public class MenuController {
 		logger.info(pMap);
 		return pMap;
 	}
+	/* 공지사항 상세보기 */
+	@RequestMapping(value="/noticeDetail.hon",method= {RequestMethod.POST, RequestMethod.GET})
+		public String nView(@RequestParam String NOTI_NO, Model mod){ 
+			logger.info("Controller : You succeed in calling nView!");
+			List<Map<String, Object>> notiList = null;
+			notiList = menuLogic.nView(NOTI_NO);
+			logger.info("noti_no : "+notiList);
+			mod.addAttribute("notiList",notiList);
+			return "forward:/notice/notice/nView.jsp";
+		} 	
 
 	/* 공지사항 글쓰기 */
 	@RequestMapping("/nInsert.hon")
