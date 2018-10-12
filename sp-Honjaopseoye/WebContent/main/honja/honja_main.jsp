@@ -99,6 +99,11 @@ function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면�
 		else{
 			$(this).attr('class','ui toggle right floated button')
 			$('#showHot').attr('class','ui toggle right floated button')
+			$('.ui.sidebar').sidebar({
+					context: $('.top.segment')
+			       ,dimPage: false //사이드바 열때 화면색 변하는거 막음
+				,closable : false //pusher눌렀을때 sidebar 들어가는거 막음
+					}).sidebar('toggle');
 			
 			//앞에는 놀,술,먹 셋중 하나 구분 뒤에는 검색어 
 			//로직에서 분기 해준다음 검색해야함
@@ -113,17 +118,15 @@ function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면�
 			   ,data: param
 		       ,success:function(result){
 		    	   $("#hotPlaceList").html(result);
-		    	   $('.ui.rating').rating('disable');
-		    	   $('.ui.sidebar').sidebar({
-						context: $('.top.segment')
-						 ,dimPage: false //사이드바 열때 화면색 변하는거 막음
-						 ,closable : false //pusher눌렀을때 sidebar 들어가는거 막음
-					}).sidebar('toggle');
+		    	   $('.ui.rating').rating('disable');		    	  
+		    	  
 		       }
 			   ,error:function(xhrObject){
 				   alert(xhrObject.responseText);
 			   }
 			})
+			
+			
 		}
 }////////////end of showHotplace()
 </script>
@@ -183,6 +186,7 @@ function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면�
 <!--=================================== 지도와 핫플레이스 목록================================  -->
 <div class="ui basic segment container">
    		
+   	
   		<button class="ui toggle right floated active button" id="showHot" onclick="showHotplace()">핫플보기</button>
   		<button class="ui right floated button" id="showAll">전체보기</button>
   		

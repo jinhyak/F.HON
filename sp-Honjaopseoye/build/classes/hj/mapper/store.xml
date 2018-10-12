@@ -55,7 +55,7 @@
 			nvl(store_price,'가격정보 없음')as "store_price",
 			store_name,store_addr
  		FROM (select * from store 
- 			<if test='searchWord != null'>
+ 			<if test="searchWord != ''">
  				 WHERE REGEXP_LIKE(store_name,#{searchWord})
  				 OR REGEXP_LIKE(store_keyword,#{searchWord}) 
  			</if>
@@ -64,7 +64,7 @@
 		<if test="store_business !=''">
 			AND store_business like '%'||#{store_business}||'%' 
 		</if>
-		<if test="store_price != '' and ">
+		<if test="store_price != ''">
 			AND store_price = #{store_price} 
 		</if>
 	</select>
@@ -80,10 +80,10 @@
         		 OR store_keyword like '%'||#{searchWord}||'%'
  			</if>
  		ORDER BY nvl(store_score,0) desc)
- 		<if test="">
+ 	<!-- 	<if test="">
  		</if>
  		<if test="">
- 		</if>
+ 		</if> -->
 	</select>
 	<!-- sView -->
 	<!-- 프리미엄 가게보기 -->
