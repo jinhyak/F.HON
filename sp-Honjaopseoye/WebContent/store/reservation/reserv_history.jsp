@@ -6,14 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>예약조회</title>
 <%@ include file="../../include/include/subtop.jsp" %>
+
 </head>
 <script type="text/javascript">
 $(document).ready(function() {
 	//alert(mem_id);
     $('#dt_reserv_list').dataTable({
 		//url:'../../member/empty/getReservList.test',
-		"ajax":{ "url":"../../reservation/select.hon?mem_id=<%=mem_id%>", "type":"POST" },
-		"order": [[ 0, "desc" ]],
+		"ajax":{ "url":"../../reservation/sel_history.hon?mem_id=<%=mem_id%>", "type":"POST" },
+    	"order": [[ 0, "desc" ]],
 	    columns:[
 			        {"data":'RESERV_NO', "className": 'dt-body-center'},
 			        {"data":'BANG_NO', "className": 'dt-body-center'},
@@ -49,35 +50,13 @@ $(document).ready(function() {
 	   	   }
 	   }	
 	});
-	$('#modal_cancle').modal({
-  	    onApprove : function() {
-  	    	location.href="./reserv_history.jsp";
-  	    }
-  	  });
-    $('#modal_cancle').modal('attach events', '#delete_button');
+    var table = $('#dt_reserv_list').DataTable();
     $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) {
-	    var table = $('#dt_reserv_list').DataTable();
 	    var data = table.row(this).data();
-	    var reserv_no = data.RESERV_NO;
-	    var param = "reserv_no="+reserv_no;
-	    //alert('1개 행이 선택됨, Row index : '+table.row(this).index());
-	    //alert(data.RESERV_NO+', '+data.BANG_NO+', '+data.BANG_NAME+', '+data.STORE_NAME);
-    	$('#modal_delete').modal({
-    		allowMultiple: true,
-    	    onApprove : function() {
-    	    	$.ajax({
-    	    		method:"post",
-    	    		data:param,
-    	    		url:"/sp-Honjaopseoye/reservation/delete.hon",
-    	    		success:function(data){
-    	    			if(data==1){
-    	    				table.ajax.reload();    	    				
-    	    			}
-    	    		}
-    	    	})
-    	      //alert('삭제완료!');
-    	    }
-    	  }).modal('show');
+        alert('1개 행이 선택됨, Row index : '+table.row(this).index());
+        alert(data.RESERV_NO+', '+data.BANG_NO+', '+data.BANG_NAME+', '+data.STORE_NAME);
+        //insert here
+        
     });
 });
 </script>
@@ -92,10 +71,10 @@ $(document).ready(function() {
 				  <a id="m_reservation" class="item">
 				  	예약하기
 				  </a>
-				  <a id="m_reserv_list" class="item active">
+				  <a id="m_reserv_list" class="item">
 				  	예약조회
 				  </a>
-				  <a id="m_reserv_history" class="item">
+				  <a id="m_reserv_history" class="item active">
 				  	예약내역
 				  </a>
 				</div>
@@ -117,28 +96,6 @@ $(document).ready(function() {
 					  </thead>
 					  	<tbody id="dt_reserv_tbody"></tbody>
 					</table>
-				  	<div class="ui mini modal" id="modal_delete">
-					  <div class="header">예약취소</div>
-					  <div class="content">
-					    <p>예약을 취소 하시겠습니까?</p>
-					  </div>
-					  <div class="actions">
-					    <div class="ui ok red button" id="delete_button">예약취소</div>
-					    <div class="ui cancel green button">닫기</div>
-					  </div>
-					</div>
-				  	<div class="ui mini modal" id="modal_cancle">
-					  <div class="header">예약취소</div>
-					  <div class="content">
-					    <p>예약이 취소 되었습니다.</p>
-					    <p>예약내역 페이지로 이동 하시겠습니까?</p>
-					  </div>
-					  <div class="actions">
-					    <div class="ui ok red button">확인</div>
-					    <div class="ui cancel green button">닫기</div>
-					  </div>
-					</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -152,10 +109,10 @@ $(".menu").find('a').click(function() {
 		location.href="./sView.jsp";
 	}
 	else if($(this).attr('id')=='m_reserv_list'){
-		$("#reserv_list").show();
+		location.href="./reserv.jsp";
 	}
 	else if($(this).attr('id')=='m_reserv_history'){
-		location.href="./reserv_history.jsp";
+		$("#reserv_history").show();
 	}
 });
 </script>
