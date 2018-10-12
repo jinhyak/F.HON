@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.mapper.storeMapper">
+<mapper namespace="storemap">
 	<!-- 예약하기 -->
-	<select id="store_sel" resultType="map">
-	select * from store where store_no <![CDATA[<]]> 10
-	</select>
 	<insert id="rInsert" parameterType="map">
 		INSERT INTO
 		reservation(b_no,b_seq,b_file,b_img)
