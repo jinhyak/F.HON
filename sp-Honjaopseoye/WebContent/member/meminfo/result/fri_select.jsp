@@ -66,6 +66,6 @@ if(list!=null){
 		var to_id = id.children().eq(0).text()
 		var from_id = mem_id;
 		alert(to_id+":::"+from_id);
-		var messagewin = cmm_window_popup("../message/message.jsp?mem_id="+from_id+"&fri_id="+to_id, "1000", "800", "채팅창");
+		var messagewin = cmm_window_popup("../message/message.jsp?mem_id="+from_id+"&fri_id="+to_id, "751", "555", "채팅창");
 	})
 	</script>

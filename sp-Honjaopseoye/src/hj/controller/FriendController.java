@@ -64,6 +64,7 @@ public class FriendController {
 				e.printStackTrace();
 			}
 			logger.info("list" + list);
+			mod.addAttribute("result", list);
 			return "forward:/member/meminfo/result/fri_select.jsp";
 		}
 		

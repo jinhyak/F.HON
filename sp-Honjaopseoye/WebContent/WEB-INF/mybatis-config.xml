@@ -10,5 +10,6 @@
 		<mapper resource="hj/mapper/menu.xml"/>
 		<mapper resource="hj/mapper/message.xml"/>
 		<mapper resource="hj/mapper/reservation.xml"/>
+		<mapper resource="hj/mapper/board.xml"/>
 	</mappers>
 </configuration>

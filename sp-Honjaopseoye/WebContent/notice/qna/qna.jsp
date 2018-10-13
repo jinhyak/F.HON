@@ -5,32 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="../../Semantic/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../../Semantic/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="../../Semantic/semantic.css" />
-<script src="../../Semantic/semantic.js"></script>
+<%@include file="../../include/include/subtop.jsp" %>
 </head>
 <body>
 <script type="text/javascript">
 $(document).ready(function() {
-
 	$("#insert_go").click(function(){
 		location.href="./qnaInsert.jsp";
-		
 	});
-	
-
+	$.fn.dataTable.ext.errMode = '';
     $('#dt_reserv_list').dataTable({
-      //url:'../../member/empty/getReservList.test',
-      "ajax":{ "url":"/sp_Honjaopseoye/notice/qSelelct.hon", "type":"POST" },
+      "ajax":{ "url":"../../menu/qSelect.hon", "type":"POST",error:function(){alert('실패')} },
        columns:[
-			{"data":'QNA_NO',"className":'dt-body-center'},
-			{"data":'QNA_TITLE',"className":'dt-body-center'},
-			{"data":'QNA_CATEGORY',"className":'dt-body-center'},
-			{"data":'QNA_WRITER',"className":'dt-body-center'},
-			{"data":'QNA_DATE',"className":'dt-body-center'},
-			{"data":'QNA_HIT',"className":'dt-body-center'}
+			{"data":'QNA_NO'},
+			{"data":'QNA_TITLE'},
+			{"data":'QNA_CATEGORY'},
+			{"data":'QNA_WRITER'},
+			{"data":'QNA_DATE'},
+			{"data":'QNA_HIT'}
              ],
       "language": {     
           "sEmptyTable":     "데이터가 없습니다",
@@ -56,20 +48,16 @@ $(document).ready(function() {
             }
       }   
    });
-
-
     var table = $('#dt_reserv_list').DataTable(); // 테이블
     $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // 티바디를 누르면..
        var data = table.row(this).data();
        var QNA_NO = data.QNA_NO;
-       location.href='../../notice/qView.hon?qna_no='+QNA_NO;
+       location.href='../../menu/qView.hon?qna_no='+QNA_NO;
     });
 });
 </script>
- <%@ include file="../../include/include/subtop.jsp" %>
- 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
+<div class="ui header" style="margin-left:150px;margin-right:150px; margin-top:100px;margin-bottom:100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	<div class="ui two attached stackable column grid" style="width:100%">
 		<div class="center aligned column"style="width:20%;">
@@ -82,10 +70,8 @@ $(document).ready(function() {
 						<div class="center aligned column">
 						</div>
 						<div class="center aligned column">
-						</div>
-						<div class="center aligned column">
 							<div class="ui large header">
-							 	회원정보
+							 	<img src="/sp-Honjaopseoye/image/logo.png" style="width:100%;heigth:100%">
 							</div>
 						</div>
 						<div class="right aligned column">
@@ -94,13 +80,13 @@ $(document).ready(function() {
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="./notice.jsp"> 공지사항 </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='../notice/notice.jsp'">
+								<h3> 공지사항 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="./qna.jsp"> QnA </a>
+							<div class="ui segment button" style="width:100%;background-color:gray">
+								<h3> QnA </h3>
 							</div>
 						</div>
 					</div>	
@@ -120,55 +106,29 @@ $(document).ready(function() {
 							</div>
 						</div>
 						<div class="center aligned column">
-							<div class="ui segment" style="width:100%;height:1000px">
-							
+							<div class="ui segment" style="width:100%;">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<form id="j_s"></form>
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<table border="1" align="center">
-<tr>
-<td>
-   <div class="ui field">
-      <div class="ui stackable column grid">
-         <div class="ui column">
-            <div class="ui blue three item inverted top attached tabular menu">
-              <a id="m_reservation" class="item">
-              </a>
-              <a id="m_reserv_list" class="item active">
-              </a>
-              <a id="m_reserv_history" class="item">
-              </a>
-            </div>
-            <div id="reserv_list" class="ui blue bottom attached segment">
-               <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 말머리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-               <table id="dt_reserv_list" class="ui center aligned stackable selectable display datatable">
+            <div id="reserv_list" class="ui bottom attached segment">
+               <table id="dt_reserv_list" class="ui celled table">
                  <thead>
-                   <tr>
-                      <th style="width:100px;">글 번호</th>
+                    <tr>
+                      <th style="width:100px;">번호</th>
                       <th style="width:100px;">제목</th>
                       <th style="width:300px;">분류</th>
                       <th style="width:200px;">작성자</th>
-                      <th style="width:500px;">날짜</th>
+                      <th style="width:500px;">등록일</th>
                       <th style="width:100px;">조회수</th>
                     </tr>
                  </thead>
                     <tbody id="dt_reserv_tbody"></tbody>
                </table>
-               <button class="ui primary button" id="insert_go">
-  문의하기
-</button>
             </div>
-         </div>
-      </div>
-   </div>
-</div>
-</td>
-</tr>
-</table>						
+               <div style="width:100%;" align="right">
+              	 <button class="ui large button" id="insert_go">
+  					문의하기
+				 </button>
+               </div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		
 							</div>
 						</div>
 					</div>	
@@ -185,7 +145,6 @@ $(".menu").find('a').click(function() {
    $(this).attr('class','item active');//누른메뉴 active로 변경
    if($(this).attr('id')=='m_reservation'){
       /* location.href="./s
-      
       View.jsp"; */
    }
    else if($(this).attr('id')=='m_reserv_list'){

@@ -16,9 +16,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="../Semantic/semantic.css" />
-<script src="../Semantic/js/jquery-1.12.0.js"></script>
-<script src="../Semantic/semantic.js"></script>
+<%@include file="../include/include/subtop.jsp" %>
 <title>글보기</title>
 <script type="text/javascript">
 

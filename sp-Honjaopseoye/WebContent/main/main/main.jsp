@@ -25,14 +25,13 @@
 		<% 	
 			}
 		%>
-
 <!--  -->
-<div class="ui two column stackable grid" style="height:650px">
+<div class="ui two column stackable grid" style="height:850px">
     <div class="column">
-		<a  id="btn1" style="width:100%; height:100%;"><img src="../../image/person.PNG" style="width:100%; height:100%;"></a>
+		<a  id="btn1" href="../honja/honja_main.jsp" style="width:100%; height:100%;"><img src="../../image/person.PNG" style="width:100%; height:100%;"></a>
     </div>
     <div class="column">
- 		 <a id="btn2" style="width:100%; height:100%;"><img src="../../image/with.jpg"style="width:100%; height:100%;"></a>
+ 		 <a id="btn2" href="../together/together_main.jsp" style="width:100%; height:100%;"><img src="../../image/with.jpg"style="width:100%; height:100%;"></a>
     </div>
 </div>
 <!--  -->

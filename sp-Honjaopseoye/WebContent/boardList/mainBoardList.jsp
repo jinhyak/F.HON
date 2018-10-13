@@ -14,13 +14,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <link rel="stylesheet" href="../Semantic/semantic.css" />
-<script src="../Semantic/js/jquery-1.12.0.js"></script>
-<script src="../Semantic/semantic.js"></script> 
+<%@include file="/include/include/subtop.jsp" %>
 <title>메인</title>
 </head>
 <script type="text/javascript">
-
 $(document).ready(function(){
 	
 	$("#sul_go").click(function(){
@@ -48,11 +45,6 @@ $(document).ready(function(){
 <br>
 <br>
 <br>
-<!-- 로고 임-->
-<table align="center" width="850px" height="200px">
-<tr><td align="center"><img src="./images/logo.png"></td></tr>
-</table>
-<!-- 로고 끝 -->
 
 <!-- 테이블 위 -->
 <table align="center" width="900px" height="100px">
@@ -81,10 +73,10 @@ $(document).ready(function(){
 </thead>
 <!-- 조회수 헤드  끝 -->
 <tr height="180px">
-<td align="center"><img src="./images/1.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="./images/2.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="./images/3.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="./images/4.jpg" width="215px" height="200px"></td>
+<td align="center"><img src="../image/1.jpg" width="215px" height="200px"></td>
+<td align="center"><img src="../image/2.jpg" width="215px" height="200px"></td>
+<td align="center"><img src="../image/3.jpg" width="215px" height="200px"></td>
+<td align="center"><img src="../image/4.jpg" width="215px" height="200px"></td>
 </tr>
 <!-- 버튼 이벤트 라인  -->
 <tr>
@@ -138,8 +130,7 @@ $(document).ready(function(){
   <!-- 게시글 목록 -->
   <tbody>
   <!-- 최신 1 -->
-    <tr id="n_1" onMouseDown="this.style.backgroundColor='#F6CED8'"
-          onMouseUp="this.style.backgroundColor=''">
+    <tr id="n_1" onMouseDown="this.style.backgroundColor='#F6CED8'" onMouseUp="this.style.backgroundColor=''">
       <td>혼밥</td> <!-- 작성자 -->
       <td>님들아 님들아</td> <!-- 제목 -->
       <td class="reft aligned">beyonce200</td> 

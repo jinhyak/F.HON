@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<%@ include file ="../../include/include/commonUI2.jsp" %>
+<%@ include file ="../../include/include/commonUI.jsp" %>
 <script type="text/javascript">
  $(document).ready(function(){
     $('#notice').DataTable( {
     	   "ajax": {
-    	       "url" : "/sp-Honjaopseoye/notice/nSelect.hon",
+    	       "url" : "/sp-Honjaopseoye/menu/nSelect.hon",
     	       "dataSrc": "data",
     	       "type" : "post"
     	     	},
@@ -22,7 +22,6 @@
     	   		          { "data": "NOTI_DATE" },
     	   		          { "data": "NOTI_HIT" }
     	   		        ],
-    	   		        
     	   		   //@@@@@@@@@@@@@@@@@@@@@@@@@@@ 한글처리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  
     	   		     "language": {//한글 처리     
     	   	          "sEmptyTable":     "데이터가 없습니다",
@@ -49,38 +48,26 @@
     	   	                "sSortDescending": ": 내림차순 정렬"
     	   	            }
     	   	      }   
-
-    	   		        
-    	   		        
     	   })
-    	   
-    
     	var table = $('#notice').DataTable();
        $('#notice tbody').on( 'click', 'tr', function (row) {
            if ( $(this).hasClass('selected') ) { //singleSelected 처리
                $(this).removeClass('selected');
-           
            //////// 로우값 가져오기
                var clickrow = table.row(this).data();
                alert(clickrow.NOTI_NO+", "+clickrow.NOTI_TITLE+", "+clickrow.NOTI_CATEGORY+", "+clickrow.NOTI_DATE+", "+clickrow.NOTI_HIT+", "+clickrow.NOTI_WRITER);
-               location.href="../../notice/noticeDetail.hon?NOTI_NO="+clickrow.NOTI_NO;
-            		   
+               location.href="../../menu/noticeDetail.hon?NOTI_NO="+clickrow.NOTI_NO;
            }
-           
            else {
                table.$('tr.selected').removeClass('selected');
                $(this).addClass('selected');
            }
        } );
- 
-    	    
 }); 
-
 </script>
 </head>
 <body>
- <%@ include file="../../include/include/subtop.jsp" %>
- 
+<%@ include file="../../include/include/subtop.jsp" %>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -95,10 +82,8 @@
 						<div class="center aligned column">
 						</div>
 						<div class="center aligned column">
-						</div>
-						<div class="center aligned column">
 							<div class="ui large header">
-							 	회원정보
+							 	<img src="/sp-Honjaopseoye/image/logo.png" style="width:100%;heigth:100%">
 							</div>
 						</div>
 						<div class="right aligned column">
@@ -107,13 +92,13 @@
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./notice.jsp'">
-								<a href="#"> 공지사항 </a>
+							<div class="ui segment button" style="width:100%;background-color:gray">
+								<h3> 공지사항 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./qna.jsp'">
-								<a href="#"> QnA </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='../qna/qna.jsp'">
+								<h3> QnA </h3>
 							</div>
 						</div>
 					</div>
@@ -133,12 +118,12 @@
 							</div>
 						</div>
 						<div class="center aligned column">
-							<div class="ui segment" style="width:100%;height:1000px">
+							<div class="ui segment" style="width:100%;">
 							
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 		<div id="c_notify" class="ui segment display" style="padding-bottom:5px;">
 		<!---------------------------------------------------------- 공지사항 본문 내용 시작--------------------------------------------------------------- -->
-		<div style="margin-top: 30px;">
+		<div>
 			<!-- ---------------============================= start of table ===================================------------------------------- -->
 			<table class="ui celled table" id="notice">
 				<thead>
@@ -155,9 +140,10 @@
 			<!------------------------------------------------------- end of table------------------------------------------------------------------------- -->
 		</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+								</div>
 							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>

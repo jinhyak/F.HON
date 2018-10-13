@@ -13,11 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
-<script type="text/javascript" src="../Semantic/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../Semantic/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="../Semantic/semantic.css" />
-<script src="../Semantic/semantic.js"></script>
+<%@include file="/include/include/subtop.jsp" %>
 <title>혼밥 게시판</title>
 </head>
 <style>
@@ -54,7 +50,7 @@ $(document).ready(function(){
 
 	$('#dt_reserv_list').dataTable({
 	      //url:'../../member/empty/getReservList.test',
-	      "ajax":{ "url":"../boardList/board.hon?key=혼밥", "type":"POST" },
+	      "ajax":{ "url":"../board/boardList.hon?key=혼밥", "type":"POST" },
 	       "columns":[
 	    	    {"data":'BAB_NO',"className":'dt-body-center'},
 				{"data":'BAB_ID',"className":'dt-body-center'},
@@ -93,7 +89,7 @@ $(document).ready(function(){
 	    $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // 티바디를 누르면..
 	       var data = table.row(this).data();
 	       var BAB_NO = data.BAB_NO;
-	       location.href='../boardList/boardOne.hon?key=혼밥'+"&num="+ BAB_NO;
+	       location.href='../board/boardOne.hon?key=혼밥'+"&num="+ BAB_NO;
 	    });
 	
 
@@ -113,9 +109,6 @@ $(document).ready(function(){
 <!-- 전체 테이블 -->
 <table bgcolor="white" align="center">
 <thead>
-<tr>
-<td align="center"><img src="./images/logo.png"></td>
-</tr>
 </thead>
 <tbody align="center">
 <tr>
@@ -135,17 +128,16 @@ $(document).ready(function(){
 <thead>
 
 <tr>
-<td align="center" colspan="5" height="100px"><font size="5" color="black"><strong>월간 최고 조회수 리뷰 >.< 임당 </strong></font></td>
+<td align="center" colspan="5" height="100px"><font size="5" color="black"><strong>월간 최고 조회수 리뷰 임당 </strong></font></td>
 </tr>
 
 </thead>
 <!-- 조회수 헤드  끝 -->
 <tr height="180px">
-<td align="center"><img src="./images/1.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="./images/2.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="./images/3.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="./images/4.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="./images/123.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="../image/1.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="../image/2.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="../image/3.jpg" width="255px" height="200px"></td>
+<td align="center"><img src="../image/4.jpg" width="255px" height="200px"></td>
 </tr>
 <!-- 버튼 이벤트 라인  -->
 <tr>
@@ -204,20 +196,9 @@ $(document).ready(function(){
 
 </table>
 <!-- 상위 버튼  끝-->
-   <div class="ui field">
-      <div class="ui stackable column grid">
-         <div class="ui column">
-            <div class="ui blue three item inverted top attached tabular menu">
-              <a id="m_reservation" class="item">
-              </a>
-              <a id="m_reserv_list" class="item active">
-              </a>
-              <a id="m_reserv_history" class="item">
-              </a>
-            </div>
-            <div id="reserv_list" class="ui blue bottom attached segment">
                <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 말머리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-               <table id="dt_reserv_list" class="ui center aligned stackable selectable display datatable">
+            <div id="reserv_list" class="ui bottom attached segment">
+               <table id="dt_reserv_list" class="ui celled table">
                  <thead>
                    <tr>
                       <th style="width:100px;">글 번호</th>
@@ -232,9 +213,6 @@ $(document).ready(function(){
                </table>
             </div>
          </div>
-      </div>
-   </div>
-</div>
 </td>
 </tr>
 </tbody>

@@ -15,7 +15,6 @@ public class StoreDao {
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
-
 	public List<Map<String, Object>> select(Map<String, Object> pMap) throws IOException {
 		List<Map<String, Object>> list = null;
 		logger.info(pMap);
@@ -30,10 +29,26 @@ public class StoreDao {
 		logger.info("Dao insert호출 성공");
 		return result;
 	}
+	//핫플 8개만 보기
 	public List<Map<String, Object>> searchStore8(Map<String, Object> pMap) throws IOException{
 		List<Map<String,Object>> list = null;
 		logger.info("selectStore8호출 성공");
 		list = sqlSessionTemplate.selectList("selectStore8", pMap);
 		return list;
 	}
+	//상세보기
+	public List<Map<String, Object>> storeDetail(String store_no) {
+		List<Map<String,Object>> list = null;
+		int result = 0;
+		logger.info("storeDetail호출 성공");
+		result = sqlSessionTemplate.update("storeHitUp", store_no);
+		if(result==1) {
+		logger.info("조회수+1성공");
+		list = sqlSessionTemplate.selectList("storeDetail", store_no);
+		return list;
+		}
+		return null;
+		
+	}
+	
 }

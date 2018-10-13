@@ -12,22 +12,29 @@
 	System.out.println("hotplace_result호출성공");
 	List<Map<String,Object>> list
 		= (List<Map<String,Object>>)request.getAttribute("list");
-
+	int length = list.size();
+	System.out.println(length);
 	String name = null;
 	String score = null;
 	String img = null;
 	String price = null;
+	String no = null;
+	String addr = null;
 	
-	if(list!=null){
+	if(list.size()>0){
 		
 	for(int i=0;i<list.size();i++){
 		name = list.get(i).get("STORE_NAME").toString();
 		score = list.get(i).get("store_score").toString(); //nvl해준거는 대문자 안되는듯
 		img = list.get(i).get("store_img").toString();
 		price = list.get(i).get("store_price").toString();
+		no = list.get(i).get("STORE_NO").toString();
+		addr = list.get(i).get("STORE_ADDR").toString();
 		System.out.println(name+","+score+","+"img"+","+price);
 %>
-<div class="column">
+<div class="column" id="<%=no%>" name="storePreview" onclick="showDetailStore(<%=no%>)">
+	<input type="hidden" value="<%=addr%>">
+	<input type="hidden" value="<%=name%>">
 	<div class="ui segment"style="
     padding-bottom: 0px;
     padding-right: 0px;
@@ -46,11 +53,11 @@
 </div>
 
 <%
-	}
-	}
+		}////end of for
+	}///end of if
 	else{
 		%>
-			조회된 결과가 없습니다.
+			<img class="ui fluid image" src="../../store/storeImg/noSearch.png" style="height:230px">
 		<%
 	}
 %>

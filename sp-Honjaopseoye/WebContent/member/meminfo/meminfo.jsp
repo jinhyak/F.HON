@@ -17,7 +17,6 @@
  <%@ include file="../../include/include/subtop.jsp"%>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <script type="text/javascript">
-
 $(document).ready(function(){
 	$("#jobs").val(mem_job)
 	$("#hobbys").val(mem_hobby)
@@ -26,60 +25,61 @@ $(document).ready(function(){
 })
 </script>
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
-
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
 	<div class="ui two attached stackable column grid" style="width:100%">
 		<div class="center aligned one column"style="width:20%;">
 			<div class="ui field" style="height:800px">
 				<div class="ui segment">
 					<div class="ui one column grid">
-					
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 말머리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
 						<div class="center aligned column">
 						</div>
 						<div class="center aligned column">
 						</div>
 						<div class="center aligned column">
 							<div class="ui large header">
-							 	혼자옵서예
+							 	<img src="/sp-Honjaopseoye/image/logo.png" style="width:100%;heigth:100%">
 							</div>
 						</div>
 						<div class="right aligned column">
 						</div>
-						
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./mlist.jsp'">
-								<a href="#"> 회원 정보 </a>
+						</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%;background-color:gray">
+								<h3> 회원 정보 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./mdelete.jsp'">
-								<a href="#"> 회원 탈퇴 </a>
+								<h3> 회원 삭제 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./flist.jsp'">
-								<a href="#"> 친구 찾기 </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='./f_search.jsp'">
+								<h3> 친구 찾기 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./fdelete.jsp'">
-								<a href="#"> 친구 관리 </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='./f_select.jsp'">
+								<h3> 친구 관리 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./gList.jsp'">
-								<a href="#"> 그룹 관리 </a>
+								<h3> 그룹 관리</h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./gCreate.jsp'">
-								<a href="#"> 그룹 만들기 </a>
+							<div class="ui segment button" style="width:100%" onclick="group()">
+								<h3> 그룹 만들기 </h3>
 							</div>
+							<script>
+							function group(){
+								cmm_window_popup("../../main/together/together.jsp", 800, 800, "모임 만들기창")
+							}
+							</script>
 						</div>
 					</div>	
 				</div>
@@ -106,26 +106,21 @@ $(document).ready(function(){
 					<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 회원 정보 임 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 			<form id="mlist_form">
 								<div class="ui left aligned stackable container">
-								
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ ID @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									
 											<div class="ui divider"></div>
 											<div class="ui labeled input">
 												<a class="ui label"><h3>I D</h3> </a> 
 												<input type="text" readonly="readonly" id="mem_id" name="mem_id" value="<%=mem_id %>">
 											</div>
-											
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 이름 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									
 											<div class="ui divider"></div>
 											<div class="ui labeled input">
 												<a class="ui label"> 이름 </a>
 												 <input type="text" id="mem_name" name="mem_name" value="<%=mem_name%>">
 											</div>
-											
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 직업 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 											<div class="ui divider"></div>
-									<div class="ui label">취미
+											<div class="ui label">취미
 													<select class="ui dropdown" id="hobbys">
 												 	 <option class="job" value="1200">운동</option>
 												 	 <option class="job" value="1201">영화</option>
@@ -138,10 +133,9 @@ $(document).ready(function(){
 												 	 <option class="job" value="1208">미술</option>
 												 	 <option class="job" value="1209">기타</option>
 													</select>
-									</div>
-													
+											</div>
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 취미 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									<div class="ui label">직업
+											<div class="ui label">직업
 													<select class="ui dropdown"id="jobs">
 												  	 <option class="hobby" value="1109">무직</option>
 												 	 <option class="hobby" value="1101">학생</option>
@@ -153,14 +147,8 @@ $(document).ready(function(){
 												 	 <option class="hobby" value="1107">공무원</option>
 												 	 <option class="hobby" value="1108">서비스직</option>
 													</select>											
-									</div>
-									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 성별 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									<script type="text/javascript">
-
-									</script>
-											
+											</div>
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ email @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									
 											<div class="ui divider"></div>
 												<div class="ui labeled icon input" id="email">
 													<div class="ui label">Email</div>
@@ -172,33 +160,25 @@ $(document).ready(function(){
 												 	 <option value="@naver.com">@naver.com</option>
 												 	 <option value="@daum.net">@daum.net</option>
 													</select>
-									
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 주소 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									
 											<div class="ui divider"></div>
 											<div class="ui labeled input"style="width:60%">
 												<a class="ui label"> 주소 </a>
 												<input type="text" style="width:100%" value="<%=mem_addr%>" name="mem_addr">
 											</div>
-											
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 전화번호 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-									
 											<div class="ui divider"></div>
 											<div class="ui labeled input">
 												<a class="ui label"> 전화번호 </a> 
 												<input type="text" value="<%=mem_tel%>" id="mem_tel" name="mem_tel">
 											</div>
-											
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 성별 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->	
-									
 											<div class="ui divider"></div>
 												<select class="ui dropdown" id="mem_gender" name="mem_gender">
 												  <option value="1300">남</option>
 												  <option value="1301">녀</option>
 												</select>
-												
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@ 생년월일 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-										
 											<div class="ui divider"></div>
 									<div class="ui label">
 										<div>생년월일</div>
@@ -206,28 +186,17 @@ $(document).ready(function(){
 									</div>
 										<div class="ui divider"></div>
 										<div class="ui black button" onclick="mem_update()" id="mem_update"> 수정 하기 </div>	
-									
 									</div>
 				</form>
-									<!-- 회원 정보 container -->
-							</div>
-<!-- 회원 정보 segment -->
-						</div>
-<!-- 회원 정보 column -->
-
+							</div><!-- 회원 정보 container -->
+						</div><!-- 회원 정보 segment -->
+					</div><!-- 회원 정보 column -->
 			<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-		
-					</div>	
-<!-- inner column -->
-				</div>
-<!-- segment -->
-			</div>
-<!-- field  -->
-		</div>
-<!-- column -->
-	</div>
-<!-- grid -->	
-</div>
+				</div><!-- inner column -->
+			</div><!-- segment -->
+		</div><!-- field  -->
+	</div><!-- column -->
+</div><!-- grid -->	
 <script type="text/javascript">
 	function mem_update(){
 		alert('수정중')
@@ -269,8 +238,6 @@ $(document).ready(function(){
             ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
             ,changeYear: true //콤보박스에서 년 선택 가능
             ,changeMonth: true //콤보박스에서 월 선택 가능                
-            ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-            ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
             ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
             ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
             ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트

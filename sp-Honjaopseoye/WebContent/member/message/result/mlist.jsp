@@ -8,7 +8,7 @@
 	List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("result");
 	List<Map<String,Object>> members=(List<Map<String,Object>>)session.getAttribute("memList");
 	String mem_id = null;
-	mem_id = "test";//테스트용
+	mem_id = members.get(0).get("MEM_ID").toString();//테스트용
 	if(list!=null&&list.size()!=0){
 		for(int i = 0 ; i<list.size();i++){
 			if(mem_id.equals(list.get(i).get("MSG_FROM").toString())){

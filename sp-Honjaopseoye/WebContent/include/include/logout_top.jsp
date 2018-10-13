@@ -16,10 +16,10 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="active item">공지사항</a>
-        <a class="item">Q&A</a>
-        <a class="item">혼밥하자</a>
-        <a class="item">인사하자</a>
+        	<a class="active item" href="../../notice/notice/notice.jsp">공지사항</a>
+	        <a class="item" href="../../main/honja/honja_main.jsp">혼밥하자</a>
+	        <a class="item" href="../../main/together/together_main.jsp">모임하자</a>
+	        <a class="item" href="../../boardList/mainBoardList.jsp">리뷰보기</a>
         
         <div class="ui grid">
         <div class="four wide two wide large screen one wide widescreen column"></div>
@@ -33,7 +33,6 @@
       </div>
         
         <div class="right item">
-       <!-- 나중에 컨테이너 처리 할거임 -->
         <!-- #########################로그인 버튼 있는 로그인 폼 시작################################ --> 
       
        <div class="ui text container"> 
@@ -49,19 +48,12 @@
 			<div class="ui text container">
       <h1 class="ui inverted header">
        <br>
-        <br>
-         <br>
           <br>
         혼밥 혼술 입니당
       </h1>
       <br>
-       <br>
-
-
     </div>
-
   </div>
-
 </div>
 </body>
 </html>

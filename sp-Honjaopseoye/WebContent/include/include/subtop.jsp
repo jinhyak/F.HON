@@ -34,7 +34,9 @@ int pt = 0;
 		pt =  Integer.parseInt(member.get(0).get("GRADE_POINT").toString());
 		emails = mem_email.split("@");
 		email = emails[0];
-		domain = "@"+emails[1];
+		if(emails.length>1){
+			domain = "@"+emails[1];
+		}
 	}
 	else{
 		mem_id = "비회원";
@@ -68,25 +70,25 @@ var msg_count=0;
 <body>
   <div class="ui fixed inverted menu">
     <div class="ui container">
-      <a href="../../main/main/main.jsp" class="header item">
-        <img class="logo" src="../../image/logo.png" style="width:100px; heigth:100px">
+      <a href="/sp-Honjaopseoye/main/main/main.jsp" class="header item">
+        <img class="logo" src="/sp-Honjaopseoye/image/logo.png" style="width:100px; heigth:100px">
       </a>
-      <a href="../../main/main/main.jsp" class="item">Home</a>
       <div class="ui simple dropdown item">
       	  메뉴 <i class="dropdown icon"></i>
         <div class="menu">
           <a class="item" href="javascript:mlist()">회원정보</a>
-          <a class="item" href="../../notice/notice/notice.jsp">공지사항</a>
-          <a class="item" href="../../main/honja/honja_main.jsp">혼자페이지</a>
-          <a class="item" href="../../main/together/together_main.jsp">만남페이지</a>
+          <a class="item" href="/sp-Honjaopseoye/notice/notice/notice.jsp">공지사항</a>
+          <a class="item" href="/sp-Honjaopseoye/main/honja/honja_main.jsp">혼자페이지</a>
+          <a class="item" href="/sp-Honjaopseoye/main/together/together_main.jsp">만남페이지</a>
+          <a class="item" href="/sp-Honjaopseoye/boardList/mainBoardList.jsp">리뷰보기</a>
           <div class="divider"></div>
           <div class="header">보조 메뉴</div>
           <div class="item">
             <i class="dropdown icon"></i>
             	로그인
             <div class="menu">
-              <a class="item" href="../../member/login/login.jsp">로그인</a>
-              <a class="item" href="../../member/login/logout.jsp">로그아웃</a>
+              <a class="item" href="/sp-Honjaopseoye/member/login/login.jsp">로그인</a>
+              <a class="item" href="/sp-Honjaopseoye/member/login/logout.jsp">로그아웃</a>
             </div>
           </div>
         </div>
@@ -103,7 +105,7 @@ var msg_count=0;
   <script type="text/javascript">
   	function mlist(){
   		if(mem_id!='비회원'){
-  		location.href="../../member/meminfo/meminfo.jsp";
+  		location.href="/sp-Honjaopseoye/member/meminfo/meminfo.jsp";
   		}
   		else{
   			alert("로그인 후 이용 가능합니다")
@@ -111,7 +113,7 @@ var msg_count=0;
   	}
   	function messageBox(){
   		if(mem_id!='비회원'){
-  			cmm_window_popup("../../member/message/messageBox.jsp?mem_id="+mem_id, 800, 800, "메시지함");
+  			cmm_window_popup("/sp-Honjaopseoye/member/message/messageBox.jsp?mem_id="+mem_id, 800, 800, "메시지함");
   		}
   		else{
   			alert("로그인 후 이용 가능합니다")
@@ -121,7 +123,7 @@ var msg_count=0;
   		var param = "mem_id="+mem_id
   		$.ajax({
   			method:"post",
-  			url:"../../message/allUnReadMsg.hon",
+  			url:"/sp-Honjaopseoye/message/allUnReadMsg.hon",
   			data:param,
   			success:function(data){
   				$("#msg_count").text(msg_count);
@@ -134,6 +136,9 @@ var msg_count=0;
   	$(document).ready(function(){
   		if(mem_id!='비회원'){
 		msgCount();
+		/* setInterval(function() {
+			msgCount();
+			}, 2000) */
   		}
   		else{
   			

@@ -75,6 +75,7 @@ public class memberController {
 	}
 
 /*가입하기*/
+	@ResponseBody
 	@RequestMapping(value="join.hon", method=RequestMethod.POST)
 	public int join(Model mod
 			, @RequestParam Map<String,Object> pMap
@@ -96,7 +97,7 @@ public class memberController {
 		logger.info("data: "+result);
 		mod.addAttribute("result",result);
 		//return "addr_result";
-		return "forward:/member/join/result/result.jsp";
+		return "forward:/member/join/result/ad_result.jsp";
 	}
 	@RequestMapping(value="siAddress.hon", method=RequestMethod.POST)
 	public String siAddress(Model mod
@@ -107,7 +108,7 @@ public class memberController {
 		result = memberDao.siSelect(pMap);
 		logger.info("data: "+result);
 		mod.addAttribute("result",result);
-		return "forward:/member/join/result/result.jsp";
+		return "forward:/member/join/result/ad_result.jsp";
 	}
 	@RequestMapping(value="dongAddress.hon", method=RequestMethod.POST)
 	public String dongAddress(Model mod
@@ -118,7 +119,7 @@ public class memberController {
 		result = memberDao.dongSelect(pMap);
 		logger.info("data: "+result);
 		mod.addAttribute("result",result);
-		return "forward:/member/join/result/result.jsp";
+		return "forward:/member/join/result/ad_result.jsp";
 	}
 	@RequestMapping(value="deAddress.hon", method=RequestMethod.POST)
 	public String deAddress(Model mod
@@ -130,7 +131,7 @@ public class memberController {
 		logger.info("data: "+result);
 		mod.addAttribute("result",result);
 		logger.info(mod);
-		return "forward:/member/join/result/addr_result.jsp";
+		return "forward:/member/join/result/ad_de_result.jsp";
 	}
 
 /*회원 정보 수정*/

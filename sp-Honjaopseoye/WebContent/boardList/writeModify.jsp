@@ -61,9 +61,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../Semantic/semantic.css" />
-<script src="../Semantic/js/jquery-1.12.0.js"></script>
-<script src="../Semantic/semantic.js"></script>
+<%@include file="../include/include/subtop.jsp" %>
 <title>게시글 수정</title>
 <!--이미지 미리보기 스크립트 구간 -->
 <script type="text/javascript">
@@ -115,7 +113,7 @@ $(document).ready(function(){
 		   ,success:function(formData){
 			   
 				//img_file = img_file.substring(12);
-				text.value += "<br>" + "<img src='./images/" + img_file + "'>" +"<br>";
+				text.value += "<br>" + "<img src='../images/" + img_file + "'>" +"<br>";
 				alert("이미지 태그가 추가 되었습니다.");
 			   
 		   }

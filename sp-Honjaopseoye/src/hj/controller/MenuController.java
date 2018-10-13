@@ -25,9 +25,9 @@ import hj.logic.QnALogic;
 import hj.util.HangulConversion;
 
 @Controller
-@RequestMapping("/notice")
+@RequestMapping("/menu")
 public class MenuController {
-	Logger logger = Logger.getLogger(MenuController.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
 	@Autowired
 	private MenuLogic menuLogic = null;
@@ -38,21 +38,19 @@ public class MenuController {
 	@Autowired
 	private MenuDao menuDao = null;
 	
-
-	/* 공지사항 */
-	@ResponseBody
-	@RequestMapping("/nSelect.hon")
-	public Map<String, List<Map<String, Object>>> nSelect(Model mod) {
-		logger.info("nSelect 메소드 호출");
-		List<Map<String, Object>> list = null;
-		list = menuLogic.nSelect();
-		Map<String, List<Map<String,Object>>> pMap = new HashMap<String, List<Map<String,Object>>>();
-		pMap.put("data", list);
-		logger.info(pMap);
-		return pMap;
-	}
-	/* 공지사항 상세보기 */
-	@RequestMapping(value="/noticeDetail.hon",method= {RequestMethod.POST, RequestMethod.GET})
+		@ResponseBody
+		@RequestMapping("/nSelect.hon")
+		public Map<String, List<Map<String, Object>>> nSelect(Model mod) {
+			logger.info("nSelect 메소드 호출");
+			List<Map<String, Object>> list = null;
+			list = menuLogic.nSelect();
+			Map<String, List<Map<String,Object>>> pMap = new HashMap<String, List<Map<String,Object>>>();
+			pMap.put("data", list);
+			logger.info(pMap);
+			return pMap;
+		}
+		/* 공지사항 상세보기 */
+		@RequestMapping(value="/noticeDetail.hon",method= {RequestMethod.POST, RequestMethod.GET})
 		public String nView(@RequestParam String NOTI_NO, Model mod){ 
 			logger.info("Controller : You succeed in calling nView!");
 			List<Map<String, Object>> notiList = null;
@@ -61,67 +59,52 @@ public class MenuController {
 			mod.addAttribute("notiList",notiList);
 			return "forward:/notice/notice/nView.jsp";
 		} 	
-
-	/* 공지사항 글쓰기 */
-	@RequestMapping("/nInsert.hon")
-	public String nInsert(Model mod
-			, @RequestParam Map<String,Object> pMap
-			, HttpServletResponse res) {
-		logger.info("nInsert 메소드 호출");
-		int result = 0;
-		result = menuDao.nInsert(pMap);
-		return "redirect:../notice/notice.jsp";
-	}
-
-	/* 문의하기 */
-	@RequestMapping("/qInsert.hon")
-	public String qInsert(Model mod
-			, @RequestParam Map<String,Object> pMap
-			, HttpServletRequest req) {
-		logger.info("qInsert 메소드 호출");
-		int result = 0;
-		//result = menuLogic.qInsert(req, pMap);
-		return "forward:/notice/qna/qnaRead.jsp";
-	}
-
-	/* 문의 게시판 */
-	@ResponseBody
-	@RequestMapping("/qSelect.hon")
-	public Map<String, List<Map<String, Object>>> conQnaBoardList(
-		HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-		
-		logger.info("qSelect 메소드 진입");
-		
-		List<Map<String, Object>> conQnaBoardList = new ArrayList<Map<String, Object>>();
-		Map<String, List<Map<String, Object>>> pMapList = new HashMap<String, List<Map<String, Object>>>();
-		conQnaBoardList = qnaLogic.qnaBoardListLogic();
-		logger.info("qSelect값 : " + conQnaBoardList.size());
-		pMapList.put("data", conQnaBoardList);
-		
-		return pMapList;
-	}
-	
-	/* 해당 qna조회 (상세보기) */
+		/* 공지사항 글쓰기 */
+		@RequestMapping("/nInsert.hon")
+		public String nInsert(Model mod
+				, @RequestParam Map<String,Object> pMap
+				, HttpServletResponse res) {
+			logger.info("nInsert 메소드 호출");
+			int result = 0;
+			result = menuDao.nInsert(pMap);
+			return "redirect:../notice/notice.jsp";
+		}
+		/* 문의하기 */
+		@RequestMapping(value="/qInsert.hon",method={RequestMethod.POST, RequestMethod.GET})
+		public String qInsert(Model mod, @RequestParam Map<String,Object> pMap, HttpServletRequest req) {
+			logger.info("qInsert 메소드 호출");
+			int result = 0;
+			//result = menuLogic.qInsert(req, pMap);
+			return "forward:/notice/qna/qnaRead.jsp";
+		}
+		/* 문의 게시판 */
+		@ResponseBody
+		@RequestMapping(value="/qSelect.hon",method={RequestMethod.POST, RequestMethod.GET})
+		public Map<String, List<Map<String, Object>>> conQnaBoardList(Model mod, @RequestParam Map<String,Object> pMap){
+			logger.info("qSelect 메소드 진입");
+			List<Map<String, Object>> conQnaBoardList = new ArrayList<Map<String, Object>>();
+			Map<String, List<Map<String, Object>>> pMapList = new HashMap<String, List<Map<String, Object>>>();
+			try {
+				conQnaBoardList = qnaLogic.qnaBoardListLogic();
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			}
+			logger.info("qSelect index : " + conQnaBoardList.size());
+			pMapList.put("data", conQnaBoardList);
+			return pMapList;
+		}
 		@RequestMapping("/qView.hon")
 		public String qView(HttpServletRequest req, HttpServletResponse res,
 				@RequestParam String qna_no, Map<String, Object> pMap)
 						throws ServletException, IOException {
-			
 			logger.info("qView 메소드 진입");
-			
 			List<Map<String, Object>> conQnABoardIdList = null;
-			
 			pMap = new HashMap<String, Object>();
 			pMap.put("qna_no", qna_no);
 			conQnABoardIdList = qnaLogic.qnaBoardIdListLogic(pMap);
-			
 			req.setAttribute("conQnABoardIdList", conQnABoardIdList);
-			
 			return "forward:../notice/qna/qnaView.jsp";
 		}
-	
-	/* qna 인서트 */
 		@RequestMapping("/qnaInsert.hon")
 		public String qnaBoardInsert(@RequestParam String qna_category, 
 				@RequestParam String qna_title, @RequestParam String qna_content,

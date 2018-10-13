@@ -9,9 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
  <%@ include file="../../include/include/subtop.jsp" %>
- 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <div class="ui header" style="margin-left: 150px;margin-right: 150px; margin-top: 100px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -26,46 +24,49 @@
 						<div class="center aligned column">
 						</div>
 						<div class="center aligned column">
-						</div>
-						<div class="center aligned column">
 							<div class="ui large header">
-							 	혼자옵서예
+							 	<img src="/sp-Honjaopseoye/image/logo.png" style="width:100%;heigth:100%">
 							</div>
 						</div>
 						<div class="right aligned column">
 						</div>
 						<div class="right aligned column">
 						</div>
-						<div class="right aligned column">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-							<div class="ui segment button" style="width:100%" onclick="location.href='./mlist.jsp'">
-								<a href="#"> 회원 정보 </a>
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%" onclick="location.href='./meminfo.jsp'">
+								<h3> 회원 정보 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./mdelete.jsp'">
-								<a href="#"> 회원 탈퇴 </a>
+								<h3> 회원 삭제 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./f_search.jsp'">
-								<a href="#"> 친구 찾기 </a>
+							<div class="ui segment button" style="width:100%;background-color:gray">
+								<h3> 친구 찾기 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./f_select.jsp'">
-								<a href="#"> 친구 관리 </a>
+								<h3> 친구 관리 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./gList.jsp'">
-								<a href="#"> 그룹 관리 </a>
+								<h3> 그룹 관리</h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./gCreate.jsp'">
-								<a href="#"> 그룹 만들기 </a>
+							<div class="ui segment button" style="width:100%" onclick="group()">
+								<h3> 그룹 만들기 </h3>
 							</div>
+							<script>
+							function group(){
+								cmm_window_popup("../../main/together/together.jsp", 800, 800, "모임 만들기창")
+							}
+							</script>
 						</div>
 					</div>	
 				</div>
@@ -98,19 +99,8 @@
 										  <button class="ui label button" onclick="search()">검색</button>
 										</div>
 									</div>
-									<table class="ui celled right aligned table" id="f_table" style="margin-left:50px;margin-right:50px;border:solid">
-										<thead>
-											<tr>
-												<th class="center aligned" style="width:20%" id="fri_id">친구 ID</th>
-												<th class="center aligned" style="width:20%" id="fri_name">친구 이름</th>
-												<th class="center aligned" style="width:20%" id="fri_age">친구 생일</th>
-												<th class="center aligned" style="width:20%" id="fri_email">친구 email</th>
-												<th class="center aligned" style="width:20%" id="fri_add">추가</th>
-											</tr>
-										</thead>
-										<tbody id="fri_search">
-										</tbody>
-									</table>
+									<div class="ui middle selection list" id="fri_search" style="width:100%;padding-left: 80px;padding-right: 80px;">
+									</div>
 									<script type="text/javascript">
 										function search(){
 												alert(mem_id);

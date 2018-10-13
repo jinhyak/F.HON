@@ -10,8 +10,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b088e12dec9746ba7e26f57a6f7c9256"></script>
 <script type="text/javascript">
+	//지도 전역변수에 선언해 모든 함수에서 사용가능하게 함
+	var map = null;
+	//var point = null;
+	//위치 조정을 위한 points변수 선언
+	//var points = new Array;
+	var addrs = new Array;
+	//가게이름 배열
+	var store_names = new Array;
+	var store_name = null;
+	var storeNod = null;
+	//인포띄우는 변수
+	var iwContent = null;
+	var iwPosition = null;
 
 //화면이 시작했을때 보여줄 지도(초기좌표같은거 설정해 주면 될듯)
 function showMap(){
@@ -26,11 +38,17 @@ function showMap(){
 	 mapContainer.style.height = "509px"; 
 
 //지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-var map = new daum.maps.Map(mapContainer, mapOption); 
+ map = new daum.maps.Map(mapContainer, mapOption); 
 }///////////////////////end of showMap
 
 ///////////////////////////////////검색 기능 함수
 function search(){
+	if($.trim($('#searchWord').val())==""){
+		alert("검색어를 입력하세요");
+		return;
+	}
+	else{
+		
 	
 		//앞에는 놀,술,먹 셋중 하나 구분 뒤에는 검색어 
 		//로직에서 분기 해준다음 검색해야함
@@ -53,13 +71,74 @@ function search(){
 					 ,closable : false //pusher눌렀을때 sidebar 들어가는거 막음
 				}).sidebar('show');
 			   $('.ui.rating').rating('disable');
+			   //마커 삭제하기위해 맵 초기화
+			   showMap();
+			   //var bounds = new daum.maps.LatLngBounds();
+	    	   //네임값으로 가게정보 배열만드는거
+	    	   
+	    	   
+	    	   storeNod = document.getElementsByName("storePreview");
+	    	   console.log("storeNod길이"+storeNod.length)
+	    	   for(var i = 0;i<storeNod.length;i++){
+	    		 
+	    		   addrs[i] = $(storeNod[i].getElementsByTagName('input').item(0)).val()
+	    		   store_names[i] = $(storeNod[i].getElementsByTagName('input').item(1)).val()
+	    		   //addrs[i] = $(store_addr).val()
+	    		   showMarker(addrs[i],store_names[i])
+	    		   //points[i] = point; 
+	    		   //bounds.extend(points[i]);
+	    		   
+	    	   }///end of for
+	    		//map.setBounds(bounds);
+	    	   console.log("주소 개수"+addrs.length)
+	    	   console.log("가게 이름"+store_name)
+	    	   //console.log(points)
+	    	   //console.log("좌표포인트 배열개수="+points.length)
+	    	   
+	    	   map.setLevel(10);
+	    	
+	    	   
+	    	 	   
+	    	  
 		   }
 		   ,error:function(xhrObject){
 			   alert(xhrObject.responseText);
 		   }
-		});
-
+		});//end of ajax
+	}////////////end of else
 }///////////////////end of search
+function showMarker(addr,store_name){
+	console.log("주소"+addr)
+	var marker = new Array;
+	var geocoder = new daum.maps.services.Geocoder();
+	var callback =  function(result,status){
+		if (status === daum.maps.services.Status.OK) {
+	       var position = new daum.maps.LatLng(result[0].y, result[0].x);
+	       //console.log("마커포지션"+position);
+	       /* //범위 재설정 위해서 좌표값 넣음
+	       point = position;	 */
+	       
+	       marker = new daum.maps.Marker({
+	       	   position: position
+	       	  ,title: store_name
+	       });
+	       marker.setMap(map);
+	       //인포윈도우 만들기
+	       iwContent = '<div style="padding:5px;">'+store_name+'</div>' // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    	   iwPosition = new daum.maps.LatLng(result[0].y, result[0].x); //인포윈도우 표시 위치입니다
+	    	// 인포윈도우를 생성합니다
+	       var infowindow = new daum.maps.InfoWindow({
+	           position : iwPosition, 
+	           content : iwContent 
+	       });
+	       infowindow.open(map, marker); 
+	    }
+	}////end of callback
+	geocoder.addressSearch(addr,callback);
+	
+	//console.log("marker="+marker)
+	
+}////////////end of showMarker
 
 /////////////////////매뉴 버튼 이벤트 처리 함수
 function chooseMenu(){
@@ -84,7 +163,9 @@ function chooseMenu(){
 			})
 		});
 	}/////////////////end of choseMenu
-	
+function showDetailStore(no){
+	 location.href="../../store/storeDetail.hon?store_no="+no;
+	}
 	
 
 function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면서 핫플 리스트 보임
@@ -99,13 +180,11 @@ function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면�
 		else{
 			$(this).attr('class','ui toggle right floated button')
 			$('#showHot').attr('class','ui toggle right floated button')
-
 			$('.ui.sidebar').sidebar({
 					context: $('.top.segment')
 			       ,dimPage: false //사이드바 열때 화면색 변하는거 막음
 				,closable : false //pusher눌렀을때 sidebar 들어가는거 막음
 					}).sidebar('toggle');
-			
 			
 			//앞에는 놀,술,먹 셋중 하나 구분 뒤에는 검색어 
 			//로직에서 분기 해준다음 검색해야함
@@ -121,18 +200,18 @@ function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면�
 		       ,success:function(result){
 		    	   $("#hotPlaceList").html(result);
 		    	   $('.ui.rating').rating('disable');
-		    	   $('.ui.sidebar').sidebar({
-						context: $('.top.segment')
-						 ,dimPage: false //사이드바 열때 화면색 변하는거 막음
-						 ,closable : false //pusher눌렀을때 sidebar 들어가는거 막음
-					}).sidebar('toggle');
+		    	  
 		       }
 			   ,error:function(xhrObject){
 				   alert(xhrObject.responseText);
 			   }
 			})
+			
+			
 		}
 }////////////end of showHotplace()
+
+
 </script>
 <title>Insert title here</title>
 </head>
@@ -190,6 +269,7 @@ function showHotplace(){//핫플보기 버튼 누르면 사이드 바 나오면�
 <!--=================================== 지도와 핫플레이스 목록================================  -->
 <div class="ui basic segment container">
    		
+   	
   		<button class="ui toggle right floated active button" id="showHot" onclick="showHotplace()">핫플보기</button>
   		<button class="ui right floated button" id="showAll">전체보기</button>
   		

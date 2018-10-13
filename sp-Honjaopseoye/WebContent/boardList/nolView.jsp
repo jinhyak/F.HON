@@ -40,9 +40,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../Semantic/semantic.css" />
-<script src="../Semantic/js/jquery-1.12.0.js"></script>
-<script src="../Semantic/semantic.js"></script>
+<%@include file="../include/include/subtop.jsp" %>
 <title>혼놀할래</title>
 </head>
 <body>
@@ -64,13 +62,13 @@ $(document).ready(function(){
 	
 	// 수정하기 버튼
 	$("#update_btn").click(function(){
-		location.href='../boardList/boardUpdateSub.hon?key='+ category + "&num=" + no;
+		location.href='../board/boardUpdateSub.hon?key='+ category + "&num=" + no;
 	});
 	
 	// 삭제하기 버튼
 	$("#delete_btn").click(function(){
 		alert(no + " , " + id + " , " + category);
-		location.href='../boardList/boardDelete.hon?no='+no+"&id="+id+"&category="+category;
+		location.href='../board/boardDelete.hon?no='+no+"&id="+id+"&category="+category;
 	});
 	
 })
@@ -79,7 +77,6 @@ $(document).ready(function(){
 </script>
 <br>
 <div align="center">
-<img src="./images/logo.png" width="800px" height="200px">
 </div>
 <br>
 <br>

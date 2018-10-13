@@ -24,13 +24,9 @@ public class QnALogic {
 	public List<Map<String, Object>> qnaBoardListLogic() throws ServletException, IOException {
 
 		logger.info("<QnALogic> qnaBoardListLogic 메소드 진입");
-
 		List<Map<String, Object>> qnaBoardListLogic = null;
-
 		qnaBoardListLogic = qnaDao.getQnAList();
-
 		logger.info("<QnALogic> qnaBoardListLogic 메소드 종료 >>>>>>>>>>>>>>>>");
-
 		return qnaBoardListLogic;
 	}
 

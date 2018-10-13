@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+var map;
+</script>
 </head>
 <body>
  <%@ include file="../../include/include/commonUI.jsp" %>
@@ -41,7 +44,7 @@
 			<h2>분류</h2>
 		</div>
 		<div class="ui dropdown" id="bang_gubun" name="bang_gubun">
- 			<input type="hidden"  name="store_business">
+ 			<input type="hidden" id="bang_gubun">
   				<i class="dropdown icon"></i>
   				<div class="default text">업종</div>
   			<div class="menu">
@@ -55,8 +58,8 @@
 		<div class="ui label">
 			<h2>1인당 금액대</h2>
 		</div>
-		<div class="ui dropdown" id="bang_time" name="time">
- 			<input type="hidden" name="bang_time">
+		<div class="ui dropdown">
+ 			<input type="hidden" name="bang_money" id="bang_money">
   				<i class="dropdown icon"></i>
   				<div class="default text">1인당 금액대</div>
   			<div class="menu">
@@ -74,8 +77,8 @@
 		<div class="ui label">
 			<h2>나이대</h2>
 		</div>
-		<div class="ui dropdown" id="bang_age">
- 			<input type="hidden" name="bang_age">
+		<div class="ui dropdown">
+ 			<input type="hidden" name="bang_age" id="bang_age">
   				<i class="dropdown icon"></i>
   				<div class="default text">나이대</div>
   			<div class="menu">
@@ -93,7 +96,7 @@
 			<h2>성별</h2>
 		</div>
 		<div class="ui dropdown" id="gender">
- 			<input type="hidden" name="bang_gender">
+ 			<input type="hidden" name="bang_gender" id="bang_gender">
   				<i class="dropdown icon"></i>
   				<div class="default text">성별</div>
   			<div class="menu">
@@ -107,8 +110,8 @@
 		<div class="ui label">
 			<h2>관심사</h2>
 		</div>
-		<div class="ui dropdown" id="bang_topic">
- 			<input type="hidden" name="bang_topic">
+		<div class="ui dropdown" >
+ 			<input type="hidden" name="bang_topic"id="bang_topic">
   				<i class="dropdown icon"></i>
   				<div class="default text">관심사</div>
   			<div class="menu">
@@ -130,16 +133,52 @@
   			</div>
 		</div>
 		<div class="ui divider"></div>
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 시간 등록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<div class="ui label">
+			<h2> 모임 시간</h2>
+		</div>
+		<div class="ui dropdown" >
+ 			<input type="hidden" name="bang_time"id="bang_time">
+  				<i class="dropdown icon"></i>
+  				<div class="default text">시간</div>
+  			<div class="menu">
+    			<div class="item" data-value="3300">오전 00:00</div>
+    			<div class="item" data-value="3301">오전 01:00</div>
+    			<div class="item" data-value="3302">오전 02:00</div>
+    			<div class="item" data-value="3303">오전 03:00</div>
+    			<div class="item" data-value="3304">오전 04:00</div>
+    			<div class="item" data-value="3305">오전 05:00</div>
+    			<div class="item" data-value="3306">오전 06:00</div>
+    			<div class="item" data-value="3307">오전 07:00</div>
+    			<div class="item" data-value="3308">오전 08:00</div>
+    			<div class="item" data-value="3309">오전 09:00</div>
+    			<div class="item" data-value="3310">오전 10:00</div>
+    			<div class="item" data-value="3311">오전 11:00</div>
+    			<div class="item" data-value="3312">오전 12:00</div>
+    			<div class="item" data-value="3313">오후 01:00</div>
+    			<div class="item" data-value="3314">오후 02:00</div>
+    			<div class="item" data-value="3315">오후 03:00</div>
+    			<div class="item" data-value="3316">오후 04:00</div>
+    			<div class="item" data-value="3317">오후 05:00</div>
+    			<div class="item" data-value="3318">오후 06:00</div>
+    			<div class="item" data-value="3319">오후 07:00</div>
+    			<div class="item" data-value="3320">오후 08:00</div>
+    			<div class="item" data-value="3321">오후 09:00</div>
+    			<div class="item" data-value="3322">오후 10:00</div>
+    			<div class="item" data-value="3323">오후 11:00</div>
+    			<div class="item" data-value="3324">오후 12:00</div>
+  			</div>
+		</div>
+		<div class="ui divider"></div>
 		<!-- =========================== 만남장소(가게등록)등록 시작 ============================ -->
 		<div class="ui labeled icon input" style="width:100%;">
   			<div class="ui label">
    				<h2>모임 장소 등록</h2>
   			</div>
-  			<input type="text" name="store_no" readonly="readonly"
-				  placeholder="모임 장소가 입력되지 않았습니다" id="store_no">
+  			<input type="text" id="store_address" readonly="readonly"
+				  placeholder="모임 장소가 입력되지 않았습니다">
 				 <div class="ui icon button" onclick="locationInput()" style="padding-top: 20px; width:100px;">
 				  	<i class="plus icon"></i>
-				  	장소 등록
 				 </div>
 		</div>
 		<div class="ui divider"></div>
@@ -161,32 +200,6 @@
 								<div class="field">
 									<input type="text" id="datepicker" name="bang_date" placeholder="날짜를 선택하세요.">
 								</div>
-								</div>
-							</div>
-							<div class="ui row">
-								<div class="ui three wide column">
-									<h4> 모임 시간</h4>
-								</div>
-								<div class="ui column">
-								<div class="field">
-									<div class="ui input">
-										<input type="text" id="bang_time" name="bang_time" placeholder="시간을 선택하세요." readonly="">
-									</div>
-								</div>
-								</div>
-							</div>
-							<div class="ui row">
-								<div class="ui three wide column"></div>
-								<div class="ui column">
-									<button class="ui blue button" value="08:00">08:00</button>
-									<button class="ui blue button" value="10:00">10:00</button>
-									<button class="ui blue button" value="12:00">12:00</button>
-									<button class="ui blue button" value="14:00">14:00</button>
-									<div class="ui divider"></div>
-									<button class="ui blue button" value="16:00">16:00</button>
-									<button class="ui blue button" value="18:00">18:00</button>
-									<button class="ui blue button" value="20:00">20:00</button>
-									<button class="ui blue button" value="22:00">22:00</button>
 								</div>
 							</div>
 							<div class="ui row">
@@ -218,10 +231,10 @@
 							</div>		
 		<div class="ui divider"></div>
 		<div class="ui basic center aligned segment">
-			<button class="ui primary button" id="sendbutton" onclick="submit()">
+			<button class="ui primary button" id="sendbutton" onclick="gogogo()">
   			등록
   			</button>
-			<button class="ui button" onclick=" location.reload();">
+			<button class="ui button" onclick="win_close();">
   			취소
 			</button>
 		</div>
@@ -230,7 +243,7 @@
 <div class="ui modal" id="modal_location">
 	<i class="close icon"></i>
 	<div class="header">
-			<h3>위도경도 등록창</h3>
+			<h3>모임 장소 찾기~</h3>
 	</div>
 	<div class="content">
 		<div class="body">
@@ -238,7 +251,7 @@
 			style="padding-top: 0px;padding-bottom: 0px;">
 			<!--========주소 검색 버튼========  -->
 			<div class="ui action input">
- 				<input type="text" placeholder="주소를 입력하세요" id="search_addr">
+ 				<input type="text" placeholder="모임 장소 검색" id="search_addr">
   				<button class="ui button" id="addr_btn">검색</button>
 			</div>
 			<!--========주소 검색 버튼 끝========-->
@@ -246,7 +259,7 @@
 			style="margin-top: 0px;padding-right: 0px;margin-right:
 			0px;padding-top: 0px;margin-bottom: 0px;">
 				<div class="ui pointing below big label">
-      				검색후 매장의 위치를 클릭하세요
+      				매장찾기!!!~~~
     			</div>
     		</div>
 			<div class="ui divider"></div>
@@ -263,18 +276,19 @@
   				<div class="ui label">
     			주소  
     			</div>
-    			<input type="text" placeholder="주소가 없습니다"readonly="readonly" id="result_address">
+    			<input type="text" placeholder="모임 장소 주소"readonly="readonly" id="address">
 			</div>
 			<div class="ui labeled input" style="width:100%;padding-top: 5px;">
   			<div class="ui label">
-   				상세주소
+   				가게 이름
   			</div>
-  			<input type="text" placeholder="상세주소를 입력하세요" id="detail_address" name="detail_address">
-	  			<div class="ui primary button" onclick="addr_confirm()" style="margin-left: 3px;">
+  			<input type="text" placeholder="가게 이름" readonly="readonly" id="name">
+	  			<div class="ui primary button" onclick="confirm()" style="margin-left: 3px;">
   				확인
   				</div>
   				<div class="ui primary button" onclick="cancel()"style="margin-right: 0px;">
   				취소	
+				<input type="hidden" id="store_no">
   				</div>
 			</div>
 			<!-- ==========버튼과 인풋 끝=========-->
@@ -283,7 +297,56 @@
 	</div>
 </div>
 <script>
+	function gogogo(){
+		alert("hi");
+		var bang_li = $('#bang_limit_people').val();
+		var bang_address = $('#store_address').val();
+		var bang_time = $("#bang_time").val();
+		var bang_date = $('#datepicker').val();
+		var bang_memo = $('#bang_memo').val();
+		var bang_name = $('#bang_name').val();
+		var bang_gubun = $('#bang_gubun').val();
+		var bang_money = $("#bang_money").val();
+		var bang_age = $("#bang_age").val();
+		var bang_gender = $("#bang_gender").val();
+		var bang_topic = $("#bang_topic").val();
+		var store_no = $("#store_no").val();
+		var mem_id = 'test';
+		alert(store_no)
+		var param = "bang_limit_people="+bang_li+"&bang_address="+bang_address+"&bang_time="+bang_time+
+				    "&bang_date="+bang_date+"&bang_memo="+bang_memo+"&bang_name="+bang_name+
+				    "&bang_gubun="+bang_gubun+"&bang_money="+bang_money+"&bang_age="+bang_age+
+				    "&bang_gender="+bang_gender+"&bang_topic="+bang_topic+"&store_no="+store_no+"&mem_id="+mem_id;
+		$.ajax({
+			data:param,
+			url:"../../group/groupInsert.hon",
+			method:"get",
+			success:function(data){
+				alert(data);
+				if(data==1){
+					alert("모임방을 개설하셨습니다.")
+					window.close();
+				}
+				else{
+					alert("방 만들기 실패");
+				}
+			}
+		})
+	}
+	function win_close(){
+		self.close();
+	}
+	function confirm(){
+		var address = $('#address').val();
+		var name = $('#name').val();
+		$('#store_address').val(address+', '+name);
+		$('#modal_location').modal('hide');
+	}
+	function cancel(){
+		$("#modal_location").modal('hide');
+	} 
 	function locationInput(){
+			store_list()
 			$("#modal_location").modal("show");
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	   	 	mapOption = {
@@ -291,7 +354,7 @@
 	       		 level: 3 // 지도의 확대 레벨
 	   		 };  
 			// 지도를 생성합니다    
-		 	var map = new daum.maps.Map(mapContainer, mapOption);
+		 	map = new daum.maps.Map(mapContainer, mapOption);
 			$('#addr_btn').click(function(){
 			var value = $.trim($('#search_addr').val())
 			if(value==""){
@@ -302,9 +365,8 @@
 			alert(value)
 			// 장소 검색 객체를 생성합니다
 			var ps = new daum.maps.services.Places(); 
-	
 			// 키워드로 장소를 검색합니다
-			ps.keywordSearch(value, placesSearchCB); 
+			ps.keywordSearch(value, placesSearchCB);
 	
 			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 			function placesSearchCB (data, status, pagination) {		
@@ -373,10 +435,57 @@ $("#datepicker").datepicker({
 	  maxDate: "+2Y"
 });
 	$('.dropdown').dropdown();
-	$('.ui.blue.button').click(function () {
+	$('.blue.button').click(function () {
 		var time = $(this).val();
-		$("#reserv_time").attr('value', time);
+		$("#bang_time").attr('value', time);
 	});
+	function store_list(){
+		  $.ajax({
+		    	method:"post"
+		    	,url:"/sp-Honjaopseoye/group/store_sel.hon"
+		    	,success:function(result){
+		    	/* var temp = JSON.stringify(result); */
+				obj = JSON.parse(result);
+					for(var i = 0; i<obj.length;i++){
+						SpMap(obj[i].STORE_ADDR,obj[i].STORE_NAME,obj[i].STORE_NO);
+					}
+		    	}
+		        ,error:function(xhrObject){
+		        	alert(xhrObject.responseText);
+		        }
+		    });
+	};
+	function SpMap(address,name,no){
+		// 주소-좌표 변환 객체를 생성합니다
+		
+		var geocoder = new daum.maps.services.Geocoder();
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(address, function(result, status) {
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+		        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new daum.maps.Marker({
+		            map: map,
+		            position: coords,
+		            clickable: true
+		        });
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new daum.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
+		        });
+		        infowindow.open(map, marker);
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    	daum.maps.event.addListener(marker,'click', function() {
+		    		$("#address").val(address);
+		    		$("#name").val(name);
+		    		$("#store_no").attr("value",no);
+		    		alert(no);
+		   		});
+		    } 
+		});    
+		}
 </script>
 
 </body>

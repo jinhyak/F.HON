@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="../../include/include/commonUI.jsp" %>
 <%
-	String fri_id = "test2";
-	String mem_id = "test";
+	String fri_id = null;
+	String mem_id = null;
 	if(request.getParameter("mem_id")!=null){
 		mem_id = request.getParameter("mem_id");
 	};
@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="ui container" style="width:800px;heigth:800px;margin-top:50px">
+<div class="ui container" style="width:793;heigth:600.53;margin-top:50px">
 		<div class="ui top attached segment" style="background: rgba(0,0,0,0.1)">
 		  <p><h3>채팅하기</h3></p>
 		</div>
@@ -110,10 +110,15 @@ var Lastno=0;
 			msgList(Lastno)
 		}, 1000)
 	}
-	$(function(){
-		alert("시작")
-		msgList('0');
-		infinityMsg();
+	$(document).ready(function(){
+		if(mem_id!='비회원'){
+			alert("시작")
+			msgList('0');
+			infinityMsg();
+		}
+		else{
+			alert("비회원은 안됨")
+		}
 	})
 </script>
 </body>

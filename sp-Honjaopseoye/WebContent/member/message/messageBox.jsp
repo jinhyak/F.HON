@@ -32,7 +32,7 @@
 <script type="text/javascript">
 	function getListRecentMsg(){
 		var id = '';
-		var mem_id='test';
+		var mem_id='<%=mem_id%>'
 		var param = "mem_id="+mem_id;
 		$.ajax({
 			 method:"post"
@@ -46,7 +46,7 @@
 							this.className="listIn";
 							this.onclick = function(){
 								id = this.cells.item(1).innerHTML
-								cmm_window_popup("../../member/message/message.jsp?fri_id="+id+"&mem_id="+mem_id, 800, 800, "채팅창")
+								cmm_window_popup("../../member/message/message.jsp?fri_id="+id+"&mem_id="+mem_id, 600, 600, "채팅창")
 							}
 						};
 						trs[i].onmouseout = function(){
@@ -83,9 +83,10 @@
 	}
 	$(document).ready(function(){
 		getListRecentMsg()
-		setInterval(function() {
+/* 		setInterval(function() {
 			getUnReadMsg();
-		}, 3000)
+		}, 3000) */
+		getUnReadMsg();
 	})
 </script>
 </body>

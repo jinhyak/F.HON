@@ -6,7 +6,7 @@
 <% 
 	List<Map<String,Object>> list = (List<Map<String,Object>>)request.getAttribute("result");
 	List<Map<String,Object>> members = (List<Map<String,Object>>)session.getAttribute("memList");
-	String mem_id = "test";
+	String mem_id = members.get(0).get("MEM_ID").toString();
 	String fri_id = null;
 	if(list!=null&&list.size()!=0){
 		for(int i = 0 ; i<list.size();i++){
