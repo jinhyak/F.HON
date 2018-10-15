@@ -126,7 +126,7 @@ var msg_count=0;
   			url:"/sp-Honjaopseoye/message/allUnReadMsg.hon",
   			data:param,
   			success:function(data){
-  				$("#msg_count").text(msg_count);
+  				$("#msg_count").text(data);
   			},
   			error:function(data){
   				alert("메시지 전달 오류")

@@ -17,7 +17,7 @@
 <body>
 <div class="ui container" style="width:800px;heigth:800px;margin-top:50px">
 		<div class="ui attached segment pushable" style="width:100%;height:800px">
-			<table class="ui celled table" id="boxtable">
+			<table class="ui basic table" id="boxtable">
 				<thead>
 			    	<tr><th colspan="3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
 					<h2>메시지 목록함</h2></font></font></th>

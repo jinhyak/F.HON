@@ -3,6 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style type="text/css">
+.ui.pointing.label{
+  width: 300px;
+  white-space: clipe;
+  word-wrap:break-word;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="../../include/include/commonUI.jsp" %>
 <%
@@ -22,8 +29,8 @@
 		<div class="ui top attached segment" style="background: rgba(0,0,0,0.1)">
 		  <p><h3>채팅하기</h3></p>
 		</div>
-		<div class="ui attached segment pushable" style="width:100%;height:400px" id="scroll">
-			<div class="ui small divided list" id="msgList">
+		<div class="ui attached segment pushable" style="width:100%;height:400px;" id="scroll">
+			<div class="ui list" id="msgList">
 			</div>
 		</div>
 		<div class="ui bottom attached segment"style="margin-top:20px;background:rgba(0,0,0,0.1);">

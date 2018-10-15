@@ -25,7 +25,7 @@
 		      <td class="collapsing fri_id" style="color:#088A85;font-weight:bold"><%=fri_id%></td>
 		      <td>
 		      	<div class="ui compact menu">
-		      	<a class="item">
+		      	<a class="item context">
 		      	<i><%=list.get(i).get("MSG_CONTENT").toString().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br>")%></i>
 		      	<div class="floating ui red label">0</div>
 		      	</a>
