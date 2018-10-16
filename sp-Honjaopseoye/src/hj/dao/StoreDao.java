@@ -36,6 +36,14 @@ public class StoreDao {
 		list = sqlSessionTemplate.selectList("selectStore8", pMap);
 		return list;
 	}
+	//전체 보기
+	public List<Map<String, Object>> searchStoreAll(Map<String, Object> pMap) throws IOException{
+		List<Map<String,Object>> list = null;
+		logger.info("selectStoreAll호출 성공");
+		list = sqlSessionTemplate.selectList("selectStoreAll", pMap);
+		return list;
+	}
+	
 	//상세보기
 	public List<Map<String, Object>> storeDetail(String store_no) {
 		List<Map<String,Object>> list = null;
@@ -50,5 +58,12 @@ public class StoreDao {
 		return null;
 		
 	}
-	
+	//별점 주기
+	public int stoeSetScore(Map<String, Object> pMap) {
+		int result = 0;
+		logger.info("storeSetScore호출 성공");
+		result = sqlSessionTemplate.update("storeSetScore",pMap);		
+		return result;
+	}
 }
+	

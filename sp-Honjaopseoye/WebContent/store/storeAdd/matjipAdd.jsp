@@ -57,7 +57,7 @@ $(document).ready(function(){
 	  					//alert(result)
 	  					if(result=='1'){
 	  						alert("등록되었습니다");
-	  						location.href="../../main/main/main.jsp";
+	  						location.href="./storeAdd.jsp";
 	  					}
 	  					else{
 	  						alert("등록이 실패하였습니다");
@@ -87,7 +87,7 @@ $(document).ready(function(){
 			$("#store_name").focus();
 			return false;
 		};
-		var check = regexp = /^[0-9]*$/
+		var check = regexp = /^[0-9.;-]*$/
 		var tel = $("#store_tel").val();
 		if($.trim($('#store_tel').val())==""){
 			alert("전화번호를 입력하세요");
@@ -95,11 +95,10 @@ $(document).ready(function(){
 			return false;
 		}
 		else if(!check.test(tel)){
-			alert("전화번호는 숫자만 입력가능합니다")	;
+			alert("전화번호는 숫자와 -만 입력가능합니다")	;
 			$("#store_tel").focus();
 			return false;
 		};
-		
 		var business = $('#store_business').dropdown('get value');
 		if($.trim(business)==""){
 			alert("업종을 선택하세요");
@@ -120,16 +119,6 @@ $(document).ready(function(){
 		if($.trim($('#store_img').val())==""){
 			alert("대표이미지를 첨부하세요");
 			$("#store_img").focus();
-			return false;
-		};
-		if($.trim($('#store_introduce').val())==""){
-			alert("가게 한줄소개를 입력하세요");
-			$("#store_introduce").focus();
-			return false;
-		};
-		if($.trim($('#store_homepage').val())==""){
-			alert("홈페이지가 없다면 없음을 입력해주세요");
-			$("#store_homepage").focus();
 			return false;
 		};
 		if($.trim($('#store_keyword').val())==""){
@@ -165,7 +154,7 @@ $(document).ready(function(){
 			return;
 		}
 		else{
-			alert(value)
+			//alert(value)
 			// 장소 검색 객체를 생성합니다
 			var ps = new daum.maps.services.Places(); 
 	
@@ -257,7 +246,7 @@ $(document).ready(function(){
   			<div class="ui label">
    				<h2>전화번호</h2>
   			</div>
-  			<input type="text" id="store_tel" name="store_tel" placeholder="숫자만 입력하세요">
+  			<input type="text" id="store_tel" name="store_tel" placeholder="ex)010-1111-1111">
 		</div>
 		<!-- ================================가게 전화번호 등록 끝==================== -->
 		<div class="ui divider"></div>
