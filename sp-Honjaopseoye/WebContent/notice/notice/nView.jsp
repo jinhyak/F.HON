@@ -23,7 +23,6 @@
 		noti_date = notiList.get(0).get("NOTI_DATE").toString();
 		noti_content = notiList.get(0).get("NOTI_CONTENT").toString();
 	}
-	
 %>
 <html>
 <head>
