@@ -345,19 +345,13 @@ function searchPlaces() {
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch(keyword, testDao); 
 }
-
 function testDao(){
     $.ajax({
     	method:"post"
-    	,url:"/sp-Honjaopseoye/store/store_sel.hon"
+    	,url:"/sp-Honjaopseoye/group/searchSelect.hon"
     	,success:function(result){
-    		var obj = JSON.parse(result);
-/*     		for(var i=0;i<obj.length;i++){
-    			alert(""+obj[i].STORE_ADDRESS);
-    		} */
-    		//alert("obj:"+obj);[object,object]
     		//alert("result:"+result)
-    		displayPlaces(obj,result);
+    		displayPlaces(result);
     		//displayPlaces(result);
     	}
     })
@@ -367,10 +361,9 @@ function testDao(){
 }
 //function change_address(places,i){
 //function change_address(places,i,bounds,fragment){
-function change_address(places,result1,bounds,fragment,i){
+function change_address(places,bounds,fragment,i){
     var geocoder = new daum.maps.services.Geocoder();
     //alert("result1:"+result1);
-    var temp = JSON.parse(result1);
     //alert("result:"+temp[0].STORE_NAME+","+temp[1].STORE_NAME);
   	var callback = function(result, status) {
 			if (status === daum.maps.services.Status.OK) {
@@ -402,8 +395,6 @@ function change_address(places,result1,bounds,fragment,i){
 		            };
 		        })(marker, places[i].STORE_NAME);
 		        fragment.appendChild(itemEl);					
-		    	
-		    	
 		    }/////////// end of if
 		};
 		//geocoder.addressSearch(places[i].STORE_ADDR, callback);	
@@ -414,7 +405,7 @@ function change_address(places,result1,bounds,fragment,i){
 		//console.log("temp[i].STORE_ADDR:"+temp[i].STORE_ADDR);
 }/////////////////// end of change_address
 // 검색 결과 목록과 마커를 표출하는 함수입니다
-function displayPlaces(places, result) {//[object,object]
+function displayPlaces(places) {//[object,object]
     alert("displayPlaces:"+result);
 	var listEl = document.getElementById('placesList'),
     menuEl = document.getElementById('menu_wrap'),
@@ -428,7 +419,7 @@ function displayPlaces(places, result) {//[object,object]
     for (var i=0;i<places.length;i++){
 //    	change_address(places,i);
 //    	change_address(places,i,bounds,fragment);
-    	change_address(places,result,bounds,fragment,i);
+    	change_address(places,bounds,fragment,i);
     	//console.log("for문 끝")
     }
     //console.log(x);

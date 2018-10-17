@@ -1,6 +1,7 @@
 package hj.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,4 +48,28 @@ public class GroupController {
 	  String json = gs.toJson(list);
 	  return json;
    }
+   
+   @ResponseBody
+   @RequestMapping(value="/gListSelect.hon")
+   public List<Map<String, Object>> listSelect() {
+	   List<Map<String,Object>> list = null;
+	   list = groupDao.listSelect();
+	   return list;
+   }
+   
+   @ResponseBody
+   @RequestMapping(value="/searchSelect.hon", produces="text/html; charset=UTF-8")
+   public String searchSelect(@RequestParam String value) {
+	   List<Map<String,Object>> list = null;
+	   System.out.println(value);
+	   list = groupDao.searchSelect(value);
+	   HashMap<String, Object> hash = new HashMap<String,Object>();
+	   logger.info(list);
+	   hash.put("data", list);
+	   Gson gs = new Gson();
+	   String json = gs.toJson(hash);
+	   System.out.println(json);
+	   return json;
+   }
+   
 }

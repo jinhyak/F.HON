@@ -8,7 +8,9 @@
    		   b.bang_topic BANG_TOPIC, s.store_keyword STORE_KEYWORD, 
    		   b.bang_gender BANG_GENDER, b.bang_age BANG_AGE, b.bang_money BANG_MONEY, 
    		   b.bang_date BANG_DATE, b.bang_time BANG_TIME,
-   		   b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
+   		   b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE,
+	       s.store_latitude STORE_LATITUDE, s.store_longitude STORE_LONGITUDE,
+	       s.store_no STORE_NO, s.store_img STORE_IMG
 	from   bang b, store s
 	where  b.store_no = s.store_no
 </select>

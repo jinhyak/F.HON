@@ -115,7 +115,6 @@ public class MenuController {
 			int result = 0;
 			HangulConversion hc = new HangulConversion();
 			String id = "beyonce200";
-			
 			String n_qna_pw = hc.toUTF(qna_pw);
 			String n_qna_category = hc.toUTF(qna_category);
 			String n_qna_title = hc.toUTF(qna_title);
