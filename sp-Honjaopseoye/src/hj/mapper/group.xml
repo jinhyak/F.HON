@@ -68,8 +68,9 @@
 
 <!-- 지도 옆 목록에서 방 선택시 store_no, bang_no 받음 -->
 <select id="groupSelect" parameterType="map" resultType="map">	
-	select b.bang_no BANG_NO, s.store_no STORE_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
-	       s.store_name STORE_NAME, s.store_addr STORE_ADDR,
+	select b.bang_id BANG_ID, b.bang_no BANG_NO, s.store_no STORE_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
+		   s.store_latitude STORE_LATITUDE, s.store_longitude STROE_LONGITUDE,	
+	       s.store_name STORE_NAME, s.store_addr STORE_ADDR, s.store_score STORE_SCORE, s.store_img STORE_IMG,
 	       (select gstring from store s, gubunja gb WHERE s.store_business = gb.gprotocol AND  s.store_no = #{store_no}) STORE_BUSINESS,
 	       (select gstring from bang b, gubunja gb WHERE b.bang_topic = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_TOPIC,
 	       s.store_keyword STORE_KEYWORD, 
@@ -112,10 +113,14 @@
 </select>
 
 <!-- 모임 참석버튼 누를시 info에 인서트 -->
-<insert id="groupAttend" parameterType="map">
-	insert into bang_info
-	values(#{bang_no}, #{mem_id}, #{mem_memo})
-</insert>
+<select id="groupAttend" parameterType="map" statementType="CALLABLE">
+	{ call proc_bang_attend(
+		#{bang_no, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String},
+		#{mem_id, mode=IN,  jdbcType=VARCHAR, javaType=java.lang.String},
+		#{mem_memo, mode=IN,  jdbcType=VARCHAR, javaType=java.lang.String},
+		#{result, mode=OUT, jdbcType=NUMERIC, javaType=int}
+	)}	
+</select>	
 
 <!-- 모임 취소버튼 누를시 info에 델리트 -->
 <delete id="groupAbsent" parameterType="string">
@@ -124,10 +129,16 @@
 </delete>
 
 <!-- 모임방 삭제버튼(방장만) -->
-<delete id="groupDelete" parameterType="string">
+<select id="groupDelete" parameterType="map" statementType="CALLABLE">
+	{ call proc_bang_delete(
+		#{bang_no, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String},
+		#{result, mode=OUT, jdbcType=NUMERIC, javaType=int}
+	)}	
+</select>	
+<!-- <delete id="groupDelete" parameterType="string">
 	delete from bang
 	where bang_no = #{bang_no}
-</delete>
+</delete> -->
 
 <!-- 모임방 수정(뱡장) 가게수정은 불가 방폭파후 다시생성 -->
 <update id="groupUpdate" parameterType="map">

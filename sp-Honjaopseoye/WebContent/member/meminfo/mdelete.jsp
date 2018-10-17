@@ -99,7 +99,7 @@
 										</div>
 										<div class="column">
 											<div class="ui disabled input">
-			  									<input type="text" id="mem_id" name="mem_id" value="<%=mem_id%>">
+			  									<input type="text" id="mem_id" name="mem_id" value="<%=mem_id %>">
 											</div>
 										</div>
 									</div>
@@ -108,7 +108,7 @@
 											<label>비밀번호</label>
 										</div>
 										<div class="column">
-											<div class="ui focus input error">
+											<div class="ui focus pmem_pw exactly error input" id="pw_input" name="pw_input">
 			  									<input type="password" id="pmem_pw" name="pmem_pw" placeholder="비밀번호 입력">
 											</div>
 										</div>
@@ -116,7 +116,7 @@
 									<div class="row">
 										<div class="ui fluid large teal submit button" id="btn_drop" name="btn_drop">탈퇴하기</div>
 									</div>
-								</div>
+									</div>
 								<div class="ui error message"></div>
 								</form>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -128,20 +128,20 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-	$("#btn_drop").click(function() {
-		var pmem_pw = $("#pmem_pw").val();
-		if(pmem_pw == mem_pw) {
-			alert("탈퇴 요청이 완료되었습니다.");
-			$("#f_form").attr("method","post");
-			$("#f_form").attr("action","../../member/empty/delete.test");
-			$("#f_form").submit();//이 때 서버로 전송이 일어남
-		}
-		else {
-			alert("비밀번호가 일치하지 않습니다.");
-			$("#pmem_pw").val('');
-		}
-	});// /main/member/empty/delet.test
+<script type="text/javascript">
+$("#btn_drop").click(function() {
+	var pmem_pw = $("#pmem_pw").val();
+	if(pmem_pw == mem_pw) {
+		alert("탈퇴 요청이 완료되었습니다.");
+		$("#f_form").attr("method","post");
+		$("#f_form").attr("action","../../member/empty/delete.test");
+		$("#f_form").submit();//이 때 서버로 전송이 일어남
+	}
+	else {
+		alert("비밀번호가 일치하지 않습니다.");
+		$("#pmem_pw").val('');
+	}
+});// /main/member/empty/delet.test
 </script>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 </div>

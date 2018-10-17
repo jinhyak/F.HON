@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String bang_no = request.getParameter("bang_no");
+	String store_no = request.getParameter("store_no");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; UTF-8">
 <title>예약하기</title>
 <script type="text/javascript">
+	
 </script>
 </head>
 <body>
@@ -61,8 +66,8 @@
 					<div class="ui segment">
 						<!-- <div class="ui form" id="f_reserv" name="f_reserv"> -->
 						<!-- <form id="f_reserv2"> -->
-							<input type="hidden" id="bang_no" name="bang_no" value="1">
-							<input type="hidden" id="store_no" name="store_no" value="1">
+							<%-- <input type="hidden" id="bang_no" name="bang_no" value=<%=bang_no %>>
+							<input type="hidden" id="store_no" name="store_no" value=<%=store_no %>> --%>
 						<div class="ui two column internally celled padded grid">
 							<div class="ui row">
 								<div class="ui three wide column">
@@ -87,7 +92,9 @@
 								</div>
 							</div>
 							<div class="ui row">
-								<div class="ui three wide column"></div>
+								<div class="ui three wide column">
+									<h4>선택</h4>
+								</div>
 								<div class="ui column">
 									<button class="ui blue button" value="08:00">08:00</button>
 									<button class="ui blue button" value="10:00">10:00</button>
@@ -191,12 +198,12 @@ $("#btn_reserv").click(function () {
 	} else if($("#reserv_people").val()=='') {
 		alert("인원을 입력하세요");
 	} else {
-		var bang_no = $("#bang_no").val();
-		var store_no = $("#store_no").val();
+		//var bang_no = $("#bang_no").val();
+		//var store_no = $("#store_no").val();
 		var reserv_date = $("#datepicker").val();
 		var reserv_time = $("#reserv_time").val();
 		var reserv_people = $("#reserv_people").val();
-		var param = "bang_no="+bang_no+"&store_no="+store_no+
+		var param = "bang_no="+<%=bang_no%>+"&store_no="+<%=store_no%>+
 					"&reserv_date="+reserv_date+"&reserv_time="+reserv_time+"&reserv_people="+reserv_people;
 		//alert(param);
 		$.ajax({
@@ -211,7 +218,11 @@ $("#btn_reserv").click(function () {
 		    	    	location.href="./reserv.jsp";
 		    	    }
 		    	  }).modal('show');
-			}
+			},
+			error:function(xhrObject){
+				alert("예약실패!!모임방 방장만 예약가능합니다.");
+				alert(xhrObject.responseText);
+		  	}
 		});
 	}
 });

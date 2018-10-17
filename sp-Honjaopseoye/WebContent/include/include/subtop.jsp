@@ -66,7 +66,7 @@ var msg_count=0;
 <title>Insert title here</title>
 </head>
 <body>
-  <div class="ui fixed inverted menu">
+  <div class="ui fixed inverted orange menu">
     <div class="ui container">
       <a href="../../main/main/main.jsp" class="header item">
         <img class="logo" src="../../image/logo.png" style="width:100px; heigth:100px">

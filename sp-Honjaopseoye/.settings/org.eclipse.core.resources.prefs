@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/result/result.jsp=UTF-8
+encoding//src/hj/dao/GroupDao.java=UTF-8
 encoding//src/hj/dao/MemberDao.java=UTF-8

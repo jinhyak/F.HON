@@ -1,5 +1,6 @@
 package hj.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class GroupDao {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 	
-	//Áöµµ ¿·¿¡ ¸ñ·Ï¿¡ »Ñ·ÁÁú ±×·ì¹æ ÀüÃ¼¸ñ·Ï list
+	//ì§€ë„ ì˜†ì— ëª©ë¡ì— ë¿Œë ¤ì§ˆ ê·¸ë£¹ë°© ì „ì²´ëª©ë¡ list
 		public List<Map<String, Object>> listSelect() {
 			logger.info("listSelect");
 			List<Map<String, Object>> bangList = null;
@@ -23,7 +24,7 @@ public class GroupDao {
 			logger.info("bangList:"+bangList);
 			return bangList;
 		}
-		//°Ë»öÁ¶°Ç¿¡ µû¸¥ ¸®½ºÆ® Á¶È¸
+		//ê²€ìƒ‰ì¡°ê±´ì— ë”°ë¥¸ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ
 		public List<Map<String, Object>> searchSelect(String value) {
 			logger.info("searchSelect");
 			List<Map<String, Object>> searchList = null;
@@ -31,7 +32,7 @@ public class GroupDao {
 			logger.info("searchList:"+searchList);
 			return searchList;
 		}
-		//Áöµµ À§ ºĞ·ù ÇÊÅÍ¿¡ µû¸¥ °Ë»ö - ´ÙÁßÃ¼Å©½Ã ¸ğµç keyword °ªÀ» ¹ŞÀ½ ÇÁ·ÎÄÚÄİ°ª
+		//ì§€ë„ ìœ„ ë¶„ë¥˜ í•„í„°ì— ë”°ë¥¸ ê²€ìƒ‰ - ë‹¤ì¤‘ì²´í¬ì‹œ ëª¨ë“  keyword ê°’ì„ ë°›ìŒ í”„ë¡œì½”ì½œê°’
 		public List<Map<String, Object>> filterSelect(Map<String, Object> pMap) {
 			logger.info("filterSelect");
 			List<Map<String, Object>> filterList = null;
@@ -39,7 +40,7 @@ public class GroupDao {
 			logger.info("filterList:"+filterList);
 			return filterList;
 		}
-		//Áöµµ ¿· ¸ñ·Ï¿¡¼­ ¹æ ¼±ÅÃ½Ã ¹æÀÇÁ¤º¸ store_no, bang_no ¹ŞÀ½
+		//ì§€ë„ ì˜† ëª©ë¡ì—ì„œ ë°© ì„ íƒì‹œ ë°©ì˜ì •ë³´ store_no, bang_no ë°›ìŒ
 		public List<Map<String, Object>> groupSelect(Map<String, Object> pMap) {
 			logger.info("groupSelect");
 			List<Map<String, Object>> groupInfoList = null;
@@ -47,7 +48,7 @@ public class GroupDao {
 			logger.info("groupInfoList:"+groupInfoList);
 			return groupInfoList;
 		}
-		//¹æ ¼±ÅÃÈÄ Ä£±¸¸ñ·Ïº¸±â ¹öÆ° Å¬¸¯½Ã º¸¿©ÁÙ ±× ¹æ bang_noÀÇ Ä£±¸³»¿ë
+		//ë°© ì„ íƒí›„ ì¹œêµ¬ëª©ë¡ë³´ê¸° ë²„íŠ¼ í´ë¦­ì‹œ ë³´ì—¬ì¤„ ê·¸ ë°© bang_noì˜ ì¹œêµ¬ë‚´ìš©
 		public List<Map<String, Object>> friendSelect(String bang_no) {
 			logger.info("friendSelect");
 			List<Map<String, Object>> friendList = null;
@@ -55,7 +56,7 @@ public class GroupDao {
 			logger.info("friendList:"+friendList);
 			return friendList;
 		}
-		//¸ğÀÓ¹æ °³¼³»ı¼º ¹öÆ° ´©¸¦½Ã input¿¡ ¹ÚÀº°ªµé ´Ù ¹ŞÀ½
+		//ëª¨ì„ë°© ê°œì„¤ìƒì„± ë²„íŠ¼ ëˆ„ë¥¼ì‹œ inputì— ë°•ì€ê°’ë“¤ ë‹¤ ë°›ìŒ
 		public int groupInsert(Map<String, Object> pMap) {
 			logger.info("groupInsert");
 			int result = 0;
@@ -63,7 +64,7 @@ public class GroupDao {
 			logger.info("result: " + result);
 			return result;
 		}
-		//¹æµî·Ï½Ã ÁÖ¼Òµî·Ï ´©¸¦½Ã °¡°Ô ÁÖ¼ÒÁ¤º¸ °Ë»ö¾î keyword ¹ŞÀ½
+		//ë°©ë“±ë¡ì‹œ ì£¼ì†Œë“±ë¡ ëˆ„ë¥¼ì‹œ ê°€ê²Œ ì£¼ì†Œì •ë³´ ê²€ìƒ‰ì–´ keyword ë°›ìŒ
 		public List<Map<String, Object>> storeSelect(Map<String,Object> pMap) {
 			logger.info("storeSelect");
 			List<Map<String, Object>> storeList = null;
@@ -71,15 +72,16 @@ public class GroupDao {
 			logger.info("storeList:"+storeList);
 			return storeList;
 		}
-		//¸ğÀÓ Âü¼®¹öÆ° ´©¸¦½Ã info¿¡ ÀÎ¼­Æ® bang_no, mem_id, mem_memo¹ŞÀ½
+		//ëª¨ì„ ì°¸ì„ë²„íŠ¼ ëˆ„ë¥¼ì‹œ infoì— ì¸ì„œíŠ¸ bang_no, mem_id, mem_memoë°›ìŒ
 		public int groupAttend(Map<String, Object> pMap) {
 			logger.info("groupAttend");
-			int result = 0;
-			result = sqlSessionTemplate.insert("groupMapper.groupAttend", pMap);
-			logger.info("result: " + result);
+			sqlSessionTemplate.selectOne("groupMapper.groupAttend", pMap);
+			int result = 0;		
+			result = (int)pMap.get("result");		
+			logger.info("result : "+result);
 			return result;
 		}
-		//¸ğÀÓ Ãë¼Ò¹öÆ° ´©¸¦½Ã info¿¡ µ¨¸®Æ® mem_id¹ŞÀ½
+		//ëª¨ì„ ì·¨ì†Œë²„íŠ¼ ëˆ„ë¥¼ì‹œ infoì— ë¸ë¦¬íŠ¸ mem_idë°›ìŒ
 		public int groupAbsent(String mem_id) {
 			logger.info("groupAbsent");
 			int result = 0;
@@ -87,15 +89,16 @@ public class GroupDao {
 			logger.info("result : " + result);
 			return result;
 		}
-		//¸ğÀÓ¹æ »èÁ¦¹öÆ°(¹æÀå¸¸) bang_no ¹ŞÀ½
-		public int groupDelete(String bang_no) {
+		//ëª¨ì„ë°© ì‚­ì œë²„íŠ¼(ë°©ì¥ë§Œ) bang_no ë°›ìŒ
+		public int groupDelete(Map<String, Object> pMap) {
 			logger.info("groupDelete");
+			sqlSessionTemplate.selectOne("groupMapper.groupDelete", pMap);
 			int result = 0;
-			result = sqlSessionTemplate.delete("groupMapper.groupDelete", bang_no);
+			result = (int)pMap.get("result");
 			logger.info("result : " + result);
 			return result;
 		}
-		//¸ğÀÓ¹æ ¼öÁ¤(“‡Àå) °¡°Ô¼öÁ¤Àº ºÒ°¡ ¹æÆøÆÄÈÄ ´Ù½Ã»ı¼º input°ªµé ´Ù ¹Ş¾Æ¿È
+		//ëª¨ì„ë°© ìˆ˜ì •(ï¿½ï¿½ì¥) ê°€ê²Œìˆ˜ì •ì€ ë¶ˆê°€ ë°©í­íŒŒí›„ ë‹¤ì‹œìƒì„± inputê°’ë“¤ ë‹¤ ë°›ì•„ì˜´
 		public int groupUpdate(Map<String, Object> pMap) {
 			logger.info("groupUpdate");
 			int result = 0;
