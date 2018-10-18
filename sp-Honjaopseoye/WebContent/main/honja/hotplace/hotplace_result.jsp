@@ -20,44 +20,49 @@
 	String price = null;
 	String no = null;
 	String addr = null;
-	
-	if(list.size()>0){
+	String hit = null;
+	String business = null;
+	String littleAddr = null;
+	if(list!=null&&list.size()>0){
 		
 	for(int i=0;i<list.size();i++){
 		name = list.get(i).get("STORE_NAME").toString();
-		score = list.get(i).get("store_score").toString(); //nvl해준거는 대문자 안되는듯
+		score = list.get(i).get("STORE_SCORE").toString(); //nvl해준거는 대문자 안되는듯
 		img = list.get(i).get("store_img").toString();
 		price = list.get(i).get("store_price").toString();
 		no = list.get(i).get("STORE_NO").toString();
 		addr = list.get(i).get("STORE_ADDR").toString();
-		System.out.println(name+","+score+","+"img"+","+price);
+		hit = list.get(i).get("STORE_HIT").toString();
+		business = list.get(i).get("STORE_BUSINESS").toString();
+		littleAddr = list.get(i).get("STORE_LITTLEADDR").toString();
 %>
-<div class="column" id="<%=no%>" name="storePreview" onclick="showDetailStore(<%=no%>)">
+<div class="column" id="<%=no%>" name="storePreview" style="
+    padding-top: 0px; padding-left: 20px;padding-right: 8px;">
 	<input type="hidden" value="<%=addr%>">
 	<input type="hidden" value="<%=name%>">
-	<div class="ui segment"style="
-    padding-bottom: 0px;
-    padding-right: 0px;
-    padding-left: 0px;
-    padding-top: 0px;">
-		<img class="ui fluid image" src="../../store/storeImg/<%=img%>"
-		style="width:207px;height:155px;">
-		<div class="ui basic segment">
-		<%=name%>	
-		<div class="ui divider"></div>
-		<div class="ui star rating" data-rating="<%=score%>" data-max-rating="5"></div>
-		<br>
-		<%=price%> 
-		</div>
-	</div>
-</div>
+	<input type="hidden" value="<%=no%>">
+	<div class="ui link card" onclick="showDetailStore(<%=no%>)" style="margin-top: 0px;">
+  		<div class="image">
+    		<img src="/sp-Honjaopseoye/image/storeImg/<%=img%>"style="width: 210px;height: 140px;">
+  		</div>
+  		<div class="content">
+    			<a class="header"><%=name %></a>
+    		<div class="meta">
+	    		<%=business %> - <%=littleAddr %><br>
+    	  		<span class="date"><i class="eye icon">&nbsp;<%=hit %></i></span>
+      				<br>
+      			<div class="ui star rating" data-rating="<%=score%>" data-max-rating="5"></div>
+    		</div>
+  		</div>
+	</div><!-- end of card -->
+</div><!-- end of column -->
 
 <%
 		}////end of for
 	}///end of if
 	else{
 		%>
-			<img class="ui fluid image" src="../../store/storeImg/noSearch.png" style="height:230px">
+			<img class="ui fluid image" src="/sp-Honjaopseoye/image/storeImg/noSearch.png" style="height:230px">
 		<%
 	}
 %>

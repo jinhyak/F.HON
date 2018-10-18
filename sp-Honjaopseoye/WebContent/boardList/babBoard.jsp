@@ -1,25 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>	
-<%
-	String smem_name = null;
-		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
-	if ((List<Map<String, Object>>)memList != null) {
-		smem_name = memList.get(0).get("MEM_NAME").toString();
-	}
-%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/include/include/subtop.jsp" %>
+<%
+	// naver login
+	Map<String, Object> pMap = null;
+	if(session.getAttribute("nMem") != null){
+		pMap = (Map<String, Object>)session.getAttribute("nMem");
+		mem_name = pMap.get("nickname").toString();
+	}
+%>
 <title>혼밥 게시판</title>
 </head>
 <style>
-body {
-
-}
 </style>
 
 <body>
@@ -50,7 +48,7 @@ $(document).ready(function(){
 
 	$('#dt_reserv_list').dataTable({
 	      //url:'../../member/empty/getReservList.test',
-	      "ajax":{ "url":"../board/boardList.hon?key=혼밥", "type":"POST" },
+	      "ajax":{ "url":"../board/boardList.hon?category=혼밥", "type":"POST" },
 	       "columns":[
 	    	    {"data":'BAB_NO',"className":'dt-body-center'},
 				{"data":'BAB_ID',"className":'dt-body-center'},
@@ -89,7 +87,7 @@ $(document).ready(function(){
 	    $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // 티바디를 누르면..
 	       var data = table.row(this).data();
 	       var BAB_NO = data.BAB_NO;
-	       location.href='../board/boardOne.hon?key=혼밥'+"&num="+ BAB_NO;
+	       location.href='../board/boardOne.hon?category=혼밥'+"&no="+ BAB_NO;
 	    });
 	
 
@@ -202,9 +200,9 @@ $(document).ready(function(){
                  <thead>
                    <tr>
                       <th style="width:100px;">글 번호</th>
-                      <th style="width:100px;">제목</th>
-                      <th style="width:300px;">분류</th>
-                      <th style="width:200px;">작성자</th>
+                      <th style="width:100px;">작성자</th>
+                      <th style="width:300px;">제목</th>
+                      <th style="width:200px;">카테고리</th>
                       <th style="width:500px;">조회수</th>
                       <th style="width:100px;">날짜</th>
                     </tr>

@@ -2,13 +2,43 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>	
 <%
+
+
+	// 그냥 login
 	String smem_name = null;
 		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
 	if ((List<Map<String, Object>>)memList != null) {
 		smem_name = memList.get(0).get("MEM_NAME").toString();
 	}
+	
+	// naver login
+	Map<String, Object> pMap = null;
+	if(session.getAttribute("nMem") != null){
+		pMap = (Map<String, Object>)session.getAttribute("nMem");
+		smem_name = pMap.get("nickname").toString();
+	}
+	
 %>
-    
+
+<%
+	// 최고 조회수
+	
+	    String bab_title = null;
+	    String bab_category = null;
+	    String bab_text = null;
+	    String bab_hit = null;
+	    
+	    String sul_title = null;
+	    String sul_category = null;
+	    String sul_text = null;
+	    String sul_hit = null;
+	    
+	    String nol_title = null;
+	    String nol_category = null;
+	    String nol_text = null;
+	    String nol_hit = null;
+
+%> 
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,20 +47,10 @@
 <%@include file="/include/include/subtop.jsp" %>
 <title>메인</title>
 </head>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	$("#sul_go").click(function(){
-		location.href="./sulBoard.jsp";
-	});
-	
-	$("#bab_go").click(function(){
-		location.href="./babBoard.jsp";
-	});
-	
-	$("#nol_go").click(function(){
-		location.href="./nolBoard.jsp";
-	});
 	
 	$("#g_insert").click(function(){
 		location.href="./write.jsp";
@@ -41,166 +61,583 @@ $(document).ready(function(){
 </script>
 <body>
 
+	<div class="ui inverted vertical masthead center aligned segment" style="margin-top: 50px; height: 400px;">
+	    <div class="ui text container"style="margin-top: 70px;">
+	      <h1 class="ui inverted header">
+	       <font size="10">혼족들의 리뷰 게시판</font>
+	      </h1>
+	      <br>
+	      <br>
+	      <h2>해당 카테고리 선택후 리뷰를 확인해보세요</h2>
+	    </div>
+	  </div>
 
-<br>
-<br>
-<br>
+<!--  -->
+	<div class="ui container"
+		style="margin-left: 200px; margin-right: 200px;">
+		<h2 class="ui header" style="margin-top: 50px;">
+			<img src="../image/logo.png" style="width: 170px; height: 60px;">
+			<div class="content">
+				혼자옵서예 리뷰-
+				<div class="sub header" style="padding-top: 10px;">네티즌들의 추천 ! 그
+					이상을 누릴 수 있는 리뷰 게시판</div>
+			</div>
+		</h2>
+		<!--중간  -->
+		<div class="ui container"
+			style="margin-left: 200px; margin-right: 200px;margin-top:50px;">
+			<div class="ui grid" align="center" style="text-align: center">
+				<div class="four wide column">
 
-<!-- 테이블 위 -->
-<table align="center" width="900px" height="100px">
-<tr>
-<td align="center">
-<font size="10" color="black">혼밥 게시판</font>
-</td>
-</tr>
-</table>
-<!-- 테이블 위 끝  -->
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i2.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="./babBoard.jsp">평범한 일상</a>
+							<div class="meta">
+								<span class="date">혼밥 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
 
-<!-- 전체 틀 -->
-<table width="900px" height="1000px" align="center">
-<!-- 중 헤드 -->
-<tr>
-<td>
-<!--  조회수 업 -->
-<table width="890px" height="230px" align="center">
-<!-- 조회수 헤드  -->
-<thead>
+				</div>
+				<div class="four wide column">
 
-<tr>
-<td align="center" colspan="4" height="100px"><font size="5" color="black"><strong>월간 최고 조회수 리뷰</strong></font></td>
-</tr>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i3.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i4.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="./sulBoard.jsp">감성을 자극하는 밤</a>
+							<div class="meta">
+								<span class="date">혼술 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="four wide column">
 
-</thead>
-<!-- 조회수 헤드  끝 -->
-<tr height="180px">
-<td align="center"><img src="../image/1.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="../image/2.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="../image/3.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="../image/4.jpg" width="215px" height="200px"></td>
-</tr>
-<!-- 버튼 이벤트 라인  -->
-<tr>
-<td id="best_1" align="center" width="200px">
-<pre><font size="2" color="black"><strong>가산동 돈까스 맛집!! 리뷰</strong></font>
 
-조회수: 5250192</pre>
-</td>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i5.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i6.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="./nolBoard.jsp">혼자만의 여가 생활</a>
+							<div class="meta">
+								<span class="date">혼놀 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>치맥은 역시 강남! 치밥 치맥집</strong></font>
 
-조회수: 4432134</pre>
-</td>
+				</div>
+				<div class="four wide column">
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>혼밥 추천합니다!!</strong></font>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i7.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i8.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="./nolBoard.jsp">우리들은 하나</a>
+							<div class="meta">
+								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
+							</div>
+						</div>
+					</div>
 
-조회수: 3387123</pre>
-</td>
+				</div>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>E마트 푸드코트 추천!</strong></font>
-
-조회수: 194720</pre>
-</td>
-<!-- 버튼 이벤트 라인 끝 -->
-</tr>
-
-</table>
-<!--  조회수 업 -->
-</td>
-</tr>
-<!-- 중 헤드 -->
-
-<tr>
-<td>
-<button class="positive ui button" id="bab_go">혼밥</button>
-<button class="positive ui button" id="sul_go">혼술</button>
-<button class="positive ui button" id="nol_go">혼놀</button>
-<!-- 목록  -->
-<table align="center" class="ui unstackable table">
-  <thead>
-    <tr>
-      <th>카테고리</th>
-      <th>제목</th>
-      <th>작성자</th>
-      <th class="right aligned">조회수</th>
-    </tr>
-  </thead>
-  <!-- 게시글 목록 -->
-  <tbody>
-  <!-- 최신 1 -->
-    <tr id="n_1" onMouseDown="this.style.backgroundColor='#F6CED8'" onMouseUp="this.style.backgroundColor=''">
-      <td>혼밥</td> <!-- 작성자 -->
-      <td>님들아 님들아</td> <!-- 제목 -->
-      <td class="reft aligned">beyonce200</td> 
-      <td class="right aligned">1</td> <!-- 조회수 -->
-    </tr>
-  </tbody>
-  <!-- 게시글 목록 -->
-  <tfoot>
-    <tr><th colspan="5">
-      <div class="ui right floated pagination menu">
-        <a class="icon item">
-          <i class="left chevron icon" id="list_l"></i>
-        </a>
-        <a class="item" id="list_1" name="list_1">1</a>
-        <a class="item" id="list_2" name="list_2">2</a>
-        <a class="item" id="list_3" name="list_3">3</a>
-        <a class="item" id="list_4" name="list_4">4</a>
-        <a class="icon item">
-          <i class="right chevron icon" id="list_r"></i>
-        </a>
-      </div>
-    </th>
-  </tr></tfoot>
-</table>
-<!-- 목록  -->
-</td>
-</tr>
-<tr>
-<td>
-<!-- 하단  -->
-<table align="center">
-<tr>
-<td width="300px" height="60px" align="left">
-<!-- 검색 하기 -->
-<div class="ui search">
-  <div class="ui icon input">
-    <input class="prompt" type="text" placeholder="검색하세요" width="200px">
-    <i class="search icon"></i>
-  </div>
-  
-<!-- 선택 검색 -->
-<select name="bab_category" id="bab_category">
-<option value="혼놀">제목</option>
-<option value="혼술">작성자</option>
-</select>
-<!-- 선택 검색 끝 -->
-
-  <div class="results"></div>
-  
-</div>
-<!-- 검색 하기  끝-->
-</td>
-<td width="600px" height="60px" align="right" style="size: 10;">
-	<button class="ui primary button" id="g_insert" name="g_insert"> 
-  글 쓰기
-</button>
-</td>
-</tr>
-</table>
-<!-- 글쓰기 버튼 -->
-<!-- 하단  -->
-<!-- 글쓰기 버튼 끝  -->
-</td>
-</tr>
-</table>
-<!-- 전체 틀 -->
-<br>
-<br>
-<br>
-
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>검증된 혼족들의 맛있는 리뷰</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							혼밥이 일상이된 시대 지금
+							당신은 혼밥을 즐겨 하시나요?
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>분위기 작살 오늘의 감성 리뷰</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							감성을 자극하는 밤!!
+							오늘 혼술 한잔 어떠신가요?
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>내가 바로 혼자 놀기의 달인</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							심심하신가요? 혼자 놀기의 달인들이
+							알려주는 재밌는 꿀팁!!
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>혼밥이 지겨운 그들의 이야기</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							혼자하는 생활이 많이 외롭죠?
+							이젠 같이 즐기세요~
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--리뷰들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+		
+		
+		<%
+		
+/* 		List<Map<String, Object>> conBoardBabHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardBabHitMax");
+		List<Map<String, Object>> conBoardSulHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardSulHitMax");
+		List<Map<String, Object>> conBoardNolHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardNolHitMax");
+	    
+	    for(int i = 0; i < conBoardBabHitMax.size(); i++){
+	    	
+	    	bab_title = conBoardBabHitMax.get(i).get("BAB_TITLE").toString();
+		    bab_category = conBoardBabHitMax.get(i).get("BAB_CATEGORY").toString();
+		    bab_text = conBoardBabHitMax.get(i).get("BAB_TEXT").toString();
+		    bab_hit = conBoardBabHitMax.get(i).get("BAB_HIT").toString();
+	    	
+	    }
+	    
+		for(int i = 0; i < conBoardSulHitMax.size(); i++){
+			    	
+			
+			sul_title = conBoardSulHitMax.get(i).get("SUL_TITLE").toString();
+		    sul_category = conBoardSulHitMax.get(i).get("SUL_CATEGORY").toString();
+		    sul_text = conBoardSulHitMax.get(i).get("SUL_TEXT").toString();
+		    sul_hit = conBoardSulHitMax.get(i).get("SUL_HIT").toString();
+			
+		}
+		
+		for(int i = 0; i < conBoardNolHitMax.size(); i++){
+			
+			nol_title = conBoardNolHitMax.get(i).get("NOL_TITLE").toString();
+		    nol_category = conBoardNolHitMax.get(i).get("NOL_CATEGORY").toString();
+		    nol_text = conBoardNolHitMax.get(i).get("NOL_TEXT").toString();
+		    nol_hit = conBoardNolHitMax.get(i).get("NOL_HIT").toString();
+			
+		} */
+		
+		
+		
+		%>
+		
+		
+		
+		
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+		
+			<div class="ui container" style="margin-top: 50px;">
+				<h4 class="ui horizontal divider header" >
+ 				  <i class="paper plane outline icon"></i>
+  					최고의 리뷰
+				</h4>
+				<p style="text-align: center;margin-bottom: 50px;">
+					<font color="red">최고중에 최고만 뽑은 최고 조회수의 리뷰!!!</font><br>
+					지금 당장 확인해 보세요!! 당신의 무료했던 일상을 재밌게 바꿔 드릴 수 있습니다.<br>
+					<br>
+					<strong>“Time crumbles things! everything grows old under the power of Time and is forgotten through the lapse of Time.”</strong>
+				</p>
+				
+				<!-- 최고 리뷰 시작 -->
+				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
+				<!-- 부분 리뷰  -->
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>제목</strong></div>
+					      <div class="meta">
+					        <font color="blue">카테고리 </font>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        첫줄 내용
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<!-- 부분 리뷰 끝  -->
+				
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				</div><!-- ui grid -->
+			</div><!-- 평범한 일상 리뷰 끝 container끝 -->
+			<!-- for 문 라인 -->
+			<div class="ui container" style="margin-top: 50px;">
+				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				</div><!-- ui grid -->
+			</div><!-- 평범한 일상 리뷰 끝 container끝 -->
+			<div class="ui container" style="margin-top: 50px;">
+				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				</div><!-- ui grid -->
+			</div><!-- 평범한 일상 리뷰 끝 container끝 -->
+			<div class="ui container" style="margin-top: 50px;margin-bottom: 50px;">
+				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
+					<div class="card">
+					    <div class="image">
+					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
+					    </div>
+					    <div class="content" style="text-align: left;">
+					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
+					      <div class="meta">
+					        <a>평범한 일상</a>
+					      </div>
+					      <div class="description" style="color: grey;padding-bottom: 10px;">
+					        Matthew is an interior designer living in New York.
+					      </div>
+					    </div>
+					    <div class="extra content" style="text-align: left;">
+					      <span>
+					        <i class="heart icon"style="color: red;"></i>
+					       		조회 수 123
+					      </span>
+					    </div>
+					  </div>
+				</div>
+				</div><!-- ui grid -->
+			</div ><!-- 평범한 일상 리뷰 끝 container끝 -->
+		</div>
+		<!-- 끝 -->
+	</div>
+	<br>
+				<br>
+				<br>
 <%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

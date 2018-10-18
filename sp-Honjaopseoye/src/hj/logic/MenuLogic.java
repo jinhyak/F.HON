@@ -25,7 +25,29 @@ public class MenuLogic {
 		list = menuDao.qSelect(pMap);
 		return list;
 	}
-
+	//이전번호와 제목, 다음번호와 제목 조회
+	public List<Map<String, Object>> PN_select(String NOTI_NO) {
+		logger.info("Logic : You Succeed in calling next_select!!");
+		List<Map<String, Object>> PN_select = null;
+		PN_select = menuDao.PN_select(NOTI_NO);
+		return PN_select;
+	}
+	//공지사항 리스트 조회
+	public List<Map<String, Object>> nSelect() {
+		logger.info("Logic : You Succeed in calling nSelect!!");
+		List<Map<String, Object>> getNselect = new ArrayList<Map<String, Object>>();
+		getNselect = menuDao.nSelect();
+		return getNselect;
+	}
+	// 상세보기 조회
+	public List<Map<String, Object>> nView(String NOTI_NO) {
+		logger.info("Logic : You Succeed in calling nView!!");
+		List<Map<String, Object>> notiList = new ArrayList<Map<String, Object>>();
+		int hitUp = 0;
+		hitUp = menuDao.hitUpdate(NOTI_NO);
+		notiList = menuDao.nView(NOTI_NO);
+		return notiList;
+	}
 	/*1. 게시글 등록을 눌렀을 경우(qna_no는 시퀀스로 추가)
 	 *2. 게시글의 답글달기를 눌렀을 경우(qView에서 접근) 
 	a. depth - if(답글달기를 눌렀을때 갖고있는 depth에서 1이 추가되게)
@@ -67,17 +89,4 @@ public class MenuLogic {
 		return result;
 	}
 
-	public List<Map<String, Object>> nSelect() {
-		logger.info("Logic : You Succeed in calling nSelect!!");
-		List<Map<String, Object>> getNselect = new ArrayList<Map<String, Object>>();
-		getNselect = menuDao.nSelect();
-		return getNselect;
-	}
-
-	public List<Map<String, Object>> nView(String NOTI_NO) {
-		logger.info("Logic : You Succeed in calling nView!!");
-		List<Map<String, Object>> notiList = new ArrayList<Map<String, Object>>();
-		notiList = menuDao.nView(NOTI_NO);
-		return notiList;
-	}
 }

@@ -1,143 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%
-	String grade_id = null;
-	String mem_id = null;
-	String grade_level = null;
-	List<Map<String, Object>> memList = null;
-	if (session.getAttribute("memList") != null) {
-		memList = (List<Map<String, Object>>) session.getAttribute("memList");
-		grade_id = memList.get(0).get("GRADE_ID").toString();
-		grade_level = memList.get(0).get("GRADE_LEVEL").toString();
-	}
-%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="../../include/include/commonUI.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
 img {
 	width: 100%;
 	height: 100%;
 	overflow: auto;
 }
-
-textarea {
-	resize: none;
-}
 </style>
-<script type="text/javascript">
-function Ins_write() {
- 	var noti_category = $('#category').dropdown("get value");
-	var noti_writer = '<%=grade_id%>';
-	var noti_pw = $('#noti_pw').val();
-	var noti_content = $("#noti_content").val();
-	var noti_title = $('#noti_title').val()
-	var noti_file = $('#noti_file').val(); 
-	//alert(noti_category);
-	if(noti_title == null || noti_title ==""){
-		alert("제목을 입력해주세요.");
-		$("#noti_title").focus();
-		return;
-	}
-	else if(noti_writer = null || noti_writer == ""){
-		alert("작성자를 입력해주세요.");
-		$("#noti_writer").focus();
-		return;
-	}
-	else if(noti_category == null || noti_category == "" ){
-		alert("카테고리를 선택해 주세요")
-		$("#noti_catogory").focus();
-		return;
-
-	}
-	else if(noti_pw == null || noti_pw == ""){
-		alert("비밀번호를 입력해주세요.");
-		$("#noti_pw").focus();
-		return;
-	}
-	else { 
-		alert(noti_content);
-		$("#f_insert").attr("action","../../menu/nInsert.hon");
-		$("#f_insert").submit();//이 때 서버로 전송이 일어남  
-	}
-
-	
-
-	//location.href = "../../menu/Insnotice.hon?noti_content="+noti_content
-}
-</script>
-<script>
-	function btn_cancel(){
-		location.href="./notice.jsp"
-	}
-</script>
 </head>
 <body>
-	<jsp:include page="../../include/include/subtop.jsp" />
-
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<div class="ui header"
-		style="margin-left: 150px; margin-right: 150px; margin-top: 100px; margin-bottom: 100px">
-		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<%@include file="../../include/include/subtop.jsp"%>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+	<div class="ui header" style="margin-left: 150px; margin-right: 150px; margin-top: 100px; margin-bottom: 100px">
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 		<div class="ui two attached stackable column grid" style="width: 100%">
 			<div style="width: 20%;">
 				<div class="ui field" style="height: 800px">
 					<div class="ui segment">
 						<div class="ui one column grid">
-							<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 말머리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-							<div class="center aligned column"></div>
-							<div class="center aligned column"></div>
-							<div class="center aligned column"></div>
-							<div class="center aligned column">
-								<div class="ui large header">공지사항</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 말머리 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+						<div class="center aligned column">
+						</div>
+						<div class="center aligned column">
+						</div>
+						<div class="center aligned column">
+							<div class="ui large header">
+							 	<img src="/sp-Honjaopseoye/image/logo.png" style="width:100%;heigth:100%">
 							</div>
-							<div class="right aligned column"></div>
-							<div class="right aligned column"></div>
-							<div class="right aligned column">
-								<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-								<div class="ui segment button" style="width: 100%">
-									<a href="#"> 공지사항 </a>
-								</div>
+						</div>
+						<div class="right aligned column">
+						</div>
+						<div class="right aligned column">
+						</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%; background-color:gray">
+								<h3> 공지사항 </h3>
 							</div>
-							<div class="right aligned column">
-								<div class="ui segment button" style="width: 100%">
-									<a href="#"> qna </a>
+						</div>
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%;" onclick="location.href='/sp-Honjaopseoye/notice/qna/qna.jsp'">
+								<h3> QnA </h3>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ contents @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<div class="column"style="width:80%;">
+			<div class="ui field">
+				<div class="ui segment">
+					<div class="ui center aligned one column grid">
+						<div class="center aligned column">
+							<div class="ui segment">
+								<div class="ui large header">
+							 	         공지사항
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ contents @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-			<div class="column" style="width: 80%;">
-				<div class="ui field">
-					<div class="ui segment">
-						<div class="ui center aligned one column grid">
-							<div class="center aligned column">
-								<div class="ui segment">
-									<div class="ui large header">공지사항</div>
-								</div>
-							</div>
-							<div class="center aligned column">
-								<div class="ui segment" style="width: 100%; height: 100%">
-
-									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
-									<a href="#"> 회원 정보 form </a>
-
-									<div class="ui segment">
-										<h2>공지사항</h2>
-										<hr size="10px" color="red">
-										<h2 class="ui left floated header" style="margin-top: 3px"></h2>
-										<div class="ui clearing divider"></div>
-										<form id="f_insert" name="f_insert" method="post" 
-											enctype="multipart/form-data">
+						<div class="center aligned column">
+							<div class="ui segment" style="width:100%;">
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+									<div class="ui basic segment">
+										<form id="f_insert" name="f_insert" enctype="multipart/form-data" method="post">
 											<table class="ui definition table">
 												<tbody>
 													<tr>
@@ -155,7 +87,7 @@ function Ins_write() {
 															<div class="ui input focus" style="align: left;">
 																<input type="text" style="width: 1000px;"
 																	id="noti_writer" name="noti_writer"
-																	value='<%= grade_id%>'>
+																	value='<%= mem_id%>'>
 															</div>
 														</td>
 													</tr>
@@ -188,9 +120,9 @@ function Ins_write() {
 														</td>
 													</tr>
 													<tr>
-														<td style="justify-content: center">내용</td>
+														<td>내용</td>
 														<td align="left"><textarea id="noti_content" name="noti_content"
-																style="width: 100%; height: 500px; text-align: left;">
+																style="width: 100%; height: 500px;">
 													</textarea></td>
 														<tr>
 														<td align="center">첨부파일</td>
@@ -201,15 +133,11 @@ function Ins_write() {
 											</table>
 										</form>
 										<div style="margin-bottom: 30px"></div>
-
-
 										<script>
 											$(document).ready(function() {
-										
 												$('.ui.dropdown')
 													.dropdown()
 												;
-										
 											});
 										</script>
 											<span style="margin-top: 10px; text-align: right; margin-bottom:100px;">
@@ -233,7 +161,46 @@ function Ins_write() {
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	</div>
 	<div>
-		<jsp:include page="../../include/include/bottom.jsp" />
-	</div>
+</div>
+<script type="text/javascript">
+function Ins_write() {
+		var noti_category = $('#category').dropdown("get value");
+		var noti_pw = $('#noti_pw').val();
+		var noti_content = $("#noti_content").val();
+		var noti_title = $('#noti_title').val()
+		var noti_file = $('#noti_file').val(); 
+	
+	   if(noti_title == null || noti_title ==""){
+	      alert("제목을 입력해주세요.");
+	      $("#noti_title").focus();
+	      return;
+	   }
+	   else if(mem_id = null || mem_id == ""){
+	      alert("작성자를 입력해주세요.");
+	      $("#noti_writer").focus();//이 코드는 무엇인가??
+	      return;
+	   }
+	   else if(noti_category == null || noti_category == "" ){
+	      alert("카테고리를 선택해 주세요")
+	      $("#noti_catogory").focus();
+	      return;
+
+	   }
+	   else if(noti_pw == null || noti_pw == ""){
+	      alert("비밀번호를 입력해주세요.");
+	      $("#noti_pw").focus();
+	      return;
+	   }
+	   else { 
+	      alert(noti_content);
+	      $("#f_insert").attr("action","../../menu/nInsert.hon");
+	      $("#f_insert").submit();//이 때 서버로 전송이 일어남  
+	   }
+	}
+		function btn_cancel(){
+			location.href="./notice.jsp"
+		}
+</script>
+<jsp:include page="../../include/include/bottom.jsp" />
 </body>
 </html>

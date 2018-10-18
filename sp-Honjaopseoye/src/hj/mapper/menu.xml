@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.mapper.menuMapper">
-
+<mapper namespace="menuMapper">
 	<select id="nSelect" parameterType="map" resultType="map">
-		select
-		noti_no,noti_category,noti_title,noti_writer,noti_hit,noti_date
-		from notice
+		select noti_no,noti_category,noti_title,noti_writer,noti_hit,noti_date, noti_image from
+		notice
 	</select>
 	<select id="nView" parameterType="map" resultType="map">
-		SELECT * FROM NOTICE WHERE NOTI_NO = #{NOTI_NO}
+		SELECT * FROM
+		NOTICE WHERE NOTI_NO = #{NOTI_NO}
+	</select>
+	<!-- 이전번호, 다음번호, 이전제목, 다음제목 가져오는 코드 -->
+	<select id="getPN_NO" parameterType="map" resultType="map">
+		SELECT
+		NOTI_NO, NOTI_TITLE, NEXT_NOTI_NO, NEXT_TITLE, PREV_NOTI_NO,
+		PREV_TITLE
+		FROM (
+		SELECT NOTI_NO, NOTI_TITLE,
+		LEAD(NOTI_NO,1,0)
+		OVER(ORDER BY NOTI_NO) NEXT_NOTI_NO,
+		LEAD(NOTI_TITLE,1,'다음글이 없습니다')
+		OVER(ORDER BY NOTI_NO) NEXT_TITLE,
+		Lag(NOTI_NO,1,0) OVER(ORDER BY
+		NOTI_NO) PREV_NOTI_NO,
+		Lag(NOTI_TITLE,1,'이전글이 없습니다.') OVER(ORDER BY
+		NOTI_NO) PREV_TITLE
+		FROM notice
+		)
+		<!-- JSP -> NOTI_NO HREF="AAA?NO=" !NULL -->
+		WHERE NOTI_NO = #{NOTI_NO} 
+	</select>
+	<!-- 조회수 업데이트 -->
+	<update id="hitUpdate" parameterType="String">
+		update notice
+		   set noti_hit = noti_hit + 1
+		 where noti_no =#{NOTI_NO}
+	</update>
+	<delete id="nDelete" parameterType="String">
+		delete from notice where noti_no = #{noti_no}
+	</delete>
+	<!-- 공지사항 등록 -->
+	<insert id="nInsert" parameterType="map">
+		INSERT INTO NOTICE(NOTI_NO, NOTI_TITLE, NOTI_CATEGORY, NOTI_PW, NOTI_WRITER, NOTI_IMAGE, NOTI_CONTENT, NOTI_DATE, NOTI_HIT)
+		VALUES(SEQ_NOTICE_NO.nextval,#{noti_title},#{noti_category},
+					#{noti_pw},#{noti_writer},#{fileName},#{noti_content},to_char(sysdate, 'YYYY-MM-DD'),0)    
+	</insert>
+		<resultMap id="cur_notice_upd_result" type="hashmap"/>
+	    <resultMap id="cur_next_prev_result" type="hashmap"/>
+	<select id="nUpdate" parameterType="map" statementType="CALLABLE">
+	      {call proc_noti_update_sel(
+	         #{noti_no, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+	         ,#{noti_title, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+	         ,#{noti_category, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+	         ,#{noti_pw, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+	         ,#{noti_content, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+	         ,#{noti_writer, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String}
+	         ,#{cur_notice_upd, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cur_next_prev_result}   
+	         ,#{cur_next_prev, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cur_notice_upd_result}   
+	         )
+	      }
 	</select>
 	<select id="qSelect" parameterType="map" resultType="map">
 		select qna_title,qna_writer,qna_date,qna_depth,qna_step,qna_group

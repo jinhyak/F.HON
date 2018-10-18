@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="reservationmap">
 	<select id="select" parameterType="map" resultType="map">
 		SELECT r.reserv_no, r.bang_no, b.bang_name, s.store_name, s.store_addr, s.store_tel,
-			   r.reserv_people, r.reserv_date, r.reserv_time
+			   r.reserv_people, r.reserv_date, r.reserv_time, r.reserv_progress
 		FROM reservation r, store s, bang b
 		WHERE r.bang_no = b.bang_no
 		AND r.store_no = s.store_no
@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND bang_id = #{mem_id}
 	</select>
 	<insert id="insert" parameterType="java.util.Map">
-		insert into reservation(reserv_no, bang_no, reserv_people, reserv_time, store_no, reserv_date)
-		values(seq_reserv_no.nextval, #{bang_no}, #{reserv_people}, #{reserv_time}, #{store_no}, #{reserv_date})
+		insert into reservation(reserv_no, bang_no, reserv_people, reserv_time, store_no, reserv_date, reserv_progress)
+		values(seq_reserv_no.nextval, #{bang_no}, #{reserv_people}, #{reserv_time}, #{store_no}, #{reserv_date}, '예약대기')
 	</insert>
 	<delete id="delete" parameterType="java.util.Map">
 		DELETE FROM reservation

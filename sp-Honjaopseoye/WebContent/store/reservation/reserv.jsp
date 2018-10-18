@@ -10,6 +10,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	//alert(mem_id);
+	$.fn.dataTable.ext.errMode = '';
     $('#dt_reserv_list').dataTable({
 		//url:'../../member/empty/getReservList.test',
 		"ajax":{ "url":"../../reservation/select.hon?mem_id=<%=mem_id%>", "type":"POST" },
@@ -23,7 +24,8 @@ $(document).ready(function() {
 			        {"data":'STORE_TEL', "className": 'dt-body-center'},
 			        {"data":'RESERV_PEOPLE', "className": 'dt-body-center'},
 			        {"data":'RESERV_DATE', "className": 'dt-body-center'},
-			        {"data":'RESERV_TIME', "className": 'dt-body-center'}
+			        {"data":'RESERV_TIME', "className": 'dt-body-center'},
+			        {"data":'RESERV_PROGRESS', "className": 'dt-body-center'}
 			    ],
 	   "language": {     
 	       "sEmptyTable":     "데이터가 없습니다",
@@ -113,6 +115,7 @@ $(document).ready(function() {
 						    <th style="width:100px;">예약인원</th>
 						    <th style="width:100px;">예약날짜</th>
 						    <th style="width:100px;">예약시간</th>
+						    <th style="width:100px;">진행경과</th>
 					  	</tr>
 					  </thead>
 					  	<tbody id="dt_reserv_tbody"></tbody>

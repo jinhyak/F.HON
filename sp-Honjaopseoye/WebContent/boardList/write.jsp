@@ -1,21 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="java.util.*" %>	
+<%
+	String smem_name = null;
+		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if ((List<Map<String, Object>>)memList != null) {
+		smem_name = memList.get(0).get("MEM_NAME").toString();
+	}
+	
+	// naver login
+	Map<String, Object> pMap = null;
+	if(session.getAttribute("nMem") != null){
+		pMap = (Map<String, Object>)session.getAttribute("nMem");
+		smem_name = pMap.get("nickname").toString();
+	}
+	
+%>   
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@include file="../include/include/subtop.jsp" %>
-<title>게시글 쓰기</title>
-<!--이미지 미리보기 스크립트 구간 -->
+<%@include file="/include/include/subtop.jsp" %>
+<title>Insert title here</title>
 <script type="text/javascript">
 
-// 이미지 미리보기임
+//이미지 미리보기임
 $(document).ready(function(){
 	
-	var text = document.f_board.t_text;
+	$('.ui.dropdown')
+	  .dropdown()
+	;
 	
- 	$(function() {
+	var texts = document.f_data.text;
+	
+	$(function() {
 		$("#img_file").change(function() {
 			readURL(this);
 		});
@@ -39,8 +58,8 @@ $(document).ready(function(){
 	
 	
 	$("#b_img").click(function(){
-		
-		var formData = new FormData(document.getElementById('f_board'));
+		alert("이미지 버튼");
+		var formData = new FormData(document.getElementById('f_data'));
 		var img_file = $("#img_file").val();
 		img_file = img_file.substring(12);
 		
@@ -55,7 +74,7 @@ $(document).ready(function(){
 		   ,success:function(formData){
 			   
 				//img_file = img_file.substring(12);
-				text.value += "<br>" + "<img src='../images/" + img_file + "'>" +"<br>";
+				texts.value += " " + "<img src='../boardList/images/" + img_file + "'>" +" ";
 				alert("이미지 태그가 추가 되었습니다.");
 			   
 		   }
@@ -68,158 +87,196 @@ $(document).ready(function(){
 	});
 	
 	
+	
+	
+	
 	$("#b_cancel").click(function(){
 		location.href="./mainBoardList.jsp";
 	});
-	
+		
 	$("#b_insert").click(function(){
-	var category = $("#category").val();
-		alert(category);
-		alert("저장하러갑니다.");
-		$("#f_board").attr('method', 'post');
-		$("#f_board").attr('action', '../boardList/boardInsert.hon?key='+ category)
-		$("#f_board").submit();
+		
+	var category = $("#category").dropdown("get value");
+	var id = '<%=smem_name%>';
+	var title = $("#title").val();
+	var text = $("#text").val();
+	var pw = $("#pw").val();
+	
+		alert("1 :"+category+"2 :"+id+"3 :"+title+"4 :"+text+"5 :"+pw);
+	
+		if(category=="" || title=="" || text=="" || pw==""){
+			
+			alert("공백을 넣을 수 없습니다.");
+			
+		} else {
+			
+			$("#f_data").attr('method', 'post');
+			$("#f_data").attr('action', '../board/boardInsert.hon?category='+ category + "&id=" + id)
+			$("#f_data").submit();
+			
+			
+		}
 		
 	});
 	
 }) /* 레디 끝  */
 
-
-
 </script>
 <!-- 이미지 미리보기 스크립트 구간  끝-->
 
-<!-- 바디 스타일 -->
-<style>
-/* body {
-	background-image: url('writerBackground.jpg');
-} */
-
-</style>
-<!-- 바디 스타일 끝 -->
-
 </head>
-
-
 <body>
-<!-- 상단  -->
-
-<!-- 상단 끝 -->
-
-
-<!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form @@@@@@@@@@@@@@@@@@@@  -->
 <br>
 <br>
 <br>
-<form id="f_board" name="f_board">
+<br>
+<br>
+<br>
 
-<!-- 입력 게시판 테이블   -->
-<table align="center" border="1" width="800px" height="1000px" bgcolor="white">
-<!-- 게시판 머리  -->
-<thead align="center" style="width:800px; height:200px;">
+<table align="center">
+<tr><td>
+</td></tr>
 <tr>
+<td>
+<h2 class="ui center aligned icon header">
+  <i class="circular users icon"></i>
+  자유롭게 포스팅을 시작하세요!
+</h2>
+
+</td>
 </tr>
-</thead>
-<!-- 게시판 머리 끝  -->
+</table>
 
 
-<!-- 테스트 -->
+<br>
+<br>
+<br>
+<!-- 입력 -->
+<form id="f_data" name="f_data">
 
-
-<!-- 테스트 -->
-
-
-
-<!-- 게시판 입력 GUI  -->
-
-<tbody style="width:800px; height:500px;" >
+<table align="center" width="1200px" height="1000px">
 <tr>
-<!-- 기능 메뉴 -->
-<td width="800px" height="100px">
+<td>
 
-<input type="text" style="width: 260px; height: 18px;" placeholder="동영상URL" id="url" name="url">
+<table align="center" width="1200px" height="1000px">
+
+<thead>
+<tr>
+<td>
+
+<table width="1000px" height="50px">
+<tr>
+<td align="left" width="200px" height="30px">
+
+<div class="ui compact selection dropdown" id="category" name="category">
+  <i class="dropdown icon"></i>
+  <div class="text">카테고리</div>
+  <div class="menu">
+    <div class="item">혼밥</div>
+    <div class="item">혼술</div>
+    <div class="item">혼놀</div>
+  </div>
+</div>
+
+</td>
+
+<td align="left" width="900px" height="30px">
+<div class="ui form">
+  <div class="field">
+    <input type="text" placeholder="제목을 입력해 주세요" id="title" name="title">
+  </div>
+</div>
+</td>
+
+<td align="left" width="300px" height="30px">
 <input type="file" id="img_file" name="img_file" accept=".gif, .jpg, .png">
 </td>
-<!-- 기능 메뉴 끝 -->
-</tr>
 
-<!-- 글쓰기 -->
-<tr>
-<!-- 콤보박스  -->
-<td width="800px" height="400px">
-<select name="category" id="category">
-<option value="혼놀">혼놀</option>
-<option value="혼술">혼술</option>
-<option value="혼밥" selected="selected">혼밥</option>
-</select>
-&nbsp;&nbsp;
-<!-- 제목입력  -->
-<div class="ui input focus">
-<input type="text" placeholder="제목입력" style="width:730px; height:23px;" id="title" name="title">
+<td align="left" width="400px" height="30px">
+<div class="ui input">
+  <input type="text" placeholder="동영상 URL" id="url" name="url">
 </div>
-<!-- 글 입력 -->
-<textarea style="width: 800px; height:600px;" id="t_text" name="t_text"></textarea>
-<!-- 글 입력끝 -->
-
+&nbsp;
+<i class="video icon"></i>
 </td>
-<!-- 글쓰기 끝 -->
 </tr>
-
-</tbody>
-
-<!-- 게시판 입력 GUI 끝  -->
-
-<!-- 테이블 하단 -->
-
- <tfoot align="center" style="width:800px; height:300px;">
-        <!-- 이미지 미리보기  -->
-        <!-- 이미지 미리보기 타이틀  -->
-        <tr>
-        <td><font size="3" color="blue">@이미지 미리보기@</font></td>
-        </tr>
-        <tr>
-            <td width="200px" height="200px" align="center">
-            <br>
-			<img align="middle" id="blah" src="#" alt="" width="200px" height="200px" />
-               <br>
-               <br>
-               <div class="ui animated button" tabindex="0" id="b_img" name="b_img">
-  				<div class="visible content">이미지 등록</div>
- 				 <div class="hidden content">
- 				   <i class="right arrow icon"></i>
- 					 </div>
-						</div>
-						<br>
-               <br>
-            </td>
-        </tr>
-        
-        <!-- 버튼 GUI  -->
-        <tr>
-        <td width="800px" height="100px">
-        <button class="negative ui button" id="b_cancel" name="b_cancel">취소하기</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class="positive ui button" id="b_insert" name="b_insert">등록하기</button>
-        </td>
-        </tr>
-        
-    </tfoot>
-
-<!-- 테이블 하단 끝 -->
 
 </table>
 
+</td>
+<td align="center">
+포스팅
+</td>
+</tr>
+</thead>
+<!-- 게시판 글 -->
+
+<tr>
+<td align="center" colspan="4" height="400px">
+
+<textarea style="width:1200px; height:700px;" id="text" name="text"></textarea>
+
+</td>
+</tr>
+
+<!-- 비번입력  -->
+
+<tr>
+<td width="150px" height="30px">
+<div class="ui input">
+  <input type="text" placeholder="비밀번호 입력" id="pw" name="pw">
+</div>
+</td>
+</tr>
+
+<!-- 이미지 추가 -->
+
+<tr>
+<td align="center" width="300px" height="200px">
+<img align="middle" id="blah" src="#" alt="" width="200px" height="200px" />
+이미지 미리보기
+
+</td>
+<td width="1000px" height="200px" align="center" colspan="3">
+
+<div class="ui animated fade button" id="b_img" name="b_img" tabindex="0" style="width:150px; height:150px">
+  <div class="visible content"><pre>
+  
+ 
+  
+이미지
+  </pre></div>
+  <div class="hidden content">
+    이미지 등록하기
+  </div>
+</div>
+
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr> 
+</table>
 </form>
-<!-- 입력 게시판 테이블 끝  -->
+
+<table align="center" width="300px" height="300px">
+<tr>
+<td>
+<button class="negative ui button" id="b_cancel" name="b_cancel">취소하기</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="positive ui button" id="b_insert" name="b_insert">등록하기</button>
+</td>
+</tr>
+</table>
 
 
 <br>
 <br>
 <br>
 
-<!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form 끝 @@@@@@@@@@@@@@@@@@@@ -->
-
-<!-- 하단  -->
 <%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

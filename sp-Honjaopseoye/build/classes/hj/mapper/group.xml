@@ -8,7 +8,9 @@
    		   b.bang_topic BANG_TOPIC, s.store_keyword STORE_KEYWORD, 
    		   b.bang_gender BANG_GENDER, b.bang_age BANG_AGE, b.bang_money BANG_MONEY, 
    		   b.bang_date BANG_DATE, b.bang_time BANG_TIME,
-   		   b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
+   		   b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE,
+	       s.store_latitude STORE_LATITUDE, s.store_longitude STORE_LONGITUDE,
+	       s.store_no STORE_NO, s.store_img STORE_IMG
 	from   bang b, store s
 	where  b.store_no = s.store_no
 </select>
@@ -68,8 +70,9 @@
 
 <!-- 지도 옆 목록에서 방 선택시 store_no, bang_no 받음 -->
 <select id="groupSelect" parameterType="map" resultType="map">	
-	select b.bang_no BANG_NO, s.store_no STORE_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
-	       s.store_name STORE_NAME, s.store_addr STORE_ADDR,
+	select b.bang_id BANG_ID, b.bang_no BANG_NO, s.store_no STORE_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
+		   s.store_latitude STORE_LATITUDE, s.store_longitude STROE_LONGITUDE,	
+	       s.store_name STORE_NAME, s.store_addr STORE_ADDR, s.store_score STORE_SCORE, s.store_img STORE_IMG,
 	       (select gstring from store s, gubunja gb WHERE s.store_business = gb.gprotocol AND  s.store_no = #{store_no}) STORE_BUSINESS,
 	       (select gstring from bang b, gubunja gb WHERE b.bang_topic = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_TOPIC,
 	       s.store_keyword STORE_KEYWORD, 
@@ -112,10 +115,14 @@
 </select>
 
 <!-- 모임 참석버튼 누를시 info에 인서트 -->
-<insert id="groupAttend" parameterType="map">
-	insert into bang_info
-	values(#{bang_no}, #{mem_id}, #{mem_memo})
-</insert>
+<select id="groupAttend" parameterType="map" statementType="CALLABLE">
+	{ call proc_bang_attend(
+		#{bang_no, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String},
+		#{mem_id, mode=IN,  jdbcType=VARCHAR, javaType=java.lang.String},
+		#{mem_memo, mode=IN,  jdbcType=VARCHAR, javaType=java.lang.String},
+		#{result, mode=OUT, jdbcType=NUMERIC, javaType=int}
+	)}	
+</select>	
 
 <!-- 모임 취소버튼 누를시 info에 델리트 -->
 <delete id="groupAbsent" parameterType="string">
@@ -124,10 +131,16 @@
 </delete>
 
 <!-- 모임방 삭제버튼(방장만) -->
-<delete id="groupDelete" parameterType="string">
+<select id="groupDelete" parameterType="map" statementType="CALLABLE">
+	{ call proc_bang_delete(
+		#{bang_no, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String},
+		#{result, mode=OUT, jdbcType=NUMERIC, javaType=int}
+	)}	
+</select>	
+<!-- <delete id="groupDelete" parameterType="string">
 	delete from bang
 	where bang_no = #{bang_no}
-</delete>
+</delete> -->
 
 <!-- 모임방 수정(뱡장) 가게수정은 불가 방폭파후 다시생성 -->
 <update id="groupUpdate" parameterType="map">
@@ -143,22 +156,5 @@
 		bang_gender   = #{bang_gender},
 		bang_limit_people = #{bang_limit_people}
 	where bang_id = #{bang_id}
-</update>
-
-
-	
-<insert id="report" parameterType="map">
-	INSERT INTO police(pol_no,pol_reason,pol_from,pol_to)
-	VALUES(seq_pol_no.nextval,#{pol_reason},#{pol_from},#{pol_to})
-</insert>
-<update id="groupPlus" parameterType="int">
-	update bang
-	set bang_cur_people = bang_cur_people + 1
-	where bang_no =#{bang_no}
-</update>
-<update id="groupMinus" parameterType="int">
-	update bang
-	set bang_cur_people = bang_cur_people - 1
-	where bang_no =#{bang_no}
 </update>
 </mapper>

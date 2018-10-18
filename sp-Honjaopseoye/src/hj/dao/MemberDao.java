@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 
 public class MemberDao {
-	Logger logger = Logger.getLogger(MemberDao.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
 	private SqlSessionTemplate sqlSessionTemplate;
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {

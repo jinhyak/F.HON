@@ -1,343 +1,376 @@
 package hj.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 
-
-public class BoardDao{
-		Logger logger = Logger.getLogger(BoardDao.class);
-		
-		// DB
-		private SqlSessionTemplate sqlSessionTemplate;
-		
-		public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
-			this.sqlSessionTemplate = sqlSessionTemplate;
-		}
-		
-		
-		// 모든 게시글 목록 조회 ================================================================
-		
-		 /* 혼밥, 혼술, 혼놀 모든 게시글을 조회 합니다. 
-         *  
-         */
-		
-		// <혼밥> 모든 게시글 목록 조회 (SELECT)
-		public List<Map<String, Object>> getBabBoardList(Map<String, Object> pMap){
-			
-			logger.info("<혼밥>: Dao - getBoardList 메소드 진입 - 혼밥 게시글 전체 목록 조회");
-			List<Map<String, Object>> getBabBoardList = null;
-			pMap = new HashMap<String, Object>();
-			getBabBoardList = sqlSessionTemplate.selectList("getBabBoardList", pMap);
-			logger.info("<혼밥> Dao - 전체 조회 목록: " + getBabBoardList.size());
-			
-			return getBabBoardList;
-		}
-		
-		// <혼술> 모든 게시글 목록 조회 (SELECT)
-		public List<Map<String, Object>> getSulBoardList(Map<String, Object> pMap){
-			
-			logger.info("<혼술>: Dao - getSulBoardList 메소드 진입 - 혼술 게시글 전체 목록 조회");
-			List<Map<String, Object>> getSulBoardList = null;
-			
-			getSulBoardList = sqlSessionTemplate.selectList("getSulBoardList", pMap);
-			logger.info("<혼술> Dao - 전체 조회 목록: " + getSulBoardList.size());
-			
-			return getSulBoardList;
-		}
-		
-		// <혼놀> 모든 게시글 목록 조회 (SELECT)
-		public List<Map<String, Object>> getNolBoardList(Map<String, Object> pMap){
-					
-			logger.info("<혼놀>: Dao - getNolBoardList 메소드 진입 - 혼놀 게시글 전체 목록 조회");
-			List<Map<String, Object>> getNolBoardList = null;
-					
-			getNolBoardList = sqlSessionTemplate.selectList("getNolBoardList", pMap);
-			logger.info("<혼놀> Dao - 전체 조회 목록: " + getNolBoardList.size());
-					
-			return getNolBoardList;
-		}
-		
-		// 모든 게시글 목록 조회 끝 ================================================================
-		
-		
-		
-		
-		
-		// 선택 게시글 목록 내용 조회  ===============================================================
-		
-		// <혼밥> 선택 게시글 목록 내용 조회 (SELECT) - WHERE
-		public List<Map<String, Object>> getBabBoardOneList(Map<String, Object> pMap){
-			
-			logger.info("<혼밥>: Dao - getBabBoardOneList 메소드 진입 - 선택 게시글 목록 내용 조회");
-			List<Map<String, Object>> getBabBoardOneList = null;
-							
-			getBabBoardOneList = sqlSessionTemplate.selectList("getBabBoardOneList", pMap);
-			logger.info("<혼밥> Dao - 선택 게시글 목록 내용 조회: " + getBabBoardOneList.size());
-							
-			return getBabBoardOneList;
-		}
-		
-		// <혼술> 선택 게시글 목록 내용 조회 (SELECT) - WHERE
-		public List<Map<String, Object>> getSulBoardOneList(Map<String, Object> pMap){
+public class BoardDao {
+	
+	
+	Logger logger = Logger.getLogger(BoardDao.class);
+	
+	private SqlSessionTemplate sqlSessionTemplate;
+	
+	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+	
+			// <혼밥> 모든 게시글 목록 조회 (SELECT)
+			public List<Map<String, Object>> getBabBoardList(Map<String, Object> pMap){
 				
-			logger.info("<혼술>: Dao - getSulBoardOneList 메소드 진입 - 선택 게시글 목록 내용 조회");
-			List<Map<String, Object>> getSulBoardOneList = null;
-								
-			getSulBoardOneList = sqlSessionTemplate.selectList("getSulBoardOneList", pMap);
-			logger.info("<혼술> Dao - 선택 게시글 목록 내용 조회: " + getSulBoardOneList.size());
-								
-			return getSulBoardOneList;
-		}
-			
-		// <혼밥> 선택 게시글 목록 내용 조회 (SELECT) - WHERE
-		public List<Map<String, Object>> getNolBoardOneList(Map<String, Object> pMap){
+				logger.info("<Dao> ---> getBabBoardList method 시작");
+				logger.info("<Category> <<<<< 혼밥 >>>>> ");
+				List<Map<String, Object>> getBabBoardList = null;
 				
-			logger.info("<혼밥>: Dao - getNolBoardOneList 메소드 진입 - 선택 게시글 목록 내용 조회");
-			List<Map<String, Object>> getNolBoardOneList = null;
-								
-			getNolBoardOneList = sqlSessionTemplate.selectList("getNolBoardOneList", pMap);
-			logger.info("<혼밥> Dao - 선택 게시글 목록 내용 조회: " + getNolBoardOneList.size());
-								
-			return getNolBoardOneList;
-		}
-		
-		// 선택 게시글 목록 내용 조회  끝 =============================================================
-		
-		
-		
-		
-		
-		// 게시글 등록 =========================================================================
-		
-		// <혼밥>, <혼술>, <혼놀> 게시글 등록 (INSERT) - REQUEST STRING KEY INSERT
-		public int getBoardInsert(Map<String, Object> pMap, String key) {
-			
-			logger.info("<혼밥>, <혼술>, <혼놀> Dao - getBoardInsert 메소드 진입 - 게시글 등록");
-			int result = 0; 
-			
-			logger.info("받은 KEY값 : " + key);
-			
-			if("혼밥".equals(key)) {
+				getBabBoardList = sqlSessionTemplate.selectList("getBabBoardList", pMap);
+				logger.info("<Dao> ---> getBabBoardList 전체 조회 사이즈: " + getBabBoardList.size());
 				
-				// <혼밥> INSERT
-				logger.info("<혼밥> INSERT 실행");
+				return getBabBoardList;
+			}
+			
+			
+			
+			// <혼술> 모든 게시글 목록 조회 (SELECT)
+			public List<Map<String, Object>> getSulBoardList(Map<String, Object> pMap){
+				
+				logger.info("<Dao> ---> getSulBoardList method 시작");
+				logger.info("<Category> <<<<< 혼술 >>>>> ");
+				List<Map<String, Object>> getSulBoardList = null;
+				
+				getSulBoardList = sqlSessionTemplate.selectList("getSulBoardList", pMap);
+				logger.info("<Dao> ---> getSulBoardList 전체 조회 사이즈: " + getSulBoardList.size());
+				
+				return getSulBoardList;
+			}
+			
+			
+			
+			// <혼놀> 모든 게시글 목록 조회 (SELECT)
+			public List<Map<String, Object>> getNolBoardList(Map<String, Object> pMap){
+						
+				logger.info("<Dao> ---> getNolBoardList method 시작");
+				logger.info("<Category> <<<<< 혼놀 >>>>> ");
+				List<Map<String, Object>> getNolBoardList = null;
+						
+				getNolBoardList = sqlSessionTemplate.selectList("getNolBoardList", pMap);
+				logger.info("<Dao> ---> getSulBoardList 전체 조회 사이즈: " + getNolBoardList.size());
+						
+				return getNolBoardList;
+			}
+			
+			
+			
+			// <혼밥> 선택 게시글 목록 내용 조회 (SELECT) - WHERE
+			public List<Map<String, Object>> getBabBoardOneList(Map<String, Object> pMap){
+				
+				logger.info("<Dao> ---> getBabBoardOneList method 시작");
+				List<Map<String, Object>> getBabBoardOneList = null;
+								
+				getBabBoardOneList = sqlSessionTemplate.selectList("getBabBoardOneList", pMap);
+				logger.info("<Dao> ---> getBabBoardOneList 전체 조회 사이즈: " + getBabBoardOneList.size());
+								
+				return getBabBoardOneList;
+			}
+			
+			
+			
+			// <혼술> 선택 게시글 목록 내용 조회 (SELECT) - WHERE
+			public List<Map<String, Object>> getSulBoardOneList(Map<String, Object> pMap){
+					
+				logger.info("<Dao> ---> getSulBoardOneList method 시작");
+				List<Map<String, Object>> getSulBoardOneList = null;
+									
+				getSulBoardOneList = sqlSessionTemplate.selectList("getSulBoardOneList", pMap);
+				logger.info("<Dao> ---> getSulBoardOneList 전체 조회 사이즈: " + getSulBoardOneList.size());
+									
+				return getSulBoardOneList;
+			}
+			
+			
+				
+			// <혼밥> 선택 게시글 목록 내용 조회 (SELECT) - WHERE
+			public List<Map<String, Object>> getNolBoardOneList(Map<String, Object> pMap){
+					
+				logger.info("<Dao> ---> getNolBoardOneList method 시작");
+				List<Map<String, Object>> getNolBoardOneList = null;
+									
+				getNolBoardOneList = sqlSessionTemplate.selectList("getNolBoardOneList", pMap);
+				logger.info("<Dao> ---> getNolBoardOneList 전체 조회 사이즈: " + getNolBoardOneList.size());
+									
+				return getNolBoardOneList;
+			}
+			
+			
+			
+			// <혼밥> 댓글 조회
+			public List<Map<String, Object>> getBabBoardCommentList(Map<String, Object> pMap){
+				
+				logger.info("<Dao> ---> getBabBoardCommentList method 시작");
+				List<Map<String, Object>> getBabBoardCommentList = null;
+				
+				getBabBoardCommentList = sqlSessionTemplate.selectList("getBabBoardCommentList", pMap);
+				logger.info("<Dao> ---> getBabBoardCommentList 전체 조회 사이즈: " + getBabBoardCommentList.size());
+				
+				return getBabBoardCommentList;
+			}
+			
+			
+			
+			// <혼술> 댓글 조회
+			public List<Map<String, Object>> getSulBoardCommentList(Map<String, Object> pMap){
+				
+				logger.info("<Dao> ---> getSulBoardCommentList method 시작");
+				List<Map<String, Object>> getSulBoardCommentList = null;
+				
+				getSulBoardCommentList = sqlSessionTemplate.selectList("getSulBoardCommentList", pMap);
+				logger.info("<Dao> ---> getSulBoardCommentList 전체 조회 사이즈: " + getSulBoardCommentList.size());
+				
+				return getSulBoardCommentList;
+			}
+			
+			
+			
+			
+			// <혼놀> 댓글 조회
+			public List<Map<String, Object>> getNolBoardCommentList(Map<String, Object> pMap){
+		
+				logger.info("<Dao> ---> getNolBoardCommentList method 시작");
+				List<Map<String, Object>> getNolBoardCommentList = null;
+		
+				getNolBoardCommentList = sqlSessionTemplate.selectList("getNolBoardCommentList", pMap);
+				logger.info("<Dao> ---> getNolBoardCommentList 전체 조회 사이즈: " + getNolBoardCommentList.size());
+		
+				return getNolBoardCommentList;
+			}
+			
+			
+			
+			
+			// 게시판 혼밥 입력
+			public int getBabBoardInsert(Map<String, Object> pMap) {
+				
+				logger.info("<Dao> ---> getBabBoardInsert method 시작");
+				int result = 0;
 				result = sqlSessionTemplate.insert("getBabBoardInsert", pMap);
-				logger.info("<혼밥> INSERT 결과: " + result);
-				logger.info("<혼밥> getBabBoardInsert INSERT 종료");
-				
-			} else if("혼술".equals(key)) {
-				
-				// <혼술> INSERT
-				logger.info("<혼술> INSERT 실행");
+				logger.info("<Dao> ---> getBabBoardInsert 입력 성공: " + result);
+				return result;
+			}
+			
+			
+			
+		    // 게시판 혼술 입력
+			public int getSulBoardInsert(Map<String, Object> pMap) {
+							
+				logger.info("<Dao> ---> getSulBoardInsert method 시작");
+				int result = 0;
 				result = sqlSessionTemplate.insert("getSulBoardInsert", pMap);
-				logger.info("<혼술> INSERT 결과: " + result);
-				logger.info("<혼술> getSulBoardInsert INSERT 종료");
+				logger.info("<Dao> ---> getSulBoardInsert 입력 성공: " + result);
+				return result;
+			}
+			
+			
+			
+			// 게시판 혼놀 입력
+			public int getNolBoardInsert(Map<String, Object> pMap) {
 				
-			} else if("혼놀".equals(key)) {
-				
-				// <혼놀> INSERT
-				logger.info("<혼놀> INSERT 실행");
+				logger.info("<Dao> ---> getNolBoardInsert method 시작");
+				int result = 0;
 				result = sqlSessionTemplate.insert("getNolBoardInsert", pMap);
-				logger.info("<혼놀> INSERT 결과: " + result);
-				logger.info("<혼놀> getNolBoardInsert INSERT 종료");
-				
-			} else {
-				
-				// INSERT 실패
-				logger.info("INSERT 실패 : " + result + " (KEY 값을 확인해 주세요)");
+				logger.info("<Dao> ---> getNolBoardInsert 입력 성공: " + result);
+				return result;
 			}
 			
-			logger.info("Dao - getBoardInsert INSERT 종료");
-			return result;
-		}
-		
-		// 게시글 등록 끝 ========================================================================
-		
-		
-		
-		
-		
-		// 선택 게시글 삭제 ======================================================================
-		
-		// <혼밥>, <혼술>, <혼놀> 선택 게시글 삭제 (DELETE) - REQUEST STRING KEY DELETE
-		public int getBoardDelete(Map<String, Object> pMap, String key) {
-			
-			logger.info("<혼밥>, <혼술>, <혼놀> Dao - getBoardDelete 메소드 진입 - 선택 게시글 삭제");
-			int result = 0;
-			
-			if("혼밥".equals(key)) {
+			// 게시판 혼밥 삭제
+			public int getBabBoardDelete(Map<String, Object> pMap) {
 				
-				// <혼밥> DELETE
-				logger.info("<혼밥> DELETE 실행");
+				logger.info("<Dao> ---> getBabBoardDelete method 시작");
+				int result = 0;
 				result = sqlSessionTemplate.delete("getBabBoardDelete", pMap);
-				logger.info("<혼밥> DELETE 결과: " + result);
-				logger.info("<혼밥> getBabBoardDelete DELETE 종료");
+				logger.info("<Dao> ---> getBabBoardDelete 입력 성공: " + result);
+				return result;
 				
-			} else if("혼술".equals(key)) {
-				
-				// <혼술> DELETE
-				logger.info("<혼술> DELETE 실행");
+			}
+			
+			
+			// 게시판 혼밥 삭제
+			public int getSulBoardDelete(Map<String, Object> pMap) {
+
+				logger.info("<Dao> ---> getSulBoardDelete method 시작");
+				int result = 0;
 				result = sqlSessionTemplate.delete("getSulBoardDelete", pMap);
-				logger.info("<혼술> DELETE 결과: " + result);
-				logger.info("<혼술> getSulBoardDelete DELETE 종료");
-				
-			} else if("혼놀".equals(key)) {
-				
-				// <혼놀> DELETE
-				logger.info("<혼놀> DELETE 실행");
+				logger.info("<Dao> ---> getSulBoardDelete 입력 성공: " + result);
+				return result;
+
+			}
+
+			// 게시판 혼밥 삭제
+			public int getNolBoardDelete(Map<String, Object> pMap) {
+
+				logger.info("<Dao> ---> getNolBoardDelete method 시작");
+				int result = 0;
 				result = sqlSessionTemplate.delete("getNolBoardDelete", pMap);
-				logger.info("<혼놀> DELETE 결과: " + result);
-				logger.info("<혼놀> getNolBoardDelete DELETE 종료");
-				
-			} else {
-				
-				// DELETE 실패
-				logger.info("DELETE 실패 : " + result + " (KEY 값을 확인해 주세요)");
+				logger.info("<Dao> ---> getNolBoardDelete 입력 성공: " + result);
+				return result;
+
 			}
 			
-			logger.info("Dao - getBoardDelete DELETE 종료");
-			return result;
-		}
-		
-		// 선택 게시글 삭제  끝 ====================================================================
-		
-		
-		
-		
-		
-		// 선택 게시글 수정 ======================================================================
-		
-		// <혼밥>, <혼술>, <혼놀> 선택 게시글 수정(UPDATE) - SET UPDATE
-		public int getBoardUpdate(Map<String, Object> pMap, String key) {
 			
-			logger.info("<혼밥>, <혼술>, <혼놀> Dao - getBoardUpdate 메소드 진입 - 선택 게시글 수정");
-			int result = 0;
 			
-			if("혼밥".equals(key)) {
+			// 혼밥 게시판 댓글 입력
+			public int getBabBoardCommentInsert(Map<String, Object> pMap) {
 				
-				logger.info("<혼밥> UPDATE 실행");
+				int result = 0;
+				logger.info("<Dao> ---> getBabBoardCommentInsert method 시작");
+				result = sqlSessionTemplate.insert("getBabBoardCommentInsert", pMap);
+				logger.info("<Dao> ---> getBabBoardCommentInsert 입력 성공: " + result);
+				
+				return result;
+			}
+			
+
+			// 혼밥 게시판 댓글 입력
+			public int getSulBoardCommentInsert(Map<String, Object> pMap) {
+				
+				int result = 0;
+				logger.info("<Dao> ---> getSulBoardCommentInsert method 시작");
+				result = sqlSessionTemplate.insert("getSulBoardCommentInsert", pMap);
+				logger.info("<Dao> ---> getSulBoardCommentInsert 입력 성공: " + result);
+				
+				return result;
+			}
+			
+
+			// 혼밥 게시판 댓글 입력
+			public int getNolBoardCommentInsert(Map<String, Object> pMap) {
+				
+				int result = 0;
+				logger.info("<Dao> ---> getNolBoardCommentInsert method 시작");
+				result = sqlSessionTemplate.insert("getNolBoardCommentInsert", pMap);
+				logger.info("<Dao> ---> getNolBoardCommentInsert 입력 성공: " + result);
+				
+				return result;
+			}
+			
+			
+			
+			// 혼밥 게시판 수정
+			public int getBabBoardUpdate(Map<String, Object> pMap) {
+				
+				logger.info("<Dao> ---> getBabBoardUpdate method 시작");
+				int result = 0;
 				result = sqlSessionTemplate.update("getBabBoardUpdate", pMap);
-				logger.info("<혼밥> UPDATE 결과: " + result);
-				logger.info("<혼밥> getBabBoardUpdate UPDATE 종료");
+				logger.info("<Dao> ---> getBabBoardUpdate 입력 성공: " + result);
 				
-			} else if("혼술".equals(key)) {
-				
-				logger.info("<혼술> UPDATE 실행");
-				result = sqlSessionTemplate.update("getSulBoardUpdate", pMap);
-				logger.info("<혼술> UPDATE 결과: " + result);
-				logger.info("<혼술> getSulBoardUpdate UPDATE 종료");
-				
-			} else if("혼놀".equals(key)) {
-				
-				logger.info("<혼놀> UPDATE 실행");
-				result = sqlSessionTemplate.update("getNolBoardUpdate", pMap);
-				logger.info("<혼놀> UPDATE 결과: " + result);
-				logger.info("<혼놀> getNolBoardUpdate UPDATE 종료");
-				
-			} else {
-				
-				// UPDATE 실패
-				logger.info("UPDATE 실패 : " + result + " (KEY 값을 확인해 주세요)");
+				return result;
 			}
+			
+			
+			
+			// 혼술 게시판 수정
+			public int getSulBoardUpdate(Map<String, Object> pMap) {
+	
+				logger.info("<Dao> ---> getSulBoardUpdate method 시작");
+				int result = 0;
+				result = sqlSessionTemplate.update("getSulBoardUpdate", pMap);
+				logger.info("<Dao> ---> getSulBoardUpdate 입력 성공: " + result);
+	
+				return result;
+			}
+						
+						
+						
+			// 혼놀 게시판 수정
+			public int getNolBoardUpdate(Map<String, Object> pMap) {
+							
+				logger.info("<Dao> ---> getNolBoardUpdate method 시작");
+				int result = 0;
+				result = sqlSessionTemplate.update("getNolBoardUpdate", pMap);
+				logger.info("<Dao> ---> getNolBoardUpdate 입력 성공: " + result);
+							
+				return result;
+			}
+
+			
+			
+			// 조회수 카운트
+			
+			// 혼밥 조회수 카운트
+			public int getBabBoardHitUpdate(Map<String, Object> pMap) {
 				
-			logger.info("Dao - getBoardUpdate UPDATE 종료");
-			return result;
-		}
-		
-		// 선택 게시글 수정 끝 ====================================================================
-		
-		
-		
-		
-		
-		// 게시판 댓글 조회
-		
-		// <혼밥>
-		public List<Map<String, Object>> getBabCommentList(Map<String, Object>pMap){
+				logger.info("<Dao> ---> getBabBoardHitUpdate method 시작");
+				int result = 0;
+				
+				result = sqlSessionTemplate.update("getBabBoardHitUpdate", pMap);
+				logger.info("<Dao> ---> getBabBoardHitUpdate 입력 성공: " + result);
+				return result;
+				
+			}
 			
-			logger.info("getBabCommentList 메소드 < Dao > 진입");
-			List<Map<String, Object>> getBabCommentList = null;
+			// 혼밥 조회수 카운트
+			public int getSulBoardHitUpdate(Map<String, Object> pMap) {
+		
+				logger.info("<Dao> ---> getSulBoardHitUpdate method 시작");
+				int result = 0;
+		
+				result = sqlSessionTemplate.update("getSulBoardHitUpdate", pMap);
+				logger.info("<Dao> ---> getSulBoardHitUpdate 입력 성공: " + result);
+				return result;
+		
+			}
+		
+			// 혼밥 조회수 카운트
+			public int getNolBoardHitUpdate(Map<String, Object> pMap) {
+		
+				logger.info("<Dao> ---> getNolBoardHitUpdate method 시작");
+				int result = 0;
+		
+				result = sqlSessionTemplate.update("getNolBoardHitUpdate", pMap);
+				logger.info("<Dao> ---> getNolBoardHitUpdate 입력 성공: " + result);
+				return result;
+		
+			}
 			
-			getBabCommentList = sqlSessionTemplate.selectList("getBabCommentList", pMap);
-			logger.info("<혼밥> Dao - 전체 조회 목록: " + getBabCommentList.size());
+			// 최고 조회수
 			
-			return getBabCommentList;
-		}
-		
-		
-		// <혼술>
-		public List<Map<String, Object>> getSulCommentList(Map<String, Object>pMap){
+			// 혼밥
+			public List<Map<String, Object>> getBabBoardHitMax(Map<String, Object> pMap){
+				
+				logger.info("<Dao> ---> getBabBoardHitMax method 시작");
+				List<Map<String, Object>> getBabBoardHitMax = null;
+				getBabBoardHitMax = sqlSessionTemplate.selectList("getBabBoardHitMax", pMap);
+				logger.info("<Dao> ---> getBabBoardList 전체 조회 사이즈: " + getBabBoardHitMax.size());
+				
+				return getBabBoardHitMax;
+			}
 			
-			logger.info("getSulCommentList 메소드 < Dao > 진입");
-			List<Map<String, Object>> getSulCommentList = null;
 			
-			getSulCommentList = sqlSessionTemplate.selectList("getSulCommentList", pMap);
-			logger.info("<혼밥> Dao - 전체 조회 목록: " + getSulCommentList.size());
+			// 혼술
+			public List<Map<String, Object>> getSulBoardHitMax(Map<String, Object> pMap) {
+		
+				logger.info("<Dao> ---> getSulBoardHitMax method 시작");
+				List<Map<String, Object>> getSulBoardHitMax = null;
+				getSulBoardHitMax = sqlSessionTemplate.selectList("getSulBoardHitMax", pMap);
+				logger.info("<Dao> ---> getSulBoardHitMax 전체 조회 사이즈: " + getSulBoardHitMax.size());
+		
+				return getSulBoardHitMax;
+			}
+					
 			
-			return getSulCommentList;
-		}
+			
+			// 혼놀 
+			public List<Map<String, Object>> getNolBoardHitMax(Map<String, Object> pMap) {
 		
+				logger.info("<Dao> ---> getNolBoardHitMax method 시작");
+				List<Map<String, Object>> getNolBoardHitMax = null;
+				getNolBoardHitMax = sqlSessionTemplate.selectList("getNolBoardHitMax", pMap);
+				logger.info("<Dao> ---> getNolBoardHitMax 전체 조회 사이즈: " + getNolBoardHitMax.size());
 		
-		
-		
-		
-		// <혼놀>
-		public List<Map<String, Object>> getNolCommentList(Map<String, Object>pMap){
-	
-			logger.info("getNolCommentList 메소드 < Dao > 진입");
-			List<Map<String, Object>> getNolCommentList = null;
-	
-			getNolCommentList = sqlSessionTemplate.selectList("getNolCommentList", pMap);
-			logger.info("<혼밥> Dao - 전체 조회 목록: " + getNolCommentList.size());
-	
-			return getNolCommentList;
-		}
-		
-		
-		
-		
-		// 게시판 댓글 입력
-		public int getCommentInsert(Map<String, Object> pMap) {
-			logger.info("getCommentInsert 메소드 < Dao > 진입");
-			int result = 0;
-			result = sqlSessionTemplate.insert("getCommentInsert", pMap);
-			logger.info("getCommentInsert 메소드 < Dao > 종료");
-			return result;
-		}
-		
-		
-		
-		
-		
-		
-		
-		// 게시판 댓글 삭제
-		
-		
-		
-		// 게시판 댓글 수정
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				return getNolBoardHitMax;
+			}
+			
+			
+			
+
 }

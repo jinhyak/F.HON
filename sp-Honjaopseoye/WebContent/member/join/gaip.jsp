@@ -186,20 +186,13 @@
 					<div class="ui birth" id="birth"></div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# 취미 직업 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 					<div class="field">
-						<div class="ui label">직업
 								<div class="ui selection dropdown addr">
-										<input type="hidden" value="1109" id="mem_job"> <i class="dropdown icon"></i>
-										<div class="text" id="hobby">무직</div>
-										<div class="menu" id="menu_job">
-											<div class="item" data-value="1100">무직</div>
-											<div class="item" data-value="1101">학생</div>
-											<div class="item" data-value="1102">운동선수</div>
-											<div class="item" data-value="1103">예술가</div>
-											<div class="item" data-value="1104">프로그래머</div>
-											<div class="item" data-value="1105">사무직</div>
-											<div class="item" data-value="1106">영업직</div>
-											<div class="item" data-value="1107">공무원</div>
-											<div class="item" data-value="1108">서비스직</div>
+										<input type="hidden" value="0" id="bang_gubun"> <i class="dropdown icon"></i>
+										<div class="text" id="gubun">분류</div>
+										<div class="menu" id="bang_gubun">
+											<div class="item" data-value="1">술술</div>
+											<div class="item" data-value="2">밥밥</div>
+											<div class="item" data-value="3">놀놀</div>
 										</div>
 								</div>
 						</div>

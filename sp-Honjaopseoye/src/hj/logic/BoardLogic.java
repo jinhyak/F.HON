@@ -1,13 +1,8 @@
 package hj.logic;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,210 +13,352 @@ import hj.dao.BoardDao;
 @Service
 public class BoardLogic {
 	
-	// 濡쒓렇
+	// Log Debug
 	Logger logger = Logger.getLogger(BoardLogic.class);
-	
 	
 	@Autowired
 	private BoardDao boardDao = null;
-
-
-	/*
-	 * Logic class�뿉�꽌 媛믪쓣 �쟾�떖諛쏄퀬 媛믪뿉 ���븳 �뜲�씠�꽣 �젙蹂닿컪�쓣 怨꾩궛�븯�뿬 Controller�뿉 蹂대궡以꾧굅�엫 
-	 * 	
-	*/
 	
-	// <�샎諛�>, <�샎�닠>, <�샎��> 紐⑤뱺 寃뚯떆湲� 紐⑸줉 議고쉶 Logic
-	public List<Map<String, Object>> boardListLogic(Map<String, Object> pMap, String key) 
-	throws ServletException, IOException {
+	
+	// 모든 게시글 목록 조회 Logic
+	public List<Map<String, Object>> logBoardList(Map<String, Object> pMap, String category){
 		
+		logger.info("<Logic> ---> logBoardList method 시작");
+		List<Map<String, Object>> logBoardList = null;
 		
-		// �옱�궗�슜�븷 List
-		List<Map<String, Object>> boardListLogic = null;
-		pMap = new HashMap<String, Object>(); 
-		// 諛쏆� key媛�
-		logger.info("<Logic> 諛쏆븘�삩 key媛�" + key);
-		
-		// �샎諛� 寃뚯떆湲� 紐⑸줉 議고쉶
-		if("혼밥".equals(key)) {
-			logger.info("<Logic> �샎諛� if 吏꾩엯");
-			boardListLogic = boardDao.getBabBoardList(pMap);
+		if("혼밥".equals(category)) {
 			
-		} else if("혼술".equals(key)) { // �샎�닠 寃뚯떆湲� 紐⑸줉 議고쉶
-			logger.info("<Logic> �샎�닠 if 吏꾩엯");
-			boardListLogic = boardDao.getSulBoardList(pMap);
+			logger.info("<Logic> ---> if(혼밥)시작");
+			logBoardList = boardDao.getBabBoardList(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
 			
-		} else if("혼놀".equals(key)) { // �샎�� 寃뚯떆湲� 紐⑸줉 議고쉶
-			logger.info("<Logic> �샎�� if 吏꾩엯");
-			boardListLogic = boardDao.getNolBoardList(pMap);
+		} else if("혼술".equals(category)) {
 			
-		} else { // �샇異� �떎�뙣
+			logger.info("<Logic> ---> if(혼술)시작");
+			logBoardList = boardDao.getSulBoardList(pMap);
+			logger.info("<Logic> ---> if(혼술)종료");
 			
-			logger.info("<Logic> �빐�떦 議곌굔�쓣 留뚯” �떆�궎吏� �븡�뒿�땲�떎." + key);
-		}
-		
-		
-		logger.info("<Logic> boardListLogic�쓽 媛� : " + boardListLogic.size());
-		
-		return boardListLogic;
-	}
-	
-	
-	
-	// �꽑�깮 寃뚯떆湲� 紐⑸줉 �궡�슜 議고쉶
-	public List<Map<String, Object>> boardOneListLogic(Map<String, Object> pMap, String key) 
-			throws ServletException, IOException {
-				
-				logger.info("boardOneListLogic Logic 硫붿냼�뱶 吏꾩엯 - �빐�떦  寃뚯떆湲� 紐⑸줉 議고쉶 Logic");
-				
-				// �옱�궗�슜�븷 List
-				List<Map<String, Object>> boardOneListLogic = null;
-				// 諛쏆� key媛�
-				logger.info("<Logic> 諛쏆븘�삩 key媛�" + key);
-				
-				// �샎諛� 寃뚯떆湲� 紐⑸줉 議고쉶
-				if("�샎諛�".equals(key)) {
-					logger.info("<Logic> �샎諛� if 吏꾩엯");
-					boardOneListLogic = boardDao.getBabBoardOneList(pMap);
-					
-				} else if("�샎�닠".equals(key)) { // �샎�닠 寃뚯떆湲� 紐⑸줉 議고쉶
-					logger.info("<Logic> �샎�닠 if 吏꾩엯");
-					boardOneListLogic = boardDao.getSulBoardOneList(pMap);
-					
-				} else if("�샎��".equals(key)) { // �샎�� 寃뚯떆湲� 紐⑸줉 議고쉶
-					logger.info("<Logic> �샎�� if 吏꾩엯");
-					boardOneListLogic = boardDao.getNolBoardOneList(pMap);
-					
-				} else { // �샇異� �떎�뙣
-					
-					logger.info("<Logic> �빐�떦 議곌굔�쓣 留뚯” �떆�궎吏� �븡�뒿�땲�떎." + key);
-				}
-				
-				
-				logger.info("<Logic> boardOneListLogic�쓽 媛� : " + boardOneListLogic.size());
-				
-				return boardOneListLogic;
-			}
-
-	
-	
-	// �엯�젰 濡쒖쭅
-	
-	public int boardInsertLogic(Map<String, Object> pMap, String key)
-			throws ServletException, IOException {
-
-		logger.info("boardInsertLogic Logic 硫붿냼�뱶 吏꾩엯 - �빐�떦 寃뚯떆湲� �벑濡� Logic");
-
-		int result = 0;
-
-		// 諛쏆� key媛�
-		logger.info("<Logic> 諛쏆븘�삩 key媛�" + key);
-
-		result = boardDao.getBoardInsert(pMap, key);
-		logger.info("<Logic> boardInsertLogic 硫붿냼�뱶 醫낅즺 �빀�땲�떎. 寃곌낵: " + result);
-
-		return result;
-
-	}
-	
-	// �궘�젣 �샇吏�
-	
-	public int boardDeleteLogic(Map<String, Object> pMap, String key) 
-			throws ServletException, IOException {
-		logger.info("boardDeleteLogic Logic 硫붿냼�뱶 吏꾩엯 - 寃뚯떆湲� �궘�젣 Logic");
-		
-		int result = 0;
-		
-		result = boardDao.getBoardDelete(pMap, key);
-		
-		logger.info("<Logic> 諛쏆븘�삩 key媛�" + key);
-		logger.info("<Logic> boardDeleteLogic 硫붿냼�뱶 醫낅즺 �빀�땲�떎. 寃곌낵: " + result);
-		
-		return result;
-	}
-	
-	
-	// �뾽�뜲�씠�듃 濡쒖쭅
-	
-	public int boardUpdateLogic(Map<String, Object> pMap, String key) 
-			throws ServletException, IOException {
-		logger.info("boardUpdateLogic Logic 硫붿냼�뱶 吏꾩엯 - 寃뚯떆湲� �궘�젣 Logic");
-		
-		int result = 0;
-		
-		result = boardDao.getBoardUpdate(pMap, key);
-		
-		logger.info("<Logic> 諛쏆븘�삩 key媛�" + key);
-		logger.info("<Logic> boardUpdateLogic 硫붿냼�뱶 醫낅즺 �빀�땲�떎. 寃곌낵: " + result);
-		
-		return result;
-	}
-
-	
-	// �뙎湲� 泥섎━ LOGIC
-	public List<Map<String, Object>> CommentListLogic(Map<String, Object> pMap, 
-			String no, String category) {
-		
-		logger.info("<Logic> CommentListLogic 吏꾩엯");
-		List<Map<String, Object>> CommentListLogic = null;
-
-		if("�샎諛�".equals(category)) {
+		} else if("혼놀".equals(category)) {
 			
-			logger.info("<Logic> �샎諛� �뙎湲� <id> Logic");
-			CommentListLogic = boardDao.getBabCommentList(pMap);
-			
-		} else if("�샎�닠".equals(category)) {
-			
-			logger.info("<Logic> �샎諛� �뙎湲� <id> Logic");
-			CommentListLogic = boardDao.getSulCommentList(pMap);
-			
-		} else if("�샎��".equals(category)) {
-			
-			logger.info("<Logic> �샎諛� �뙎湲� <id> Logic");
-			CommentListLogic = boardDao.getNolCommentList(pMap);
+			logger.info("<Logic> ---> if(혼놀)시작");
+			logBoardList = boardDao.getNolBoardList(pMap);
+			logger.info("<Logic> ---> if(혼놀)종료");
 			
 		} else {
 			
-			logger.info("<Logic> �샎諛� �뙎湲� Logic �떎�뙣 key媛� �솗�엫�젏 " + category);
+			logger.info("<Logic> ---> logBoardList 오류 파라미터: category 값을 확인해 주세요 " + category);
 			
 		}
 		
-		logger.info("<Logic> CommentListLogic 醫낅즺");
+		logger.info("<Logic> ---> logBoardList 전체 조회 사이즈: " + logBoardList.size());
 		
-		return CommentListLogic;
+		return logBoardList;
 	}
 	
-	public int CommentInsertLogic(Map<String, Object> pMap, String category, String no) {
+	
+	
+	// 해당 게시글 조회 Logic
+	public List<Map<String, Object>> logBoardOneList(Map<String, Object> pMap, String category, String no){
 		
-		logger.info("<Logic> CommentInsertLogic �떎�뻾");
+		logger.info("<Logic> ---> logBoardOneList method 시작");
+		List<Map<String, Object>> logBoardOneList = null;
+		pMap = new HashMap<String, Object>();
+		
+		if("혼밥".equals(category)) {
+			
+			pMap.put("bab_no", no);
+			logger.info("<Logic> ---> if(혼밥)시작");
+			logBoardOneList = boardDao.getBabBoardOneList(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
+			
+		} else if("혼술".equals(category)) {
+			
+			pMap.put("sul_no", no);
+			logger.info("<Logic> ---> if(혼술)시작");
+			logBoardOneList = boardDao.getSulBoardOneList(pMap);
+			logger.info("<Logic> ---> if(혼술)종료");
+			
+		} else if("혼놀".equals(category)) {
+			
+			pMap.put("nol_no", no);
+			logger.info("<Logic> ---> if(혼놀)시작");
+			logBoardOneList = boardDao.getNolBoardOneList(pMap);
+			logger.info("<Logic> ---> if(혼놀)종료");
+			
+		} else {
+			
+			logger.info("<Logic> ---> logBoardOneList 오류 파라미터: category 값을 확인해 주세요 " + category);
+			
+		}
+		
+		logger.info("<Logic> 종료 ---> logBoardOneList 전체 조회 사이즈: " + logBoardOneList.size());
+		
+		return logBoardOneList;
+	}
+	
+	// 해당 게시글  -> 댓글 리스트 조회 Logic
+	public List<Map<String, Object>> logBoardCommentList(Map<String, Object> pMap, String category, String no){
+		
+		 logger.info("<Logic> ---> logBoardCommentList method 시작");
+		 List<Map<String, Object>> logBoardCommentList = null;
+		 
+		 if("혼밥".equals(category)) {
+			 
+			 logger.info("<Logic> ---> if(혼밥)시작");
+			 logBoardCommentList = boardDao.getBabBoardCommentList(pMap);
+			 logger.info("<Logic> ---> if(혼밥)종료");
+			 
+		 } else if("혼술".equals(category)) {
+			 
+			 logger.info("<Logic> ---> if(혼술)시작");
+			 logBoardCommentList = boardDao.getSulBoardCommentList(pMap);
+			 logger.info("<Logic> ---> if(혼술)종료");
+			 
+		 } else if("혼놀".equals(category)) {
+			 
+			 logger.info("<Logic> ---> if(혼놀)시작");
+			 logBoardCommentList = boardDao.getNolBoardCommentList(pMap);
+			 logger.info("<Logic> ---> if(혼놀)종료");
+			 
+		 } else {
+			 
+			 logger.info("<Logic> ---> logBoardCommentList 오류 파라미터: category, no 값을 확인해 주세요 " + category + " , " + no);
+		 }
+		 
+		 logger.info("<Logic> 종료 ---> logBoardCommentList 전체 조회 사이즈: " + logBoardCommentList.size());
+		 
+		 return logBoardCommentList;
+		
+	}
+	
+	
+	// 게시글 입력 Logic 
+	public int logBoardInsert(Map<String, Object> pMap, String category) {
+		
+		logger.info("<Logic> ---> logBoardInsert method 시작");
 		int result = 0;
-		result = boardDao.getCommentInsert(pMap);
-		logger.info("<Logic> CommentInsertLogic 醫낅즺");
+
+		
+		if("혼밥".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼밥)시작");
+			result = boardDao.getBabBoardInsert(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
+			
+		} else if("혼술".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼술)시작");
+			result = boardDao.getSulBoardInsert(pMap);
+			logger.info("<Logic> ---> if(혼술)종료");
+			
+		} else if("혼놀".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼놀)시작");
+			result = boardDao.getNolBoardInsert(pMap);
+			logger.info("<Logic> ---> if(혼놀)종료");
+			
+		} else {
+			
+			 logger.info("<Logic> ---> logBoardInsert 오류 파라미터: category 값을 확인해 주세요 " + category);
+		}
+		
+		 logger.info("<Logic> 종료 ---> logBoardInsert 성공 여부: " + result);
+		
+		return result;
+	}
+	
+	
+	
+	// 댓글 입력 Logic
+	public int logBoardCommentInsert(Map<String, Object> pMap, String category, String no) {
+		
+		logger.info("<Logic> CommentInsertLogic Start");
+		int result = 0;
+		logger.info("값 : "+ category +" , "+ no);
+		
+		if("혼밥".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼밥)시작");
+			result = boardDao.getBabBoardCommentInsert(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
+			
+		} else if("혼술".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼술)시작");
+			result = boardDao.getSulBoardCommentInsert(pMap);
+			logger.info("<Logic> ---> if(혼술)종료");
+			
+		} else if("혼놀".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼놀)시작");
+			result = boardDao.getNolBoardCommentInsert(pMap);
+			logger.info("<Logic> ---> if(혼놀)종료");
+			
+		} else {
+			
+			logger.info("<Logic> ---> logBoardCommentInsert 오류 파라미터: category 값을 확인해 주세요 " + category);
+		
+		}
+		
+		logger.info("<Logic> 종료 ---> logBoardCommentInsert 성공 여부: " + result);
+		
 		return result;
 		
 	}
+	
+	
+	// 게시글 삭제
+	public int logBoardDelete(Map<String, Object> pMap, String category) {
+			
+			logger.info("<Logic> ---> logBoardDelete method 시작");
+			int result = 0;
+			
+			if("혼밥".equals(category)) {
+				
+				logger.info("<Logic> ---> if(혼밥)시작");
+				result = boardDao.getBabBoardDelete(pMap);
+				logger.info("<Logic> ---> if(혼밥)종료");
+				
+			} else if("혼술".equals(category)) {
+				
+				logger.info("<Logic> ---> if(혼술)시작");
+				result = boardDao.getSulBoardDelete(pMap);
+				logger.info("<Logic> ---> if(혼술)종료");
+				
+			} else if("혼놀".equals(category)) {
+				
+				logger.info("<Logic> ---> if(혼놀)시작");
+				result = boardDao.getNolBoardDelete(pMap);
+				logger.info("<Logic> ---> if(혼놀)종료");
+				
+			} else {
+				
+				 logger.info("<Logic> ---> logBoardDelete 오류 파라미터: category 값을 확인해 주세요 " + category);
+			}
+			
+			 logger.info("<Logic> 종료 ---> logBoardDelete 성공 여부: " + result);
+			
+			return result;
+		}
+	
+	
+	
+	
+	// 게시판 수정
+	public int logBoardUpdate(Map<String, Object> pMap, String category) {
+		
+		logger.info("<Logic> ---> logBoardUpdate method 시작");
+		int result = 0;
+		
+		if("혼밥".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼밥)시작");
+			result = boardDao.getBabBoardUpdate(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
+			
+		} else if("혼술".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼술)시작");
+			result = boardDao.getSulBoardUpdate(pMap);
+			logger.info("<Logic> ---> if(혼술)종료");
+			
+		} else if("혼놀".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼놀)시작");
+			result = boardDao.getNolBoardUpdate(pMap);
+			logger.info("<Logic> ---> if(혼놀)종료");
+			
+		} else {
+			
+			logger.info("<Logic> ---> logBoardUpdate 오류 파라미터: category 값을 확인해 주세요 " + category);
+			
+		}
+			
+		logger.info("<Logic> 종료 ---> logBoardUpdate 성공 여부: " + result);
+		
+		return result;
+	}
+	
+	// 조회수 Hit Logic
+	public int logBoardHitUpdate(Map<String, Object> pMap, String category) {
+		
+		logger.info("<Logic> ---> logBoardHitUpdate method 시작");
+		int result = 0;
+		
+		if("혼밥".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼밥)시작");
+			result = boardDao.getBabBoardHitUpdate(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
+			
+		} else if ("혼술".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼밥)시작");
+			result = boardDao.getSulBoardHitUpdate(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
+			
+		} else if("혼놀".equals(category)) {
+			
+			logger.info("<Logic> ---> if(혼밥)시작");
+			result = boardDao.getNolBoardHitUpdate(pMap);
+			logger.info("<Logic> ---> if(혼밥)종료");
+			
+		} else {
+			
+			logger.info("<Logic> ---> logBoardHitUpdate 오류 파라미터: category 값을 확인해 주세요 " + category);
+		}
+		
+		
+		logger.info("<Logic> 종료 ---> logBoardHitUpdate 성공 여부: " + result);
+		
+		return result;
+	}
+	
+	
+	
+	
+	// 최고 조회수 조회
+	
+	// 혼밥
+	public List<Map<String, Object>> logBabBoardHitMax(Map<String, Object> pMap){
+	
+		logger.info("<Logic> ---> logBabBoardHitMax method 시작");
+		List<Map<String, Object>> logBabBoardHitMax = null;
+		logBabBoardHitMax = boardDao.getBabBoardHitMax(pMap);
+		logger.info("<Logic> ---> logBabBoardHitMax 전체 조회 사이즈: " + logBabBoardHitMax.size());
+		
+		return logBabBoardHitMax;
+		
+	}
+	
+	// 혼술
+	public List<Map<String, Object>> logSulBoardHitMax(Map<String, Object> pMap){
+		
+		logger.info("<Logic> ---> logSulBoardHitMax method 시작");
+		List<Map<String, Object>> logSulBoardHitMax = null;
+		logSulBoardHitMax = boardDao.getSulBoardHitMax(pMap);
+		logger.info("<Logic> ---> logSulBoardHitMax 전체 조회 사이즈: " + logSulBoardHitMax.size());
+		
+		return logSulBoardHitMax;
+		
+	}
+	
+	// 혼놀
+	public List<Map<String, Object>> logNolBoardHitMax(Map<String, Object> pMap){
+		
+		logger.info("<Logic> ---> logNolBoardHitMax method 시작");
+		List<Map<String, Object>> logNolBoardHitMax = null;
+		logNolBoardHitMax = boardDao.getNolBoardHitMax(pMap);
+		logger.info("<Logic> ---> logNolBoardHitMax 전체 조회 사이즈: " + logNolBoardHitMax.size());
+		
+		return logNolBoardHitMax;
+		
+	}
+	
+	
+	
 	
 	
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

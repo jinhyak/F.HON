@@ -17,11 +17,9 @@ public class FileServlet extends HttpServlet {
 	
 	Logger logger = Logger.getLogger(FileServlet.class);
 	
-	public void doService(HttpServletRequest req, HttpServletResponse res) 
-			throws ServletException,IOException {
+	public void doService(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException {
 		
 		logger.info("File Servlet이동");
-		
 		req.setCharacterEncoding("UTF-8");
 		//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 컨트롤러를 정해줌 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 				//ctr = Mapping.mapping(req,wMap);
@@ -32,7 +30,6 @@ public class FileServlet extends HttpServlet {
 		MultipartRequest multipartRequest = new MultipartRequest(req, path, maxsize, encoding, new DefaultFileRenamePolicy());
 		String img_file = multipartRequest.getParameter("img_file"); // 이미지
 		logger.info(" file 저장완료");
-		
 	}
 	// post
 	public void doPost(HttpServletRequest req, HttpServletResponse res)

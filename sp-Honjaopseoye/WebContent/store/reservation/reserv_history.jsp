@@ -11,6 +11,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	//alert(mem_id);
+	$.fn.dataTable.ext.errMode = '';
     $('#dt_reserv_list').dataTable({
 		//url:'../../member/empty/getReservList.test',
 		"ajax":{ "url":"../../reservation/sel_history.hon?mem_id=<%=mem_id%>", "type":"POST" },

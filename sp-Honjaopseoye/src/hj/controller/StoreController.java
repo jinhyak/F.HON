@@ -70,7 +70,7 @@ public class StoreController{
 	public String imgUpload(MultipartHttpServletRequest multi) {
 		logger.info("storeImg호출성공");
 		//저장경로 설정
-		String path = "C:\\Users\\516\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\store\\storeImg";
+		String path = "C:\\Users\\516\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\image\\storeImg";
 		//파일 저장 경로 확인, 없으면 만듬
 		File dir = new File(path);
 		if(!dir.exists()) {
@@ -102,9 +102,9 @@ public class StoreController{
 		
 		return null;
 	}
-	//가게 검색	
-	@RequestMapping(value= {"/storeSearch.hon"},produces="text/html; charset=UTF-8")
-	public String storeSearch(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
+	//핫플 가게 검색	
+	@RequestMapping(value= {"/storeSearch8.hon"},produces="text/html; charset=UTF-8")
+	public String storeSearch8(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
 		logger.info("pMap="+pMap);
 		List<Map<String,Object>> list = null;
 		try {
@@ -116,6 +116,26 @@ public class StoreController{
 		mod.addAttribute("list",list);//모델은 셋뷰네임 안하고 바로 경로써줌
 		return "forward:/main/honja/hotplace/hotplace_result.jsp";
 	}
+	//가게 전체 검색
+	@RequestMapping(value= {"/storeSearchAll.hon"},produces="text/html; charset=UTF-8")
+	public String storeSearchAll(Model mod,@RequestParam Map<String,Object> pMap, HttpServletRequest req) {
+		
+		pMap.put("searchWord", req.getParameter("searchWord"));
+		pMap.put("gubun", req.getParameter("gubun"));
+		pMap.put("store_business", req.getParameter("store_business"));
+		pMap.put("store_price", req.getParameter("store_price"));
+		List<Map<String,Object>> list = null;
+		try {
+			list = storeLogic.searchStoreAll(pMap);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String searchWord = (String)pMap.get("searchWord");
+		mod.addAttribute("searchWord",searchWord);
+		logger.info(searchWord);
+		mod.addAttribute("list",list);//모델은 셋뷰네임 안하고 바로 경로써줌
+		return "forward:/store/storeResult/storeAll.jsp";
+	}
 	//가게 정보 상세보기
 	@RequestMapping(value= {"/storeDetail.hon"},produces="text/html; charset=UTF-8")
 	public String storeDetail(Model mod,HttpServletRequest req) {
@@ -123,14 +143,30 @@ public class StoreController{
 		logger.info(store_no);
 		List<Map<String,Object>> list = null;
 		try {
-			list = storeDao.storeDetail(store_no);
+			list = storeLogic.storeDetail(store_no);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
-		logger.info("list"+list);
 		mod.addAttribute("list",list);
 		return "forward:/store/storeResult/storeDetail.jsp";
 	}
-
+	//가게 별점 주기
+	@ResponseBody
+	@RequestMapping(value= {"/storeSetScore.hon"},produces="text/html; charset=UTF-8")
+	public String storeSetScore(Model mod,@RequestParam Map<String,Object> pMap,HttpServletRequest req) {
+		int result = 0;
+		pMap.put("setStore_score",Integer.parseInt((String)req.getParameter("setStore_score")));
+		pMap.put("store_no",(String)req.getParameter("store_no"));
+		logger.info(pMap);
+		try {
+			result = storeDao.stoeSetScore(pMap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(result==1) {
+			return "별점 등록 성공";
+		}
+		return "별점 등록 실패";
+	}
 
 }

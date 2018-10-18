@@ -74,9 +74,10 @@ public class GroupDao {
 		//모임 참석버튼 누를시 info에 인서트 bang_no, mem_id, mem_memo받음
 		public int groupAttend(Map<String, Object> pMap) {
 			logger.info("groupAttend");
-			int result = 0;
-			result = sqlSessionTemplate.insert("groupMapper.groupAttend", pMap);
-			logger.info("result: " + result);
+			sqlSessionTemplate.selectOne("groupMapper.groupAttend", pMap);
+			int result = 0;		
+			result = (int)pMap.get("result");		
+			logger.info("result : "+result);
 			return result;
 		}
 		//모임 취소버튼 누를시 info에 델리트 mem_id받음
@@ -88,10 +89,11 @@ public class GroupDao {
 			return result;
 		}
 		//모임방 삭제버튼(방장만) bang_no 받음
-		public int groupDelete(String bang_no) {
+		public int groupDelete(Map<String, Object> pMap) {
 			logger.info("groupDelete");
+			sqlSessionTemplate.selectOne("groupMapper.groupDelete", pMap);
 			int result = 0;
-			result = sqlSessionTemplate.delete("groupMapper.groupDelete", bang_no);
+			result = (int)pMap.get("result");
 			logger.info("result : " + result);
 			return result;
 		}

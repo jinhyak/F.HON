@@ -107,7 +107,6 @@ public class MessageController {
 	@RequestMapping("/allUnReadMsg.hon")
 	public String allUnReadMsg(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
 		logger.info("pMap" + pMap);
-		logger.info("id_sel 메소드 호출");
 		String result = "";
 		try {
 			result = messageDao.allUnReadMsg(pMap);

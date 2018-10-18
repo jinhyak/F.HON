@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*"%>
-<%@ page import="java.net.URLEncoder" %>
-<%@ page import="java.security.SecureRandom" %>
-<%@ page import="java.math.BigInteger" %>
-
 <%
 	String s_name = null;
 	String s_id = null;
@@ -22,8 +18,8 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 	var s_name = '<%=s_name%>';
-	var s_id = '<%=s_id%>'
-	var s_pw = '<%=s_pw%>'
+	var s_id = '<%=s_id%>';
+	var s_pw = '<%=s_pw%>';
 	function login() {
 		//alert(s_name);
 		//alert("로그인");
@@ -75,7 +71,7 @@
 <div class="ui container" style="height:800px;margin-top:70px">
 	<div style="height: 100px;"></div>
 	<div align="center">
-		<a href="../result/Outline.jsp" class="ui medium image">
+		<a href="../../main/main/main.jsp" class="ui medium image">
 			<img src="../../image/logo.png">
 		</a>
 	</div>
@@ -107,11 +103,18 @@
 	<div class="six wide tablet eight text wide computer column" style="text-align: center; padding-bottom: 20px;">
 		<div class="ui big icon input">
 			<a href="../join/gaip.jsp" style="border-right: solid thin; padding-right: 7px; margin-right: 7px; margin-left: 7px">회원가입</a>
-			<a href="./idSearch.jsp" style="border-right: solid thin; padding-right: 7px; margin-right: 7px;">ID찾기</a>
+			<a href="./idSerch.jsp" style="border-right: solid thin; padding-right: 7px; margin-right: 7px;">ID찾기</a>
 			<a href="./pwSearch.jsp">비번찾기</a>
 		</div>
 	</div>
-	
+		<div class="ui container" style="justify-content:center; text-align: center;" >
+		<div class="row" style="padding-bottom:5px;">'
+			<%@ include file="./naverLogin.jsp" %>
+		</div>
+		<div class="row" style="justify-content:center; align-content:center;">
+			<a id="kakao-login-btn"></a>
+		</div>
+	</div>
 	<a href="http://developers.kakao.com/logout"></a>
 	<script type='text/javascript'>
 	//<![CDATA[
