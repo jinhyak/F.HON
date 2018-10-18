@@ -48,13 +48,13 @@
 	function id_check(){
 		var id_check ;
 		var param = $('#id').val();
-		alert(param)
+		//alert(param)
 		$.ajax({
 			 method:"get"
 			,url:"../id_sel.hon"
 			,data:{"id": $('#id').val()}
 			,success:function(data){
-				alert("result:" + data);
+				//alert("result:" + data);
 				if(data=='1'){
 					alert('사용할 수 있는 ID입니다')
 					id_check=data
@@ -78,7 +78,7 @@
 			,url:"../id_tel.hon"
 			,data:{"tel": $('#tel').val()}
 			,success:function(data){
-				alert(data);
+				//alert(data);
 				if(data=='1'){
 					alert('사용할 수 있는 번호입니다')
 					tel_check = data
@@ -149,7 +149,7 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 성별 구분 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	function gender(){
 		var gender = $("chk_info").val()
-		alert(gender)
+		//alert(gender)
 	}
 </script>
 	<div class="ui middle center aligned grid bagic segment" style="margin-top:100px;border:hidden">
@@ -354,7 +354,7 @@
 					 method:'post'
 					,url:'../../member/doAddress.hon'
 					,success:function(data){
-						alert("도: "+data);
+						//alert("도: "+data);
 						$('#menu_do').html(data);
 					}
 				})
@@ -396,7 +396,7 @@
 		var si = $('#si').text();
 		var dong = $('#dong').text();
 		var address = $('#p_addr').val();
-		alert(address);
+		//alert(address);
 		cmm_window_popup("./address.jsp?zdo="+dos+"&sigu="+si+"&dong="+dong+"&address="+address, 800, 600, "상세주소 조회창")
 	}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 성별 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

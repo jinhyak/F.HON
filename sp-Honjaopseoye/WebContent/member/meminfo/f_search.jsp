@@ -103,14 +103,14 @@
 									</div>
 									<script type="text/javascript">
 										function search(){
-												alert(mem_id);
+												//alert(mem_id);
 												var value="value="+$("#value").val()+"&mem_id="+mem_id;
 											$.ajax({
 												 method:"post"
 												,data:value
 												,url:"../../friend/fri_search.hon"
 												,success:function(data){
-													alert(data);
+													//alert(data);
 													$("#fri_search").html(data);
 												}
 												,error:function(data){

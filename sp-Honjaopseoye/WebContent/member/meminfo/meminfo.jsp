@@ -199,24 +199,24 @@ $(document).ready(function(){
 </div><!-- grid -->	
 <script type="text/javascript">
 	function mem_update(){
-		alert('수정중')
+		//alert('수정중')
 		var mem_job = $("#jobs").val()
-		alert(mem_job)
+		//alert(mem_job)
 		var mem_hobby = $("#hobbys").val()
-		alert(mem_hobby)
+		//alert(mem_hobby)
 		var mem_gender = $("#mem_gender").val()
-		alert(mem_gender)
+		//alert(mem_gender)
 		var mem_email = $("#mem_email").val()+$("#domain").val();
-		alert(mem_email)
+		//alert(mem_email)
 		var param = $('#mlist_form').serialize()+"&mem_email="+mem_email+"&mem_hobby="+mem_hobby+"&mem_job="+mem_job+"&mem_gender="+mem_gender;
-		alert(param)
+		//alert(param)
 		//수정 ajax gogo
 		$.ajax({
 			 method:"post"
 			,data:param
 			,url:"../iUpdate.hon"
 			,success:function(data){
-				alert(data);
+				//alert(data);
 				if(data=='1'){
 					alert('회원정보가 수정되었습니다.')
 					location.href="../../main/main/main.jsp"

@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 <!--  -->
 	<div class="ui container"
-		style="margin-left: 200px; margin-right: 200px;">
+		style="margin-left: 200px; margin-right: 200px; margin-bottom:10%">
 		<h2 class="ui header" style="margin-top: 50px;">
 			<img src="../image/logo.png" style="width: 170px; height: 60px;">
 			<div class="content">
