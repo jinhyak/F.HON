@@ -98,8 +98,7 @@ img {
 																style="border: 1px solid #85B7D9" id="noti_category"
 																name="noti_category">
 																<input type="hidden" name="noti_category"> <input
-																	type="hidden" name="gender"> <i
-																	class="dropdown icon"></i>
+																	type="hidden" name="gender"> <i class="dropdown icon"></i>
 																<div class="default text">카테고리</div>
 																<div class="menu">
 																	<div class="item" data-value="전체" name="all">전체</div>
@@ -121,9 +120,7 @@ img {
 													</tr>
 													<tr>
 														<td>내용</td>
-														<td align="left"><textarea id="noti_content" name="noti_content"
-																style="width: 100%; height: 500px;">
-													</textarea></td>
+														<td align="left"><textarea id="noti_content" name="noti_content" style="width: 100%; height: 500px;"></textarea></td>
 														<tr>
 														<td align="center">첨부파일</td>
 														<td align="left"><input type="file" id="noti_file"
@@ -164,12 +161,12 @@ img {
 </div>
 <script type="text/javascript">
 function Ins_write() {
-		var noti_category = $('#category').dropdown("get value");
+		var noti_category = $('#noti_category').dropdown("get value");
 		var noti_pw = $('#noti_pw').val();
 		var noti_content = $("#noti_content").val();
 		var noti_title = $('#noti_title').val()
 		var noti_file = $('#noti_file').val(); 
-	
+		var mem_id = $('#noti_writer').val();
 	   if(noti_title == null || noti_title ==""){
 	      alert("제목을 입력해주세요.");
 	      $("#noti_title").focus();

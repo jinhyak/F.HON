@@ -23,13 +23,15 @@
 		noti_writer = notiList.get(0).get("NOTI_WRITER").toString();
 		noti_hit = Integer.parseInt(notiList.get(0).get("NOTI_HIT").toString());
 		noti_date = notiList.get(0).get("NOTI_DATE").toString();
-		noti_content = notiList.get(0).get("NOTI_CONTENT").toString();
+		if(notiList.get(0).get("NOTI_CONTENT") != null){
+			noti_content = notiList.get(0).get("NOTI_CONTENT").toString();
+		}else{
+			noti_content = "";
+		}
 		if (notiList.get(0).get("NOTI_IMAGE") != null) {
 			noti_image = notiList.get(0).get("NOTI_IMAGE").toString();
 		}
-		else{
-			noti_image = "noSearch.png";
-		}
+	
 	}
 	//이전, 다음번호 담아오는 select문에서 받아온 것
 	List<Map<String, Object>> PN_select = null;
@@ -73,6 +75,7 @@
 	var noti_writer = '<%=noti_writer%>';
 	var noti_content = <%=noti_content%>
 </script>
+
 </head>
 <body>
 <%@ include file="../../include/include/subtop.jsp" %>
@@ -148,9 +151,6 @@
 										</div>
 										<h2 class="ui left floated header" style="margin-top: 3px"></h2>
 										<div class="ui clearing divider"></div>
-											<div>
-												<h1>[Event] 제2회 혼자옵서예 내가 뽑은 베스트 후기는?</h1>
-											</div>
 											<input type="hidden" value="<%=noti_no%>" name="noti_no">
 											<input type="hidden" value="<%=noti_writer%>" name="noti_writer">
 											<input type="hidden" value="<%=noti_writer%>" name="noti_pw">
@@ -241,6 +241,20 @@
 	    $("#f_update").attr('action','../notice/notice/n_modify.jsp');
 		$("#f_update").submit();
 	}
+	
+	var noti_no = '<%=noti_no%>'
+	var NEXT_NOTI_NO = '<%=NEXT_NOTI_NO%>'
+	var PREV_NOTI_NO = '<%=PREV_NOTI_NO%>'
+	function next(NEXT_NOTI_NO){
+		alert(NEXT_NOTI_NO)
+		location.href="/sp-Honjaopseoye/menu/noticeDetail.hon?NOTI_NO="+NEXT_NOTI_NO;
+	}
+	
+	function prev(PREV_NOTI_NO){
+		alert(PREV_NOTI_NO)
+		location.href="/sp-Honjaopseoye/menu/noticeDetail.hon?NOTI_NO="+PREV_NOTI_NO;
+	}
+	
 	$(document).ready(function() {
 		if (level == 'master') {
 			alert(level)
