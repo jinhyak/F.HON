@@ -315,7 +315,7 @@ var v = '<%= url%>';
 							<td width="200px"></td>
 						</tr>
 						<tr>
-							<td align="center"><img src="/sp-Honjaopseoye/boardList/gui/replys.gif" width="100px" height="100px">
+							<td align="center"><img src="/sp-Honjaopseoye/image/gui/replys.gif" width="100px" height="100px">
 							<pre>현재 댓글이 없습니다.</pre>
 							</td>
 						</tr>

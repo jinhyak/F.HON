@@ -17,115 +17,115 @@ public class BoardDao {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 	
-			// <í˜¼ë°¥> ëª¨ë“  ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ (SELECT)
+			// <È¥¹ä> ¸ğµç °Ô½Ã±Û ¸ñ·Ï Á¶È¸ (SELECT)
 			public List<Map<String, Object>> getBabBoardList(Map<String, Object> pMap){
 				
-				logger.info("<Dao> ---> getBabBoardList method ì‹œì‘");
-				logger.info("<Category> <<<<< í˜¼ë°¥ >>>>> ");
+				logger.info("<Dao> ---> getBabBoardList method ½ÃÀÛ");
+				logger.info("<Category> <<<<< È¥¹ä >>>>> ");
 				List<Map<String, Object>> getBabBoardList = null;
 				
 				getBabBoardList = sqlSessionTemplate.selectList("getBabBoardList", pMap);
-				logger.info("<Dao> ---> getBabBoardList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getBabBoardList.size());
+				logger.info("<Dao> ---> getBabBoardList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getBabBoardList.size());
 				
 				return getBabBoardList;
 			}
 			
 			
 			
-			// <í˜¼ìˆ > ëª¨ë“  ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ (SELECT)
+			// <È¥¼ú> ¸ğµç °Ô½Ã±Û ¸ñ·Ï Á¶È¸ (SELECT)
 			public List<Map<String, Object>> getSulBoardList(Map<String, Object> pMap){
 				
-				logger.info("<Dao> ---> getSulBoardList method ì‹œì‘");
-				logger.info("<Category> <<<<< í˜¼ìˆ  >>>>> ");
+				logger.info("<Dao> ---> getSulBoardList method ½ÃÀÛ");
+				logger.info("<Category> <<<<< È¥¼ú >>>>> ");
 				List<Map<String, Object>> getSulBoardList = null;
 				
 				getSulBoardList = sqlSessionTemplate.selectList("getSulBoardList", pMap);
-				logger.info("<Dao> ---> getSulBoardList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getSulBoardList.size());
+				logger.info("<Dao> ---> getSulBoardList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getSulBoardList.size());
 				
 				return getSulBoardList;
 			}
 			
 			
 			
-			// <í˜¼ë†€> ëª¨ë“  ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ (SELECT)
+			// <È¥³î> ¸ğµç °Ô½Ã±Û ¸ñ·Ï Á¶È¸ (SELECT)
 			public List<Map<String, Object>> getNolBoardList(Map<String, Object> pMap){
 						
-				logger.info("<Dao> ---> getNolBoardList method ì‹œì‘");
-				logger.info("<Category> <<<<< í˜¼ë†€ >>>>> ");
+				logger.info("<Dao> ---> getNolBoardList method ½ÃÀÛ");
+				logger.info("<Category> <<<<< È¥³î >>>>> ");
 				List<Map<String, Object>> getNolBoardList = null;
 						
 				getNolBoardList = sqlSessionTemplate.selectList("getNolBoardList", pMap);
-				logger.info("<Dao> ---> getSulBoardList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getNolBoardList.size());
+				logger.info("<Dao> ---> getSulBoardList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getNolBoardList.size());
 						
 				return getNolBoardList;
 			}
 			
 			
 			
-			// <í˜¼ë°¥> ì„ íƒ ê²Œì‹œê¸€ ëª©ë¡ ë‚´ìš© ì¡°íšŒ (SELECT) - WHERE
+			// <È¥¹ä> ¼±ÅÃ °Ô½Ã±Û ¸ñ·Ï ³»¿ë Á¶È¸ (SELECT) - WHERE
 			public List<Map<String, Object>> getBabBoardOneList(Map<String, Object> pMap){
 				
-				logger.info("<Dao> ---> getBabBoardOneList method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardOneList method ½ÃÀÛ");
 				List<Map<String, Object>> getBabBoardOneList = null;
 								
 				getBabBoardOneList = sqlSessionTemplate.selectList("getBabBoardOneList", pMap);
-				logger.info("<Dao> ---> getBabBoardOneList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getBabBoardOneList.size());
+				logger.info("<Dao> ---> getBabBoardOneList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getBabBoardOneList.size());
 								
 				return getBabBoardOneList;
 			}
 			
 			
 			
-			// <í˜¼ìˆ > ì„ íƒ ê²Œì‹œê¸€ ëª©ë¡ ë‚´ìš© ì¡°íšŒ (SELECT) - WHERE
+			// <È¥¼ú> ¼±ÅÃ °Ô½Ã±Û ¸ñ·Ï ³»¿ë Á¶È¸ (SELECT) - WHERE
 			public List<Map<String, Object>> getSulBoardOneList(Map<String, Object> pMap){
 					
-				logger.info("<Dao> ---> getSulBoardOneList method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardOneList method ½ÃÀÛ");
 				List<Map<String, Object>> getSulBoardOneList = null;
 									
 				getSulBoardOneList = sqlSessionTemplate.selectList("getSulBoardOneList", pMap);
-				logger.info("<Dao> ---> getSulBoardOneList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getSulBoardOneList.size());
+				logger.info("<Dao> ---> getSulBoardOneList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getSulBoardOneList.size());
 									
 				return getSulBoardOneList;
 			}
 			
 			
 				
-			// <í˜¼ë°¥> ì„ íƒ ê²Œì‹œê¸€ ëª©ë¡ ë‚´ìš© ì¡°íšŒ (SELECT) - WHERE
+			// <È¥¹ä> ¼±ÅÃ °Ô½Ã±Û ¸ñ·Ï ³»¿ë Á¶È¸ (SELECT) - WHERE
 			public List<Map<String, Object>> getNolBoardOneList(Map<String, Object> pMap){
 					
-				logger.info("<Dao> ---> getNolBoardOneList method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardOneList method ½ÃÀÛ");
 				List<Map<String, Object>> getNolBoardOneList = null;
 									
 				getNolBoardOneList = sqlSessionTemplate.selectList("getNolBoardOneList", pMap);
-				logger.info("<Dao> ---> getNolBoardOneList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getNolBoardOneList.size());
+				logger.info("<Dao> ---> getNolBoardOneList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getNolBoardOneList.size());
 									
 				return getNolBoardOneList;
 			}
 			
 			
 			
-			// <í˜¼ë°¥> ëŒ“ê¸€ ì¡°íšŒ
+			// <È¥¹ä> ´ñ±Û Á¶È¸
 			public List<Map<String, Object>> getBabBoardCommentList(Map<String, Object> pMap){
 				
-				logger.info("<Dao> ---> getBabBoardCommentList method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardCommentList method ½ÃÀÛ");
 				List<Map<String, Object>> getBabBoardCommentList = null;
 				
 				getBabBoardCommentList = sqlSessionTemplate.selectList("getBabBoardCommentList", pMap);
-				logger.info("<Dao> ---> getBabBoardCommentList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getBabBoardCommentList.size());
+				logger.info("<Dao> ---> getBabBoardCommentList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getBabBoardCommentList.size());
 				
 				return getBabBoardCommentList;
 			}
 			
 			
 			
-			// <í˜¼ìˆ > ëŒ“ê¸€ ì¡°íšŒ
+			// <È¥¼ú> ´ñ±Û Á¶È¸
 			public List<Map<String, Object>> getSulBoardCommentList(Map<String, Object> pMap){
 				
-				logger.info("<Dao> ---> getSulBoardCommentList method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardCommentList method ½ÃÀÛ");
 				List<Map<String, Object>> getSulBoardCommentList = null;
 				
 				getSulBoardCommentList = sqlSessionTemplate.selectList("getSulBoardCommentList", pMap);
-				logger.info("<Dao> ---> getSulBoardCommentList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getSulBoardCommentList.size());
+				logger.info("<Dao> ---> getSulBoardCommentList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getSulBoardCommentList.size());
 				
 				return getSulBoardCommentList;
 			}
@@ -133,14 +133,14 @@ public class BoardDao {
 			
 			
 			
-			// <í˜¼ë†€> ëŒ“ê¸€ ì¡°íšŒ
+			// <È¥³î> ´ñ±Û Á¶È¸
 			public List<Map<String, Object>> getNolBoardCommentList(Map<String, Object> pMap){
 		
-				logger.info("<Dao> ---> getNolBoardCommentList method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardCommentList method ½ÃÀÛ");
 				List<Map<String, Object>> getNolBoardCommentList = null;
 		
 				getNolBoardCommentList = sqlSessionTemplate.selectList("getNolBoardCommentList", pMap);
-				logger.info("<Dao> ---> getNolBoardCommentList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getNolBoardCommentList.size());
+				logger.info("<Dao> ---> getNolBoardCommentList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getNolBoardCommentList.size());
 		
 				return getNolBoardCommentList;
 			}
@@ -148,224 +148,224 @@ public class BoardDao {
 			
 			
 			
-			// ê²Œì‹œíŒ í˜¼ë°¥ ì…ë ¥
+			// °Ô½ÃÆÇ È¥¹ä ÀÔ·Â
 			public int getBabBoardInsert(Map<String, Object> pMap) {
 				
-				logger.info("<Dao> ---> getBabBoardInsert method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardInsert method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.insert("getBabBoardInsert", pMap);
-				logger.info("<Dao> ---> getBabBoardInsert ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getBabBoardInsert ÀÔ·Â ¼º°ø: " + result);
 				return result;
 			}
 			
 			
 			
-		    // ê²Œì‹œíŒ í˜¼ìˆ  ì…ë ¥
+		    // °Ô½ÃÆÇ È¥¼ú ÀÔ·Â
 			public int getSulBoardInsert(Map<String, Object> pMap) {
 							
-				logger.info("<Dao> ---> getSulBoardInsert method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardInsert method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.insert("getSulBoardInsert", pMap);
-				logger.info("<Dao> ---> getSulBoardInsert ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getSulBoardInsert ÀÔ·Â ¼º°ø: " + result);
 				return result;
 			}
 			
 			
 			
-			// ê²Œì‹œíŒ í˜¼ë†€ ì…ë ¥
+			// °Ô½ÃÆÇ È¥³î ÀÔ·Â
 			public int getNolBoardInsert(Map<String, Object> pMap) {
 				
-				logger.info("<Dao> ---> getNolBoardInsert method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardInsert method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.insert("getNolBoardInsert", pMap);
-				logger.info("<Dao> ---> getNolBoardInsert ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getNolBoardInsert ÀÔ·Â ¼º°ø: " + result);
 				return result;
 			}
 			
-			// ê²Œì‹œíŒ í˜¼ë°¥ ì‚­ì œ
+			// °Ô½ÃÆÇ È¥¹ä »èÁ¦
 			public int getBabBoardDelete(Map<String, Object> pMap) {
 				
-				logger.info("<Dao> ---> getBabBoardDelete method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardDelete method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.delete("getBabBoardDelete", pMap);
-				logger.info("<Dao> ---> getBabBoardDelete ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getBabBoardDelete ÀÔ·Â ¼º°ø: " + result);
 				return result;
 				
 			}
 			
 			
-			// ê²Œì‹œíŒ í˜¼ë°¥ ì‚­ì œ
+			// °Ô½ÃÆÇ È¥¹ä »èÁ¦
 			public int getSulBoardDelete(Map<String, Object> pMap) {
 
-				logger.info("<Dao> ---> getSulBoardDelete method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardDelete method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.delete("getSulBoardDelete", pMap);
-				logger.info("<Dao> ---> getSulBoardDelete ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getSulBoardDelete ÀÔ·Â ¼º°ø: " + result);
 				return result;
 
 			}
 
-			// ê²Œì‹œíŒ í˜¼ë°¥ ì‚­ì œ
+			// °Ô½ÃÆÇ È¥¹ä »èÁ¦
 			public int getNolBoardDelete(Map<String, Object> pMap) {
 
-				logger.info("<Dao> ---> getNolBoardDelete method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardDelete method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.delete("getNolBoardDelete", pMap);
-				logger.info("<Dao> ---> getNolBoardDelete ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getNolBoardDelete ÀÔ·Â ¼º°ø: " + result);
 				return result;
 
 			}
 			
 			
 			
-			// í˜¼ë°¥ ê²Œì‹œíŒ ëŒ“ê¸€ ì…ë ¥
+			// È¥¹ä °Ô½ÃÆÇ ´ñ±Û ÀÔ·Â
 			public int getBabBoardCommentInsert(Map<String, Object> pMap) {
 				
 				int result = 0;
-				logger.info("<Dao> ---> getBabBoardCommentInsert method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardCommentInsert method ½ÃÀÛ");
 				result = sqlSessionTemplate.insert("getBabBoardCommentInsert", pMap);
-				logger.info("<Dao> ---> getBabBoardCommentInsert ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getBabBoardCommentInsert ÀÔ·Â ¼º°ø: " + result);
 				
 				return result;
 			}
 			
 
-			// í˜¼ë°¥ ê²Œì‹œíŒ ëŒ“ê¸€ ì…ë ¥
+			// È¥¹ä °Ô½ÃÆÇ ´ñ±Û ÀÔ·Â
 			public int getSulBoardCommentInsert(Map<String, Object> pMap) {
 				
 				int result = 0;
-				logger.info("<Dao> ---> getSulBoardCommentInsert method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardCommentInsert method ½ÃÀÛ");
 				result = sqlSessionTemplate.insert("getSulBoardCommentInsert", pMap);
-				logger.info("<Dao> ---> getSulBoardCommentInsert ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getSulBoardCommentInsert ÀÔ·Â ¼º°ø: " + result);
 				
 				return result;
 			}
 			
 
-			// í˜¼ë°¥ ê²Œì‹œíŒ ëŒ“ê¸€ ì…ë ¥
+			// È¥¹ä °Ô½ÃÆÇ ´ñ±Û ÀÔ·Â
 			public int getNolBoardCommentInsert(Map<String, Object> pMap) {
 				
 				int result = 0;
-				logger.info("<Dao> ---> getNolBoardCommentInsert method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardCommentInsert method ½ÃÀÛ");
 				result = sqlSessionTemplate.insert("getNolBoardCommentInsert", pMap);
-				logger.info("<Dao> ---> getNolBoardCommentInsert ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getNolBoardCommentInsert ÀÔ·Â ¼º°ø: " + result);
 				
 				return result;
 			}
 			
 			
 			
-			// í˜¼ë°¥ ê²Œì‹œíŒ ìˆ˜ì •
+			// È¥¹ä °Ô½ÃÆÇ ¼öÁ¤
 			public int getBabBoardUpdate(Map<String, Object> pMap) {
 				
-				logger.info("<Dao> ---> getBabBoardUpdate method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardUpdate method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.update("getBabBoardUpdate", pMap);
-				logger.info("<Dao> ---> getBabBoardUpdate ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getBabBoardUpdate ÀÔ·Â ¼º°ø: " + result);
 				
 				return result;
 			}
 			
 			
 			
-			// í˜¼ìˆ  ê²Œì‹œíŒ ìˆ˜ì •
+			// È¥¼ú °Ô½ÃÆÇ ¼öÁ¤
 			public int getSulBoardUpdate(Map<String, Object> pMap) {
 	
-				logger.info("<Dao> ---> getSulBoardUpdate method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardUpdate method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.update("getSulBoardUpdate", pMap);
-				logger.info("<Dao> ---> getSulBoardUpdate ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getSulBoardUpdate ÀÔ·Â ¼º°ø: " + result);
 	
 				return result;
 			}
 						
 						
 						
-			// í˜¼ë†€ ê²Œì‹œíŒ ìˆ˜ì •
+			// È¥³î °Ô½ÃÆÇ ¼öÁ¤
 			public int getNolBoardUpdate(Map<String, Object> pMap) {
 							
-				logger.info("<Dao> ---> getNolBoardUpdate method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardUpdate method ½ÃÀÛ");
 				int result = 0;
 				result = sqlSessionTemplate.update("getNolBoardUpdate", pMap);
-				logger.info("<Dao> ---> getNolBoardUpdate ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getNolBoardUpdate ÀÔ·Â ¼º°ø: " + result);
 							
 				return result;
 			}
 
 			
 			
-			// ì¡°íšŒìˆ˜ ì¹´ìš´íŠ¸
+			// Á¶È¸¼ö Ä«¿îÆ®
 			
-			// í˜¼ë°¥ ì¡°íšŒìˆ˜ ì¹´ìš´íŠ¸
+			// È¥¹ä Á¶È¸¼ö Ä«¿îÆ®
 			public int getBabBoardHitUpdate(Map<String, Object> pMap) {
 				
-				logger.info("<Dao> ---> getBabBoardHitUpdate method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardHitUpdate method ½ÃÀÛ");
 				int result = 0;
 				
 				result = sqlSessionTemplate.update("getBabBoardHitUpdate", pMap);
-				logger.info("<Dao> ---> getBabBoardHitUpdate ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getBabBoardHitUpdate ÀÔ·Â ¼º°ø: " + result);
 				return result;
 				
 			}
 			
-			// í˜¼ë°¥ ì¡°íšŒìˆ˜ ì¹´ìš´íŠ¸
+			// È¥¹ä Á¶È¸¼ö Ä«¿îÆ®
 			public int getSulBoardHitUpdate(Map<String, Object> pMap) {
 		
-				logger.info("<Dao> ---> getSulBoardHitUpdate method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardHitUpdate method ½ÃÀÛ");
 				int result = 0;
 		
 				result = sqlSessionTemplate.update("getSulBoardHitUpdate", pMap);
-				logger.info("<Dao> ---> getSulBoardHitUpdate ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getSulBoardHitUpdate ÀÔ·Â ¼º°ø: " + result);
 				return result;
 		
 			}
 		
-			// í˜¼ë°¥ ì¡°íšŒìˆ˜ ì¹´ìš´íŠ¸
+			// È¥¹ä Á¶È¸¼ö Ä«¿îÆ®
 			public int getNolBoardHitUpdate(Map<String, Object> pMap) {
 		
-				logger.info("<Dao> ---> getNolBoardHitUpdate method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardHitUpdate method ½ÃÀÛ");
 				int result = 0;
 		
 				result = sqlSessionTemplate.update("getNolBoardHitUpdate", pMap);
-				logger.info("<Dao> ---> getNolBoardHitUpdate ì…ë ¥ ì„±ê³µ: " + result);
+				logger.info("<Dao> ---> getNolBoardHitUpdate ÀÔ·Â ¼º°ø: " + result);
 				return result;
 		
 			}
 			
-			// ìµœê³  ì¡°íšŒìˆ˜
+			// ÃÖ°í Á¶È¸¼ö
 			
-			// í˜¼ë°¥
+			// È¥¹ä
 			public List<Map<String, Object>> getBabBoardHitMax(Map<String, Object> pMap){
 				
-				logger.info("<Dao> ---> getBabBoardHitMax method ì‹œì‘");
+				logger.info("<Dao> ---> getBabBoardHitMax method ½ÃÀÛ");
 				List<Map<String, Object>> getBabBoardHitMax = null;
 				getBabBoardHitMax = sqlSessionTemplate.selectList("getBabBoardHitMax", pMap);
-				logger.info("<Dao> ---> getBabBoardList ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getBabBoardHitMax.size());
+				logger.info("<Dao> ---> getBabBoardList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getBabBoardHitMax.size());
 				
 				return getBabBoardHitMax;
 			}
 			
 			
-			// í˜¼ìˆ 
+			// È¥¼ú
 			public List<Map<String, Object>> getSulBoardHitMax(Map<String, Object> pMap) {
 		
-				logger.info("<Dao> ---> getSulBoardHitMax method ì‹œì‘");
+				logger.info("<Dao> ---> getSulBoardHitMax method ½ÃÀÛ");
 				List<Map<String, Object>> getSulBoardHitMax = null;
 				getSulBoardHitMax = sqlSessionTemplate.selectList("getSulBoardHitMax", pMap);
-				logger.info("<Dao> ---> getSulBoardHitMax ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getSulBoardHitMax.size());
+				logger.info("<Dao> ---> getSulBoardHitMax ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getSulBoardHitMax.size());
 		
 				return getSulBoardHitMax;
 			}
 					
 			
 			
-			// í˜¼ë†€ 
+			// È¥³î 
 			public List<Map<String, Object>> getNolBoardHitMax(Map<String, Object> pMap) {
 		
-				logger.info("<Dao> ---> getNolBoardHitMax method ì‹œì‘");
+				logger.info("<Dao> ---> getNolBoardHitMax method ½ÃÀÛ");
 				List<Map<String, Object>> getNolBoardHitMax = null;
 				getNolBoardHitMax = sqlSessionTemplate.selectList("getNolBoardHitMax", pMap);
-				logger.info("<Dao> ---> getNolBoardHitMax ì „ì²´ ì¡°íšŒ ì‚¬ì´ì¦ˆ: " + getNolBoardHitMax.size());
+				logger.info("<Dao> ---> getNolBoardHitMax ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + getNolBoardHitMax.size());
 		
 				return getNolBoardHitMax;
 			}
@@ -374,3 +374,4 @@ public class BoardDao {
 			
 
 }
+

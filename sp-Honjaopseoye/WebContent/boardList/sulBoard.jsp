@@ -33,24 +33,30 @@ body {
 <body>
 
 
+<div class="ui inverted vertical masthead center aligned segment" style="margin-top: 50px; height: 400px;">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <div class="right item">
+        </div>
+      </div>
+    </div>
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        혼술 리뷰!
+      </h1>
+      <h2>혼자 술먹기 좋은 곳 리뷰를 확인해 보세요! </h2>
+    </div>
+
+  </div>
+
 <form id="key"></form>
 
 <br>
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
-	$("#bab_go").click(function() {
-		location.href="./babBoard.jsp";
-	});
-	
-	$("#nol_go").click(function() {
-		location.href="./nolBoard.jsp";
-	});
-	
-	$("#main_go").click(function() {
-		location.href="./mainBoardList.jsp";
-	});
 	
 	$("#g_insert").click(function(){
 		location.href="./write.jsp";
@@ -127,58 +133,127 @@ $(document).ready(function(){
 
 <!-- 조회수 -->
 
-<table width="890px" height="230px" align="center">
-<!-- 조회수 헤드  -->
-<thead>
 
-<tr>
-<td align="center" colspan="5" height="100px"><font size="5" color="black"><strong>월간 최고 조회수 리뷰 >.< 임당 </strong></font></td>
-</tr>
+<div class="ui container"
+			style="margin-left: 200px; margin-right: 200px;margin-top:50px;">
+			<div class="ui grid" align="center" style="text-align: center">
+				<div class="four wide column">
 
-</thead>
-<!-- 조회수 헤드  끝 -->
-<tr height="180px">
-<td align="center"><img src="../image/1.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="../image/2.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="../image/3.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="../image/4.jpg" width="255px" height="200px"></td>
-</tr>
-<!-- 버튼 이벤트 라인  -->
-<tr>
-<td id="best_1" align="center" width="200px">
-<pre><font size="2" color="black"><strong>가산동 돈까스 맛집!! 리뷰</strong></font>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i2.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/boardList/babBoard.jsp">평범한 일상</a>
+							<div class="meta">
+								<span class="date">혼밥 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
 
-조회수: 5250192</pre>
-</td>
+				</div>
+				<div class="four wide column">
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>치맥은 역시 강남! 치밥 치맥집</strong></font>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i3.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i4.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/boardList/sulBoard.jsp">감성을 자극하는 밤</a>
+							<div class="meta">
+								<span class="date">혼술 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="four wide column">
 
-조회수: 4432134</pre>
-</td>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>혼밥 추천합니다!!</strong></font>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i5.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i6.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">혼자만의 여가 생활</a>
+							<div class="meta">
+								<span class="date">혼놀 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
 
-조회수: 3387123</pre>
-</td>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>E마트 푸드코트 추천!</strong></font>
+				</div>
+				<div class="four wide column">
 
-조회수: 194720</pre>
-</td>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i7.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i8.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/main/together/together_main.jsp">우리들은 하나</a>
+							<div class="meta">
+								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
+							</div>
+						</div>
+					</div>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>삼겹살 짱</strong></font>
+				</div>
 
-조회수: 14720</pre>
-</td>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>검증된 혼족들의 맛있는 리뷰</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							혼밥이 일상이된 시대 지금
+							당신은 혼밥을 즐겨 하시나요?
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>분위기 작살 오늘의 감성 리뷰</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							감성을 자극하는 밤!!
+							오늘 혼술 한잔 어떠신가요?
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>내가 바로 혼자 놀기의 달인</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							심심하신가요? 혼자 놀기의 달인들이
+							알려주는 재밌는 꿀팁!!
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>혼밥이 지겨운 그들의 이야기</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							혼자하는 생활이 많이 외롭죠?
+							이젠 같이 즐기세요~
+						</div>
+					</div>
+				</div>
+			</div>
 
-<!-- 버튼 이벤트 라인 끝 -->
-</tr>
 
-</table>
 
 
 <!-- 조회수 끝 -->
@@ -187,14 +262,11 @@ $(document).ready(function(){
    <table width="1300px" height="50px">
    
 <tr>
-<td align="center" height="100px">공백</td>
+<td align="center" height="100px"></td>
 </tr>
 
 <tr>
 <td align="left">
-<button class="positive ui button" id="bab_go">혼밥하기</button>
-<button class="positive ui button" id="nol_go">혼놀하기</button>
-<button class="positive ui button" id="main_go">메인가기</button>
 </td>
 </tr>
 

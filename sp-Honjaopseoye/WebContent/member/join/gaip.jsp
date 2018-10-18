@@ -12,10 +12,6 @@
     body > .grid {
       height: 100%;
     }
-    .image {
-      margin-top: 100;
-      margin-bottom: 100;
-    }
     .column {
       min-width: 480px;
       max-width: 800px;
@@ -186,13 +182,20 @@
 					<div class="ui birth" id="birth"></div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# 취미 직업 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 					<div class="field">
+						<div class="ui label">직업
 								<div class="ui selection dropdown addr">
-										<input type="hidden" value="0" id="bang_gubun"> <i class="dropdown icon"></i>
-										<div class="text" id="gubun">분류</div>
-										<div class="menu" id="bang_gubun">
-											<div class="item" data-value="1">술술</div>
-											<div class="item" data-value="2">밥밥</div>
-											<div class="item" data-value="3">놀놀</div>
+										<input type="hidden" value="1100" id="mem_job"> <i class="dropdown icon"></i>
+										<div class="text" id="job">분류</div>
+										<div class="menu">
+											<div class="item" data-value="1100">무직</div>
+											<div class="item" data-value="1101">학생</div>
+											<div class="item" data-value="1102">예술가</div>
+											<div class="item" data-value="1103">운동선수</div>
+											<div class="item" data-value="1104">프로그래머</div>
+											<div class="item" data-value="1105">사무직</div>
+											<div class="item" data-value="1106">영업직</div>
+											<div class="item" data-value="1107">공무원</div>
+											<div class="item" data-value="1108">서비스직</div>
 										</div>
 								</div>
 						</div>
@@ -225,7 +228,6 @@
 						</div>
 					</div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#  pw  #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-
 					<div class="field">
 						<div class="ui left icon input" style="width: 100%;">
 							<i class="lock icon"></i> <input type="password"  name="mem_pw" id="pw" placeholder="비밀번호를 입력하세요">

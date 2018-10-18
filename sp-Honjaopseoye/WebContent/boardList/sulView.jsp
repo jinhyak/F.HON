@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, java.util.Map, java.util.HashMap, java.util.ArrayList" %>
+<%
+	String smem_name = null;
+		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if ((List<Map<String, Object>>)memList != null) {
+		smem_name = memList.get(0).get("MEM_NAME").toString();
+	}
+	
+	// naver login
+	Map<String, Object> pMap = null;
+	if(session.getAttribute("nMem") != null){
+		pMap = (Map<String, Object>)session.getAttribute("nMem");
+		smem_name = pMap.get("nickname").toString();
+	}
+	
+%>
 
 
 
@@ -29,7 +44,7 @@
    	date = conBoardOneList.get(0).get("SUL_DATE").toString();
    	text = conBoardOneList.get(0).get("SUL_TEXT").toString(); 
     	
-		if(conBoardOneList.get(0).get("SUL_URL")!= null){
+		if(conBoardOneList.get(0).get("SUL_URL").toString() != null){
 			
 			url = conBoardOneList.get(0).get("SUL_URL").toString();
 			
@@ -45,15 +60,6 @@
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="../include/include/subtop.jsp" %>
-<%
-	// naver login
-	Map<String, Object> pMap = null;
-	if(session.getAttribute("nMem") != null){
-		pMap = (Map<String, Object>)session.getAttribute("nMem");
-		mem_name = pMap.get("nickname").toString();
-	}
-	
-%>
 <title>혼밥할래</title>
 <style type="text/css">
 p {white-space: pre-wrap;}
@@ -249,7 +255,7 @@ var v = '<%= url%>';
 	// 업데이트
 	String updatekey = category + "&no="+ no;
 
-	if(id.equals(mem_name)){
+	if(id.equals(smem_name)){
 		
 %>
 
@@ -312,7 +318,7 @@ var v = '<%= url%>';
 							<td width="200px"></td>
 						</tr>
 						<tr>
-							<td align="center"><img src="/sp-Honjaopseoye/boardList/gui/replys.gif" width="100px" height="100px">
+							<td align="center"><img src="/sp-Honjaopseoye/image/gui/replys.gif" width="100px" height="100px">
 							<pre>현재 댓글이 없습니다.</pre>
 							</td>
 						</tr>
@@ -359,7 +365,7 @@ function bab_r(){
 	   var category = '<%=category %>';
 	   var board_no = '<%=no %>';
 	   var r_text = $("#r_text").val();
-	   var r_id = '<%=mem_name%>';
+	   var r_id = '<%=smem_name%>';
 	   
 	   $.ajax({
 	      method:"POST"

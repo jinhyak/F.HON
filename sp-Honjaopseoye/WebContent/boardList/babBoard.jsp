@@ -1,42 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>	
+<%
+	String smem_name = null;
+		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
+	if ((List<Map<String, Object>>)memList != null) {
+		smem_name = memList.get(0).get("MEM_NAME").toString();
+	}
+	
+	// naver login
+	Map<String, Object> pMap = null;
+	if(session.getAttribute("nMem") != null){
+		pMap = (Map<String, Object>)session.getAttribute("nMem");
+		smem_name = pMap.get("nickname").toString();
+	}
+	
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/include/include/subtop.jsp" %>
-<%
-	// naver login
-	Map<String, Object> pMap = null;
-	if(session.getAttribute("nMem") != null){
-		pMap = (Map<String, Object>)session.getAttribute("nMem");
-		mem_name = pMap.get("nickname").toString();
-	}
-%>
 <title>혼밥 게시판</title>
 </head>
 <style>
+body {
+
+}
 </style>
 
 <body>
+<div class="ui inverted vertical masthead center aligned segment" style="margin-top: 50px; height: 400px;">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <div class="right item">
+        </div>
+      </div>
+    </div>
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        혼밥 리뷰!
+      </h1>
+      <h2>혼자 밥먹기 좋은 맛집 리뷰를 확인해 보세요! </h2>
+    </div>
+
+  </div>
+
 
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
-	$("#nol_go").click(function() {
-		location.href="./nolBoard.jsp";
-	});
-	
-	$("#sul_go").click(function() {
-		location.href="./sulBoard.jsp";
-	});
-	
-	$("#main_go").click(function() {
-		location.href="./mainBoardList.jsp";
-	});
 	
 	$("#g_insert").click(function(){
 		location.href="./write.jsp";
@@ -94,6 +110,7 @@ $(document).ready(function(){
 })
 
 </script>
+<div class="ui container">
 
 
 <form id="key"></form>
@@ -117,80 +134,138 @@ $(document).ready(function(){
 <!-- 상위 버튼 -->
 <table>
 <tr>
-<td align="center">
+<td align="center" style="margin-left: 200px; margin-right: 200px;">
 
 <!-- 조회수 -->
 
-<table width="890px" height="230px" align="center">
-<!-- 조회수 헤드  -->
-<thead>
 
-<tr>
-<td align="center" colspan="5" height="100px"><font size="5" color="black"><strong>월간 최고 조회수 리뷰 임당 </strong></font></td>
-</tr>
+<div class="ui container"
+			style="margin-left: 200px; margin-right: 200px;margin-top:50px;">
+			<div class="ui grid" align="center" style="text-align: center">
+				<div class="four wide column">
 
-</thead>
-<!-- 조회수 헤드  끝 -->
-<tr height="180px">
-<td align="center"><img src="../image/1.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="../image/2.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="../image/3.jpg" width="255px" height="200px"></td>
-<td align="center"><img src="../image/4.jpg" width="255px" height="200px"></td>
-</tr>
-<!-- 버튼 이벤트 라인  -->
-<tr>
-<td id="best_1" align="center" width="200px">
-<pre><font size="2" color="black"><strong>가산동 돈까스 맛집!! 리뷰</strong></font>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i2.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/boardList/babBoard.jsp">평범한 일상</a>
+							<div class="meta">
+								<span class="date">혼밥 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
 
-조회수: 5250192</pre>
-</td>
+				</div>
+				<div class="four wide column">
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>치맥은 역시 강남! 치밥 치맥집</strong></font>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i3.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i4.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/boardList/sulBoard.jsp">감성을 자극하는 밤</a>
+							<div class="meta">
+								<span class="date">혼술 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="four wide column">
 
-조회수: 4432134</pre>
-</td>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>혼밥 추천합니다!!</strong></font>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i5.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i6.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">혼자만의 여가 생활</a>
+							<div class="meta">
+								<span class="date">혼놀 리뷰를 확인해 보세요!</span>
+							</div>
+						</div>
+					</div>
 
-조회수: 3387123</pre>
-</td>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>E마트 푸드코트 추천!</strong></font>
+				</div>
+				<div class="four wide column">
 
-조회수: 194720</pre>
-</td>
+					<div class="ui card">
+						<div class="ui slide masked reveal image"
+							style="width: 350px; height: 150px;">
+							<img src="/sp-Honjaopseoye/image/gui/i7.jpg" width="300px" height="300px"
+								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i8.jpg"
+								width="300px" height="300px" class="hidden content">
+						</div>
+						<div class="content">
+							<a class="header" href="/sp-Honjaopseoye/main/together/together_main.jsp">우리들은 하나</a>
+							<div class="meta">
+								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
+							</div>
+						</div>
+					</div>
 
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>삼겹살 짱</strong></font>
+				</div>
 
-조회수: 14720</pre>
-</td>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>검증된 혼족들의 맛있는 리뷰</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							혼밥이 일상이된 시대 지금
+							당신은 혼밥을 즐겨 하시나요?
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>분위기 작살 오늘의 감성 리뷰</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							감성을 자극하는 밤!!
+							오늘 혼술 한잔 어떠신가요?
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>내가 바로 혼자 놀기의 달인</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							심심하신가요? 혼자 놀기의 달인들이
+							알려주는 재밌는 꿀팁!!
+						</div>
+					</div>
+				</div>
+				<div class="four wide column" style="padding-top: 5px;">
+					<div class="content" style="text-align: left">
+						<strong>혼밥이 지겨운 그들의 이야기</strong> 
+						<p></p>
+						<div class="meta" style="text-align: left;">
+							혼자하는 생활이 많이 외롭죠?
+							이젠 같이 즐기세요~
+						</div>
+					</div>
+				</div>
+			</div>
 
-<!-- 버튼 이벤트 라인 끝 -->
-</tr>
-
-</table>
 
 
 <!-- 조회수 끝 -->
-
-</table>
-   <table width="1300px" height="50px">
-   
-<tr>
-<td align="center" height="100px">공백</td>
-</tr>
-
-<tr>
-<td align="left">
-<button class="positive ui button" id="sul_go">혼술하기</button>
-<button class="positive ui button" id="nol_go">혼놀하기</button>
-<button class="positive ui button" id="main_go">메인가기</button>
 </td>
 </tr>
+</table>
+
+   <table width="1300px" height="50px">
 
 </table>
 <!-- 상위 버튼  끝-->
@@ -198,7 +273,7 @@ $(document).ready(function(){
             <div id="reserv_list" class="ui bottom attached segment">
                <table id="dt_reserv_list" class="ui celled table">
                  <thead>
-                   <tr>
+                   <tr align="center">
                       <th style="width:100px;">글 번호</th>
                       <th style="width:100px;">작성자</th>
                       <th style="width:300px;">제목</th>
@@ -216,9 +291,23 @@ $(document).ready(function(){
 </tbody>
 <tr>
 <td width="600px" height="60px" align="right">
-	<button class="ui primary button" id="g_insert" name="g_insert"> 
+
+<%
+
+	if(smem_name != null){
+		
+
+%>
+<button class="ui primary button" id="g_insert" name="g_insert"> 
   글 쓰기
 </button>
+
+<%
+	} else {
+		out.print("비회원은 쓰기 권한이 없습니다.");
+	}
+%>
+
 </td>
 </tr>
 </table>
@@ -238,6 +327,11 @@ $(".menu").find('a').click(function() {
    }
 });
 </script>
+
+
+
+</div><!-- container -->
+
 
 <br>
 <br>

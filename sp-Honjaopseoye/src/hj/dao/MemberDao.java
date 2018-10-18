@@ -205,5 +205,23 @@ public class MemberDao {
 		return getNoticeList;
 	}
 
-	
+	public int nMemInsert(Map<String, Object> pMap) {
+		logger.info("nMemInsert : " + pMap);
+		logger.info(pMap.get("birthday").toString());
+		logger.info(pMap.get("gender").toString());
+		logger.info(pMap.get("id").toString());
+		logger.info(pMap.get("age").toString());
+		logger.info(pMap.get("name").toString());
+		logger.info(pMap.get("email").toString());
+		logger.info(pMap.get("nickname").toString());
+		int result = 0;
+		result = sqlSessionTemplate.insert("nMemIns", pMap);
+		logger.info("result : " + result);
+		if(result == 1) {
+			logger.info("result 호출 성공");
+		}else {
+			logger.info("error!");
+		}
+		return result;
+	}
 }

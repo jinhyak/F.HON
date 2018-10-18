@@ -1,6 +1,13 @@
 package hj.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +17,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -329,6 +338,63 @@ public class memberController {
 			return "forward:" + resultPage;
 		}
 	}
-	
+	//@ResponseBody
+	@RequestMapping(value="/naverLoginCallback.hon", produces="text/html; charset=utf-8")
+	public String naverCallback(Model model, HttpServletRequest req) throws UnsupportedEncodingException { 
+			HttpSession session = req.getSession();
+		 	String token = (String)session.getAttribute("access_token");// 네이버 로그인 접근 토큰; => 상수로 박지말고 변수로 처리할 것 ㅠㅠ
+	        String header = "Bearer " + token; // Bearer 다음에 공백 추가
+            String inputLine;
+            List<String> nMemList = new ArrayList<String>();
+            int result = 0;
+            StringBuffer response = new StringBuffer();
+            JSONObject jsObj = new JSONObject();
+            JSONParser jsParser = new JSONParser();
+	        try {
+	            String apiURL = "https://openapi.naver.com/v1/nid/me";
+	            URL url = new URL(apiURL);
+	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+	            con.setRequestMethod("GET");
+	            con.setRequestProperty("Authorization", header);
+	            int responseCode = con.getResponseCode();
+	            BufferedReader br;
+	            if(responseCode==200) { // 정상 호출
+	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	            } else {  // 에러 발생
+	                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+	            }
+	            while ((inputLine = br.readLine()) != null) {
+	                response.append(inputLine);
+	            }
+	            br.close();
+	            logger.info(response.toString());
+	            JSONParser jsonp = new JSONParser();
+	            Object obj = jsonp.parse(response.toString());
+	            JSONObject jsonObject = (JSONObject)obj;
+	            JSONObject jsonObject2 = (JSONObject)jsonObject.get("response");
+	            String name = (String)jsonObject2.get("name");
+	            String email = (String)jsonObject2.get("email");
+	            String nickname = (String)jsonObject2.get("nickname");
+	            String age = (String)jsonObject2.get("age");
+	            String gender = (String)jsonObject2.get("gender");
+	            String birthday = (String)jsonObject2.get("birthday");
+	            String id = (String)jsonObject2.get("id");
+	            logger.info("이름 : "+name+", 이메일 : "+email+", 닉네임 : "+nickname+", 연령대 : "+age+", 성별 :"+gender+", 생일 : "+birthday+", 아이디 : "+id);
+	            Map<String, Object> pMap = new HashMap<String, Object>();
+	            pMap.put("id", id);
+	            pMap.put("name", name);
+	            pMap.put("email", email);
+	            pMap.put("nickname", nickname);
+	            pMap.put("age", age);
+	            pMap.put("gender", gender);
+	            pMap.put("birthday", birthday);
+	            session.setAttribute("nMem", pMap);
+	            result = memberDao.nMemInsert(pMap);
+	        } catch (Exception e) {
+	            logger.info(e.toString()+", "+e.getMessage());
+	        }
+	        return "redirect:/main/main/main.jsp";
+	        
+	}
 	
 }

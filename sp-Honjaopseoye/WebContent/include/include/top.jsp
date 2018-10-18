@@ -29,7 +29,7 @@
 	        <a class="active item" href="../../notice/notice/notice.jsp">공지사항</a>
 	        <a class="item" href="../../main/honja/honja_main.jsp">혼밥하자</a>
 	        <a class="item" href="../../main/together/together_main.jsp">모임하자</a>
-	        <a class="item" href="../../boardList/mainBoardList.jsp">리뷰보기</a>
+	        <a class="item" href="/sp-Honjaopseoye/board/boardMaxHit.hon">리뷰보기</a>
 	        <div class="ui grid">
 	        <div class="four wide two wide large screen one wide widescreen column"></div>
 	        <div class="four wide two wide large screen one wide widescreen column">

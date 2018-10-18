@@ -48,7 +48,6 @@
 <title>메인</title>
 </head>
 
-
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -97,7 +96,7 @@ $(document).ready(function(){
 								width="300px" height="300px" class="hidden content">
 						</div>
 						<div class="content">
-							<a class="header" href="./babBoard.jsp">평범한 일상</a>
+							<a class="header" href="/sp-Honjaopseoye/boardList/babBoard.jsp">평범한 일상</a>
 							<div class="meta">
 								<span class="date">혼밥 리뷰를 확인해 보세요!</span>
 							</div>
@@ -115,7 +114,7 @@ $(document).ready(function(){
 								width="300px" height="300px" class="hidden content">
 						</div>
 						<div class="content">
-							<a class="header" href="./sulBoard.jsp">감성을 자극하는 밤</a>
+							<a class="header" href="/sp-Honjaopseoye/boardList/sulBoard.jsp">감성을 자극하는 밤</a>
 							<div class="meta">
 								<span class="date">혼술 리뷰를 확인해 보세요!</span>
 							</div>
@@ -133,7 +132,7 @@ $(document).ready(function(){
 								width="300px" height="300px" class="hidden content">
 						</div>
 						<div class="content">
-							<a class="header" href="./nolBoard.jsp">혼자만의 여가 생활</a>
+							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">혼자만의 여가 생활</a>
 							<div class="meta">
 								<span class="date">혼놀 리뷰를 확인해 보세요!</span>
 							</div>
@@ -152,7 +151,7 @@ $(document).ready(function(){
 								width="300px" height="300px" class="hidden content">
 						</div>
 						<div class="content">
-							<a class="header" href="./nolBoard.jsp">우리들은 하나</a>
+							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">우리들은 하나</a>
 							<div class="meta">
 								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
 							</div>
@@ -205,47 +204,6 @@ $(document).ready(function(){
 			<!--리뷰들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		
 		
-		<%
-		
-/* 		List<Map<String, Object>> conBoardBabHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardBabHitMax");
-		List<Map<String, Object>> conBoardSulHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardSulHitMax");
-		List<Map<String, Object>> conBoardNolHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardNolHitMax");
-	    
-	    for(int i = 0; i < conBoardBabHitMax.size(); i++){
-	    	
-	    	bab_title = conBoardBabHitMax.get(i).get("BAB_TITLE").toString();
-		    bab_category = conBoardBabHitMax.get(i).get("BAB_CATEGORY").toString();
-		    bab_text = conBoardBabHitMax.get(i).get("BAB_TEXT").toString();
-		    bab_hit = conBoardBabHitMax.get(i).get("BAB_HIT").toString();
-	    	
-	    }
-	    
-		for(int i = 0; i < conBoardSulHitMax.size(); i++){
-			    	
-			
-			sul_title = conBoardSulHitMax.get(i).get("SUL_TITLE").toString();
-		    sul_category = conBoardSulHitMax.get(i).get("SUL_CATEGORY").toString();
-		    sul_text = conBoardSulHitMax.get(i).get("SUL_TEXT").toString();
-		    sul_hit = conBoardSulHitMax.get(i).get("SUL_HIT").toString();
-			
-		}
-		
-		for(int i = 0; i < conBoardNolHitMax.size(); i++){
-			
-			nol_title = conBoardNolHitMax.get(i).get("NOL_TITLE").toString();
-		    nol_category = conBoardNolHitMax.get(i).get("NOL_CATEGORY").toString();
-		    nol_text = conBoardNolHitMax.get(i).get("NOL_TEXT").toString();
-		    nol_hit = conBoardNolHitMax.get(i).get("NOL_HIT").toString();
-			
-		} */
-		
-		
-		
-		%>
-		
-		
-		
-		
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 		
 			<div class="ui container" style="margin-top: 50px;">
@@ -263,381 +221,177 @@ $(document).ready(function(){
 				<!-- 최고 리뷰 시작 -->
 				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
 				<!-- 부분 리뷰  -->
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>제목</strong></div>
-					      <div class="meta">
-					        <font color="blue">카테고리 </font>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        첫줄 내용
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<!-- 부분 리뷰 끝  -->
 				
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				</div><!-- ui grid -->
-			</div><!-- 평범한 일상 리뷰 끝 container끝 -->
-			<!-- for 문 라인 -->
-			<div class="ui container" style="margin-top: 50px;">
-				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				</div><!-- ui grid -->
-			</div><!-- 평범한 일상 리뷰 끝 container끝 -->
-			<div class="ui container" style="margin-top: 50px;">
-				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				</div><!-- ui grid -->
-			</div><!-- 평범한 일상 리뷰 끝 container끝 -->
-			<div class="ui container" style="margin-top: 50px;margin-bottom: 50px;">
-				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				<div class="three wide column" style="padding: 0px;margin-right: 70px;">
-					<div class="card">
-					    <div class="image">
-					      <img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="240px" height="150px">
-					    </div>
-					    <div class="content" style="text-align: left;">
-					      <div class="header" style="padding-top: 10px;"><strong>Matt Giampietro</strong></div>
-					      <div class="meta">
-					        <a>평범한 일상</a>
-					      </div>
-					      <div class="description" style="color: grey;padding-bottom: 10px;">
-					        Matthew is an interior designer living in New York.
-					      </div>
-					    </div>
-					    <div class="extra content" style="text-align: left;">
-					      <span>
-					        <i class="heart icon"style="color: red;"></i>
-					       		조회 수 123
-					      </span>
-					    </div>
-					  </div>
-				</div>
-				</div><!-- ui grid -->
-			</div ><!-- 평범한 일상 리뷰 끝 container끝 -->
-		</div>
-		<!-- 끝 -->
+				
+				<br>
+				<br>
+				<br>
+				
+				<h4 class="ui horizontal divider header" >
+ 				  <i class="thumbs up outline icon"></i>
+  					혼밥 Top4 best Review
+				</h4>
+				<p style="text-align: center;margin-bottom: 50px;">
+					<font color="red"> </font><br>
+					 <br>
+					<br>
+				</p>
+				
+				<!-- 혼밥 for문 -->
+				
+				<div class="ui four cards"> 
+
+			<%
+		List<Map<String, Object>> conBoardBabHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardBabHitMax");
+	    for(int i = 0; i < conBoardBabHitMax.size(); i++){
+	     	bab_title = conBoardBabHitMax.get(i).get("BAB_TITLE").toString();
+		    bab_category = conBoardBabHitMax.get(i).get("BAB_CATEGORY").toString();
+		    bab_text = conBoardBabHitMax.get(i).get("BAB_TEXT").toString();
+		    bab_hit = conBoardBabHitMax.get(i).get("BAB_HIT").toString();  
+		   %>
+
+						<div class="ui card">
+							<div class="image">
+								<img src="/sp-Honjaopseoye/image/gui/rb<%=i %>.jpg" width="260px" height="170px">
+							</div>
+							<div class="content">
+								<a class="header">제목:&nbsp;<%=bab_title %></a>
+								<div class="meta">
+									<span class="date">카테고리:&nbsp;<%=bab_category %></span>
+								</div>
+									<div class="description">
+									내용:&nbsp;<%=bab_text %>
+									</div>
+								</div>
+							<div class="extra content">
+								<a><i class="heart icon"style="color: red;"></i>
+								조회수:&nbsp;<%=bab_hit %>
+								</a>
+							</div>
+						</div>
+
+
+						<%
+							}
+						%>
+
+					</div>
+				<!-- 혼밥 for문 끝  -->
+					
+					
+				<br>
+				<br>
+				<br>
+				
+				<h4 class="ui horizontal divider header" >
+ 				  <i class="thumbs up outline icon"></i>
+  					혼술 Top4 best Review
+				</h4>
+				<p style="text-align: center;margin-bottom: 50px;">
+					<font color="red"> </font><br>
+					 <br>
+					<br>
+				</p>
+				
+							<!-- 혼술 for문 -->
+				
+				<div class="ui four cards"> 
+
+			<%
+			List<Map<String, Object>> conBoardSulHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardSulHitMax");
+			    
+			for(int i = 0; i < conBoardSulHitMax.size(); i++){
+				
+				sul_title = conBoardSulHitMax.get(i).get("SUL_TITLE").toString();
+			    sul_category = conBoardSulHitMax.get(i).get("SUL_CATEGORY").toString();
+			    sul_text = conBoardSulHitMax.get(i).get("SUL_TEXT").toString();
+			    sul_hit = conBoardSulHitMax.get(i).get("SUL_HIT").toString();
+			    
+		    %>
+
+						<div class="ui card">
+							<div class="image">
+								<img src="/sp-Honjaopseoye/image/gui/rs<%=i %>.jpg" width="260px" height="170px">
+							</div>
+							<div class="content">
+								<a class="header">제목:&nbsp;<%=sul_title %></a>
+								<div class="meta">
+									<span class="date">카테고리:&nbsp;<%=sul_category %></span>
+								</div>
+									<div class="description">
+									내용:&nbsp;<%=sul_text %>
+									</div>
+								</div>
+							<div class="extra content">
+								<a><i class="heart icon"style="color: red;"></i>
+								조회수:&nbsp;<%=sul_hit %>
+								</a>
+							</div>
+						</div>
+
+						<%
+							}
+						%>
+
+					</div>
+				<!-- 혼술 for문 끝  -->
+				
+				<h4 class="ui horizontal divider header" style="margin-bottom:10px">
+ 				  <i class="thumbs up outline icon"></i>
+  					혼놀 Top4 best Review
+				</h4>
+				<p style="text-align: center; margin-bottom:50px;">
+					<font color="red"> </font><br>
+					 <br>
+					<br>
+				</p>
+							<!-- 혼놀 for문 -->
+				
+				<div class="ui four cards"> 
+
+			<%
+		List<Map<String, Object>> conBoardNolHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardNolHitMax");
+			    
+	    for(int i = 0; i < conBoardNolHitMax.size(); i++){
+	    	
+	    	nol_title = conBoardNolHitMax.get(i).get("NOL_TITLE").toString();
+		    nol_category = conBoardNolHitMax.get(i).get("NOL_CATEGORY").toString();
+		    nol_text = conBoardNolHitMax.get(i).get("NOL_TEXT").toString();
+		    nol_hit = conBoardNolHitMax.get(i).get("NOL_HIT").toString();
+		    %>
+						<div class="ui card">
+							<div class="image">
+								<img src="/sp-Honjaopseoye/image/gui/rn<%=i %>.jpg" width="260px" height="170px">
+							</div>
+							
+							<div class="content">
+								<a class="header">제목:&nbsp;<%=nol_title %></a>
+								<div class="meta">
+									<span class="date">카테고리:&nbsp;<%=nol_category %></span>
+								</div>
+									<div class="description">
+									내용:&nbsp;<%=nol_text %>
+									</div>
+								</div>
+							<div class="extra content">
+								<a><i class="heart icon"style="color: red;"></i>
+								조회수:&nbsp;<%=nol_hit %>
+								</a>
+							</div>
+						</div>
+
+
+						<%
+							}
+						%>
+
+					</div>
+				<!-- 혼놀 for문 끝  -->
+			
 	</div>
-	<br>
-				<br>
-				<br>
+	</div>
+</div>
+</div>
 <%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>
