@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from   bang, store
 		where  bang.store_no = store.store_no
-		and    bang.bang_no = #{bang_no}	
+		and    bang.bang_no = #{bang_no} 
 	</select>
 	<resultMap id="selectMap" type="hashmap"/>
 	<select id="select" parameterType="map" statementType="CALLABLE">
