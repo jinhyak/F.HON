@@ -95,6 +95,7 @@ public class boardController {
 			pMap.put("bab_re_board_no", no);
 			logger.info("<Controller> ---> pMap.put -> " +pMap.get("bab_re_category") + " , " + pMap.get("bab_re_board_no"));
 			conBoardCommentList = boardLogic.logBoardCommentList(pMap, category, no);
+			pMap.put("bab_re_board_no", no);
 			logger.info("<Controller> ---> conBoardCommentList 전체 조회 사이즈: " + conBoardCommentList.size());
 			
 			// request 댓글 조회 저장
@@ -343,8 +344,7 @@ public class boardController {
 	// 게시글 삭제
 	@RequestMapping("/boardDelete.hon")
 	public String conBoardDelete(Map<String, Object> pMap,
-			@RequestParam String category, @RequestParam String no,
-			HttpServletRequest req, HttpServletResponse res) 
+			@RequestParam String category, @RequestParam String no) 
 					throws ServletException, IOException {
 		
 		logger.info("<Controller> ---> conBoardDelete method 시작");
@@ -353,31 +353,13 @@ public class boardController {
 		pMap.put("bab_no", no);
 		pMap.put("sul_no", no);
 		pMap.put("nol_no", no);
-		String viewPath = "error";
-		
-		if("혼밥".equals(category)) {
-			viewPath = "redirect:../boardList/babBoard.jsp";
-					
-			
-		} else if("혼술".equals(category)) {
-			
-			viewPath = "redirect:../boardList/sulBoard.jsp";
-			
-		} else if("혼놀".equals(category)) {
-			
-			viewPath = "redirect:../boardList/nolBoard.jsp";
-			
-		} else {
-			
-			logger.info("<Controller> ---> conBoardDelete  실패" + category);
-		}
 		
 		int result = 0;
 		result = boardLogic.logBoardDelete(pMap, category);
 		
 		logger.info("<Controller> ---> conBoardDelete 결과 : " + result);
 		
-		return viewPath;
+		return"redirect:../boardList/mainBoardList.jsp";
 	}
 	
 	
@@ -461,7 +443,7 @@ public class boardController {
 		logger.info("<Controller> 종료 ---> conBoardUpdateSub 성공여부 : " + result);
 		
 		return "forward:../boardList/writeModify.jsp";
-		
+		 
 	}
 	
 	

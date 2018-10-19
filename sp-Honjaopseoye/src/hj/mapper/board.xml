@@ -309,18 +309,30 @@
 	 WHERE nol_no = #{nol_no}
 	</update>
 	<select id="getBabBoardHitMax" parameterType="map" resultType="map">
-	SELECT bab_title, bab_category, bab_text, bab_hit
-  	  FROM(SELECT bab_title, bab_category, bab_text, bab_hit FROM bab_board ORDER BY bab_hit desc)
+	SELECT bab_no, bab_title, bab_category, bab_hit,
+ 	  CASE WHEN length(bab_text) > 0 THEN  SUBSTR(bab_text,1,16)||'...'
+ 	   END bab_text
+ 	  FROM(SELECT bab_no, bab_title, bab_category, bab_text, bab_hit 
+             FROM bab_board 
+     	   ORDER BY bab_hit desc)
 	  <![CDATA[WHERE ROWNUM <= 4 ]]>
 	</select>
 	<select id="getSulBoardHitMax" parameterType="map" resultType="map">
-	SELECT sul_title, sul_category, sul_text, sul_hit
-  	  FROM(SELECT sul_title, sul_category, sul_text, sul_hit FROM sul_board ORDER BY sul_hit desc)
-  	  <![CDATA[WHERE ROWNUM <= 4 ]]>
+	SELECT sul_no, sul_title, sul_category, sul_hit,
+ 	  CASE WHEN length(sul_text) > 0 THEN  SUBSTR(sul_text,1,16)||'...'
+ 	   END sul_text
+ 	  FROM(SELECT sul_no, sul_title, sul_category, sul_text, sul_hit 
+             FROM sul_board 
+     	   ORDER BY sul_hit desc)
+	  <![CDATA[WHERE ROWNUM <= 4 ]]>
 	</select>
 	<select id="getNolBoardHitMax" parameterType="map" resultType="map">
-	SELECT nol_title, nol_category, nol_text, nol_hit
- 	  FROM(SELECT nol_title, nol_category, nol_text, nol_hit FROM nol_board ORDER BY nol_hit desc)
- 	  <![CDATA[WHERE ROWNUM <= 4 ]]>
+	SELECT nol_no, nol_title, nol_category, nol_hit,
+ 	  CASE WHEN length(nol_text) > 0 THEN  SUBSTR(nol_text,1,16)||'...'
+ 	   END nol_text
+ 	  FROM(SELECT nol_no, nol_title, nol_category, nol_text, nol_hit 
+             FROM nol_board 
+     	   ORDER BY nol_hit desc)
+	  <![CDATA[WHERE ROWNUM <= 4 ]]>
 	</select>
 </mapper>

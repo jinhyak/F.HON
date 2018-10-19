@@ -44,7 +44,6 @@
 	text = conBoardOneList.get(0).get("BAB_TEXT").toString(); 
 	url = conBoardOneList.get(0).get("BAB_URL").toString();
 	
-
 	}
 	
 %>
@@ -58,7 +57,6 @@
 <title>혼밥할래</title>
 <style type="text/css">
 p {white-space: pre-wrap;}
-
 </style>
 </head>
 <body>
@@ -197,18 +195,7 @@ var v = "<%= url%>";
 <td align="center">
 
 <!-- 좌표 받아오기 선택 -->
-<div id="map" style="width:500px;height:400px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c4b0f804416e7147ffbcdbd3f500a78"></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new daum.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-
-		var map = new daum.maps.Map(container, options);
-	</script>
 <!-- 좌표 받아오기 선택 end -->
 </td>
 </tr>
@@ -220,14 +207,13 @@ var v = "<%= url%>";
 </tbody>
 <!-- 게시판 내용 end -->
 
-
-
 <!-- 게시판 댓글 -->
 
 <%
 	List<Map<String, Object>> conBoardCommentList = 
 	(List<Map<String, Object>>)request.getAttribute("conBoardCommentList");
 	
+
 	String r_id = null;
 	String r_text = null;
 	String r_date = null; 
@@ -257,7 +243,7 @@ var v = "<%= url%>";
 	}
 %>
 <tr>
-<td align="left"><h2 class="ui dividing header">댓글</h2></td>
+<td align="left"><h2 class="ui dividing header">댓글수 :<%=conBoardCommentList.size() %></h2></td>
 </tr>
 <tr>
 <td>
@@ -339,9 +325,21 @@ var v = "<%= url%>";
 </td>
 
 <td align="center" width="200px">
+
+<%
+	if(smem_name != null){
+		
+		%>
+		
 <button class="ui primary button" style="width:100px; height:100px;" onclick="bab_r()">
 등록
 </button>
+		
+		<%
+		
+	}
+%>
+
 </td>
 
 </tr>

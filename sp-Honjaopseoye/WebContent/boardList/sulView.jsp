@@ -210,18 +210,7 @@ var v = '<%= url%>';
 <td align="center">
 
 <!-- 좌표 받아오기 선택 -->
-<div id="map" style="width:500px;height:400px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4c4b0f804416e7147ffbcdbd3f500a78"></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new daum.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-
-		var map = new daum.maps.Map(container, options);
-	</script>
 <!-- 좌표 받아오기 선택 end -->
 </td>
 </tr>
@@ -269,7 +258,7 @@ var v = '<%= url%>';
 %>
 
 <tr>
-<td align="left"><h2 class="ui dividing header">댓글</h2></td>
+<td align="left"><h2 class="ui dividing header">댓글수 :<%=conBoardCommentList.size() %></h2></td>
 </tr>
 
 <tr>
@@ -352,9 +341,19 @@ var v = '<%= url%>';
 </td>
 
 <td align="center" width="200px">
+<%
+	if(smem_name != null){
+		
+		%>
+		
 <button class="ui primary button" style="width:100px; height:100px;" onclick="bab_r()">
 등록
 </button>
+		
+		<%
+		
+	}
+%>
 </td>
 
 </tr>

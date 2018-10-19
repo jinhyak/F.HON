@@ -22,17 +22,19 @@
 
 <%
 	// 최고 조회수
-	
+		String bab_no = null;
 	    String bab_title = null;
 	    String bab_category = null;
 	    String bab_text = null;
 	    String bab_hit = null;
 	    
+	    String sul_no = null;
 	    String sul_title = null;
 	    String sul_category = null;
 	    String sul_text = null;
 	    String sul_hit = null;
 	    
+	    String nol_no = null;
 	    String nol_title = null;
 	    String nol_category = null;
 	    String nol_text = null;
@@ -58,10 +60,13 @@ $(document).ready(function(){
 })
 
 </script>
+<style>
+	#topbg{ background: url("/sp-Honjaopseoye/image/gui/topbg.jpg")}
+</style>
 <body>
 
-	<div class="ui inverted vertical masthead center aligned segment" style="margin-top: 50px; height: 400px;">
-	    <div class="ui text container"style="margin-top: 70px;">
+	<div id="topbg" class="ui inverted vertical masthead center aligned segment" style="margin-top: 50px; height: 450px;">
+	    <div class="ui text container"style="margin-top: 160px;">
 	      <h1 class="ui inverted header">
 	       <font size="10">혼족들의 리뷰 게시판</font>
 	      </h1>
@@ -70,10 +75,9 @@ $(document).ready(function(){
 	      <h2>해당 카테고리 선택후 리뷰를 확인해보세요</h2>
 	    </div>
 	  </div>
-
 <!--  -->
 	<div class="ui container"
-		style="margin-left: 200px; margin-right: 200px; margin-bottom:10%">
+		style="margin-left: 200px; margin-right: 200px;">
 		<h2 class="ui header" style="margin-top: 50px;">
 			<img src="../image/logo.png" style="width: 170px; height: 60px;">
 			<div class="content">
@@ -91,9 +95,9 @@ $(document).ready(function(){
 					<div class="ui card">
 						<div class="ui slide masked reveal image"
 							style="width: 350px; height: 150px;">
-							<img src="/sp-Honjaopseoye/image/gui/i1.jpg" width="300px" height="300px"
+							<img src="/sp-Honjaopseoye/image/gui/i1.jpg" style="width:265px; height:220px;"
 								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i2.jpg"
-								width="300px" height="300px" class="hidden content">
+								style="width:230px; height:220px;" class="hidden content">
 						</div>
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/boardList/babBoard.jsp">평범한 일상</a>
@@ -109,9 +113,9 @@ $(document).ready(function(){
 					<div class="ui card">
 						<div class="ui slide masked reveal image"
 							style="width: 350px; height: 150px;">
-							<img src="/sp-Honjaopseoye/image/gui/i3.jpg" width="300px" height="300px"
+							<img src="/sp-Honjaopseoye/image/gui/i3.jpg" style="width:265px; height:220px;"
 								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i4.jpg"
-								width="300px" height="300px" class="hidden content">
+								style="width:230px; height:220px;" class="hidden content">
 						</div>
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/boardList/sulBoard.jsp">감성을 자극하는 밤</a>
@@ -127,9 +131,9 @@ $(document).ready(function(){
 					<div class="ui card">
 						<div class="ui slide masked reveal image"
 							style="width: 350px; height: 150px;">
-							<img src="/sp-Honjaopseoye/image/gui/i5.jpg" width="300px" height="300px"
+							<img src="/sp-Honjaopseoye/image/gui/i5.jpg" style="width:265px; height:220px;"
 								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i6.jpg"
-								width="300px" height="300px" class="hidden content">
+								style="width:230px; height:220px;" class="hidden content">
 						</div>
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">혼자만의 여가 생활</a>
@@ -146,9 +150,9 @@ $(document).ready(function(){
 					<div class="ui card">
 						<div class="ui slide masked reveal image"
 							style="width: 350px; height: 150px;">
-							<img src="/sp-Honjaopseoye/image/gui/i7.jpg" width="300px" height="300px"
+							<img src="/sp-Honjaopseoye/image/gui/i7.jpg" style="width:265px; height:220px;"
 								class="visible content"> <img src="/sp-Honjaopseoye/image/gui/i8.jpg"
-								width="300px" height="300px" class="hidden content">
+								style="width:230px; height:220px;" class="hidden content">
 						</div>
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">우리들은 하나</a>
@@ -202,6 +206,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<!--리뷰들 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+
 		
 		
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
@@ -221,8 +226,15 @@ $(document).ready(function(){
 				<!-- 최고 리뷰 시작 -->
 				<div class="ui grid" align="center" style="text-align: center;padding-left: 35px;">
 				<!-- 부분 리뷰  -->
+			<!-- 	<div class="three wide column" style="padding: 0px;margin-right: 70px;"> -->
 				
 				
+				
+				
+				
+				<br>
+				<br>
+				<br>
 				<br>
 				<br>
 				<br>
@@ -231,8 +243,9 @@ $(document).ready(function(){
  				  <i class="thumbs up outline icon"></i>
   					혼밥 Top4 best Review
 				</h4>
+  					<br>
 				<p style="text-align: center;margin-bottom: 50px;">
-					<font color="red"> </font><br>
+					<font color="red"></font><br>
 					 <br>
 					<br>
 				</p>
@@ -240,22 +253,29 @@ $(document).ready(function(){
 				<!-- 혼밥 for문 -->
 				
 				<div class="ui four cards"> 
-
 			<%
 		List<Map<String, Object>> conBoardBabHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardBabHitMax");
+			
+		String babHitURL = null;
+			
 	    for(int i = 0; i < conBoardBabHitMax.size(); i++){
-	     	bab_title = conBoardBabHitMax.get(i).get("BAB_TITLE").toString();
+	    	
+	    	bab_no = conBoardBabHitMax.get(i).get("BAB_NO").toString(); 
+	    	bab_title = conBoardBabHitMax.get(i).get("BAB_TITLE").toString();
 		    bab_category = conBoardBabHitMax.get(i).get("BAB_CATEGORY").toString();
 		    bab_text = conBoardBabHitMax.get(i).get("BAB_TEXT").toString();
-		    bab_hit = conBoardBabHitMax.get(i).get("BAB_HIT").toString();  
-		   %>
+		    bab_hit = conBoardBabHitMax.get(i).get("BAB_HIT").toString(); 
+		    
+		    babHitURL = "/sp-Honjaopseoye/board/boardOne.hon?category="+ bab_category + "&no=" + bab_no;
+		    
+		    %>
 
 						<div class="ui card">
-							<div class="image">
-								<img src="/sp-Honjaopseoye/image/gui/rb<%=i %>.jpg" width="260px" height="170px">
+							<div class="image" style="width:260px; height:150px;">
+								<img src="/sp-Honjaopseoye/image/gui/rb<%=i %>.jpg" style="width:258px; height:150px;">
 							</div>
-							<div class="content">
-								<a class="header">제목:&nbsp;<%=bab_title %></a>
+							<div class="content" >
+								<a class="header" href="<%=babHitURL %>">제목:&nbsp;<%=bab_title %></a>
 								<div class="meta">
 									<span class="date">카테고리:&nbsp;<%=bab_category %></span>
 								</div>
@@ -292,6 +312,7 @@ $(document).ready(function(){
 					 <br>
 					<br>
 				</p>
+					
 				
 							<!-- 혼술 for문 -->
 				
@@ -300,21 +321,25 @@ $(document).ready(function(){
 			<%
 			List<Map<String, Object>> conBoardSulHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardSulHitMax");
 			    
+			String sulHitURL = null;
 			for(int i = 0; i < conBoardSulHitMax.size(); i++){
 				
+				sul_no = conBoardSulHitMax.get(i).get("SUL_NO").toString(); 
 				sul_title = conBoardSulHitMax.get(i).get("SUL_TITLE").toString();
 			    sul_category = conBoardSulHitMax.get(i).get("SUL_CATEGORY").toString();
 			    sul_text = conBoardSulHitMax.get(i).get("SUL_TEXT").toString();
 			    sul_hit = conBoardSulHitMax.get(i).get("SUL_HIT").toString();
 			    
+			    sulHitURL = "/sp-Honjaopseoye/board/boardOne.hon?category="+ sul_category + "&no=" + sul_no;
+			    
 		    %>
 
 						<div class="ui card">
-							<div class="image">
-								<img src="/sp-Honjaopseoye/image/gui/rs<%=i %>.jpg" width="260px" height="170px">
+							<div class="image" style="width: 260px; hight: 150px;">
+								<img src="/sp-Honjaopseoye/image/gui/rs<%=i %>.jpg" style="width:258px; height:150px;">
 							</div>
 							<div class="content">
-								<a class="header">제목:&nbsp;<%=sul_title %></a>
+								<a class="header" href="<%=sulHitURL %>">제목:&nbsp;<%=sul_title %></a>
 								<div class="meta">
 									<span class="date">카테고리:&nbsp;<%=sul_category %></span>
 								</div>
@@ -329,6 +354,7 @@ $(document).ready(function(){
 							</div>
 						</div>
 
+
 						<%
 							}
 						%>
@@ -336,41 +362,54 @@ $(document).ready(function(){
 					</div>
 				<!-- 혼술 for문 끝  -->
 				
-				<h4 class="ui horizontal divider header" style="margin-bottom:10px">
+				<br>
+				<br>
+				<br>
+				
+				<h4 class="ui horizontal divider header" >
  				  <i class="thumbs up outline icon"></i>
   					혼놀 Top4 best Review
 				</h4>
-				<p style="text-align: center; margin-bottom:50px;">
+				<p style="text-align: center;margin-bottom: 50px;">
 					<font color="red"> </font><br>
 					 <br>
 					<br>
 				</p>
+				
+				
 							<!-- 혼놀 for문 -->
 				
 				<div class="ui four cards"> 
 
 			<%
 		List<Map<String, Object>> conBoardNolHitMax = (List<Map<String, Object>>)request.getAttribute("conBoardNolHitMax");
-			    
+			   
+		String nolHitURL = null;
 	    for(int i = 0; i < conBoardNolHitMax.size(); i++){
 	    	
+	    	nol_no = conBoardNolHitMax.get(i).get("NOL_NO").toString(); 
 	    	nol_title = conBoardNolHitMax.get(i).get("NOL_TITLE").toString();
 		    nol_category = conBoardNolHitMax.get(i).get("NOL_CATEGORY").toString();
 		    nol_text = conBoardNolHitMax.get(i).get("NOL_TEXT").toString();
 		    nol_hit = conBoardNolHitMax.get(i).get("NOL_HIT").toString();
+		    
+		    nolHitURL = "/sp-Honjaopseoye/board/boardOne.hon?category="+ nol_category + "&no=" + nol_no;
+		    
 		    %>
+
 						<div class="ui card">
-							<div class="image">
-								<img src="/sp-Honjaopseoye/image/gui/rn<%=i %>.jpg" width="260px" height="170px">
+						
+							<div class="image" style="width: 260px; hight: 150px;">
+								<img src="/sp-Honjaopseoye/image/gui/rn<%=i %>.jpg" style="width:258px; height:150px;">
 							</div>
 							
 							<div class="content">
-								<a class="header">제목:&nbsp;<%=nol_title %></a>
+								<a class="header" href="<%=nolHitURL %>">제목:&nbsp;<%=nol_title %></a>
 								<div class="meta">
 									<span class="date">카테고리:&nbsp;<%=nol_category %></span>
 								</div>
 									<div class="description">
-									내용:&nbsp;<%=nol_text %>
+									<strong>내용:</strong>&nbsp;<%=nol_text %>
 									</div>
 								</div>
 							<div class="extra content">
@@ -390,8 +429,11 @@ $(document).ready(function(){
 			
 	</div>
 	</div>
-</div>
-</div>
+	</div>
+	</div>
+	<br>
+				<br>
+				<br>
 <%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

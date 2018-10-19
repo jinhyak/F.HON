@@ -126,6 +126,7 @@ function showMap(){
   				<i class="star outline icon"></i>
   				별점주기
 			</button>
+			평점 4.5
 			
 		<div class="ui divider"></div>
 		<table class="ui very basic table"style="height: 400px;">

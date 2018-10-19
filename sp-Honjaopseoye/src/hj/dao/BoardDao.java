@@ -370,8 +370,7 @@ public class BoardDao {
 				return getNolBoardHitMax;
 			}
 			
-			
+			// 댓글 카운트
 			
 
 }
-

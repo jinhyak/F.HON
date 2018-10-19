@@ -99,7 +99,7 @@ var msg_count=0;
           <a class="item" href="/sp-Honjaopseoye/notice/notice/notice.jsp">공지사항</a>
           <a class="item" href="/sp-Honjaopseoye/main/honja/honja_main.jsp">혼자페이지</a>
           <a class="item" href="/sp-Honjaopseoye/main/together/together_main.jsp">만남페이지</a>
-          <a class="item" href="/sp-Honjaopseoye/boardList/mainBoardList.jsp">리뷰보기</a>
+          <a class="item" href="/sp-Honjaopseoye/board/boardMaxHit.hon">리뷰보기</a>
           <div class="divider"></div>
           <div class="header">보조 메뉴</div>
           <div class="item">
