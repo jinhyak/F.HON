@@ -30,6 +30,16 @@ public class ReservationController {
 	@Autowired
 	private ReservationDao reservationDao = null;
 	
+	//예약하기 페이지 뿌려질 정보
+	@ResponseBody
+	@RequestMapping(value="/sel_bang_store.hon", method=RequestMethod.POST)
+	public List<Map<String,Object>> sel_bang_store(@RequestParam Map<String,Object> pMap) {
+		logger.info("sel_bang_store 호출 성공");
+		List<Map<String,Object>> bang_store_List = new ArrayList<Map<String, Object>>();
+		bang_store_List = reservationDao.sel_bang_store(pMap);
+		logger.info("bang_store_List:"+bang_store_List);
+		return bang_store_List;
+	}
 	//예약 조회하기
 	@ResponseBody
 	@RequestMapping(value="/select.hon", method=RequestMethod.POST)
