@@ -6,4 +6,4 @@
 <link rel="stylesheet" href="/sp-Honjaopseoye/Semantic/semantic.css"/>
 <link rel="stylesheet" type="text/css" href="/sp-Honjaopseoye/Semantic/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
 <script type="text/javascript" src="/sp-Honjaopseoye/Semantic/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c7d5d541f83e92c104e5581d22f7c382&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cff98effa71a5169ef4c5e64d5a8e0f6&libraries=services,clusterer,drawing"></script>
