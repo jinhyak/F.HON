@@ -18,6 +18,7 @@ noti_title = hc.toUTF(request.getParameter("noti_title"));
 noti_pw = hc.toUTF(request.getParameter("noti_pw"));
 noti_writer = hc.toUTF(request.getParameter("noti_writer"));
 noti_content = hc.toUTF(request.getParameter("noti_content"));
+noti_category = hc.toUTF(request.getParameter("noti_category"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -124,12 +125,10 @@ textarea {
 													<tr>
 														<td align="center">분류</td>
 														<td align="center">
-															<div class="ui selection dropdown"
-																style="border: 1px solid #85B7D9" id="noti_category"
-																name="noti_category">
-																<input type="hidden" name="noti_category" value="<%=noti_category%>">  <i
-																	class="dropdown icon"></i>
-																<div class="default text">카테고리</div>
+															<div class="ui selection dropdown" 
+																style="border: 1px solid #85B7D9" id="noti_category"name="noti_category">
+																<input type="hidden" name="noti_category" value="<%=noti_category%>"> <i class="dropdown icon"></i>
+																<div class="default text"></div>
 																<div class="menu">
 																	<div class="item" data-value="전체" name="all">전체</div>
 																	<div class="item" data-value="혼놀" name="nol">혼놀</div>
@@ -145,16 +144,13 @@ textarea {
 															<div class="ui input focus" style="align: left;">
 																<input type="password" style="width: 195px;"
 																	id="noti_pw" name="noti_pw" value="<%= noti_pw%>">
-																<input type="hidden" name="noti_writer"value="<%= noti_pw%>">
+																<input type="hidden" name="noti_pw"value="<%= noti_pw%>">
 															</div>
 														</td>
 													</tr>
 													<tr>
 														<td style="justify-content: center">내용</td>
-														<td align="left"><textarea id="noti_content" name="noti_content"
-																style="width: 100%; height: 500px; text-align: left;">
-																<%=noti_content%>
-													</textarea></td>
+														<td align="left"><textarea id="noti_content" name="noti_content" style="width: 100%; height: 500px; text-align: left;"><%=noti_content%></textarea></td>
 														<tr>
 														<td align="center">첨부파일</td>
 														<td align="left"><input type="file" id="noti_file"
@@ -165,12 +161,10 @@ textarea {
 											</table>
 										</form>
 										<div style="margin-bottom: 30px"></div>
-
-
 										<script>
 											$(document).ready(function() {
 										
-												$('.ui.dropdown')
+												$('#noti_category')
 													.dropdown()
 												;
 										
@@ -203,11 +197,24 @@ textarea {
 	var noti_no = '<%=noti_no%>'
 		function modify(){
 		alert("들감");
-	    $("#f_insert").attr('method','post');
-	    $("#f_insert").attr('action','../../menu/nUpdate.hon');
-		$("#f_insert").submit();
-		
+		var noti_content = $("#noti_content").val();
+		var noti_title = $("#noti_title").val();
+		var noti_pw = $("#noti_pw").val();
+		if(noti_content == null || noti_content==""){
+			alert('글을 작성해 주세요.');
+		}if(noti_title == null || noti_title==""){
+			alert('제목을 작성해주세요.');
+		}if(noti_pw == null || noti_pw==""){
+			alert('비밀번호를 입력해주세요.');
 		}
+		
+		else{
+			$("#f_insert").attr('method','post');
+			$("#f_insert").attr('action','../../menu/nUpdate.hon');
+			$("#f_insert").submit();
+		}
+	}
 	</script>
+	
 </body>
 </html>

@@ -9,20 +9,14 @@
 <%@ page import="java.net.URL"%>
 <%@ page import="java.net.HttpURLConnection"%>
 <%@ page import="java.io.BufferedReader"%>
-<%@ page import="java.io.InputStreamReader"%>	
+<%@ page import="java.io.InputStreamReader"%>
 <%
-	String smem_name = null;
-		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
-	if ((List<Map<String, Object>>)memList != null) {
-		smem_name = memList.get(0).get("MEM_NAME").toString();
+	  	String smem_name = null;
+		List<Map<String, Object>> memList2 = (List<Map<String, Object>>) session.getAttribute("memList");
+	if (session.getAttribute("memList") != null) {
+		smem_name = memList2.get(0).get("MEM_NAME").toString();
 	}
-	
-	Map<String, Object> pMap = null;
-	if(session.getAttribute("nMem")!=null){
-		pMap = (Map<String, Object>)session.getAttribute("nMem");
-		smem_name = pMap.get("nickname").toString();
-	}
-%>
+%>	
 <% 
 	String clientId = "rMQSr12DQcrxNQeItZQ5"; //애플리케이션 클라이언트 아이디값";
 	String clientSecret = "uu3M2Y2xdg"; //애플리케이션 클라이언트 시크릿값";
@@ -39,7 +33,6 @@
 	
 	String access_token = ""; // 입력한 네이버 아이디가 같으면(로그인 성공시)... 토큰 값을 가져온다
 	String refresh_token = ""; // ?ㅇㅋ
-	
 	System.out.println("apiURL="+apiURL);
 	
 		try {
@@ -100,11 +93,10 @@
 		<% 	
 			}else {
 		%>
-			<%@ include file="../../include/include/top.jsp" %>
+			<jsp:include page="../../include/include/top.jsp" />
 		<% 	
 			}
 		%>
-<!--  -->
 <div class="ui two column stackable grid" style="height:850px">
     <div class="column">
 		<a  id="btn1" href="../honja/honja_main.jsp" style="width:100%; height:100%;"><img src="../../image/person.PNG" style="width:100%; height:100%;"></a>

@@ -6,12 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 
 public class MemberDao {
 	Logger logger = Logger.getLogger(this.getClass());
-
 	private SqlSessionTemplate sqlSessionTemplate;
 	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
@@ -205,5 +206,17 @@ public class MemberDao {
 		return getNoticeList;
 	}
 
+	public int nMemInsert(Map<String, Object> pMap) {
+		logger.info("nMemInsert : " + pMap);
+		int result = 0;
+		result = sqlSessionTemplate.insert("join", pMap);
+		logger.info("result : " + result);
+		if(result == 1) {
+			logger.info("result 호출 성공");
+		}else {
+			logger.info("error!");
+		}
+		return result;
+	}
 	
 }
