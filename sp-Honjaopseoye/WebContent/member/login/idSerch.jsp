@@ -40,7 +40,7 @@
 				method : "post",
 				data : param,
 				success : function(result) {// 0 -1 1
-					alert("result="+result); //공백이 들어옴
+					//alert("result="+result); //공백이 들어옴
 					if (result == '0') {
 						alert("존재하지 않는 이름입니다.");
 						$("#ins_name").focus();
@@ -292,6 +292,6 @@
 		</div>
 		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	</div>
-	<%@ include file="../../include/bottom.jsp"%>
+	<%@ include file="../../include/include/bottom.jsp"%>
 </body>
 </html>

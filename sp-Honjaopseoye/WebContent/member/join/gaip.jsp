@@ -12,10 +12,6 @@
     body > .grid {
       height: 100%;
     }
-    .image {
-      margin-top: 100;
-      margin-bottom: 100;
-    }
     .column {
       min-width: 480px;
       max-width: 800px;
@@ -52,18 +48,18 @@
 	function id_check(){
 		var id_check ;
 		var param = $('#id').val();
-		alert(param)
+		//alert(param)
 		$.ajax({
 			 method:"get"
 			,url:"../id_sel.hon"
 			,data:{"id": $('#id').val()}
 			,success:function(data){
-				alert("result:" + data);
-				if(data=='2'){
+				//alert("result:" + data);
+				if(data=='1'){
 					alert('사용할 수 있는 ID입니다')
 					id_check=data
 				}
-				else if(data=='1'){
+				else if(data=='0'){
 					alert("사용중인 ID입니다.")
 					id_check=data
 				}
@@ -82,6 +78,7 @@
 			,url:"../id_tel.hon"
 			,data:{"tel": $('#tel').val()}
 			,success:function(data){
+				//alert(data);
 				if(data=='1'){
 					alert('사용할 수 있는 번호입니다')
 					tel_check = data
@@ -152,7 +149,7 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 성별 구분 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	function gender(){
 		var gender = $("chk_info").val()
-		alert(gender)
+		//alert(gender)
 	}
 </script>
 	<div class="ui middle center aligned grid bagic segment" style="margin-top:100px;border:hidden">
@@ -187,13 +184,13 @@
 					<div class="field">
 						<div class="ui label">직업
 								<div class="ui selection dropdown addr">
-										<input type="hidden" value="1109" id="mem_job"> <i class="dropdown icon"></i>
-										<div class="text" id="hobby">무직</div>
-										<div class="menu" id="menu_job">
+										<input type="hidden" value="1100" id="mem_job"> <i class="dropdown icon"></i>
+										<div class="text" id="job">분류</div>
+										<div class="menu">
 											<div class="item" data-value="1100">무직</div>
 											<div class="item" data-value="1101">학생</div>
-											<div class="item" data-value="1102">운동선수</div>
-											<div class="item" data-value="1103">예술가</div>
+											<div class="item" data-value="1102">예술가</div>
+											<div class="item" data-value="1103">운동선수</div>
 											<div class="item" data-value="1104">프로그래머</div>
 											<div class="item" data-value="1105">사무직</div>
 											<div class="item" data-value="1106">영업직</div>
@@ -231,7 +228,6 @@
 						</div>
 					</div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#  pw  #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-
 					<div class="field">
 						<div class="ui left icon input" style="width: 100%;">
 							<i class="lock icon"></i> <input type="password"  name="mem_pw" id="pw" placeholder="비밀번호를 입력하세요">
@@ -358,7 +354,7 @@
 					 method:'post'
 					,url:'../../member/doAddress.hon'
 					,success:function(data){
-						alert("도: "+data);
+						//alert("도: "+data);
 						$('#menu_do').html(data);
 					}
 				})
@@ -400,8 +396,8 @@
 		var si = $('#si').text();
 		var dong = $('#dong').text();
 		var address = $('#p_addr').val();
-		alert(address);
-		cmm_window_popup("./address.jsp?zdo="+dos+"&sigu="+si+"&dong="+dong+"&address="+address, 600, 600, "상세주소 조회창")
+		//alert(address);
+		cmm_window_popup("./address.jsp?zdo="+dos+"&sigu="+si+"&dong="+dong+"&address="+address, 800, 600, "상세주소 조회창")
 	}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 성별 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		$('#gend').change(function (){
@@ -428,10 +424,6 @@
             ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
             ,changeYear: true //콤보박스에서 년 선택 가능
             ,changeMonth: true //콤보박스에서 월 선택 가능                
-            ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-            ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-            ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
-            ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
             ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
             ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
             ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
@@ -444,6 +436,6 @@
         $('#datepicker').datepicker(); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
     });
 </script>
-<%@include file="../../include/bottom.jsp" %>
+<%@include file="../../include/include/bottom.jsp" %>
 </body>
 </html>

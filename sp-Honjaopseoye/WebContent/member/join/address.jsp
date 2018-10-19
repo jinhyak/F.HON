@@ -42,13 +42,13 @@
 			var dong = '<%=dong%>'
 			var address = '<%=address%>'
 			var param = "zdo="+zdo+"&sigu="+sigu+"&dong="+dong+"&address="+address;
-			alert(param);
+			//alert(param);
 			$.ajax({
 				 method:"post"
 				,data:param
 				,url:"../../member/deAddress.hon"
 				,success:function(data){
-					alert("data: "+data);
+					//alert("data: "+data);
 					$('#addr_list').html(data)
 					var trs = $("#addr_tb")[0].getElementsByClassName("trs");
 						for(var i=0;i<trs.length;i++){
@@ -57,8 +57,8 @@
 								this.onclick = function(){
 									var addr = this.cells.item(0).innerHTML
 									var zip = this.cells.item(1).innerHTML
-									alert(addr)
-									alert(zip)
+									//alert(addr)
+									//alert(zip)
 									window.opener.document.getElementById("p_addr").value = addr;
 									window.opener.document.getElementById("p_zip").value = zip;
 									self.close();

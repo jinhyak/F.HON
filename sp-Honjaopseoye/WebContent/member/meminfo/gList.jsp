@@ -23,46 +23,49 @@
 						<div class="center aligned column">
 						</div>
 						<div class="center aligned column">
-						</div>
-						<div class="center aligned column">
 							<div class="ui large header">
-							 	혼자옵서예
+							 	<img src="/sp-Honjaopseoye/image/logo.png" style="width:100%;heigth:100%">
 							</div>
 						</div>
 						<div class="right aligned column">
 						</div>
 						<div class="right aligned column">
 						</div>
-						<div class="right aligned column">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-							<div class="ui segment button" style="width:100%" onclick="location.href='./mlist.jsp'">
-								<a href="#"> 회원 정보 </a>
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%" onclick="location.href='./meminfo.jsp'">
+								<h3> 회원 정보 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
 							<div class="ui segment button" style="width:100%" onclick="location.href='./mdelete.jsp'">
-								<a href="#"> 회원 탈퇴 </a>
+								<h3> 회원 삭제 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./flist.jsp'">
-								<a href="#"> 친구 찾기 </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='./f_search.jsp'">
+								<h3> 친구 찾기 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./fdelete.jsp'">
-								<a href="#"> 친구 관리 </a>
+							<div class="ui segment button" style="width:100%" onclick="location.href='./f_select.jsp'">
+								<h3> 친구 관리 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./gList.jsp'">
-								<a href="#"> 그룹 관리 </a>
+							<div class="ui segment button" style="width:100%;background-color:gray">
+								<h3> 그룹 관리</h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='./gCreate.jsp'">
-								<a href="#"> 그룹 만들기 </a>
+							<div class="ui segment button" style="width:100%" onclick="group()">
+								<h3> 그룹 만들기 </h3>
 							</div>
+							<script>
+							function group(){
+								cmm_window_popup("../../main/together/together.jsp", 800, 800, "모임 만들기창")
+							}
+							</script>
 						</div>
 					</div>	
 				</div>
@@ -146,6 +149,6 @@
 	</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 </div>
-<%@ include file="../../include/bottom.jsp" %>
+<%@ include file="../../include/include/bottom.jsp" %>
 </body>
 </html>
