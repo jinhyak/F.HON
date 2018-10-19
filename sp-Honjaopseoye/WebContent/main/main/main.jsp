@@ -100,7 +100,7 @@
 		<% 	
 			}else {
 		%>
-			<%@ include file="../../include/include/top.jsp" %>
+			<%@ include file="../../include/include/top.jsp"%>
 		<% 	
 			}
 		%>
