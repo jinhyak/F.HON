@@ -35,11 +35,13 @@ $(document).ready(function () {
 		   
 		   //bang_no = result[0].BANG_NO;
 		   store_no = result[0].STORE_NO;
-		   store_img = result[0].STORE_IMG;
 		   bang_id = result[0].BANG_ID;
 		   $("#bang_jang_id").text(bang_id);
 		   
-		   $("#large_img1").attr('src',"/sp-Honjaopseoye/image/storeImg/"+store_img);
+		   if(result[0].STORE_IMG!=null) {
+			    store_img = result[0].STORE_IMG;
+		   		$("#large_img1").attr('src',"/sp-Honjaopseoye/image/storeImg/"+store_img);
+		   }
 		   $("#bang_title").text(result[0].BANG_NAME);
 		   
 		   $("#bang_id").text(result[0].BANG_ID);
@@ -111,22 +113,17 @@ $(document).ready(function () {
 					  <div class="sides">
 						<div class="active side">
 							<div class="ui large image">
-								<img id="large_img1" style="width:500px; height:400px;">
-							</div>
-						</div>
-				   	    <div class="side">
-							<div class="ui large image">
-								<img id="large_img2" src="../../image/logo.png" style="width:500px; height:400px;">
+								<img id="large_img1" src="../../image/logo.png" style="width:500px; height:400px;">
 							</div>
 						</div>
 					    <div class="side">
 							<div class="ui large image">
-								<img id="large_img3" src="../../image/mapimage.png" style="width:500px; height:400px;">
+								<img id="large_img2" src="../../image/mapimage.png" style="width:500px; height:400px;">
 							</div>
 						</div>
 					    <div class="side">
 							<div class="ui large image">
-								<img id="large_img4" src="../../image/with.jpg" style="width:500px; height:400px;">
+								<img id="large_img3" src="../../image/with.jpg" style="width:500px; height:400px;">
 							</div>
 						</div>
 					  </div>
@@ -482,7 +479,7 @@ $("#attend_btn").click(function (){
 $("#cancle_btn").click(function (){
 	$.ajax({
 		method:"post",
-		data:"mem_id="+mem_id,
+		data:"mem_id="+mem_id+"&bang_no="+bang_no,
 		url:"../../group/groupAbsent.hon",
 		success:function(result){
 			if(result==1){

@@ -3,14 +3,19 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservationmap">
-	<select id="select" parameterType="map" resultType="map">
-		SELECT r.reserv_no, r.bang_no, b.bang_name, s.store_name, s.store_addr, s.store_tel,
-			   r.reserv_people, r.reserv_date, r.reserv_time, r.reserv_progress
-		FROM reservation r, store s, bang b
-		WHERE r.bang_no = b.bang_no
-		AND r.store_no = s.store_no
-		AND bang_id = #{mem_id}
+	<select id="sel_bang_store" parameterType="map" resultType="map">
+		select *
+		from   bang, store
+		where  bang.store_no = store.store_no
+		and    bang.bang_no = #{bang_no}	
 	</select>
+	<resultMap id="selectMap" type="hashmap"/>
+	<select id="select" parameterType="map" statementType="CALLABLE">
+		{ call proc_reserv_date_del_sel(
+			#{mem_id, mode=IN, jdbcType=VARCHAR, javaType=java.lang.String},
+			#{cur_result, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=selectMap}
+		)}	
+	</select>	
 	<select id="sel_history" parameterType="map" resultType="map">
 		SELECT h.reserv_no, h.bang_no, b.bang_name, s.store_name, s.store_addr, s.store_tel,
 			   h.reserv_people, h.reserv_date, h.reserv_time

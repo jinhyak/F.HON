@@ -128,6 +128,7 @@
 <delete id="groupAbsent" parameterType="string">
 	delete from bang_info
 	where mem_id = #{mem_id}
+	and bang_no = #{bang_no}
 </delete>
 
 <!-- 모임방 삭제버튼(방장만) -->
