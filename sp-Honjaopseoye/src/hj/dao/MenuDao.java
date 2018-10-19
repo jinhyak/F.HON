@@ -107,32 +107,28 @@ public class MenuDao {
 	}
 
 	/* [[[[[[[[[[[[[[[[[[[[[[[[[[[[ 계층형 게시글 ]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
-	public int step(String pMap) {
+	public int stepUp(int step) {
+		int result = 0;
 		logger.info("step Update");
-		int result = 0;
-		result = sqlSessionTemplate.update(pMap);
-		return result;
-	}
-	
-	public int depth(String pMap) {
-		logger.info("depth Update");
-		int result = 0;
-		result = sqlSessionTemplate.update(pMap);
+		logger.info(step);
+		result = sqlSessionTemplate.update("stepUp", step);
 		return result;
 	}
 
-	public int group(String pMap) {
-		logger.info("group Update");
-		int result = 0;
-		result = sqlSessionTemplate.update(pMap);
-		return result;
-	}
-
-	public int getGroup(Map<String, Object> pMap) {
-		int b_group = 0;
-		b_group = sqlSessionTemplate.selectOne("getGroup");
-		return b_group;
+	public int getGroup() {
+		logger.info("최대 그룹번호 채번");
+		int group = 0;
+		group = sqlSessionTemplate.selectOne("getGroup");
+		return group;
 	}
 	
+	public int getStep() {
+		// TODO Auto-generated method stub
+		logger.info("최대 스텝번호 채번");
+		int step = 0;
+		step = sqlSessionTemplate.selectOne("getStep");
+		return step;
+	}
+
 
 }

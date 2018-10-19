@@ -12,11 +12,18 @@
 			<value>messages_ko_KR</value>
 		</property>
 	</bean>
-<!-- 
-	<bean id="gro-logic" class="hj.logic.GroupLogic"/>
-	<bean id="fri-logic" class="hj.logic.FriendLogic"/>
-	<bean id="sto-logic" class="hj.logic.StoreLogic"/>
-	<bean id="gro-logic" class="hj.logic.GroupLogic"/>
- 	<bean id="mem-logic" class="hj.logic.MemberLogic"/>
- -->
+	<bean id="board-logic" class="hj.logic.MenuLogic"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.mvc.board.*Logic.*(..))" id="point-cut"/>
+		<aop:advisor advice-ref="tx-advice" pointcut-ref="point-cut"/>
+	</aop:config>
+	<tx:advice id="tx-advice" transaction-manager="transactionManager">
+		<tx:attributes>
+<!-- 메소드 이름앞에 cud가 붙으면 묶음처리(한꺼번에 커밋) 
+     cud가 아니면 건건이 커밋처리됨. 자바코딩 없이도...... 자동으로  알아서......
+-->		
+			<tx:method name="tx*"/>		
+			<tx:method name="do*"/>		
+		</tx:attributes>
+	</tx:advice>
 </beans>

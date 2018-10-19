@@ -33,7 +33,9 @@ import hj.util.HangulConversion;
 @RequestMapping("/menu")
 public class MenuController {
 	Logger logger = Logger.getLogger(this.getClass());
-
+	// 한글 처리
+	HangulConversion hc = new HangulConversion();
+	
 	@Autowired
 	private MenuLogic menuLogic = null;
 
@@ -178,12 +180,41 @@ public class MenuController {
 	}
 
 	/* 문의하기 */
-	@RequestMapping(value = "/qInsert.hon", method = { RequestMethod.POST, RequestMethod.GET })
-	public String qInsert(Model mod, @RequestParam Map<String, Object> pMap, HttpServletRequest req) {
-		logger.info("qInsert 메소드 호출");
+	@RequestMapping(value="/qInsert.hon",method= {RequestMethod.POST, RequestMethod.GET})
+	public String qInsert(@RequestParam Map<String, Object> pMap) {
+		logger.info("qInsert 메소드 호출"+pMap);
+		String qna_writer = pMap.get("qna_writer").toString();
+		String keyword = pMap.get("keyword").toString();
+		String qna_title = pMap.get("qna_title").toString();
+		String qna_category = pMap.get("qna_category").toString();
+		String qna_content = pMap.get("qna_content").toString();
+		String qna_pw = pMap.get("qna_pw").toString();
+		String path = null;
 		int result = 0;
-		// result = menuLogic.qInsert(req, pMap);
-		return "forward:/notice/qna/qnaRead.jsp";
+		//한글처리
+		String n_qna_content = hc.toUTF(qna_content);
+		pMap.put("qna_content", n_qna_content);
+		logger.info("화면으로부터 받은 파라미터 확인: "+qna_title+", "+qna_category+", "+n_qna_content);
+		if("새글".equals(keyword)){
+			String n_qna_title = hc.toUTF(qna_title);
+			String n_qna_category = hc.toUTF(qna_category);
+			pMap.put("qna_title", n_qna_title);
+			pMap.put("qna_category", n_qna_category);
+		}else if("답글".equals(keyword)) {
+			String qna_depth = pMap.get("qna_depth").toString();
+			String qna_step = pMap.get("qna_step").toString();
+			String qna_group = pMap.get("qna_group").toString();
+			pMap.put("qna_step", qna_step);
+			pMap.put("qna_group", qna_group);
+			pMap.put("qna_depth", qna_depth);
+		}
+		result = menuLogic.txqInsert(pMap);
+		if(result == 1) {//등록 성공
+			path = "redirect:../notice/qna/qna.jsp";
+		} else {//등록 실패
+			path = "에러페이지";
+		}
+		return "redirect:../notice/qna/qna.jsp";
 	}
 
 	/* 문의 게시판 */
