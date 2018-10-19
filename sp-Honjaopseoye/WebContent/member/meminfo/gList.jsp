@@ -85,11 +85,7 @@
 						</div>
 						<div class="center aligned column">
 							<div class="ui segment" style="width:100%;height:1000px">
-							
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-								
-								
-								
 								
 	<table class="ui right aligned table">
       <thead>

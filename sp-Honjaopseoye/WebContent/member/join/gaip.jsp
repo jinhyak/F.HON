@@ -115,6 +115,9 @@
 		else if(h_pw=='0'){
 			alert('비밀번호가 동일하지 않은 상태입니다.');
 		}
+		else if(addr==''||addr==null){
+			alert("주소를 등록해 주세요")
+		}
 		else{
 			var email = $('#email').val()+"@"+$('#domain').text();
 			var hoby = $('#mem_hobby').val();
@@ -181,7 +184,7 @@
 						<div class="ui label">직업
 								<div class="ui selection dropdown addr">
 										<input type="hidden" value="1100" id="mem_job"> <i class="dropdown icon"></i>
-										<div class="text" id="job">무직</div>
+										<div class="text" id="job">ss</div>
 										<div class="menu">
 											<div class="item" data-value="1100">무직</div>
 											<div class="item" data-value="1101">학생</div>
@@ -198,7 +201,7 @@
 						<div class="ui label">취미
 								<div class="ui selection dropdown addr">
 									<input type="hidden" value="1200" id="mem_hobby"> <i class="dropdown icon"></i>
-										<div class="text" id="hobby">기타</div>
+										<div class="text" id="hobby">sss</div>
 										<div class="menu" id="menu_hobby">
 											<div class="item" data-value="1209">기타</div>
 											<div class="item" data-value="1200">운동</div>

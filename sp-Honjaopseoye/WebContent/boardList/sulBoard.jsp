@@ -25,32 +25,20 @@
 <title>혼술 게시판</title>
 </head>
 <style>
-body {
-
-}
+	#topbg{ background: url("/sp-Honjaopseoye/image/gui/topbg.jpg")}
 </style>
-
 <body>
 
-
-<div class="ui inverted vertical masthead center aligned segment" style="margin-top: 50px; height: 400px;">
-
-    <div class="ui container">
-      <div class="ui large secondary inverted pointing menu">
-        <div class="right item">
-        </div>
-      </div>
-    </div>
-
-    <div class="ui text container">
-      <h1 class="ui inverted header">
-        혼술 리뷰!
-      </h1>
-      <h2>혼자 술먹기 좋은 곳 리뷰를 확인해 보세요! </h2>
-    </div>
-
-  </div>
-
+	<div id="topbg" class="ui inverted vertical masthead center aligned segment" style="margin-top: 50px; height: 450px;">
+	    <div class="ui text container"style="margin-top: 160px;">
+	      <h1 class="ui inverted header">
+	       <font size="10">혼술 리뷰 게시판</font>
+	      </h1>
+	      <br>
+	      <br>
+	      <h2>혼술 리뷰를 확인해 보세요</h2>
+	    </div>
+	  </div>
 <form id="key"></form>
 
 <br>
@@ -112,10 +100,31 @@ $(document).ready(function(){
 })
 
 </script>
-<br>
-<br>
-<br>
-<br>
+
+
+
+<div class="ui container"
+		style="margin-left: 200px; margin-right: 200px;">
+		<h2 class="ui header" style="margin-top: 50px;">
+			<img src="../image/logo.png" style="width: 170px; height: 60px;" onClick="mainlist()">
+			<div class="content">
+				혼술 리뷰
+				<div class="sub header" style="padding-top: 10px;">네티즌들의 추천 ! 그
+					이상을 누릴 수 있는 홀술 리뷰 게시판</div>
+			</div>
+		</h2>
+</div>	
+<script type="text/javascript">
+
+function mainlist() {
+	
+	location.href="/sp-Honjaopseoye/board/boardMaxHit.hon";
+	
+}
+
+</script>
+
+
 <!-- 전체 테이블 -->
 <table bgcolor="white" align="center">
 <thead>
@@ -124,7 +133,7 @@ $(document).ready(function(){
 <tr>
 <td align="center">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<div class="ui header" style="margin-left: 0px;margin-right: 0px; margin-top: 100px;margin-bottom: 100px">
+<div class="ui header" style="margin-left: 0px;margin-right: 0px; margin-top: 0px;margin-bottom: 100px">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ index @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- 상위 버튼 -->
 <table>
@@ -132,7 +141,6 @@ $(document).ready(function(){
 <td align="center">
 
 <!-- 조회수 -->
-
 
 <div class="ui container"
 			style="margin-left: 200px; margin-right: 200px;margin-top:50px;">
@@ -149,7 +157,7 @@ $(document).ready(function(){
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/boardList/babBoard.jsp">평범한 일상</a>
 							<div class="meta">
-								<span class="date">혼밥 리뷰를 확인해 보세요!</span>
+								<span class="date"><font size="2">혼밥 리뷰를 확인해 보세요!</font></span>
 							</div>
 						</div>
 					</div>
@@ -167,7 +175,7 @@ $(document).ready(function(){
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/boardList/sulBoard.jsp">감성을 자극하는 밤</a>
 							<div class="meta">
-								<span class="date">혼술 리뷰를 확인해 보세요!</span>
+								<span class="date"><font size="2">혼술 리뷰를 확인해 보세요!</font></span>
 							</div>
 						</div>
 					</div>
@@ -185,7 +193,7 @@ $(document).ready(function(){
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">혼자만의 여가 생활</a>
 							<div class="meta">
-								<span class="date">혼놀 리뷰를 확인해 보세요!</span>
+								<span class="date"><font size="2">혼놀 리뷰를 확인해 보세요!</font></span>
 							</div>
 						</div>
 					</div>
@@ -204,7 +212,7 @@ $(document).ready(function(){
 						<div class="content">
 							<a class="header" href="/sp-Honjaopseoye/main/together/together_main.jsp">우리들은 하나</a>
 							<div class="meta">
-								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
+								<span class="date"><font size="2">혼족들이 모여 소통할 수 있는 공간</font></span>
 							</div>
 						</div>
 					</div>
@@ -216,8 +224,8 @@ $(document).ready(function(){
 						<strong>검증된 혼족들의 맛있는 리뷰</strong> 
 						<p></p>
 						<div class="meta" style="text-align: left;">
-							혼밥이 일상이된 시대 지금
-							당신은 혼밥을 즐겨 하시나요?
+							<font size="2">혼밥이 일상이된 시대 지금
+							당신은 혼밥을 즐겨 하시나요?</font>
 						</div>
 					</div>
 				</div>
@@ -226,8 +234,8 @@ $(document).ready(function(){
 						<strong>분위기 작살 오늘의 감성 리뷰</strong> 
 						<p></p>
 						<div class="meta" style="text-align: left;">
-							감성을 자극하는 밤!!
-							오늘 혼술 한잔 어떠신가요?
+							<font size="2">감성을 자극하는 밤!!
+							오늘 혼술 한잔 어떠신가요?</font>
 						</div>
 					</div>
 				</div>
@@ -236,8 +244,8 @@ $(document).ready(function(){
 						<strong>내가 바로 혼자 놀기의 달인</strong> 
 						<p></p>
 						<div class="meta" style="text-align: left;">
-							심심하신가요? 혼자 놀기의 달인들이
-							알려주는 재밌는 꿀팁!!
+							<font size="2">심심하신가요? 혼자 놀기의 달인들이
+							알려주는 재밌는 꿀팁!!</font>
 						</div>
 					</div>
 				</div>
@@ -246,15 +254,13 @@ $(document).ready(function(){
 						<strong>혼밥이 지겨운 그들의 이야기</strong> 
 						<p></p>
 						<div class="meta" style="text-align: left;">
-							혼자하는 생활이 많이 외롭죠?
-							이젠 같이 즐기세요~
+							<font size="2">혼자하는 생활이 많이 외롭죠?
+							이젠 같이 즐기세요~</font>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-
+</div>
 
 <!-- 조회수 끝 -->
 
@@ -278,9 +284,9 @@ $(document).ready(function(){
                    <tr>
            			  <th style="width:100px;">글 번호</th>
                       <th style="width:100px;">작성자</th>
-                      <th style="width:300px;">제목</th>
+                      <th style="width:500px;">제목</th>
                       <th style="width:200px;">카테고리</th>
-                      <th style="width:500px;">조회수</th>
+                      <th style="width:300px;">조회수</th>
                       <th style="width:100px;">날짜</th>
                     </tr>
                  </thead>
@@ -293,9 +299,23 @@ $(document).ready(function(){
 </tbody>
 <tr>
 <td width="600px" height="60px" align="right">
-	<button class="ui primary button" id="g_insert" name="g_insert"> 
+
+<%
+
+	if(smem_name != null){
+		
+
+%>
+<button class="ui primary button" id="g_insert" name="g_insert"> 
   글 쓰기
 </button>
+
+<%
+	} else {
+		out.print("비회원은 쓰기 권한이 없습니다.");
+	}
+%>
+
 </td>
 </tr>
 </table>

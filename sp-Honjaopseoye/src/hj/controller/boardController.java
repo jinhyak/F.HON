@@ -27,140 +27,141 @@ public class boardController {
 	// Log Debug
 	Logger logger = Logger.getLogger(this.getClass());
 	
-	// Logic class °´Ã¼ ÁÖÀÔ
+	// Logic class åª›ì•¹ê»œ äºŒì‡±ì—¯
 	@Autowired
 	BoardLogic boardLogic = null;
 	
-	// ÇÑ±Û Ã³¸®
+	// ï¿½ë¸³æ¹²ï¿½ ï§£ì„â”
 	HangulConversion hc = new HangulConversion();
 	
 	
-	// Response Json ¸ñ·Ï Á¶È¸
+	// Response Json ï§â‘¸ì¤‰ è­°ê³ ì‰¶
 	@ResponseBody
 	@RequestMapping("/boardList.hon")
 	public Map<String, List<Map<String, Object>>> conBoardList(Map<String, Object> pMap, 
 			@RequestParam String category) throws ServletException, IOException {
 		
-		logger.info("<Controller> ---> conBoardList method ½ÃÀÛ");
-		logger.info("conBoardList ÆÄ¶ó¹ÌÅÍ category : " + category);
+		logger.info("<Controller> ---> conBoardList method ï¿½ë–†ï¿½ì˜‰");
+		logger.info("conBoardList ï¿½ë™†ï¿½ì”ªèª˜ëª…ê½£ category : " + category);
 		
 		List<Map<String, Object>> conBoardList = null;
 		Map<String, List<Map<String, Object>>> JsonList = new HashMap<String, List<Map<String, Object>>>();
 		
-		// Logic method È£Ãâ
+		// Logic method ï¿½ìƒ‡ç•°ï¿½
 		conBoardList = boardLogic.logBoardList(pMap, category);
 		JsonList.put("data", conBoardList);
-		logger.info("<Controller> Á¾·á ---> conBoardList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardList.size());
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardList ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardList.size());
 		
 		return JsonList;
 		
 	}
 	
 	
-	// È¥¹ä, È¥¼ú, È¥³î  ¸ñ·Ï ÇØ´ç »ó¼¼ Á¶È¸ (ÇØ´ç °Ô½Ã±Û »ó¼¼Á¶È¸ µ¥ÀÌÅÍ¿Í ´ñ±Û µ¥ÀÌÅÍ)
+	// ï¿½ìƒè«›ï¿½, ï¿½ìƒï¿½ë‹ , ï¿½ìƒï¿½ï¿½  ï§â‘¸ì¤‰ ï¿½ë¹ï¿½ë–¦ ï¿½ê¸½ï¿½ê½­ è­°ê³ ì‰¶ (ï¿½ë¹ï¿½ë–¦ å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ê¸½ï¿½ê½­è­°ê³ ì‰¶ ï¿½ëœ²ï¿½ì” ï¿½ê½£ï¿½ï¿½ ï¿½ë™æ¹²ï¿½ ï¿½ëœ²ï¿½ì” ï¿½ê½£)
 	@RequestMapping("/boardOne.hon")
 	public String conBoardOneList(Map<String, Object> pMap, Model model,
 			@RequestParam String category, @RequestParam String no,
 			HttpServletRequest req, HttpServletResponse res) 
 					throws ServletException, IOException {
 		
-		logger.info("<Controller> ---> conBoardOneList method ½ÃÀÛ");
-		logger.info("conBoardOneList ÆÄ¶ó¹ÌÅÍ category : " + category + " no : " + no);
+		logger.info("<Controller> ---> conBoardOneList method ï¿½ë–†ï¿½ì˜‰");
+		logger.info("conBoardOneList ï¿½ë™†ï¿½ì”ªèª˜ëª…ê½£ category : " + category + " no : " + no);
 		
 		int result = 0;
 		
-		// JSP °æ·Î °áÁ¤
+		// JSP å¯ƒìˆì¤ˆ å¯ƒê³—ì ™
 		String viewPath = null; 
 		
-		// List »ó¼¼ Á¶È¸ List -> ´ñ±Û List°¡ ÀÖÀ½
-		List<Map<String, Object>> conBoardOneList = null; // »ó¼¼ Á¶È¸ List 
-		List<Map<String, Object>> conBoardCommentList = null; // »ó¼¼ Á¶È¸ ÆäÀÌÁö ¾ÈÀÇ ´ñ±Û
+		// List ï¿½ê¸½ï¿½ê½­ è­°ê³ ì‰¶ List -> ï¿½ë™æ¹²ï¿½ Liståª›ï¿½ ï¿½ì—³ï¿½ì“¬
+		List<Map<String, Object>> conBoardOneList = null; // ï¿½ê¸½ï¿½ê½­ è­°ê³ ì‰¶ List 
+		List<Map<String, Object>> conBoardCommentList = null; // ï¿½ê¸½ï¿½ê½­ è­°ê³ ì‰¶ ï¿½ëŸ¹ï¿½ì” ï§ï¿½ ï¿½ë¸ï¿½ì“½ ï¿½ë™æ¹²ï¿½
 		
 		pMap = new HashMap<String, Object>();
 		
-		if("È¥¹ä".equals(category)) {
+		if("í˜¼ë°¥".equals(category)) {
 			
 			
-			logger.info("<Controller> ---> if(È¥¹ä)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)ï¿½ë–†ï¿½ì˜‰");
 			
-			// ÇØ´ç °Ô½Ã±ÛÀÇ ¹øÈ£ Á¶È¸
+			// ï¿½ë¹ï¿½ë–¦ å¯ƒëš¯ë–†æ¹²ï¿½ï¿½ì“½ è¸°ëŠìƒ‡ è­°ê³ ì‰¶
 			pMap.put("bab_no", no);
-			logger.info("ÀúÀåµÈ °ª "+pMap.get("bab_no"));
-			result = boardLogic.logBoardHitUpdate(pMap, category); // È¥¹ä Á¶È¸¼ö
-			conBoardOneList = boardLogic.logBoardOneList(pMap, category, no); // »ó¼¼
+			logger.info("ï¿½ï¿½ï¿½ì˜£ï¿½ë§‚ åª›ï¿½ "+pMap.get("bab_no"));
+			result = boardLogic.logBoardHitUpdate(pMap, category); // ï¿½ìƒè«›ï¿½ è­°ê³ ì‰¶ï¿½ë‹”
+			conBoardOneList = boardLogic.logBoardOneList(pMap, category, no); // ï¿½ê¸½ï¿½ê½­
 			viewPath = "forward:../boardList/babView.jsp";
 			
-			// »ó¼¼º¸±â ´ñ±Û Á¶È¸ 
+			// ï¿½ê¸½ï¿½ê½­è¹‚ë‹¿ë¦° ï¿½ë™æ¹²ï¿½ è­°ê³ ì‰¶ 
 			pMap.put("bab_re_category", category);
 			pMap.put("bab_re_board_no", no);
 			logger.info("<Controller> ---> pMap.put -> " +pMap.get("bab_re_category") + " , " + pMap.get("bab_re_board_no"));
 			conBoardCommentList = boardLogic.logBoardCommentList(pMap, category, no);
-			logger.info("<Controller> ---> conBoardCommentList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardCommentList.size());
+			pMap.put("bab_re_board_no", no);
+			logger.info("<Controller> ---> conBoardCommentList ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardCommentList.size());
 			
-			// request ´ñ±Û Á¶È¸ ÀúÀå
+			// request ï¿½ë™æ¹²ï¿½ è­°ê³ ì‰¶ ï¿½ï¿½ï¿½ì˜£
 			req.setAttribute("conBoardCommentList", conBoardCommentList);
-			logger.info("<Controller> ---> if(È¥¹ä)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)é†«ë‚…ì¦º");
 			
-		} else if("È¥¼ú".equals(category)){
-			logger.info("<Controller> ---> if(È¥¼ú)½ÃÀÛ");
+		} else if("í˜¼ìˆ ".equals(category)){
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )ï¿½ë–†ï¿½ì˜‰");
 			
-			// ÇØ´ç °Ô½Ã±ÛÀÇ ¹øÈ£ Á¶È¸
+			// ï¿½ë¹ï¿½ë–¦ å¯ƒëš¯ë–†æ¹²ï¿½ï¿½ì“½ è¸°ëŠìƒ‡ è­°ê³ ì‰¶
 			pMap.put("sul_no", no);
-			result = boardLogic.logBoardHitUpdate(pMap, category); // È¥¼ú Á¶È¸¼ö
-			conBoardOneList = boardLogic.logBoardOneList(pMap, category, no); // »ó¼¼
+			result = boardLogic.logBoardHitUpdate(pMap, category); // ï¿½ìƒï¿½ë‹  è­°ê³ ì‰¶ï¿½ë‹”
+			conBoardOneList = boardLogic.logBoardOneList(pMap, category, no); // ï¿½ê¸½ï¿½ê½­
 			viewPath = "forward:../boardList/sulView.jsp";
 			
-			// »ó¼¼º¸±â ´ñ±Û Á¶È¸ 
+			// ï¿½ê¸½ï¿½ê½­è¹‚ë‹¿ë¦° ï¿½ë™æ¹²ï¿½ è­°ê³ ì‰¶ 
 			pMap.put("sul_re_category", category);
 			pMap.put("sul_re_board_no", no);
 			logger.info("<Controller> ---> pMap.put -> " +pMap.get("sul_re_category") + " , " + pMap.get("sul_re_board_no"));
 			conBoardCommentList = boardLogic.logBoardCommentList(pMap, category, no);
-			logger.info("<Controller> ---> conBoardCommentList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardCommentList.size());
+			logger.info("<Controller> ---> conBoardCommentList ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardCommentList.size());
 			
-			// request ´ñ±Û Á¶È¸ ÀúÀå
+			// request ï¿½ë™æ¹²ï¿½ è­°ê³ ì‰¶ ï¿½ï¿½ï¿½ì˜£
 			req.setAttribute("conBoardCommentList", conBoardCommentList);
-			logger.info("<Controller> ---> if(È¥¼ú)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )é†«ë‚…ì¦º");
 			
-		} else if("È¥³î".equals(category)) {
-			logger.info("<Controller> ---> if(È¥³î)½ÃÀÛ");
+		} else if("í˜¼ë†€".equals(category)) {
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ï¿½)ï¿½ë–†ï¿½ì˜‰");
 			
-			// ÇØ´ç °Ô½Ã±ÛÀÇ ¹øÈ£ Á¶È¸
+			// ï¿½ë¹ï¿½ë–¦ å¯ƒëš¯ë–†æ¹²ï¿½ï¿½ì“½ è¸°ëŠìƒ‡ è­°ê³ ì‰¶
 			pMap.put("nol_no", no);
-			result = boardLogic.logBoardHitUpdate(pMap, category); // È¥³î Á¶È¸¼ö
-			conBoardOneList = boardLogic.logBoardOneList(pMap, category, no); // »ó¼¼
+			result = boardLogic.logBoardHitUpdate(pMap, category); // ï¿½ìƒï¿½ï¿½ è­°ê³ ì‰¶ï¿½ë‹”
+			conBoardOneList = boardLogic.logBoardOneList(pMap, category, no); // ï¿½ê¸½ï¿½ê½­
 			viewPath = "forward:../boardList/nolView.jsp";
 			
-			// »ó¼¼º¸±â ´ñ±Û Á¶È¸ 
+			// ï¿½ê¸½ï¿½ê½­è¹‚ë‹¿ë¦° ï¿½ë™æ¹²ï¿½ è­°ê³ ì‰¶ 
 			pMap.put("nol_re_category", category);
 			pMap.put("nol_re_board_no", no);
 			logger.info("<Controller> ---> pMap.put -> " +pMap.get("nol_re_category") + " , " + pMap.get("nol_re_board_no"));
 			conBoardCommentList = boardLogic.logBoardCommentList(pMap, category, no);
-			logger.info("<Controller> ---> conBoardCommentList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardCommentList.size());
+			logger.info("<Controller> ---> conBoardCommentList ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardCommentList.size());
 			
-			// request ´ñ±Û Á¶È¸ ÀúÀå
+			// request ï¿½ë™æ¹²ï¿½ è­°ê³ ì‰¶ ï¿½ï¿½ï¿½ì˜£
 			req.setAttribute("conBoardCommentList", conBoardCommentList);
-			logger.info("<Controller> ---> if(È¥³î)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ï¿½)é†«ë‚…ì¦º");
 			
 		} else {
 			
-			logger.info("<Controller> ---> conBoardOneList ¿À·ù ÆÄ¶ó¹ÌÅÍ: category, no °ªÀ» È®ÀÎÇØ ÁÖ¼¼¿ä " + category + " , " + no);
+			logger.info("<Controller> ---> conBoardOneList ï¿½ì‚¤ç‘œï¿½ ï¿½ë™†ï¿½ì”ªèª˜ëª…ê½£: category, no åª›ë¯ªì“£ ï¿½ì†—ï¿½ì”¤ï¿½ë¹ äºŒì‡±ê½­ï¿½ìŠ‚ " + category + " , " + no);
 			
 		}
 		
-		// request »ó¼¼ Á¶È¸ ÀúÀå
+		// request ï¿½ê¸½ï¿½ê½­ è­°ê³ ì‰¶ ï¿½ï¿½ï¿½ì˜£
 		req.setAttribute("conBoardOneList", conBoardOneList);
-		logger.info("<Controller>" + category + " Á¶È¸¼ö ¾÷µ¥ÀÌÆ® °á°ú: " + result);
-		logger.info("<Controller> Á¾·á ---> conBoardOneList ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardOneList.size());
+		logger.info("<Controller>" + category + " è­°ê³ ì‰¶ï¿½ë‹” ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ å¯ƒê³Œë‚µ: " + result);
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardOneList ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardOneList.size());
 		
 		return viewPath;
 	}
 	
 	
 	
-	// °Ô½Ã±Û ÀÔ·Â, ¼öÁ¤, »èÁ¦ //
+	// å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ì—¯ï¿½ì °, ï¿½ë‹”ï¿½ì ™, ï¿½ê¶˜ï¿½ì £ //
 	
 	
-	// °Ô½Ã±Û ÀÔ·Â
+	// å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ì—¯ï¿½ì °
 	@RequestMapping("/boardInsert.hon")
 	public String conBoardInsert(Map<String, Object> pMap, 
 			@RequestParam String id, @RequestParam String title,
@@ -168,37 +169,37 @@ public class boardController {
 			@RequestParam String text, @RequestParam String url) 
 					throws ServletException, IOException {
 		
-		logger.info("<Controller> ---> conBoardInsert method ½ÃÀÛ");
+		logger.info("<Controller> ---> conBoardInsert method ï¿½ë–†ï¿½ì˜‰");
 		
-		// Insert ÀÌÈÄ °æ·Î
+		// Insert ï¿½ì” ï¿½ì‘ å¯ƒìˆì¤ˆ
 		String viewPath = null; 
 		
-		// Å×½ºÆ®¿ë id, pw
+		// ï¿½ë€’ï¿½ë’ªï¿½ë“ƒï¿½ìŠœ id, pw
 		//String u_id = hc.toUTF(id);
 		String u_title = hc.toUTF(title);
 		String u_category = hc.toUTF(category);
 		String u_text = hc.toUTF(text);
 		
 		if(url == "") {
-			logger.info("µ¿¿µ»ó ¾øÀ½");
+			logger.info("ï¿½ë£ï¿½ìºï¿½ê¸½ ï¿½ë¾¾ï¿½ì“¬");
 				
-			url = "0"; // ºó °ªÀÏ °æ¿ì
+			url = "0"; // é®ï¿½ åª›ë¯ªì”ª å¯ƒìŒìŠ¦
 		} else {
-			logger.info("¿Ã¸° µ¿¿µ»ó Id°ª : " + url);
-			logger.info("µ¿¿µ»ó ÀÖÀ½");
+			logger.info("ï¿½ì‚±ç”±ï¿½ ï¿½ë£ï¿½ìºï¿½ê¸½ Idåª›ï¿½ : " + url);
+			logger.info("ï¿½ë£ï¿½ìºï¿½ê¸½ ï¿½ì—³ï¿½ì“¬");
 		}
 		
 		
 		int result = 0;
 
-		// JSP ÆÄ¶ó¹ÌÅÍ °ª
-		logger.info("ÆÄ¸®¹ÌÅÍ °ªÀº : " + id + u_title + category + pw + u_text + url + " ÀÔ´Ï´Ù.");
+		// JSP ï¿½ë™†ï¿½ì”ªèª˜ëª…ê½£ åª›ï¿½
+		logger.info("ï¿½ë™†ç”±Ñ‰ï¿½ëª…ê½£ åª›ë¯ªï¿½ : " + id + u_title + category + pw + u_text + url + " ï¿½ì—¯ï¿½ë•²ï¿½ë–.");
 		
 		pMap = new HashMap<String, Object>();
 		
-		if("È¥¹ä".equals(category)) {
+		if("í˜¼ë°¥".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥¹ä)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)ï¿½ë–†ï¿½ì˜‰");
 			
 			pMap.put("bab_id", id);
 			pMap.put("bab_title", u_title);
@@ -210,11 +211,11 @@ public class boardController {
 			result = boardLogic.logBoardInsert(pMap, category);
 			viewPath = "redirect:../boardList/babBoard.jsp";
 			
-			logger.info("<Controller> ---> if(È¥¹ä)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)é†«ë‚…ì¦º");
 			
-		} else if("È¥¼ú".equals(category)) {
+		} else if("í˜¼ìˆ ".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥¼ú)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )ï¿½ë–†ï¿½ì˜‰");
 			
 			pMap.put("sul_id", id);
 			pMap.put("sul_title", u_title);
@@ -226,11 +227,11 @@ public class boardController {
 			result = boardLogic.logBoardInsert(pMap, category);
 			viewPath = "redirect:../boardList/sulBoard.jsp";
 			
-			logger.info("<Controller> ---> if(È¥¼ú)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )é†«ë‚…ì¦º");
 			
-		} else if("È¥³î".equals(category)) {
+		} else if("í˜¼ë†€".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥³î)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ï¿½)ï¿½ë–†ï¿½ì˜‰");
 			pMap.put("nol_id", id);
 			pMap.put("nol_title", u_title);
 			pMap.put("nol_category", category);
@@ -241,24 +242,24 @@ public class boardController {
 			result = boardLogic.logBoardInsert(pMap, category);
 			viewPath = "redirect:../boardList/nolBoard.jsp";
 			
-			logger.info("<Controller> ---> if(È¥³î)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ï¿½)é†«ë‚…ì¦º");
 			
 		} else {
 			
-			logger.info("<Controller> ---> conBoardInsert ¿À·ù ÆÄ¶ó¹ÌÅÍ: category °ªÀ» È®ÀÎÇØ ÁÖ¼¼¿ä " + category);
+			logger.info("<Controller> ---> conBoardInsert ï¿½ì‚¤ç‘œï¿½ ï¿½ë™†ï¿½ì”ªèª˜ëª…ê½£: category åª›ë¯ªì“£ ï¿½ì†—ï¿½ì”¤ï¿½ë¹ äºŒì‡±ê½­ï¿½ìŠ‚ " + category);
 		}
 		
-		logger.info("<Controller> Á¾·á ---> conBoardInsert ¼º°ø¿©ºÎ : " + result);
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardInsert ï¿½ê½¦æ€¨ë“­ë¿¬éºï¿½ : " + result);
 		
 		return viewPath;
 		
 	}
 	
 	
-	/* ¾ÆÀÌµğ ¹Ş¾Æ¿À±â
+	/* ï¿½ë¸˜ï¿½ì” ï¿½ëµ’ è«›ì†ë¸˜ï¿½ì‚¤æ¹²ï¿½
 	 * 	@RequestParam String id,
 	String u_id = hc.toUTF(id);*/
-	// °Ô½Ã±Û ´ñ±Û ÀÔ·Â
+	// å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ë™æ¹²ï¿½ ï¿½ì—¯ï¿½ì °
 	@RequestMapping("/commentInsert.hon")
 	public String conBoardCommentInsert(Map<String, Object> pMap,
 			@RequestParam String category,@RequestParam String id,
@@ -267,20 +268,20 @@ public class boardController {
 		
 		int result = 0;
 		
-		logger.info("<Controller> ---> conBoardInsert method ½ÃÀÛ");
+		logger.info("<Controller> ---> conBoardInsert method ï¿½ë–†ï¿½ì˜‰");
 
 		String u_id = hc.toUTF(id);
 		String u_category = hc.toUTF(category);
 		String u_board_no = hc.toUTF(board_no);
 		String u_text = hc.toUTF(r_text);
 		
-		logger.info("conBoardCommentInsert °ª: " + category + id + u_board_no + u_text + " ÀÔ´Ï´Ù.");
+		logger.info("conBoardCommentInsert åª›ï¿½: " + category + id + u_board_no + u_text + " ï¿½ì—¯ï¿½ë•²ï¿½ë–.");
 		
 		List<Map<String, Object>> conCommentList = null;
 		
-		if("È¥¹ä".equals(category)) {
+		if("í˜¼ë°¥".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥¹ä)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)ï¿½ë–†ï¿½ì˜‰");
 			pMap.put("bab_re_board_no", board_no);
 			conCommentList = boardLogic.logBoardCommentList(pMap, category, board_no);
 			
@@ -291,13 +292,13 @@ public class boardController {
 			pMap.put("bab_re_no", conCommentList.size());
 			
 			result = boardLogic.logBoardCommentInsert(pMap, category, board_no);
-			logger.info("<Controller> ---> conBoardCommentInsert ¿Ï·á");
+			logger.info("<Controller> ---> conBoardCommentInsert ï¿½ì…¿çŒ·ï¿½");
 			
-			logger.info("<Controller> ---> if(È¥¹ä)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)é†«ë‚…ì¦º");
 			
-		} else if("È¥¼ú".equals(category)) {
+		} else if("í˜¼ìˆ ".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥¼ú)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )ï¿½ë–†ï¿½ì˜‰");
 			pMap.put("sul_re_board_no", board_no);
 			conCommentList = boardLogic.logBoardCommentList(pMap, category, board_no);
 			
@@ -308,13 +309,13 @@ public class boardController {
 			pMap.put("sul_re_no", conCommentList.size());
 			
 			result = boardLogic.logBoardCommentInsert(pMap, category, board_no);
-			logger.info("<Controller> ---> conBoardCommentInsert ¿Ï·á");
+			logger.info("<Controller> ---> conBoardCommentInsert ï¿½ì…¿çŒ·ï¿½");
 			
-			logger.info("<Controller> ---> if(È¥¼ú)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )é†«ë‚…ì¦º");
 			
-		} else if("È¥³î".equals(category)) {
+		} else if("í˜¼ë†€".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥¼ú)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )ï¿½ë–†ï¿½ì˜‰");
 			pMap.put("nol_re_board_no", board_no);
 			conCommentList = boardLogic.logBoardCommentList(pMap, category, board_no);
 			
@@ -325,63 +326,44 @@ public class boardController {
 			pMap.put("nol_re_no", conCommentList.size());
 			
 			result = boardLogic.logBoardCommentInsert(pMap, category, board_no);
-			logger.info("<Controller> ---> if(È¥¼ú)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )é†«ë‚…ì¦º");
 			
 		} else {
 			
-			logger.info("<Controller> ---> conBoardCommentInsert ¿À·ù ÆÄ¶ó¹ÌÅÍ: category °ªÀ» È®ÀÎÇØ ÁÖ¼¼¿ä " + category);
+			logger.info("<Controller> ---> conBoardCommentInsert ï¿½ì‚¤ç‘œï¿½ ï¿½ë™†ï¿½ì”ªèª˜ëª…ê½£: category åª›ë¯ªì“£ ï¿½ì†—ï¿½ì”¤ï¿½ë¹ äºŒì‡±ê½­ï¿½ìŠ‚ " + category);
 			
 		}
 		
-		logger.info("<Controller> Á¾·á ---> conBoardCommentInsert ¼º°ø¿©ºÎ : " + result);
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardCommentInsert ï¿½ê½¦æ€¨ë“­ë¿¬éºï¿½ : " + result);
 		
 		// "babView.jsp";
 		return "";
 	}
 	
 	
-	// °Ô½Ã±Û »èÁ¦
+	// å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ê¶˜ï¿½ì £
 	@RequestMapping("/boardDelete.hon")
 	public String conBoardDelete(Map<String, Object> pMap,
-			@RequestParam String category, @RequestParam String no,
-			HttpServletRequest req, HttpServletResponse res) 
+			@RequestParam String category, @RequestParam String no) 
 					throws ServletException, IOException {
 		
-		logger.info("<Controller> ---> conBoardDelete method ½ÃÀÛ");
+		logger.info("<Controller> ---> conBoardDelete method ï¿½ë–†ï¿½ì˜‰");
 		
 		pMap = new HashMap<String, Object>();
 		pMap.put("bab_no", no);
 		pMap.put("sul_no", no);
 		pMap.put("nol_no", no);
-		String viewPath = "error";
-		
-		if("È¥¹ä".equals(category)) {
-			viewPath = "redirect:../boardList/babBoard.jsp";
-					
-			
-		} else if("È¥¼ú".equals(category)) {
-			
-			viewPath = "redirect:../boardList/sulBoard.jsp";
-			
-		} else if("È¥³î".equals(category)) {
-			
-			viewPath = "redirect:../boardList/nolBoard.jsp";
-			
-		} else {
-			
-			logger.info("<Controller> ---> conBoardDelete  ½ÇÆĞ" + category);
-		}
 		
 		int result = 0;
 		result = boardLogic.logBoardDelete(pMap, category);
 		
-		logger.info("<Controller> ---> conBoardDelete °á°ú : " + result);
+		logger.info("<Controller> ---> conBoardDelete å¯ƒê³Œë‚µ : " + result);
 		
-		return viewPath;
+		return"redirect:../boardList/mainBoardList.jsp";
 	}
 	
 	
-	// °Ô½Ã±Û ¾÷µ¥ÀÌÆ®
+	// å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ
 	@RequestMapping("/Update.hon")
 	public String conBoardUpdate(Map<String, Object> pMap,
 			@RequestParam String category,
@@ -407,61 +389,61 @@ public class boardController {
 		pMap.put("sul_url", hc.toUTF(url));
 		pMap.put("nol_url", hc.toUTF(url));
 		
-		logger.info("<Controller> ---> conBoardUpdate method ½ÃÀÛ");
+		logger.info("<Controller> ---> conBoardUpdate method ï¿½ë–†ï¿½ì˜‰");
 		int result = 0;
 		result = boardLogic.logBoardUpdate(pMap, category);
-		logger.info("<Controller> ---> conBoardUpdate °á°ú : " + result);
+		logger.info("<Controller> ---> conBoardUpdate å¯ƒê³Œë‚µ : " + result);
 		
 		return "redirect:../boardList/mainBoardList.jsp";
 	}
 	
 	
-	// °Ô½Ã±Û ¾÷µ¥ÀÌÆ® ¼­ºê Modify
+	// å¯ƒëš¯ë–†æ¹²ï¿½ ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ ï¿½ê½Œé‡‰ï¿½ Modify
 	@RequestMapping("/boardUpdateSub.hon")
 	public String conBoardUpdateSub(@RequestParam String category, @RequestParam String no,
 			Map<String, Object> pMap, HttpServletRequest req, HttpServletResponse res) 
 					throws ServletException, IOException {
 		
 		int result = 0;
-		logger.info("<Controller> ---> conBoardUpdateSub method ½ÃÀÛ");
+		logger.info("<Controller> ---> conBoardUpdateSub method ï¿½ë–†ï¿½ì˜‰");
 		
 		List<Map<String, Object>> conBoardUpdateSub = null;
 		pMap = new HashMap<String,Object>();
 		
-		if("È¥¹ä".equals(category)) {
+		if("í˜¼ë°¥".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥¹ä)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)ï¿½ë–†ï¿½ì˜‰");
 			pMap.put("bab_no", no);
 			conBoardUpdateSub = boardLogic.logBoardOneList(pMap, category, no);
-			logger.info("<Controller> ---> if(È¥¹ä)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒè«›ï¿½)é†«ë‚…ì¦º");
 			
-		} else if("È¥¼ú".equals(category)) {
+		} else if("í˜¼ìˆ ".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥¼ú)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )ï¿½ë–†ï¿½ì˜‰");
 			pMap.put("sul_no", no);
 			conBoardUpdateSub = boardLogic.logBoardOneList(pMap, category, no);
-			logger.info("<Controller> ---> if(È¥¼ú)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ë‹ )é†«ë‚…ì¦º");
 			
-		} else if("È¥³î".equals(category)) {
+		} else if("í˜¼ë†€".equals(category)) {
 			
-			logger.info("<Controller> ---> if(È¥³î)½ÃÀÛ");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ï¿½)ï¿½ë–†ï¿½ì˜‰");
 			pMap.put("nol_no", no);
 			conBoardUpdateSub = boardLogic.logBoardOneList(pMap, category, no);
-			logger.info("<Controller> ---> if(È¥³î)Á¾·á");
+			logger.info("<Controller> ---> if(ï¿½ìƒï¿½ï¿½)é†«ë‚…ì¦º");
 			
 		} else {
 			
-			logger.info("<Controller> Á¾·á ---> conBoardCommentInsert ¼º°ø¿©ºÎ : " + result);
+			logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardCommentInsert ï¿½ê½¦æ€¨ë“­ë¿¬éºï¿½ : " + result);
 			
 		}
 		
 		req.setAttribute("conBoardUpdateSub", conBoardUpdateSub);
 		req.setAttribute("category", category);
 		
-		logger.info("<Controller> Á¾·á ---> conBoardUpdateSub ¼º°ø¿©ºÎ : " + result);
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardUpdateSub ï¿½ê½¦æ€¨ë“­ë¿¬éºï¿½ : " + result);
 		
 		return "forward:../boardList/writeModify.jsp";
-		
+		 
 	}
 	
 	
@@ -471,7 +453,7 @@ public class boardController {
 			HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
-		logger.info("<Controller> ---> conBoardMaxHitList method ½ÃÀÛ");
+		logger.info("<Controller> ---> conBoardMaxHitList method ï¿½ë–†ï¿½ì˜‰");
 		
 		List<Map<String, Object>> conBoardBabHitMax = null;
 		List<Map<String, Object>> conBoardSulHitMax = null;
@@ -479,7 +461,7 @@ public class boardController {
 		
 		pMap = new HashMap<String, Object>();
 		
-		// Logic method È£Ãâ
+		// Logic method ï¿½ìƒ‡ç•°ï¿½
 		conBoardBabHitMax = boardLogic.logBabBoardHitMax(pMap);
 		req.setAttribute("conBoardBabHitMax", conBoardBabHitMax);
 		conBoardSulHitMax = boardLogic.logSulBoardHitMax(pMap);
@@ -487,9 +469,9 @@ public class boardController {
 		conBoardNolHitMax = boardLogic.logNolBoardHitMax(pMap);
 		req.setAttribute("conBoardNolHitMax", conBoardNolHitMax);
 		
-		logger.info("<Controller> Á¾·á ---> conBoardBabHitMax ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardBabHitMax.size());
-		logger.info("<Controller> Á¾·á ---> conBoardSulHitMax ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardSulHitMax.size());
-		logger.info("<Controller> Á¾·á ---> conBoardNolHitMax ÀüÃ¼ Á¶È¸ »çÀÌÁî: " + conBoardNolHitMax.size());
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardBabHitMax ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardBabHitMax.size());
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardSulHitMax ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardSulHitMax.size());
+		logger.info("<Controller> é†«ë‚…ì¦º ---> conBoardNolHitMax ï¿½ìŸ¾ï§£ï¿½ è­°ê³ ì‰¶ ï¿½ê¶—ï¿½ì” ï§ï¿½: " + conBoardNolHitMax.size());
 		
 		return "forward:../boardList/mainBoardList.jsp";
 		

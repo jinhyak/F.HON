@@ -9,6 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; UTF-8">
 <title>예약하기</title>
+<style>
+.ui-datepicker{ font-size: 20px; width: 350px; }
+.ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 20px; }
+.ui-datepicker select.ui-datepicker-year{ width:50%; font-size: 20px; }
+</style>
 </head>
 <body>
 <%@ include file="../../include/include/subtop.jsp" %>
@@ -340,11 +345,6 @@ $(".menu").find('a').click(function() {
 	}
 });
 </script>
-<style>
-.ui-datepicker{ font-size: 20px; width: 350px; }
-.ui-datepicker select.ui-datepicker-month{ width:40%; font-size: 20px; }
-.ui-datepicker select.ui-datepicker-year{ width:50%; font-size: 20px; }
-</style>
 <%@ include file="../../include/include/bottom.jsp" %>
 </body>
 </html>

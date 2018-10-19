@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.multi.MultiFileChooserUI;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.log4j.Logger;
@@ -45,57 +46,40 @@ public class MenuController {
 
 	/* 공지사항 글 등록 */
 	@RequestMapping(value = { "/nInsert.hon" }, produces = "text/html; charset=UTF-8")
-	public String nInsert(MultipartHttpServletRequest mreq, MultipartFile noti_file,
-			@RequestParam Map<String, Object> pMap) {
+	public String nInsert(MultipartHttpServletRequest mreq, MultipartFile noti_file,  @RequestParam Map<String, Object> pMap) {
 		logger.info("nInsert 호출 성공");
-		// String fileName = HangulConversion.toKor(noti_file.getOriginalFilename());
-		String fileName = null;
-		String path = "C:\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\image\\";
-		String not_dup_file = null; // 중복되지 않게 바꾼 파일명 담긴 변수
+		// 파일 저장 경로
+		String path = "C:\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\image";
+		String fName = null;
 		File file = new File(path);
-		if (!file.exists()) {// 파일이 존재하지 않으면
-			file.mkdir();// 디렉토리 생성
-		}
-		// 파일이름 변경
-		UUID uuid = UUID.randomUUID();// 파일 이름 랜덤
-		logger.info(uuid);
-		File newFile = null;
-		Iterator<String> files = mreq.getFileNames(); // 파일 이름을 얻어옴
-
-		// while(files.hasNext()) {
-		if (!noti_file.isEmpty()) {// 파일이 존재함??
-			String uploadFile = files.next();// 존재함ㅇㅇ 그러면 다음 파일 읽어오셈
-			logger.info("file while문 탐" + uploadFile);
-
-			// MultipartFile noti_file = mreq.getFile(uploadFile); //mreq에서 파일을 가져옴
-			fileName = noti_file.getOriginalFilename(); // 초기 파일명으로 돌려놓기
-			pMap.put("fileName", fileName);
-			logger.info("fileName은 " + fileName);
-			not_dup_file = uuid + "_" + fileName; // 중복될 경우 uuid를 넣어서 새로 파일이름을 만들어 줌
-			newFile = new File(path, not_dup_file); // File에 경로(디렉토리 경로), 중복될 경우 바꾼 파일명 넣기
-
+		UUID uuid = UUID.randomUUID();
+		Iterator<String> files = mreq.getFileNames();
+		if(!noti_file.isEmpty()) {
+			String uploadFile = files.next();
+			MultipartFile multifile = mreq.getFile(uploadFile);
+			String fileName = multifile.getOriginalFilename();
+			logger.info(fileName);
+			fName = uuid + "_" + fileName;
+			logger.info("fName : " + fName);
+			File new_File = new File(path, fName);
+			
 			try {
-				noti_file.transferTo(newFile); // 업로드 한 파일 데이터를 지정한 파일에 저장한다.
+				multifile.transferTo(new_File);
 			} catch (IOException e) {
 				logger.info("error : " + e.toString());
 			}
-			logger.info(pMap.get("fileName"));
-		} // end of while
-		else {
-			pMap.put("fileName", "");
+		}else {
+			fName="";	
 		}
-
-		if (newFile != null) {
-			pMap.put("fileName", not_dup_file); // 파라미터에 fileName 등록
-		}
+			
 		// DB연동 처리
 		int result = 0;
-
 		logger.info(pMap.get("noti_title"));
 		logger.info(pMap.get("noti_writer"));
 		logger.info(pMap.get("noti_content"));
 		logger.info(pMap.get("noti_category"));
 		logger.info(pMap.get("noti_pw"));
+		pMap.put("fileName", fName);
 		result = menuDao.nInsert(pMap);
 
 		return "redirect:/notice/notice/notice.jsp";// 꼭 확인
@@ -122,17 +106,6 @@ public class MenuController {
 		result = menuDao.nDelete(NOTI_NO);
 		return "redirect:/notice/notice/notice.jsp";
 	}
-	/* 공지사항 글 수정 */
-
-	/*
-	 * @RequestMapping(value = "/noticePN.hon") public String
-	 * PN_select(@RequestParam String NOTI_NO, Model mod) {
-	 * logger.info("Controller : You succeed in calling pn_select!");
-	 * List<Map<String, Object>> PN_select = null; PN_select =
-	 * menuLogic.PN_select(NOTI_NO); String NOTI_TITLE =
-	 * PN_select.get(0).get("PREV_TITLE").toString(); logger.info("pn_select : " +
-	 * PN_select); return "forward:/notice/notice/nView.jsp"; }
-	 */
 
 	@ResponseBody
 	@RequestMapping("/nSelect.hon")
@@ -165,12 +138,6 @@ public class MenuController {
 		logger.info("PN_select" + PN_select);
 
 		mod.addAttribute("notiList", notiList);
-
-		PN_select.get(0).get("NOTI_NO");
-		PN_select.get(0).get("NEXT_NOTI_NO");
-		PN_select.get(0).get("NEXT_TITLE");
-		PN_select.get(0).get("PREV_NOTI_NO");
-		PN_select.get(0).get("PREV_TITLE");
 
 		mod.addAttribute("PN_select", PN_select);
 

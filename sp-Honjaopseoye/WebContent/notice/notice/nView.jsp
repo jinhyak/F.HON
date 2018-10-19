@@ -54,7 +54,9 @@
 		noti_content = updateList.get(0).get("NOTI_CONTENT").toString();
 		noti_pw = updateList.get(0).get("NOTI_PW").toString();
 		noti_category = updateList.get(0).get("NOTI_CATEGORY").toString();
+		if(updateList.get(0).get("NOTI_IMAGE")!=null){
 		noti_image = updateList.get(0).get("NOTI_IMAGE").toString();
+		}
 		PREV_TITLE = updateList.get(1).get("PREV_TITLE").toString();
 		NEXT_TITLE = updateList.get(1).get("NEXT_TITLE").toString();
 		PREV_NOTI_NO = Integer.parseInt(updateList.get(1).get("PREV_NOTI_NO").toString());
@@ -73,9 +75,15 @@
 	var noti_title = '<%=noti_title%>';
 	var noti_pw = '<%=noti_pw%>';
 	var noti_writer = '<%=noti_writer%>';
-	var noti_content = <%=noti_content%>
+	var noti_content = '<%=noti_content%>';
 </script>
-
+<style type="text/css">
+#imgs{
+	width:100%;
+	height:100%;
+	overflow:auto;
+}
+</style>
 </head>
 <body>
 <%@ include file="../../include/include/subtop.jsp" %>
@@ -153,10 +161,11 @@
 										<div class="ui clearing divider"></div>
 											<input type="hidden" value="<%=noti_no%>" name="noti_no">
 											<input type="hidden" value="<%=noti_writer%>" name="noti_writer">
-											<input type="hidden" value="<%=noti_writer%>" name="noti_pw">
+											<input type="hidden" value="<%=noti_pw%>" name="noti_pw">
 											<div style="justify-content: center; margin-top: 30px;">
 												<%=noti_content%>
 											<input type="hidden" value="<%=noti_content%>" name="noti_content">	
+											<input type="hidden" value="<%=noti_category %>" name="noti_category">
 											</div>
 											<div style="height: 100%">
 												<%
@@ -182,19 +191,18 @@
 														<tr>
 															<th width="100px;">이전글 <i class="angle up icon"></i></th>
 															<td><a id="PrevTag" style="color: black"
-																href="javascript:next(PREV_NOTI_NO)"><%=PREV_TITLE%></a></td>
+																href="#" onClick="prev()"><%=PREV_TITLE%></a></td>
 														</tr>
 														<tr>
 															<th width="100px;">다음글 <i class="angle down icon"></i></th>
 															<td><a id="NextTag" style="color: black"
-																href="javascript:prev(NEXT_NOTI_NO);"><%=NEXT_TITLE%></a></td>
+																href="#" onClick="next()"><%=NEXT_TITLE%></a></td>
 														</tr>
 													</thead>
 												</table>
 											</div>
 										</div>
 									</div>
-
 									<table align="right" style="padding-bottom: 10px">
 										<tr align="right">
 											<td id="noti_modify">
@@ -215,7 +223,21 @@
 											</td>
 										</tr>
 									</table>
-									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+						<!-- start of modal -->
+						<div class="ui mini modal" id="del_modal" style="text-align:center">
+						  <div class="header" style="text-align:center">삭제하시겠습니까</div>
+						    <div class="description"style="text-align:center">
+									<h3>비밀번호를 입력해주십시오.</h3>
+										<div class="ui input focus">
+											<input type="password" placeholder="비밀번호를 입력해주십시오." id="pw">
+										</div>
+					 				 <div class="actions">
+					 				  <div class="ui ok red button">확인</div>
+					 				  <div class="ui cancel green button">닫기</div>
+					 				 </div>
+						    </div>
+						</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 								</div>
 							</div>
 						</div>
@@ -223,38 +245,60 @@
 				</div>
 			</div>
 		</div>
-		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	</div>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	<div>
 </div>
 <script type="text/javascript">
-	function remover() {
-		alert("삭제 ㄱㄱ");
-		location.href = "/sp-Honjaopseoye/menu/nDelete.hon?NOTI_NO=" + noti_no;
-	}
+//삭제  modal창 띄우기
+function remover() {
+	$('#del_modal')
+	  .modal({
+	    blurring: true,
+	    onApprove : function() {
+	    	var pw = $("#pw").val();
+	    	if (pw == noti_pw) {
+				location.href = "/sp-Honjaopseoye/menu/nDelete.hon?NOTI_NO=" + noti_no;
+			} else if (pw != noti_pw) {
+				alert("비밀번호를 제대로 입력해주세요.");
+				return false;
+			}
+	      },
+	      onDeny: function(){
+	    	  window.close();
+	      }
+	  })
+	  .modal('show');
+}
+//목록으로 가기
 	function goBack() {
-		location.href = "/sp-Honjaopseoye/notice/notice/notice.jsp"
+		location.href = "/sp-Honjaopseoye/notice/notice/notice.jsp";
 	}
+//수정하기	
 	function modifier(){
-		alert("들감");
 	    $("#f_update").attr('method','post');
 	    $("#f_update").attr('action','../notice/notice/n_modify.jsp');
 		$("#f_update").submit();
 	}
-	
-	var noti_no = '<%=noti_no%>'
-	var NEXT_NOTI_NO = '<%=NEXT_NOTI_NO%>'
-	var PREV_NOTI_NO = '<%=PREV_NOTI_NO%>'
-	function next(NEXT_NOTI_NO){
-		alert(NEXT_NOTI_NO)
-		location.href="/sp-Honjaopseoye/menu/noticeDetail.hon?NOTI_NO="+NEXT_NOTI_NO;
+//다음글	
+	function next(){
+		console.log(NEXT_NOTI_NO);
+		if(NEXT_NOTI_NO=='0'){
+			alert("다음글이 존재하지 않습니다.")
+		}
+		else{
+			location.href="/sp-Honjaopseoye/menu/noticeDetail.hon?NOTI_NO="+NEXT_NOTI_NO;
+		}
+
 	}
-	
-	function prev(PREV_NOTI_NO){
-		alert(PREV_NOTI_NO)
+//이전글	
+	function prev(){
+		console.log(PREV_NOTI_NO)
+		if(PREV_NOTI_NO=='0'){
+			alert('이전글이 존재하지 않습니다.');
+		}else{
 		location.href="/sp-Honjaopseoye/menu/noticeDetail.hon?NOTI_NO="+PREV_NOTI_NO;
+		}
 	}
-	
 	$(document).ready(function() {
 		if (level == 'master') {
 			alert(level)
@@ -266,6 +310,8 @@
 			$("#noti_delete").hide();
 		}
 	});
+	
+
 </script>
 <%@ include file="../../include/include/bottom.jsp"%>
 </body>

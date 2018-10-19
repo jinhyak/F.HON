@@ -355,11 +355,7 @@ public class BoardLogic {
 		
 	}
 	
-	
-	
-	
-	
+	// 댓글 카운트 로직
 	
 	
 }
-

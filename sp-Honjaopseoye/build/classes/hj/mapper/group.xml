@@ -105,7 +105,7 @@
 	select * 
 	from store
 	<where>
-		store_img is not null
+		rownum <![CDATA[<= 2000 ]]>
 		<if test='value != null'>
 			or store_addr LIKE '%'||#{value}||'%'
 			or store_name LIKE '%'||#{value}||'%'

@@ -134,12 +134,19 @@
 		values(to_char(sysdate, 'yyyy-mm-dd'),#{re_writer},#{content},seq_re_no.nextval(),#{store_no})
 	</insert>
 	<!-- 페이지네이션 : 게시글 수세기 -->
-	<select id="totalCount" parameterType="int" resultType="int">
+	<select id="totalCount" parameterType="int" resultType="int" >
 		SELECT
 		count(*) total
 		FROM store
 		WHERE gubun = #{gubun}
 	</select>
+	<select id="store_select" parameterType="map" resultType="map">
+	select * from( 
+    	select * from store
+    	order by DBMS_RANDOM.RANDOM)
+		where
+		<![CDATA[ rownum <= 12000 ]]> 
+	</select>	
 </mapper>
 
         

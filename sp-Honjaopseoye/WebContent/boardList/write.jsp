@@ -41,7 +41,6 @@ $(document).ready(function(){
 	});
 	
 	function readURL(input) {
-		//alert("이미지");
 		
 			if (input.files && input.files[0]) {
 				
@@ -58,7 +57,6 @@ $(document).ready(function(){
 	
 	
 	$("#b_img").click(function(){
-		//alert("이미지 버튼");
 		var formData = new FormData(document.getElementById('f_data'));
 		var img_file = $("#img_file").val();
 		img_file = img_file.substring(12);
@@ -75,7 +73,6 @@ $(document).ready(function(){
 			   
 				//img_file = img_file.substring(12);
 				texts.value += " " + "<img src='../boardList/images/" + img_file + "'>" +" ";
-				alert("이미지 태그가 추가 되었습니다.");
 			   
 		   }
 		   ,error:function(xhrObject){
@@ -102,7 +99,7 @@ $(document).ready(function(){
 	var text = $("#text").val();
 	var pw = $("#pw").val();
 	
-		//alert("1 :"+category+"2 :"+id+"3 :"+title+"4 :"+text+"5 :"+pw);
+		alert("1 :"+category+"2 :"+id+"3 :"+title+"4 :"+text+"5 :"+pw);
 	
 		if(category=="" || title=="" || text=="" || pw==""){
 			

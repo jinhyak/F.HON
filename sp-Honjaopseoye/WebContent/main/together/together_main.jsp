@@ -7,10 +7,14 @@
 <head>
 <style type="text/css">
 .ui.multiple.selection.dropdown{}
+.img{
+
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@include file="../../include/include/subtop.jsp" %>
+
 <script type="text/javascript">
 var mapContainer;
 var map;
@@ -24,15 +28,16 @@ var datacounter = 0;
 </script>
 </head>
 <body>
-<div class="ui basic segment" style="margin-top:30px;"><!-- big segment -->
-	<div class="ui basic segment grid">
-	<div class="ui segment" style="width:78%">
+<div class="ui basic segment" style="margin-top:30px;" style=""><!-- big segment -->
+	<div class="ui basic segment grid" style="">
+	<div class="ui basic segment" style="width:78%">
 			<div class="ui category search">
 			  <div class="ui icon input">
 			    <input class="prompt" type="text" id="value" placeholder="모임 검색" >
 			    <i class="search icon"></i>
 			  </div>
 			</div>
+			<div class="ui segment">
 			<div class="ui multiple selection dropdown" style="width:100px">
 				<input type="hidden" value="0" id="bang_gubun" name="bang_gubun"> <i class="dropdown icon"></i>
 			<div class="text" id="gubun">분류</div>
@@ -113,14 +118,21 @@ var datacounter = 0;
 					<div class="item" data-value="3214">게임</div>
 				</div>
 			</div>
+			</div>
 	</div>
 	<div style="width:22%">
+	<div class="ui segment">
 		<div class="ui input">
 				<button type="button" class="ui medium active button" onclick="g_create()"><i class="user icon"></i>모임 만들기</button>
 		</div>
 		<div class="ui segment" style="text-align:center"><h3>모임 목록</h3></div>
 	</div>
-			<div id="map" style="width:78%;height:850px;"></div>
+	</div>
+	<div style="width:78%;height:850px;">
+		<div class="ui segment grid" style="width:100%;height:100%;">
+			<div id="map" style="width:100%;height:100%;"></div>
+		</div>
+	</div>
 			<div style="width:22%">
 				<div class="ui segment">
 					<div class="ui grid grouplist" id="placesList">
@@ -291,12 +303,12 @@ var datacounter = 0;
 			var el = document.createElement("div"),
 		    itemStr = 	'<a href="./gView.jsp?bang_no='+places.BANG_NO+'&store_no='+places.STORE_NO+'">'+
 					    '<div class="ui card info">'+
-					    '<div class="content">'+
+					    '<div class="content" style="display:inline-block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+
 					      '<div class="right floated meta">'+a+'</div>'+
 					      places.BANG_NAME+
 					    '</div>'+
 					    '<div class="image">'+
-					      '<img src="/sp-Honjaopseoye/image/storeImg/'+img+'">'+
+					      '<img src="/sp-Honjaopseoye/image/storeImg/'+img+'" style="height: 80px;object-fit:contain;max-height: 100%;max-width: 100%;display: block;margin: auto;">'+
 					    '</div>'+
 					    '<div class="content">'+
 					      '<span class="right floated">'+
@@ -307,7 +319,7 @@ var datacounter = 0;
 					      places.BANG_CUR_PEOPLE+
 					    '</div>'+
 					    '<div class="extra content">'+
-					      '<div class="ui large left icon input">'+
+					      '<div class="ui large left icon input" style="display:inline-block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+
 					        '<h4>'+places.BANG_MEMO+'</h4>'+
 					      '</div>'+
 					    '</div>'+

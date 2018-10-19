@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -143,7 +142,7 @@ public class memberController {
 		return "forward:/member/join/result/ad_de_result.jsp";
 	}
 
-	/*회원 정보 수정*/
+/*회원 정보 수정*/
 	@ResponseBody
 	@RequestMapping(value="iUpdate.hon", method=RequestMethod.POST)
 	public int iUpdate(Model mod
@@ -311,45 +310,36 @@ public class memberController {
 		result = memberDao.login(pMap);
 		logger.info(result);
 		if ("1".equals(result)) {
-			logger.info(pMap.get("mem_id").toString());
-			logger.info(pMap.get("mem_pw").toString());
-			// 바로 Dao의 idSearch() 이동
-			//list = memberLogic.select(pMap,res);
+			
 			list = memberDao.select(pMap);
 			logger.info("Controller : " + result);
 			if (list != null) {
-				logger.info("Controller");
-				HttpSession mem_session = req.getSession();
-				mem_session.setAttribute("memList", list);
+					HttpSession mem_session = req.getSession();
+					mem_session.setAttribute("memList", list);
+					return "forward:/main/main/main.jsp";
 			}
-			resultPage = "/member/login/pwFound2.jsp";
 		} else if ("-1".equals(result)) {
 			logger.info("result는" + result);
 			resultPage = "/member/login/result/result.jsp?result=" + result;
+			return "forward:"+resultPage;
 		} else if ("0".equals(result)) {
 			resultPage = "/member/login/result/result.jsp?result=" + result;
+			return "forward:"+resultPage;
 		}
 		logger.info(resultPage);
-		if ("-1".equals(result) || "0".equals(result)) {// redirect인지 forward인지 나누기 위해 
-			logger.info("redirect로 보내는중");
-			return "forward:" + resultPage;
-		} else {
-			logger.info("forward로 보내는중");
-			return "forward:" + resultPage;
-		}
+		return "error";
 	}
-	//@ResponseBody
+	
 	@RequestMapping(value="/naverLoginCallback.hon", produces="text/html; charset=utf-8")
 	public String naverCallback(Model model, HttpServletRequest req) throws UnsupportedEncodingException { 
+//		 	String token = "AAAAOFRhHZoRczchE25QKpOKWCoo6T7Vq00iBHzwhS/q4OCo9BGGBQWA4sWQgDJlkM/Jlof4mHE4FX0onvqj1Otqnxw=";// 네이버 로그인 접근 토큰;
 			HttpSession session = req.getSession();
 		 	String token = (String)session.getAttribute("access_token");// 네이버 로그인 접근 토큰; => 상수로 박지말고 변수로 처리할 것 ㅠㅠ
 	        String header = "Bearer " + token; // Bearer 다음에 공백 추가
             String inputLine;
-            List<String> nMemList = new ArrayList<String>();
             int result = 0;
+            String path = "error";
             StringBuffer response = new StringBuffer();
-            JSONObject jsObj = new JSONObject();
-            JSONParser jsParser = new JSONParser();
 	        try {
 	            String apiURL = "https://openapi.naver.com/v1/nid/me";
 	            URL url = new URL(apiURL);
@@ -367,34 +357,57 @@ public class memberController {
 	                response.append(inputLine);
 	            }
 	            br.close();
-	            logger.info(response.toString());
 	            JSONParser jsonp = new JSONParser();
 	            Object obj = jsonp.parse(response.toString());
 	            JSONObject jsonObject = (JSONObject)obj;
 	            JSONObject jsonObject2 = (JSONObject)jsonObject.get("response");
 	            String name = (String)jsonObject2.get("name");
-	            String email = (String)jsonObject2.get("email");
-	            String nickname = (String)jsonObject2.get("nickname");
+	            String emails = (String)jsonObject2.get("email");
 	            String age = (String)jsonObject2.get("age");
 	            String gender = (String)jsonObject2.get("gender");
 	            String birthday = (String)jsonObject2.get("birthday");
 	            String id = (String)jsonObject2.get("id");
-	            logger.info("이름 : "+name+", 이메일 : "+email+", 닉네임 : "+nickname+", 연령대 : "+age+", 성별 :"+gender+", 생일 : "+birthday+", 아이디 : "+id);
 	            Map<String, Object> pMap = new HashMap<String, Object>();
-	            pMap.put("id", id);
-	            pMap.put("name", name);
-	            pMap.put("email", email);
-	            pMap.put("nickname", nickname);
-	            pMap.put("age", age);
-	            pMap.put("gender", gender);
-	            pMap.put("birthday", birthday);
-	            session.setAttribute("nMem", pMap);
+	            
+	            switch (gender) {
+	            case "F":
+	               gender = "1301";
+	               break;
+	            case "M":
+	               gender = "1300";
+	               break;
+	            }
+	            String emailss[] = emails.split("@");
+	            String email = emailss[0];
+	            pMap.put("mem_id", id);
+	            pMap.put("mem_name", name);
+	            pMap.put("mem_email", email);
+	            pMap.put("mem_pw", "0");
+	            pMap.put("mem_gender", gender);
+	            pMap.put("mem_birth", birthday);
+	            pMap.put("mem_hobby", "1200");
+	            pMap.put("mem_job", "1100");
+	            pMap.put("mem_addr", "주소번지 등록이 안되어있습니다");
+	            pMap.put("mem_tel", "번호가 없습니다");
+	            List<Map<String,Object>> memList = new ArrayList<Map<String, Object>>();
+	            memList.add(pMap);
+	            
 	            result = memberDao.nMemInsert(pMap);
+	            if(result==1) {
+	            	List<Map<String, Object>> list = null;
+	            	list = memberDao.select(pMap);
+					HttpSession mem_session = req.getSession();
+					mem_session.setAttribute("memList", list);
+	            }
+	            else {
+	            	logger.info("네이버 로그인 실패");
+	            }
 	        } catch (Exception e) {
 	            logger.info(e.toString()+", "+e.getMessage());
 	        }
-	        return "redirect:/main/main/main.jsp";
+			return "redirect:/main/main/main.jsp";
 	        
 	}
+	
 	
 }

@@ -98,8 +98,8 @@ var msg_count=0;
           <a class="item" href="javascript:mlist()">회원정보</a>
           <a class="item" href="/sp-Honjaopseoye/notice/notice/notice.jsp">공지사항</a>
           <a class="item" href="/sp-Honjaopseoye/main/honja/honja_main.jsp">혼자페이지</a>
-          <a class="item" href="/sp-Honjaopseoye/main/together/together_main.jsp">만남페이지</a>
-          <a class="item" href="/sp-Honjaopseoye/boardList/mainBoardList.jsp">리뷰보기</a>
+          <a class="item" href="javascript:together()">만남페이지</a>
+          <a class="item" href="/sp-Honjaopseoye/board/boardMaxHit.hon">리뷰보기</a>
           <div class="divider"></div>
           <div class="header">보조 메뉴</div>
           <div class="item">
@@ -122,14 +122,6 @@ var msg_count=0;
 	</div>
   </div>
   <script type="text/javascript">
-  	function mlist(){
-  		if(mem_id!='비회원'){
-  		location.href="/sp-Honjaopseoye/member/meminfo/meminfo.jsp";
-  		}
-  		else{
-  			alert("로그인 후 이용 가능합니다")
-  		}
-  	}
   	function messageBox(){
   		if(mem_id!='비회원'){
   			cmm_window_popup("/sp-Honjaopseoye/member/message/messageBox.jsp?mem_id="+mem_id, 800, 800, "메시지함");
@@ -163,6 +155,14 @@ var msg_count=0;
   			
   		}
   	})
+  	function together(){
+  		if(mem_id!="비회원"){
+	  		location.href="/sp-Honjaopseoye/main/together/together_main.jsp"
+  		}
+  		else{
+  			alert("로그인 후 이용해 주세요.");
+  		}
+  	}
   </script>
   <div id="loading"><img id="loading-image" src="/sp-Honjaopseoye/image/loading.gif" alt="Loading..." /></div>
   <script type="text/javascript">
