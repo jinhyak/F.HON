@@ -24,8 +24,8 @@
 	}
 %>
 <% 
-	String clientId = "rMQSr12DQcrxNQeItZQ5"; //애플리케이션 클라이언트 아이디값";
-	String clientSecret = "uu3M2Y2xdg"; //애플리케이션 클라이언트 시크릿값";
+	String clientId = "rMQSr12DQcrxNQeItZQ5"; //애플리케이션 클라이언트 아이디값;
+	String clientSecret = "uu3M2Y2xdg"; //애플리케이션 클라이언트 시크릿값;
 	String code = request.getParameter("code"); // 코드
 	String state = request.getParameter("state"); // 네이버 상태코드 로그인 성공 / 실패
 	String redirectURI = URLEncoder.encode("http://192.168.0.16:9100/sp-Honjaopseoye/member/naverLoginCallback.hon", "UTF-8");
@@ -54,13 +54,9 @@
 		  System.out.print("responseCode="+responseCode); // 현재 상태 코드 성공했을때: 200(프로토콜) 404(에러 프로토콜)
 		  
 		  if(responseCode==200) { // 정상 호출
-			  
 		    br = new BufferedReader(new InputStreamReader(con.getInputStream())); // 네이버 정보를 받아옴
-		    
 		  } else {  // 에러 발생
-			  
 		    br = new BufferedReader(new InputStreamReader(con.getErrorStream())); // 에러 출력
-		  
 		  }
 		  
 		  String inputLine; 
@@ -104,7 +100,7 @@
 		<% 	
 			}
 		%>
-<!--  -->
+		
 <div class="ui two column stackable grid" style="height:850px">
     <div class="column">
 		<a  id="btn1" href="../honja/honja_main.jsp" style="width:100%; height:100%;"><img src="../../image/person.PNG" style="width:100%; height:100%;"></a>
@@ -113,7 +109,6 @@
  		 <a id="btn2" href="../together/together_main.jsp" style="width:100%; height:100%;"><img src="../../image/with.jpg"style="width:100%; height:100%;"></a>
     </div>
 </div>
-<!--  -->
 
 <%@ include file="../../include/include/bottom.jsp" %>
 </body>

@@ -166,7 +166,7 @@ var datacounter = 0;
 		          response.results[name].results.push({
 		            title       : item.BANG_NAME,
 		            description : item.BANG_MEMO,
-		            url         : './together.jsp?ss='+item.BANG_NAME
+		            url         : './gView.jsp?bang_no='+item.BANG_NO+"&store_no"+item.STORE_NO
 		          });
 		        });
 		        console.log(response)
@@ -177,7 +177,7 @@ var datacounter = 0;
 		  });
 		spMap();
 		function g_create(){
-			cmm_window_popup("./together.jsp", 800, 800, "모임방 개설");
+			cmm_window_popup("./together.jsp?mem_id="+mem_id, 800, 800, "모임방 개설");
 		}
 		function spMap(){
 			mapContainer = document.getElementById('map'); // 지도를 표시할 div 
@@ -281,6 +281,13 @@ var datacounter = 0;
 		function getListItem(index, places) {
 			var date = places.BANG_DATE
 			var a = date.substr(5);
+			var img;
+			if(places.STORE_IMG!=null){
+				img = places.STORE_IMG;
+			}
+			else{
+				img = 'noimg.png';
+			}
 			var el = document.createElement("div"),
 		    itemStr = 	'<a href="./gView.jsp?bang_no='+places.BANG_NO+'&store_no='+places.STORE_NO+'">'+
 					    '<div class="ui card info">'+
@@ -289,7 +296,7 @@ var datacounter = 0;
 					      places.BANG_NAME+
 					    '</div>'+
 					    '<div class="image">'+
-					      '<img src="/sp-Honjaopseoye/image/storeImg/'+places.STORE_IMG+'">'+
+					      '<img src="/sp-Honjaopseoye/image/storeImg/'+img+'">'+
 					    '</div>'+
 					    '<div class="content">'+
 					      '<span class="right floated">'+
@@ -312,7 +319,6 @@ var datacounter = 0;
 		    el.className = 'eight wide column item';
 		    return el;
 		}
-
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 		function addMarker(position, idx, title) {
 		    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다

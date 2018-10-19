@@ -20,7 +20,7 @@
 				%>
 		    <tr class="trs">
 		      <td class="collapsing">
-						<img class="ui avatar image" src="../../image/male.jpg" style="width:50px;height:50px" >
+				<img class="ui avatar image" src="../../image/male.jpg" style="width:50px;height:50px" >
 		      </td>
 		      <td class="collapsing fri_id" style="color:#088A85;font-weight:bold"><%=fri_id%></td>
 		      <td>

@@ -72,7 +72,7 @@ var Lastno=0;
 				,data:param
 				,success:function(data){
 					if(data==1){
-						alert("전송성공")						
+						$("#scroll").scrollTop($("#msgList").height());
 					}
 					else{
 						alert(data);
@@ -110,7 +110,6 @@ var Lastno=0;
 				}
 			})
 		}
-		$("#scroll").scrollTop($("#msgList").height());
 	}
 	function infinityMsg(){
 		setInterval(function() {

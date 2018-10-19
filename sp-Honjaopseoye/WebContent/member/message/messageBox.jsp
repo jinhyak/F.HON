@@ -41,12 +41,13 @@
 			,success:function(data){
 				$("#boxlist").html(data);
 				var trs = $("#boxtable")[0].getElementsByClassName("trs");
+				getUnReadMsg();
 					for(var i=0;i<trs.length;i++){
 						trs[i].onmouseover = function(){
 							this.className="listIn";
 							this.onclick = function(){
 								id = this.cells.item(1).innerHTML
-								cmm_window_popup("../../member/message/message.jsp?fri_id="+id+"&mem_id="+mem_id, 600, 600, "채팅창")
+								cmm_window_popup("../../member/message/message.jsp?fri_id="+id+"&mem_id="+mem_id, 600, 600, "채팅창");
 							}
 						};
 						trs[i].onmouseout = function(){
@@ -62,17 +63,16 @@
 	function getUnReadMsg(){
 		var tds = $("#boxtable")[0].getElementsByClassName("fri_id");
 		a=0;
-		for(i=0;i<tds.length;i++){
+		for(var i=0;i<tds.length;i++){
 			 var fri_id = tds[i].innerHTML;
 			 var CountMsg = (document).getElementsByClassName("label");
-			 var mem_id = 'test';
+			 var mem_id = '<%=mem_id%>';
 			 var param = "fri_id="+fri_id+"&mem_id="+mem_id;
 			$.ajax({
 				method:"post",
 				data:param,
 				url:"../../message/unReadMsg.hon",
 				success:function(data){
-					alert(data);
 					CountMsg[a++].innerHTML=data;
 				},
 				error:function(data){
@@ -85,8 +85,7 @@
 		getListRecentMsg()
 /* 		setInterval(function() {
 			getUnReadMsg();
-		}, 3000) */
-		getUnReadMsg();
+		}, 1000)  */
 	})
 </script>
 </body>

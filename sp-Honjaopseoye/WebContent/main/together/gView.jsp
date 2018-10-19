@@ -429,9 +429,7 @@ $("#bang_delete_btn").click(function () {
 	    		data:"bang_no="+bang_no,
 	    		url:"../../group/groupDelete.hon",
 	    		success:function(result){
-	    			alert("넘어온 result :"+result);
 	    			if(result==1) {
-	    				//alert("삭제성공");
 	    				$("#delete_success_modal").modal({
 	    					onApprove : function() {
 		    					location.href="./together_main.jsp";
@@ -458,7 +456,6 @@ $("#attend_btn").click(function (){
 		    		data:param,
 		    		url:"../../group/groupAttend.hon",
 		    		success:function(result){
-		    			//alert("넘어온 result :"+result);
 		    			if(result==1){
 		    				$("#attend_modal").modal('setting', 'closable', false).modal('show');
 		    				$("#attend_modal_btn").click(function() {
@@ -467,7 +464,6 @@ $("#attend_btn").click(function (){
 		    				//fri_list();
 		    			}
 		    			else if(result==0) {
-		    				//alert("이미참석처리 되었습니다!!!");
 		    				$("#already_attend_modal").modal('show');
 		    				fri_list();
 		    			}
@@ -489,9 +485,7 @@ $("#cancle_btn").click(function (){
 		data:"mem_id="+mem_id,
 		url:"../../group/groupAbsent.hon",
 		success:function(result){
-			//alert("넘어온 result :"+result);
 			if(result==1){
-				//alert("취소되었습니다.");
 				$("#groupAbsent_modal").modal('setting', 'closable', false).modal('show');
 				$("#absent_modal_btn").click(function() {
     				location.reload();
@@ -499,7 +493,6 @@ $("#cancle_btn").click(function (){
 				//fri_list();
 			}
 			else if(result==0){
-				//alert("이미 취소처리 되었습니다!!!");
 				$("#already_groupAbsent_modal").modal('show');
 				fri_list();
 			}

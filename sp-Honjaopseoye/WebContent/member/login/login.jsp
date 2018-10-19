@@ -46,11 +46,11 @@
 						$("#mem_id").focus();
 					}
 					else if(data=='-1'){
-						alert("존재하지 않는 비밀번호 입니다.")
+						alert("비밀번호가 틀렸습니다")
 						$("#mem_pw").focus();
 					}
 					else{
-						alert("로그인에 성공하셨습니다.")
+						alert("로그인에 성공하셨습니다")
 						location.href="../../main/main/main.jsp"
 					}
 				}

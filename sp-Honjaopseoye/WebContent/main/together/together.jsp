@@ -301,7 +301,7 @@ var map;
 </div>
 <script>
 	function gogogo(){
-		alert("hi");
+		console.log("인설트 성공");
 		var bang_li = $('#bang_limit_people').val();
 		var bang_address = $('#store_address').val();
 		var bang_time = $("#bang_time").val();
@@ -325,9 +325,9 @@ var map;
 			url:"../../group/groupInsert.hon",
 			method:"get",
 			success:function(data){
-				alert(data);
 				if(data==1){
 					alert("모임방을 개설하셨습니다.")
+					window.opener.location.reload();
 					window.close();
 				}
 				else{
@@ -365,7 +365,7 @@ var map;
 				return;
 			}
 			else{
-			alert(value)
+			console.log(value);
 			// 장소 검색 객체를 생성합니다
 			var ps = new daum.maps.services.Places(); 
 			// 키워드로 장소를 검색합니다

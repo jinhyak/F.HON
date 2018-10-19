@@ -48,13 +48,11 @@
 	function id_check(){
 		var id_check ;
 		var param = $('#id').val();
-		//alert(param)
 		$.ajax({
 			 method:"get"
 			,url:"../id_sel.hon"
 			,data:{"id": $('#id').val()}
 			,success:function(data){
-				//alert("result:" + data);
 				if(data=='1'){
 					alert('사용할 수 있는 ID입니다')
 					id_check=data
@@ -78,7 +76,6 @@
 			,url:"../id_tel.hon"
 			,data:{"tel": $('#tel').val()}
 			,success:function(data){
-				//alert(data);
 				if(data=='1'){
 					alert('사용할 수 있는 번호입니다')
 					tel_check = data
@@ -101,6 +98,7 @@
 		var h_id = $('#h_id').val();
 		var h_pw = $('#h_pw').val();
 		var h_tel = $('#h_tel').val();
+		var addr = $('#mem_addr').val();
 		
 		if(user_name==''||user_name==null){
 			alert('이름란에 공백을 사용할 수 없습니다.');
@@ -108,7 +106,7 @@
 		else if(user_id==''||user_id==null){
 			alert('ID란에 공백을 사용할 수 없습니다.');
 		}
-		else if(h_id=='0'){
+		else if(h_id=='0'||h_tel=='0'){
 			alert('중복체크를 하셔야합니다.')
 		}
 		else if(h_pw==''||h_pw==null){
@@ -122,7 +120,6 @@
 			var hoby = $('#mem_hobby').val();
 			var job = $('#mem_job').val();
 			var param = $('#form_login').serialize()+"&mem_email="+email+"&mem_hobby="+hoby+"&mem_job="+job;
-			//alert('회원가입');
 			$.ajax({
 				 method:"post"
 				,data:param
@@ -149,7 +146,6 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 성별 구분 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	function gender(){
 		var gender = $("chk_info").val()
-		//alert(gender)
 	}
 </script>
 	<div class="ui middle center aligned grid bagic segment" style="margin-top:100px;border:hidden">
@@ -185,7 +181,7 @@
 						<div class="ui label">직업
 								<div class="ui selection dropdown addr">
 										<input type="hidden" value="1100" id="mem_job"> <i class="dropdown icon"></i>
-										<div class="text" id="job">분류</div>
+										<div class="text" id="job">무직</div>
 										<div class="menu">
 											<div class="item" data-value="1100">무직</div>
 											<div class="item" data-value="1101">학생</div>
@@ -264,7 +260,7 @@
 							<div class="ui fluid large submit button" style="width: 200px" onclick="tel_check()">중복체크</div>
 						</div>
 					</div>
-					<input type="hidden" id="h_tel">
+					<input type="hidden" id="h_tel" value='0'>
 					<div class="ui tel check" id="tel_check"></div>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# 우편번호 입력 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 					<div class="field" align="left">
@@ -354,7 +350,6 @@
 					 method:'post'
 					,url:'../../member/doAddress.hon'
 					,success:function(data){
-						//alert("도: "+data);
 						$('#menu_do').html(data);
 					}
 				})
@@ -396,7 +391,6 @@
 		var si = $('#si').text();
 		var dong = $('#dong').text();
 		var address = $('#p_addr').val();
-		//alert(address);
 		cmm_window_popup("./address.jsp?zdo="+dos+"&sigu="+si+"&dong="+dong+"&address="+address, 800, 600, "상세주소 조회창")
 	}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 성별 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -143,7 +143,7 @@ public class memberController {
 		return "forward:/member/join/result/ad_de_result.jsp";
 	}
 
-/*회원 정보 수정*/
+	/*회원 정보 수정*/
 	@ResponseBody
 	@RequestMapping(value="iUpdate.hon", method=RequestMethod.POST)
 	public int iUpdate(Model mod
