@@ -483,7 +483,7 @@ $("#attend_btn").click(function (){
 $("#cancle_btn").click(function (){
 	$.ajax({
 		method:"post",
-		data:"mem_id="+mem_id,
+		data:"mem_id="+mem_id+"&bang_no="+bang_no,
 		url:"../../group/groupAbsent.hon",
 		success:function(result){
 			//alert("넘어온 result :"+result);

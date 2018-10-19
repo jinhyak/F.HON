@@ -177,7 +177,7 @@ var datacounter = 0;
 		  });
 		spMap();
 		function g_create(){
-			cmm_window_popup("./together.jsp", 800, 800, "모임방 개설");
+			cmm_window_popup("./together.jsp?mem_id="+mem_id, 800, 800, "모임방 개설");
 		}
 		function spMap(){
 			mapContainer = document.getElementById('map'); // 지도를 표시할 div 

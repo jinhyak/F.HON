@@ -107,11 +107,11 @@ public class GroupController {
    //방참석취소 등록 메소드
    @ResponseBody
    @RequestMapping("/groupAbsent.hon")
-   public int groupAbsent(Model mod, @RequestParam String mem_id) {
-	   logger.info(mem_id);
+   public int groupAbsent(Model mod, @RequestParam Map<String,Object> pMap) {
+	   logger.info(pMap);
 	   logger.info("groupAbsent 메소드 호출");
 	   int result = 0;
-	   result = groupDao.groupAbsent(mem_id);
+	   result = groupDao.groupAbsent(pMap);
 	   return result;
    }
    //방장 방삭제 등록 메소드
