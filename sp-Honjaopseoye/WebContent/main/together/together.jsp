@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String mem_id = request.getParameter("mem_id");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -311,7 +314,7 @@ var map;
 		var bang_gender = $("#bang_gender").val();
 		var bang_topic = $("#bang_topic").val();
 		var store_no = $("#store_no").val();
-		var mem_id = 'test';
+		var mem_id = '<%=mem_id%>';
 		alert(store_no)
 		var param = "bang_limit_people="+bang_li+"&bang_address="+bang_address+"&bang_time="+bang_time+
 				    "&bang_date="+bang_date+"&bang_memo="+bang_memo+"&bang_name="+bang_name+
