@@ -80,7 +80,6 @@ public class MenuDao {
 		int result = 0;
 		result = sqlSessionTemplate.insert("qInsert", pMap);
 		if (result == 1) {
-			sqlSessionTemplate.commit();
 			logger.info("qInsert: " + result);
 		}
 		return result;
@@ -110,8 +109,8 @@ public class MenuDao {
 	public int stepUp(int step) {
 		int result = 0;
 		logger.info("step Update");
-		logger.info(step);
 		result = sqlSessionTemplate.update("stepUp", step);
+		logger.info(step);
 		return result;
 	}
 

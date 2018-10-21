@@ -16,8 +16,9 @@ $(document).ready(function() {
 	$.fn.dataTable.ext.errMode = '';
     $('#dt_reserv_list').dataTable({
       "ajax":{ "url":"../../menu/qSelect.hon", "type":"POST",error:function(){alert('실패')} },
-       columns:[
-			{"data":'QNA_NO'},
+      "ordering" : false, 
+      "columns":[
+			{"data":'QNA_STEP'},
 			{"data":'QNA_TITLE'},
 			{"data":'QNA_CATEGORY'},
 			{"data":'QNA_WRITER'},
@@ -52,7 +53,8 @@ $(document).ready(function() {
     $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) { // 티바디를 누르면..
        var data = table.row(this).data();
        var QNA_NO = data.QNA_NO;
-       location.href='../../menu/qView.hon?qna_no='+QNA_NO;
+       var keyword = "";
+       location.href='../../menu/qView.hon?qna_no='+QNA_NO+"&keyword="+keyword;
     });
 });
 </script>
@@ -112,12 +114,12 @@ $(document).ready(function() {
                <table id="dt_reserv_list" class="ui celled table">
                  <thead>
                     <tr>
-                      <th style="width:100px;">번호</th>
-                      <th style="width:100px;">제목</th>
-                      <th style="width:300px;">분류</th>
-                      <th style="width:200px;">작성자</th>
-                      <th style="width:500px;">등록일</th>
-                      <th style="width:100px;">조회수</th>
+                      <th style="width:5%;">번호</th>
+                      <th style="width:40%;">제목</th>
+                      <th style="width:10%;">분류</th>
+                      <th style="width:15%;">작성자</th>
+                      <th style="width:20%;">등록일</th>
+                      <th style="width:10%;">조회수</th>
                     </tr>
                  </thead>
                     <tbody id="dt_reserv_tbody"></tbody>

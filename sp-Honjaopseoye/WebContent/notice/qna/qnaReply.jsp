@@ -16,7 +16,7 @@ String qna_depth = null;
 String qna_group = null;
             
 
- List<Map<String, Object>> conQnABoardIdList = (List<Map<String, Object>>)request.getAttribute("conQnABoardIdList");
+  List<Map<String, Object>> conQnABoardIdList = (List<Map<String, Object>>)request.getAttribute("conQnABoardIdList");
 
  	qna_no = conQnABoardIdList.get(0).get("QNA_NO").toString();
 	qna_title = conQnABoardIdList.get(0).get("QNA_TITLE").toString();
@@ -37,7 +37,7 @@ String qna_group = null;
 			"qna_content" + qna_content +
 			"qna_step" +  qna_step + 
 			"qna_depth" + qna_depth +
-			"qna_group" + qna_group);
+			"qna_group" + qna_group); 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -66,7 +66,7 @@ function insert_go(){
 	$('.ui.form').submit();
 }
 function insert_cancel(){
-	location.href="../notice/qna/qna.jsp"
+	location.href="../qna/qna.jsp"
 }
 </script>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -98,7 +98,7 @@ function insert_cancel(){
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%" onclick="location.href='../notice/qna/qna.jsp'">
+							<div class="ui segment button" style="width:100%" onclick="location.href='../qna/qna.jsp'">
 								<h3> QnA </h3>
 							</div>
 						</div>
@@ -144,8 +144,8 @@ function insert_cancel(){
 			<div class="row"><!-- second row start -->
 				<div class="field" style="width:100%">
 					<h5>내용</h5>
-					<textarea rows="25" id="qna_content" name="qna_content"><%=qna_content%>
-		Re:==========================================================================>
+					<textarea rows="25" id="qna_content" name="qna_content">원글 내용: <%=qna_content%>
+Re:==========================================================================>
 					
 					</textarea>
 				</div>

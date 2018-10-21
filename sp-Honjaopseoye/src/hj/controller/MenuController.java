@@ -235,15 +235,20 @@ public class MenuController {
 	}
 
 	@RequestMapping("/qView.hon")
-	public String qView(HttpServletRequest req, HttpServletResponse res, @RequestParam String qna_no,
+	public String qView(HttpServletRequest req, HttpServletResponse res, @RequestParam String qna_no, @RequestParam String keyword,
 			Map<String, Object> pMap) throws ServletException, IOException {
 		logger.info("qView 메소드 진입");
 		List<Map<String, Object>> conQnABoardIdList = null;
+		String page = null;
 		pMap = new HashMap<String, Object>();
 		pMap.put("qna_no", qna_no);
 		conQnABoardIdList = qnaLogic.qnaBoardIdListLogic(pMap);
 		req.setAttribute("conQnABoardIdList", conQnABoardIdList);
-		return "forward:../notice/qna/qnaView.jsp";
+		page="forward:../notice/qna/qnaView.jsp";
+		if("답글".equals(keyword)) {
+		page="forward:../notice/qna/qnaReply.jsp";
+		}
+		return page;
 	}
 
 	@RequestMapping("/qnaInsert.hon")

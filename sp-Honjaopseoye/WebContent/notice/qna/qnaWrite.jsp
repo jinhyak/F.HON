@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <%
-    request.setAttribute("qna_writer","beyonce200");
-    
-    
-    
-    %>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,6 +8,13 @@
 <script src="../../Semantic/js/jquery-1.12.0.js"></script>
 <script src="../../Semantic/semantic.js"></script>
 <title>문의하기</title>
+<style type="text/css">
+img {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+</style>
 <!--이미지 미리보기 스크립트 구간 -->
 <script type="text/javascript">
 
@@ -27,36 +26,10 @@ $(document).ready(function(){
 	});
 	
 }) /* 레디 끝  */
-
-
-
-</script>
-<!-- 이미지 미리보기 스크립트 구간  끝-->
-
-<!-- 바디 스타일 -->
-<style>
-/* body {
-	background-image: url('writerBackground.jpg');
-} */
-
-</style>
-<!-- 바디 스타일 끝 -->
-
-</head>
-
-
-<body>
-<!-- 상단  -->
-
-<!-- 상단 끝 -->
-
-
-<!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form @@@@@@@@@@@@@@@@@@@@  -->
-<br>
-<br>
-<br>
 <form method="Post" action="../../notice/qnaInsert.hon" id="qna_board" name="qna_board">
-
+</script>
+</head>
+<body>
 <!-- 입력 게시판 테이블   -->
 <table align="center" border="1" width="800px" height="1000px" bgcolor="white">
 <!-- 게시판 머리  -->

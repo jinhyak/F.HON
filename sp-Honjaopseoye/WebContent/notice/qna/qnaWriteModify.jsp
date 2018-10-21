@@ -3,8 +3,8 @@
 <%@ page import="java.util.List, java.util.Map, java.util.ArrayList, java.util.HashMap" %>   
 
 <%
-request.setAttribute("qna_writer","beyonce200");
 
+String keyword = "답글";
 String qna_no = null;
 String qna_title = null;
 String qna_category = null;
