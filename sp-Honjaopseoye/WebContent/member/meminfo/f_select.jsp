@@ -93,7 +93,6 @@
 									<div class="ui selection list" id="fri_select" style="width:100%;padding-left: 80px;padding-right: 80px;">
 									</div>
 									<script type="text/javascript">
-											alert(mem_id);
 											var param="mem_id="+mem_id;
 											$.ajax({
 												 method:"post"

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+	String mem_id = request.getParameter("mem_id");
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -298,7 +301,7 @@ var map;
 </div>
 <script>
 	function gogogo(){
-		alert("hi");
+		console.log("인설트 성공");
 		var bang_li = $('#bang_limit_people').val();
 		var bang_address = $('#store_address').val();
 		var bang_time = $("#bang_time").val();
@@ -311,7 +314,7 @@ var map;
 		var bang_gender = $("#bang_gender").val();
 		var bang_topic = $("#bang_topic").val();
 		var store_no = $("#store_no").val();
-		var mem_id = 'test';
+		var mem_id = '<%=mem_id%>';
 		alert(store_no)
 		var param = "bang_limit_people="+bang_li+"&bang_address="+bang_address+"&bang_time="+bang_time+
 				    "&bang_date="+bang_date+"&bang_memo="+bang_memo+"&bang_name="+bang_name+
@@ -322,9 +325,9 @@ var map;
 			url:"../../group/groupInsert.hon",
 			method:"get",
 			success:function(data){
-				alert(data);
 				if(data==1){
 					alert("모임방을 개설하셨습니다.")
+					window.opener.location.reload();
 					window.close();
 				}
 				else{
@@ -337,87 +340,13 @@ var map;
 		self.close();
 	}
 	function confirm(){
-		var address = $('#address').val();
-		var name = $('#name').val();
-		$('#store_address').val(address+', '+name);
-		$('#modal_location').modal('hide');
 	}
 	function cancel(){
 		$("#modal_location").modal('hide');
 	} 
 	function locationInput(){
-			store_list()
-			$("#modal_location").modal("show");
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	   	 	mapOption = {
-	        	center: new daum.maps.LatLng(37.566821, 126.978657), // 지도의 중심좌표
-	       		 level: 3 // 지도의 확대 레벨
-	   		 };  
-			// 지도를 생성합니다    
-		 	map = new daum.maps.Map(mapContainer, mapOption);
-			$('#addr_btn').click(function(){
-			var value = $.trim($('#search_addr').val())
-			if(value==""){
-				alert('주소를 입력하세요')
-				return;
-			}
-			else{
-			alert(value)
-			// 장소 검색 객체를 생성합니다
-			var ps = new daum.maps.services.Places(); 
-			// 키워드로 장소를 검색합니다
-			ps.keywordSearch(value, placesSearchCB);
-	
-			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-			function placesSearchCB (data, status, pagination) {		
-	    		if (status === daum.maps.services.Status.OK) {
-	
-		        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-	    	    // LatLngBounds 객체에 좌표를 추가합니다
-	        	var bounds = new daum.maps.LatLngBounds();
-	        	for (var i=0; i<data.length; i++) {
-	            	bounds.extend(new daum.maps.LatLng(data[i].y, data[i].x));
-	        	}       
-	        	// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-	        	map.setBounds(bounds);
-	        	map.setLevel(3);
-	        	// 지도를 클릭한 위치에 표출할 마커입니다
-	        	var marker = new daum.maps.Marker({
-	        	}); 
-	        	// 지도에 클릭 이벤트를 등록합니다
-	        	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-	        	daum.maps.event.addListener(map, 'click', function(mouseEvent) {
-	        	    // 클릭한 위도, 경도 정보를 가져옵니다 
-	        	    var latlng = mouseEvent.latLng; 
-	        	 	// 지도에 마커를 표시합니다
-	        	    marker.setMap(map);
-	        	    // 마커 위치를 클릭한 위치로 옮깁니다
-	        	    marker.setPosition(latlng);
-	        	    var lat = latlng.getLat() //위도
-	        	    var lng = latlng.getLng() //경도
-	        	    $('#store_latitude').attr('value',lat)
-	        	    $('#store_longitude').attr('value',lng)
-	        	    var geocoder = new daum.maps.services.Geocoder();
-	        	    var coord = new daum.maps.LatLng(lat,lng);
-	        	    	var callback = function(result, status) {
-	        	        if (status === daum.maps.services.Status.OK) {
-	        	           	$('#result_address').attr('value',result[0].address.address_name)
-	        	        }
-	        	        else{
-	        	        	alert("주소번지불러오기 에러")
-	        	        }
-	        	    };///end of collback
-	        	    //콜백함수 실행
-        	    	geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
-	        		});/////end of addListner
-	    		}//end of if
-	    		else{
-	    			alert('주소를 다시 검색하세요');
-	    		}
-			}//////// end of placesSearchCB
-		}/////////////end of else
-		});////////////////////end of click
-	}/////////end of locationInput()
+		cmm_window_popup("./maps.jsp", 600, 600, "모임 장소 등록");
+	}
 $("#datepicker").datepicker({
 	  dateFormat: 'yy-mm-dd',
 	  prevText: '이전 달',
@@ -439,53 +368,6 @@ $("#datepicker").datepicker({
 		var time = $(this).val();
 		$("#bang_time").attr('value', time);
 	});
-	function store_list(){
-		  $.ajax({
-		    	method:"post"
-		    	,url:"/sp-Honjaopseoye/group/store_sel.hon"
-		    	,success:function(result){
-		    	/* var temp = JSON.stringify(result); */
-				obj = JSON.parse(result);
-					for(var i = 0; i<obj.length;i++){
-						SpMap(obj[i].STORE_ADDR,obj[i].STORE_NAME,obj[i].STORE_NO);
-					}
-		    	}
-		        ,error:function(xhrObject){
-		        	alert(xhrObject.responseText);
-		        }
-		    });
-	};
-	function SpMap(address,name,no){
-		// 주소-좌표 변환 객체를 생성합니다
-		
-		var geocoder = new daum.maps.services.Geocoder();
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch(address, function(result, status) {
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === daum.maps.services.Status.OK) {
-		        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new daum.maps.Marker({
-		            map: map,
-		            position: coords,
-		            clickable: true
-		        });
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new daum.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
-		        });
-		        infowindow.open(map, marker);
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    	daum.maps.event.addListener(marker,'click', function() {
-		    		$("#address").val(address);
-		    		$("#name").val(name);
-		    		$("#store_no").attr("value",no);
-		    		alert(no);
-		   		});
-		    } 
-		});    
-		}
 </script>
 
 </body>

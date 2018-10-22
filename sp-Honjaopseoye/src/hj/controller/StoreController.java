@@ -2,7 +2,8 @@ package hj.controller;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -167,6 +168,19 @@ public class StoreController{
 			return "별점 등록 성공";
 		}
 		return "별점 등록 실패";
+	}
+	//가게 전체 검색 클러스터로 뿌려주기
+	@ResponseBody
+	@RequestMapping(value="/store_select.hon")
+	public Map<String, List<Map<String,Object>>> store_select(@RequestParam Map<String,Object> pMap) {
+		logger.info("store_select 호출 성공");
+		List<Map<String,Object>> storeList = new ArrayList<Map<String, Object>>();
+		storeList = storeDao.store_select(pMap);
+		//logger.info(storeList);
+		Map<String, List<Map<String,Object>>> rMap = new HashMap<String, List<Map<String,Object>>>();
+	    rMap.put("positions", storeList);
+	    //logger.info(rMap);
+		return rMap;
 	}
 
 }

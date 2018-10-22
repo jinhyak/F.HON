@@ -122,40 +122,43 @@
 						<div class="center aligned column">
 						</div>
 						<div class="center aligned column">
-						</div>
-						<div class="center aligned column">
 							<div class="ui large header">
-							 	회원정보
+							 	<img src="/sp-Honjaopseoye/image/logo.png" style="width:100%;heigth:100%">
 							</div>
 						</div>
 						<div class="right aligned column">
 						</div>
 						<div class="right aligned column">
 						</div>
-						<div class="right aligned column">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-							<div class="ui segment button" style="width:100%">
-								<a href="#"> 회원 정보 </a>
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%" onclick=":mlist()">
+								<h3> 회원 정보 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="#"> 회원 탈퇴 </a>
+							<div class="ui segment button" style="width:100%" onclick="alert('로그인 후 이용해 주세요')">
+								<h3> 회원 삭제 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="#"> 친구 관리 </a>
+							<div class="ui segment button" style="width:100%" onclick="alert('로그인 후 이용해 주세요')">
+								<h3> 친구 찾기 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="#"> 친구 삭제 </a>
+							<div class="ui segment button" style="width:100%" onclick="alert('로그인 후 이용해 주세요')">
+								<h3> 친구 관리 </h3>
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%">
-								<a href="#"> 그룹 관리 </a>
+							<div class="ui segment button" style="width:100%;" onclick="alert('로그인 후 이용해 주세요')">
+								<h3> 그룹 관리</h3>
+							</div>
+						</div>
+						<div class="right aligned column">
+							<div class="ui segment button" style="width:100%" onclick="alert('로그인 후 이용해 주세요')">
+								<h3> 그룹 만들기 </h3>
 							</div>
 						</div>
 					</div>	
@@ -170,20 +173,16 @@
 						<div class="center aligned column">
 							<div class="ui segment">
 								<div class="ui large header">
-							 	           비번 찾기
+							 	   비번 찾기
 								</div>
 							</div>
 						</div>
-					    <div class="center aligned column">
-                        <div class="ui segment"
-                           style="width: 100%; height: 100%; border: 1px solid blue">
+						<div class="center aligned column">
+							<div class="ui segment" style="width:100%;">
                            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                           <a href="#"> 회원 정보 form </a>
                            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 휴대전화번호 인증 @@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
                            <form id="f_phone" name="f_phone" method="post">
-                              <div class="ui segment"
-                                 style="border: 1px solid #556852; margin-bottom: 50px;"
-                                 id="phone">
+                              <div class="ui segment" style="margin-bottom: 50px;" id="phone">
                                  <div class="left aligned column">
                                     <div class="ui container"
                                        style="padding-bottom: 15px; text-align: left">

@@ -35,11 +35,13 @@ $(document).ready(function () {
 		   
 		   //bang_no = result[0].BANG_NO;
 		   store_no = result[0].STORE_NO;
-		   store_img = result[0].STORE_IMG;
 		   bang_id = result[0].BANG_ID;
 		   $("#bang_jang_id").text(bang_id);
 		   
-		   $("#large_img1").attr('src',"/sp-Honjaopseoye/image/storeImg/"+store_img);
+		   if(result[0].STORE_IMG!=null) {
+			    store_img = result[0].STORE_IMG;
+		   		$("#large_img1").attr('src',"/sp-Honjaopseoye/image/storeImg/"+store_img);
+		   }
 		   $("#bang_title").text(result[0].BANG_NAME);
 		   
 		   $("#bang_id").text(result[0].BANG_ID);
@@ -111,22 +113,17 @@ $(document).ready(function () {
 					  <div class="sides">
 						<div class="active side">
 							<div class="ui large image">
-								<img id="large_img1" style="width:500px; height:400px;">
-							</div>
-						</div>
-				   	    <div class="side">
-							<div class="ui large image">
-								<img id="large_img2" src="../../image/logo.png" style="width:500px; height:400px;">
+								<img id="large_img1" src="../../image/logo.png" style="width:500px; height:400px;">
 							</div>
 						</div>
 					    <div class="side">
 							<div class="ui large image">
-								<img id="large_img3" src="../../image/mapimage.png" style="width:500px; height:400px;">
+								<img id="large_img2" src="../../image/mapimage.png" style="width:500px; height:400px;">
 							</div>
 						</div>
 					    <div class="side">
 							<div class="ui large image">
-								<img id="large_img4" src="../../image/with.jpg" style="width:500px; height:400px;">
+								<img id="large_img3" src="../../image/with.jpg" style="width:500px; height:400px;">
 							</div>
 						</div>
 					  </div>
@@ -429,9 +426,7 @@ $("#bang_delete_btn").click(function () {
 	    		data:"bang_no="+bang_no,
 	    		url:"../../group/groupDelete.hon",
 	    		success:function(result){
-	    			alert("넘어온 result :"+result);
 	    			if(result==1) {
-	    				//alert("삭제성공");
 	    				$("#delete_success_modal").modal({
 	    					onApprove : function() {
 		    					location.href="./together_main.jsp";
@@ -458,7 +453,6 @@ $("#attend_btn").click(function (){
 		    		data:param,
 		    		url:"../../group/groupAttend.hon",
 		    		success:function(result){
-		    			//alert("넘어온 result :"+result);
 		    			if(result==1){
 		    				$("#attend_modal").modal('setting', 'closable', false).modal('show');
 		    				$("#attend_modal_btn").click(function() {
@@ -467,7 +461,6 @@ $("#attend_btn").click(function (){
 		    				//fri_list();
 		    			}
 		    			else if(result==0) {
-		    				//alert("이미참석처리 되었습니다!!!");
 		    				$("#already_attend_modal").modal('show');
 		    				fri_list();
 		    			}
@@ -486,12 +479,10 @@ $("#attend_btn").click(function (){
 $("#cancle_btn").click(function (){
 	$.ajax({
 		method:"post",
-		data:"mem_id="+mem_id,
+		data:"mem_id="+mem_id+"&bang_no="+bang_no,
 		url:"../../group/groupAbsent.hon",
 		success:function(result){
-			//alert("넘어온 result :"+result);
 			if(result==1){
-				//alert("취소되었습니다.");
 				$("#groupAbsent_modal").modal('setting', 'closable', false).modal('show');
 				$("#absent_modal_btn").click(function() {
     				location.reload();
@@ -499,7 +490,6 @@ $("#cancle_btn").click(function (){
 				//fri_list();
 			}
 			else if(result==0){
-				//alert("이미 취소처리 되었습니다!!!");
 				$("#already_groupAbsent_modal").modal('show');
 				fri_list();
 			}

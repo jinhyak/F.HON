@@ -241,7 +241,11 @@ var v = "<%= url%>";
 	}
 %>
 <tr>
+<<<<<<< HEAD
 <td align="left"><h2 class="ui dividing header">댓글수: &nbsp;<%=conBoardCommentList.size() %></h2></td>
+=======
+<td align="left"><h2 class="ui dividing header">댓글수 :<%=conBoardCommentList.size() %></h2></td>
+>>>>>>> refs/heads/수퍼통합
 </tr>
 <tr>
 <td>
@@ -335,9 +339,12 @@ var v = "<%= url%>";
 		
 		<%
 		
+<<<<<<< HEAD
 	} else {
 		
 		out.print("비회원은 쓰기 권한이 없습니다.");
+=======
+>>>>>>> refs/heads/수퍼통합
 	}
 %>
 

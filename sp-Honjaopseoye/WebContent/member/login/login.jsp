@@ -15,7 +15,6 @@
 <html>
 <head>
 <title>Insert title here</title>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 	var s_name = '<%=s_name%>';
 	var s_id = '<%=s_id%>';
@@ -46,11 +45,11 @@
 						$("#mem_id").focus();
 					}
 					else if(data=='-1'){
-						alert("존재하지 않는 비밀번호 입니다.")
+						alert("비밀번호가 틀렸습니다")
 						$("#mem_pw").focus();
 					}
 					else{
-						alert("로그인에 성공하셨습니다.")
+						alert("로그인에 성공하셨습니다")
 						location.href="../../main/main/main.jsp"
 					}
 				}
@@ -111,28 +110,7 @@
 		<div class="row" style="padding-bottom:5px;">'
 			<%@ include file="./naverLogin.jsp" %>
 		</div>
-		<div class="row" style="justify-content:center; align-content:center;">
-			<a id="kakao-login-btn"></a>
-		</div>
 	</div>
-	<a href="http://developers.kakao.com/logout"></a>
-	<script type='text/javascript'>
-	//<![CDATA[
-	
-		Kakao.init('2e932cab0576b49285b3e1a591eb63f1');
-	
-		Kakao.Auth.createLoginButton({
-			container : '#kakao-login-btn',
-			success : function(authObj) {
-				alert(JSON.stringify(authObj));
-				alert(authObj);
-			},
-			fail : function(err) {
-				alert(JSON.stringify(err));
-			}
-		});
-		//]]>
-	</script>
 </div>
 	<%@include file="../../include/include/bottom.jsp" %>
 </body>

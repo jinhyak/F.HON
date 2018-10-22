@@ -155,7 +155,7 @@ $(document).ready(function(){
 								style="width:230px; height:220px;" class="hidden content">
 						</div>
 						<div class="content">
-							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">우리들은 하나</a>
+							<a class="header" href="javascript:together()">우리들은 하나</a>
 							<div class="meta">
 								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
 							</div>
@@ -272,7 +272,11 @@ $(document).ready(function(){
 
 						<div class="ui card">
 							<div class="image" style="width:260px; height:150px;">
+<<<<<<< HEAD
 								<img src="/sp-Honjaopseoye/image/gui/hit<%=i %>.jpg" style="width:258px; height:150px;">
+=======
+								<img src="/sp-Honjaopseoye/image/gui/rb<%=i %>.jpg" style="width:258px; height:150px;">
+>>>>>>> refs/heads/수퍼통합
 							</div>
 							<div class="content" >
 								<a class="header" href="<%=babHitURL %>">제목:&nbsp;<%=bab_title %></a>
@@ -336,7 +340,11 @@ $(document).ready(function(){
 
 						<div class="ui card">
 							<div class="image" style="width: 260px; hight: 150px;">
+<<<<<<< HEAD
 								<img src="/sp-Honjaopseoye/image/gui/sulh<%=i %>.jpg" style="width:258px; height:150px;">
+=======
+								<img src="/sp-Honjaopseoye/image/gui/rs<%=i %>.jpg" style="width:258px; height:150px;">
+>>>>>>> refs/heads/수퍼통합
 							</div>
 							<div class="content">
 								<a class="header" href="<%=sulHitURL %>">제목:&nbsp;<%=sul_title %></a>
@@ -400,7 +408,11 @@ $(document).ready(function(){
 						<div class="ui card">
 						
 							<div class="image" style="width: 260px; hight: 150px;">
+<<<<<<< HEAD
 								<img src="/sp-Honjaopseoye/image/gui/noln<%=i %>.jpg" style="width:258px; height:150px;">
+=======
+								<img src="/sp-Honjaopseoye/image/gui/rn<%=i %>.jpg" style="width:258px; height:150px;">
+>>>>>>> refs/heads/수퍼통합
 							</div>
 							
 							<div class="content">
@@ -431,6 +443,7 @@ $(document).ready(function(){
 	</div>
 	</div>
 	</div>
+<<<<<<< HEAD
 	   <br>
             <br>
             
@@ -498,6 +511,21 @@ $(document).ready(function(){
             <br>
             <br>
             <br>
+=======
+	<br>
+				<br>
+				<br>
+<script>
+	function together(){
+		if(mem_id!='비회원'){
+			location.href = "../main/together/together_main.jsp"
+		}
+		else{
+			alert("로그인 후 이용하시기 바랍니다.")
+		}
+	}
+</script>
+>>>>>>> refs/heads/수퍼통합
 <%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

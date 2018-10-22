@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>하단</title>
-</head>
 <body>
+<script type="text/javascript">
+	function mlist(){
+  		if(mem_id!='비회원'){
+  		location.href="/sp-Honjaopseoye/member/meminfo/meminfo.jsp";
+  		}
+  		else{
+  			alert("로그인 후 이용 가능합니다")
+  		}
+  	}
+</script>
 <div class="ui inverted vertical footer segment" style="height: 250px;padding-left: 100px;padding-right: 100px;height: auto;padding-bottom: 20px;">
 <h1 style="margin-top: 10px;color: grey;">PRODUCT</h1>
 <div class="ui divider" style="margin-bottom: 20px;"></div>
@@ -74,4 +79,3 @@
 		</div>
 	</div>
 </body>
-</html>
