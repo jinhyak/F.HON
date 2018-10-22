@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String bang_no = request.getParameter("bang_no");
-	String store_no = request.getParameter("store_no");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +11,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	//alert(mem_id);
-	$.fn.dataTable.ext.errMode = '';
     $('#dt_reserv_list').dataTable({
 		//url:'../../member/empty/getReservList.test',
 		"ajax":{ "url":"../../reservation/sel_history.hon?mem_id=<%=mem_id%>", "type":"POST" },
@@ -58,8 +53,10 @@ $(document).ready(function() {
     var table = $('#dt_reserv_list').DataTable();
     $('#dt_reserv_tbody').on('click', 'tr', function (e, dt, type, indexes) {
 	    var data = table.row(this).data();
-        //alert('1개 행이 선택됨, Row index : '+table.row(this).index());
-        //alert(data.RESERV_NO+', '+data.BANG_NO+', '+data.BANG_NAME+', '+data.STORE_NAME);
+        alert('1개 행이 선택됨, Row index : '+table.row(this).index());
+        alert(data.RESERV_NO+', '+data.BANG_NO+', '+data.BANG_NAME+', '+data.STORE_NAME);
+        //insert here
+        
     });
 });
 </script>

@@ -43,6 +43,13 @@ public class StoreDao {
 		list = sqlSessionTemplate.selectList("selectStoreAll", pMap);
 		return list;
 	}
+	//별점순 보기
+	public List<Map<String, Object>> searchStoreAllStar(Map<String, Object> pMap) throws IOException{
+		List<Map<String,Object>> list = null;
+		logger.info("selectStoreAll호출 성공");
+		list = sqlSessionTemplate.selectList("selectStoreAllStar", pMap);
+		return list;
+	}
 	
 	//상세보기
 	public List<Map<String, Object>> storeDetail(String store_no) {
@@ -64,14 +71,6 @@ public class StoreDao {
 		logger.info("storeSetScore호출 성공");
 		result = sqlSessionTemplate.update("storeSetScore",pMap);		
 		return result;
-	}
-	//지도 클러스터 뿌려질 목록
-	public List<Map<String, Object>> store_select(Map<String, Object> pMap) {
-		logger.info("store_select호출 성공");
-		List<Map<String, Object>> storeList = null;
-		storeList = sqlSessionTemplate.selectList("store_select", pMap);
-		//logger.info(storeList);
-		return storeList;
 	}
 }
 	

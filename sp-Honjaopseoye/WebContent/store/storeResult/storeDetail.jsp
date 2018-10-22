@@ -10,14 +10,15 @@
 	String tel 			= null;
 	String addr 		= null;
 	String name 		= null;
-	String business	= null;
+	String business		= null;
 	String introduce	= null;
-	int score			= 0;
+	double score		= 0.0;
 	int hit				= 0;
 	String img			= null;
 	String homepage		= null;
 	String price		= null;
 	String no 			= null;
+	
 	for(int i=0;i<list.size();i++){
 		no  = list.get(i).get("STORE_NO").toString();
 		tel = list.get(i).get("STORE_TEL").toString();
@@ -25,20 +26,26 @@
 		name = list.get(i).get("STORE_NAME").toString();
 		business = list.get(i).get("STORE_BUSINESS").toString();
 		introduce = list.get(i).get("STORE_INTRODUCE").toString();
-		score = Integer.parseInt((list.get(i).get("STORE_SCORE").toString()));
+		score = Double.parseDouble((list.get(i).get("STORE_SCORE").toString()));
 		hit = Integer.parseInt((list.get(i).get("STORE_HIT").toString()));
 		img = list.get(i).get("STORE_IMG").toString();
 		homepage = list.get(i).get("STORE_HOMEPAGE").toString();
 		price = list.get(i).get("STORE_PRICE").toString();
-		
 	}
-
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title><%=name%></title>
+<style type="text/css">
+	.starText{
+		color: black;
+	}
+	.scoreText{
+		font-size: large;
+	}
+</style>
 </head>
 <script type="text/javascript">
 
@@ -73,7 +80,7 @@ function showMap(){
 	  };
 		
 		 mapContainer.style.width = "400px";
-		 mapContainer.style.height = "500px"; 
+		 mapContainer.style.height = "400px"; 
 
 	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	 map = new daum.maps.Map(mapContainer, mapOption);
@@ -110,23 +117,60 @@ function showMap(){
 		geocoder.addressSearch(addr,callback);
 	 
 }/////////end of showMap
+function chooseMenu(){
+	$("#menuBtns").find("button").click(function(){
+		$("#menuBtns").find("button").attr("class","ui button")
+		$(this).attr('class','ui active button')
+		
+	});
+}/////////////////end of choseMenu
+function searchAll(){
+	if($.trim($('#searchWord').val())==""){
+		alert("검색어를 입력하세요");
+		return;
+	}///end of if
+	else{
+	
+		location.href = "/sp-Honjaopseoye/store/storeSearchAll.hon?searchWord="+
+						$.trim($('#searchWord').val())+
+						"&gubun="+$('#menuBtns').find(".active").val();
+	
+	}/////end of else
+}/////end of searchAll
 
 </script>
 <body style="min-width: 1000px;">
 <%@include file="../../include/include/subtop.jsp"%>
-<div class="ui container" style="margin-top: 100px;height:850px">
+<div class="ui container" style="margin-top: 65px;height:850px">
+	<div class="ui one column grid">
+		<div class="column" style="padding-bottom: 0px;">
+			<div class="ui teal buttons" id="menuBtns" style="width: 282px;">
+  				<button class="ui active button" id="matjip" value="21">맛집</button>
+  				<button class="ui button" id="suljip" value="22">술집</button>
+  				<button class="ui button" id="nolgot" value="23">놀곳</button>
+			</div>
+		</div>
+		<div class="column" style="padding-top: 0px;">
+			<div class="ui input">	
+  				<input type="text" placeholder="검색어를 입력하세요" id="searchWord" name="searchWord" style="width: 210px;">
+ 				<button class="ui blue button" id="searchButton" onclick="searchAll()"style="width: 72px;">검색</button>
+			</div>
+		</div>
+	</div>
 	<div class="ui two column grid">
 		<!-- 가게정보 -->
 		<div class="column">
 			<h1 class="ui header" id="store_name"><%=name %></h1>
 			<br>
-			<i class="eye icon">&nbsp;<%=hit %></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="ui star rating" data-rating="<%=score%>" data-max-rating="5"></div>
-			<button class="circular ui icon button" onclick="$('.ui.modal').modal('show')">
-  				<i class="star outline icon"></i>
-  				별점주기
+			<i class="eye icon">&nbsp;<%=hit %></i><br>
+			<div class="ui star rating" data-rating="<%=Math.round(score)%>" data-max-rating="5"></div>
+			<span class="scoreText"><%=score %></span>&nbsp;&nbsp;&nbsp;
+			<button class="circular ui icon yellow button" onclick="$('.ui.modal').modal('show')">
+  				<span class="starText">
+  					<i class="star icon"></i>
+  					별점주기
+  				</span>
 			</button>
-			평점 4.5
 			
 		<div class="ui divider"></div>
 		<table class="ui very basic table"style="height: 400px;">
@@ -174,6 +218,7 @@ $(document).ready(function(){
 		    initialRating: 0
 	});
 	showMap();
+	chooseMenu();
 })////////////end of ready
 </script>
 <!--======================== 별점주기 모달 =================-->
