@@ -43,6 +43,13 @@ public class StoreDao {
 		list = sqlSessionTemplate.selectList("selectStoreAll", pMap);
 		return list;
 	}
+	//별점순 보기
+	public List<Map<String, Object>> searchStoreAllStar(Map<String, Object> pMap) throws IOException{
+		List<Map<String,Object>> list = null;
+		logger.info("selectStoreAll호출 성공");
+		list = sqlSessionTemplate.selectList("selectStoreAllStar", pMap);
+		return list;
+	}
 	
 	//상세보기
 	public List<Map<String, Object>> storeDetail(String store_no) {

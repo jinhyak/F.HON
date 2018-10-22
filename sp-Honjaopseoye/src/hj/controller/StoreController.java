@@ -2,7 +2,7 @@ package hj.controller;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -119,11 +119,18 @@ public class StoreController{
 	//가게 전체 검색
 	@RequestMapping(value= {"/storeSearchAll.hon"},produces="text/html; charset=UTF-8")
 	public String storeSearchAll(Model mod,@RequestParam Map<String,Object> pMap, HttpServletRequest req) {
-		
+		Map<String,Object> rMap = new HashMap<String,Object>();
 		pMap.put("searchWord", req.getParameter("searchWord"));
 		pMap.put("gubun", req.getParameter("gubun"));
 		pMap.put("store_business", req.getParameter("store_business"));
 		pMap.put("store_price", req.getParameter("store_price"));
+		rMap.put("searchWord", req.getParameter("searchWord"));
+		rMap.put("gubun", req.getParameter("gubun"));
+		rMap.put("store_business", req.getParameter("store_business"));
+		rMap.put("store_price", req.getParameter("store_price"));
+
+		logger.info(rMap);
+		
 		List<Map<String,Object>> list = null;
 		try {
 			list = storeLogic.searchStoreAll(pMap);
@@ -131,9 +138,39 @@ public class StoreController{
 			e.printStackTrace();
 		}
 		String searchWord = (String)req.getParameter("searchWord");
-		mod.addAttribute("searchWord",searchWord);
+	
 		logger.info(searchWord);
+		mod.addAttribute("condition",rMap);
 		mod.addAttribute("list",list);//모델은 셋뷰네임 안하고 바로 경로써줌
+		
+		return "forward:/store/storeResult/storeAll.jsp";
+	}
+	//별점순 검색
+	@RequestMapping(value= {"/storeSearchAllStar.hon"},produces="text/html; charset=UTF-8")
+	public String storeSearchAllStar(Model mod,@RequestParam Map<String,Object> pMap, HttpServletRequest req) {
+		Map<String,Object> rMap = new HashMap<String,Object>();
+		pMap.put("searchWord", req.getParameter("searchWord"));
+		pMap.put("gubun", req.getParameter("gubun"));
+		pMap.put("store_business", req.getParameter("store_business"));
+		pMap.put("store_price", req.getParameter("store_price"));
+		rMap.put("searchWord", req.getParameter("searchWord"));
+		rMap.put("gubun", req.getParameter("gubun"));
+		rMap.put("store_business", req.getParameter("store_business"));
+		rMap.put("store_price", req.getParameter("store_price"));
+		logger.info(rMap);
+		
+		List<Map<String,Object>> list = null;
+		try {
+			list = storeLogic.searchStoreAllStar(pMap);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String searchWord = (String)req.getParameter("searchWord");
+		
+		logger.info(searchWord);
+		mod.addAttribute("condition",rMap);
+		mod.addAttribute("list",list);//모델은 셋뷰네임 안하고 바로 경로써줌
+		
 		return "forward:/store/storeResult/storeAll.jsp";
 	}
 	//가게 정보 상세보기

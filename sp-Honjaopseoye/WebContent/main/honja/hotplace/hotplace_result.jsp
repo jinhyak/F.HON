@@ -45,7 +45,7 @@
   		<div class="image">
     		<img src="/sp-Honjaopseoye/image/storeImg/<%=img%>"style="width: 210px;height: 140px;">
   		</div>
-  		<div class="content">
+  		<div class="content"style="display:inline-block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
     			<a class="header"><%=name %></a>
     		<div class="meta">
 	    		<%=business %> - <%=littleAddr %><br>

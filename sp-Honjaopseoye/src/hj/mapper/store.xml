@@ -50,7 +50,7 @@
             NVL(store_tel,'없음')as"STORE_TEL",store_addr,store_name,
             NVL(store_business,'없음')as"STORE_BUSINESS",
             NVL(store_introduce,'없음')as"STORE_INTRODUCE",
-            store_score,store_hit,NVL(store_img,'noimg.png')as"STORE_IMG",
+            store_score,store_hit,store_img,
             NVL(store_homepage,'없음')as"STORE_HOMEPAGE",
             NVL(store_price,'없음')as"STORE_PRICE",store_no
           FROM store
@@ -59,8 +59,7 @@
 	<!-- 8건만 핫플리스트에 띄우는 것만 검색하는 select문임 -->
 	<select id="selectStore8" parameterType="map" resultType="map">
 		SELECT
-			store_score, store_no,
-			nvl(store_img,'noimg.png')as "STORE_IMG",
+			store_score, store_no,store_img,
 			nvl(store_price,'가격정보 없음')as "STORE_PRICE",
 			store_name,store_addr,store_hit,store_business
  		FROM (select * from store 
@@ -70,21 +69,16 @@
  			</if>
  		ORDER BY store_hit desc)
  		<![CDATA[WHERE rownum <= 8 ]]>
- 		<if test="store_business != null">
-			<if test="store_business !=''">
 				AND store_business like '%'||#{store_business}||'%' 
-			</if>
 			<if test="store_price != ''">
 				AND store_price = #{store_price} 
 			</if>
-		</if>
 	</select>
 	<!-- 8개말고 전부보기 -->
 	<!-- 메인에서 전체보기 누르거나 정보볼때 위에 검색어만 있게 -->
 	<select id="selectStoreAll" parameterType="map" resultType="map">
 		SELECT
-			store_score, store_no,
-			nvl(store_img,'noimg.png')as "STORE_IMG",
+			rownum,store_score, store_no,store_img,
 			nvl(store_price,'가격정보 없음')as "STORE_PRICE",
 			store_name,store_addr,store_hit,store_business
  		FROM (select * from store 
@@ -92,15 +86,50 @@
  				 WHERE REGEXP_LIKE(store_name,#{searchWord})
  				 OR REGEXP_LIKE(store_keyword,#{searchWord}) 
  			</if>
- 		ORDER BY nvl(store_score,0) desc)
- 		<if test="store_price != null">
- 			<if test="store_business !=''">
-				WHERE store_business like '%'||#{store_business}||'%' 
+ 		ORDER BY store_hit desc)
+ 		<where>
+ 			<if test="store_business !='' and store_price != null">
+				AND store_business like '%'||#{store_business}||'%' 
 			</if>
-			<if test="store_price != ''">
+			<if test="store_price != '' and store_price != null">
 				AND store_price = #{store_price} 
 			</if>
-		</if>
+
+			<if test="store_price == null">
+				AND store_business like '%'||#{store_business}||'%' 
+			</if>
+			<if test='start>0'>
+	 			<![CDATA[ AND a.rno >= #{start} ]]>
+	 		</if>		
+	 		<if test='end>0'>
+	     		<![CDATA[ AND a.rno <= #{end} ]]>
+	 		</if>	
+		</where>
+	</select>
+	<!-- 별점순보기 -->
+	<select id="selectStoreAllStar" parameterType="map" resultType="map">
+		SELECT
+			rownum,store_score, store_no,store_img,
+			nvl(store_price,'가격정보 없음')as "STORE_PRICE",
+			store_name,store_addr,store_hit,store_business
+ 		FROM (select * from store 
+ 			<if test="searchWord != ''">
+ 				 WHERE REGEXP_LIKE(store_name,#{searchWord})
+ 				 OR REGEXP_LIKE(store_keyword,#{searchWord}) 
+ 			</if>
+ 		ORDER BY store_score desc)
+ 		<where>
+ 			<if test="store_business !='' and store_price != null">
+				AND store_business like '%'||#{store_business}||'%' 
+			</if>
+			<if test="store_price != '' and store_price != null">
+				AND store_price = #{store_price} 
+			</if>
+
+			<if test="store_price == null">
+				AND store_business like '%'||#{store_business}||'%' 
+			</if>
+		</where>
 	</select>
 	<!-- 가게 별점 주기 -->
 	<update id="storeSetScore" parameterType="map">
