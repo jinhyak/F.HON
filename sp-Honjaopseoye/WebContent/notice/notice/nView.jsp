@@ -178,7 +178,7 @@
 													} else if (noti_image != null) {
 												%>
 
-												<img id="imgs" src="/sp-Honjaopseoye/image/<%=noti_image%>">
+												<img id="imgs" src="/sp-Honjaopseoye/images/<%=noti_image%>">
 												<%
 													}
 												%>
@@ -259,7 +259,7 @@ function remover() {
 	    	if (pw == noti_pw) {
 				location.href = "/sp-Honjaopseoye/menu/nDelete.hon?NOTI_NO=" + noti_no;
 			} else if (pw != noti_pw) {
-				alert("비밀번호를 제대로 입력해주세요.");
+				alert("비밀번호가 올바르지 않습니다.");
 				return false;
 			}
 	      },
@@ -301,7 +301,7 @@ function remover() {
 	}
 	$(document).ready(function() {
 		if (level == 'master') {
-			alert(level)
+			//alert(level)
 			$("#noti_modify").show();
 			$("#noti_delete").show();
 	

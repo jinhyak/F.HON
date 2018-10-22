@@ -194,7 +194,7 @@ textarea {
 		function modify(){
 			var noti_content = $("#noti_content").val();
 			var noti_title = $("#noti_title").val();
-			alert(noti_title)
+			//alert(noti_title)
 			var noti_pw = $("#noti_pw").val();
 		if(noti_content == null || noti_content==""){
 			alert('글을 작성해 주세요.');

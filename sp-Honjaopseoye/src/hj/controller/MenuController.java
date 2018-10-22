@@ -47,45 +47,45 @@ public class MenuController {
 	private MenuDao menuDao = null;
 
 	/* 공지사항 글 등록 */
-	@RequestMapping(value = { "/nInsert.hon" }, produces = "text/html; charset=UTF-8")
-	public String nInsert(MultipartHttpServletRequest mreq, MultipartFile noti_file,  @RequestParam Map<String, Object> pMap) {
-		logger.info("nInsert 호출 성공");
-		// 파일 저장 경로
-		String path = "C:\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\image";
-		String fName = null;
-		File file = new File(path);
-		UUID uuid = UUID.randomUUID();
-		Iterator<String> files = mreq.getFileNames();
-		if(!noti_file.isEmpty()) {
-			String uploadFile = files.next();
-			MultipartFile multifile = mreq.getFile(uploadFile);
-			String fileName = multifile.getOriginalFilename();
-			logger.info(fileName);
-			fName = uuid + "_" + fileName;
-			logger.info("fName : " + fName);
-			File new_File = new File(path, fName);
-			
-			try {
-				multifile.transferTo(new_File);
-			} catch (IOException e) {
-				logger.info("error : " + e.toString());
-			}
-		}else {
-			fName="";	
-		}
-			
-		// DB연동 처리
-		int result = 0;
-		logger.info(pMap.get("noti_title"));
-		logger.info(pMap.get("noti_writer"));
-		logger.info(pMap.get("noti_content"));
-		logger.info(pMap.get("noti_category"));
-		logger.info(pMap.get("noti_pw"));
-		pMap.put("fileName", fName);
-		result = menuDao.nInsert(pMap);
+	   @RequestMapping(value = { "/nInsert.hon" }, produces = "text/html; charset=UTF-8")
+	   public String nInsert(MultipartHttpServletRequest mreq, MultipartFile noti_file,  @RequestParam Map<String, Object> pMap) {
+	      logger.info("nInsert 호출 성공");
+	      // 파일 저장 경로
+	      String path = "C:\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\image";
+	      String fName = null;
+	      File file = new File(path);
+	      UUID uuid = UUID.randomUUID();
+	      Iterator<String> files = mreq.getFileNames();
+	      if(!noti_file.isEmpty()) {
+	         String uploadFile = files.next();
+	         MultipartFile multifile = mreq.getFile(uploadFile);
+	         String fileName = multifile.getOriginalFilename();
+	         logger.info(fileName);
+	         fName = uuid + "_" + fileName;
+	         logger.info("fName : " + fName);
+	         File new_File = new File(path, fName);
+	         
+	         try {
+	            multifile.transferTo(new_File);
+	         } catch (IOException e) {
+	            logger.info("error : " + e.toString());
+	         }
+	      }else {
+	         fName="";   
+	      }
+	         
+	      // DB연동 처리
+	      int result = 0;
+	      logger.info(pMap.get("noti_title"));
+	      logger.info(pMap.get("noti_writer"));
+	      logger.info(pMap.get("noti_content"));
+	      logger.info(pMap.get("noti_category"));
+	      logger.info(pMap.get("noti_pw"));
+	      pMap.put("fileName", fName);
+	      result = menuDao.nInsert(pMap);
 
-		return "redirect:/notice/notice/notice.jsp";// 꼭 확인
-	}
+	      return "redirect:/notice/notice/notice.jsp";// 꼭 확인
+	   }
 
 	/* 공지사항 글 수정 */
 	@RequestMapping(value = "/nUpdate.hon")

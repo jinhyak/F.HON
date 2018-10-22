@@ -370,11 +370,7 @@ public class BoardDao {
 				return getNolBoardHitMax;
 			}
 			
-<<<<<<< HEAD
-			// ��� ī��Ʈ
-=======
 			// 댓글 카운트
->>>>>>> refs/heads/수퍼통합
 			
 
 }

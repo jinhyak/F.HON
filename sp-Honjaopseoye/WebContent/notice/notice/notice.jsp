@@ -142,7 +142,7 @@
            //////// 로우값 가져오기
                var clickrow = table.row(this).data();
                
-           alert(clickrow.NOTI_NO+", "+clickrow.NOTI_TITLE+", "+clickrow.NOTI_CATEGORY+", "+clickrow.NOTI_DATE+", "+clickrow.NOTI_HIT+", "+clickrow.NOTI_WRITER);
+           //alert(clickrow.NOTI_NO+", "+clickrow.NOTI_TITLE+", "+clickrow.NOTI_CATEGORY+", "+clickrow.NOTI_DATE+", "+clickrow.NOTI_HIT+", "+clickrow.NOTI_WRITER);
                location.href="../../menu/noticeDetail.hon?NOTI_NO="+clickrow.NOTI_NO;
            }
            else {

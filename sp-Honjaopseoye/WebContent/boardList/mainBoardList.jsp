@@ -155,7 +155,7 @@ $(document).ready(function(){
 								style="width:230px; height:220px;" class="hidden content">
 						</div>
 						<div class="content">
-							<a class="header" href="javascript:together()">우리들은 하나</a>
+							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">우리들은 하나</a>
 							<div class="meta">
 								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
 							</div>
@@ -196,7 +196,7 @@ $(document).ready(function(){
 				</div>
 				<div class="four wide column" style="padding-top: 5px;">
 					<div class="content" style="text-align: left">
-						<strong>혼자가 지겨운 그들의 이야기</strong> 
+						<strong>혼밥이 지겨운 그들의 이야기</strong> 
 						<p></p>
 						<div class="meta" style="text-align: left;">
 							혼자하는 생활이 많이 외롭죠?
@@ -272,11 +272,7 @@ $(document).ready(function(){
 
 						<div class="ui card">
 							<div class="image" style="width:260px; height:150px;">
-<<<<<<< HEAD
 								<img src="/sp-Honjaopseoye/image/gui/hit<%=i %>.jpg" style="width:258px; height:150px;">
-=======
-								<img src="/sp-Honjaopseoye/image/gui/rb<%=i %>.jpg" style="width:258px; height:150px;">
->>>>>>> refs/heads/수퍼통합
 							</div>
 							<div class="content" >
 								<a class="header" href="<%=babHitURL %>">제목:&nbsp;<%=bab_title %></a>
@@ -340,11 +336,7 @@ $(document).ready(function(){
 
 						<div class="ui card">
 							<div class="image" style="width: 260px; hight: 150px;">
-<<<<<<< HEAD
 								<img src="/sp-Honjaopseoye/image/gui/sulh<%=i %>.jpg" style="width:258px; height:150px;">
-=======
-								<img src="/sp-Honjaopseoye/image/gui/rs<%=i %>.jpg" style="width:258px; height:150px;">
->>>>>>> refs/heads/수퍼통합
 							</div>
 							<div class="content">
 								<a class="header" href="<%=sulHitURL %>">제목:&nbsp;<%=sul_title %></a>
@@ -408,11 +400,7 @@ $(document).ready(function(){
 						<div class="ui card">
 						
 							<div class="image" style="width: 260px; hight: 150px;">
-<<<<<<< HEAD
 								<img src="/sp-Honjaopseoye/image/gui/noln<%=i %>.jpg" style="width:258px; height:150px;">
-=======
-								<img src="/sp-Honjaopseoye/image/gui/rn<%=i %>.jpg" style="width:258px; height:150px;">
->>>>>>> refs/heads/수퍼통합
 							</div>
 							
 							<div class="content">
@@ -443,89 +431,73 @@ $(document).ready(function(){
 	</div>
 	</div>
 	</div>
-<<<<<<< HEAD
-	   <br>
-            <br>
-            
-            <h4 class="ui horizontal divider header" >
-               <i class="heart outline icon"></i>
-                 혼족들을 위해 리뷰를 작성해 주세요!!
-            </h4>
-            <br>
-            <br>
-            <br>
-            <!-- 리뷰 게시판 설명 -->
-            <table align="center" width="1200px" height="250px">
-            <tr>
-            <td style="width:750px;"><img src="/sp-Honjaopseoye/image/gui/bottombab.jpg" style="width:750px; height:250px;"></td>
-            <td style="width:450px;"> <h4><i class="edit outline icon"></i><font size="4">혼밥 리뷰</font></h4>
-            <pre><strong>
+	<br>
+				<br>
+				
+				<h4 class="ui horizontal divider header" >
+ 				  <i class="heart outline icon"></i>
+  					혼족들을 위해 리뷰를 작성해 주세요!!
+				</h4>
+				<br>
+				<br>
+				<br>
+				<!-- 리뷰 게시판 설명 -->
+				<table align="center" width="1200px" height="250px">
+				<tr>
+				<td style="width:750px;"><img src="/sp-Honjaopseoye/image/gui/bottombab.jpg" style="width:750px; height:250px;"></td>
+				<td style="width:450px;"> <h4><i class="edit outline icon"></i><font size="4">혼밥 리뷰</font></h4>
+				<pre><strong>
 혼밥이 일상이 되어버린 시대...
 그들에게 작은 선물 하나를 주는건 어떤가요?
 작은 리뷰 하나는 그들에게 큰 행복을 줄 수 있습니다.
 지금 시작해 보세요! 우리들만의 혼밥 커뮤니티!
-            </strong>
-            </pre>
-            <img src="../image/logo.png" style="width: 170px; height: 60px;">
-            </td>
-            </tr>
-            </table>
-            <br>
-            <br>
-            <br>
-            <table align="center" width="1200px" height="250px">
-            <tr>
-            <td style="width:450px;"> <h4><i class="edit outline icon"></i><font size="4">혼술 리뷰</font></h4>
-            <pre><strong>
+				</strong>
+				</pre>
+				<img src="../image/logo.png" style="width: 170px; height: 60px;">
+				</td>
+				</tr>
+				</table>
+				<br>
+				<br>
+				<br>
+				<table align="center" width="1200px" height="250px">
+				<tr>
+				<td style="width:450px;"> <h4><i class="edit outline icon"></i><font size="4">혼술 리뷰</font></h4>
+				<pre><strong>
 가슴속 깊이 터지는 작은 감성 하나..
 그 작은 감성도 자신의 소중한 가치 입니다.
 자신의 감성을 느끼며, 작은 여유의 소중함을 
 지금 느껴보세요!! 우리들만의 혼술 커뮤니티!
-            </strong>
-            </pre>
-            <img src="../image/logo.png" style="width: 170px; height: 60px;">
-            </td>
-            <td style="width:750px;"><img src="/sp-Honjaopseoye/image/gui/bottomsul.jpg" style="width:750px; height:250px;"></td>
-            </tr>
-            </table>
-            <br>
-            <br>
-            <br>
-            <table align="center" width="1200px" height="250px">
-            <tr>
-            <td style="width:750px;"><img src="/sp-Honjaopseoye/image/gui/bottomnol.jpg" style="width:750px; height:250px;"></td>
-                        <td style="width:450px;"> <h4><i class="edit outline icon"></i><font size="4">혼놀 리뷰</font></h4>
-            <pre><strong>
+				</strong>
+				</pre>
+				<img src="../image/logo.png" style="width: 170px; height: 60px;">
+				</td>
+				<td style="width:750px;"><img src="/sp-Honjaopseoye/image/gui/bottomsul.jpg" style="width:750px; height:250px;"></td>
+				</tr>
+				</table>
+				<br>
+				<br>
+				<br>
+				<table align="center" width="1200px" height="250px">
+				<tr>
+				<td style="width:750px;"><img src="/sp-Honjaopseoye/image/gui/bottomnol.jpg" style="width:750px; height:250px;"></td>
+								<td style="width:450px;"> <h4><i class="edit outline icon"></i><font size="4">혼놀 리뷰</font></h4>
+				<pre><strong>
 자신의 즐거움은 모두의 즐거움이 될 수 있습니다.
 혼자 즐기는 재밌는 일상을 모두와 함께 공유해 보세요!!
 당신은 그들의 행복 전도사가 될 수 있습니다.
 지금 전달 하세요!! 우리들만의 혼놀 커뮤니티!
-            </strong>
-            </pre>
-            <img src="../image/logo.png" style="width: 170px; height: 60px;">
-            </td>
-            </tr>
-            </table>
-            <!-- 끝 -->
-            <br>
-            <br>
-            <br>
-            <br>
-=======
-	<br>
+				</strong>
+				</pre>
+				<img src="../image/logo.png" style="width: 170px; height: 60px;">
+				</td>
+				</tr>
+				</table>
+				<!-- 끝 -->
 				<br>
 				<br>
-<script>
-	function together(){
-		if(mem_id!='비회원'){
-			location.href = "../main/together/together_main.jsp"
-		}
-		else{
-			alert("로그인 후 이용하시기 바랍니다.")
-		}
-	}
-</script>
->>>>>>> refs/heads/수퍼통합
+				<br>
+				<br>
 <%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

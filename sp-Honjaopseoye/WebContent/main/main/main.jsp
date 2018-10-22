@@ -97,7 +97,7 @@ var smem_name = '<%=smem_name%>'
 		<% 	
 			}else {
 		%>
-			<jsp:include page="../../include/include/top.jsp" />
+			<%@ include file="../../include/include/top.jsp" %>
 		<% 	
 			}
 		%>

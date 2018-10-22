@@ -145,7 +145,7 @@
     	select * from store
     	order by DBMS_RANDOM.RANDOM)
 		where
-		<![CDATA[ rownum <= 12000 ]]> 
+		<![CDATA[ rownum <= 5000 ]]> 
 	</select>	
 </mapper>
 
