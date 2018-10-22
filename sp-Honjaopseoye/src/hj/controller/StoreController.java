@@ -130,7 +130,7 @@ public class StoreController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		String searchWord = (String)pMap.get("searchWord");
+		String searchWord = (String)req.getParameter("searchWord");
 		mod.addAttribute("searchWord",searchWord);
 		logger.info(searchWord);
 		mod.addAttribute("list",list);//모델은 셋뷰네임 안하고 바로 경로써줌

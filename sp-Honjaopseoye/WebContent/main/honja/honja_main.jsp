@@ -35,8 +35,8 @@ function showMap(){
       level: 5 // 지도의 확대 레벨
   };
 	
-	 mapContainer.style.width = "1100px";
-	 mapContainer.style.height = "509px"; 
+	 mapContainer.style.width = "1850px";
+	 mapContainer.style.height = "709px"; 
 
 //지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
  map = new daum.maps.Map(mapContainer, mapOption); 
@@ -46,21 +46,7 @@ var zoomControl = new daum.maps.ZoomControl();
 map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 }///////////////////////end of showMap
 
-///////////////////////////////////검색 기능 함수
-function search8(){
-	if($.trim($('#searchWord').val())==""){
-		alert("검색어를 입력하세요");
-		return;
-	}
-	else{
-		getStorePreview();		
-		 $('.ui.sidebar').sidebar({
-				context: $('.top.segment')
-				 ,dimPage: false //사이드바 열때 화면색 변하는거 막음
-				 ,closable : false //pusher눌렀을때 sidebar 들어가는거 막음
-			}).sidebar('show');
-	}////////////end of else
-}///////////////////end of search8
+
 function searchAll(){
 	if($.trim($('#searchWord').val())==""){
 		alert("검색어를 입력하세요");
@@ -141,8 +127,7 @@ function chooseMenu(){
 	$("#menuBtns").find("button").click(function(){
 		$("#menuBtns").find("button").attr("class","ui button")
 		$(this).attr('class','ui active button')
-		//var storeKind = $(this).val()
-		//alert(storeKind)
+		
 		var url = "./honja_menu/"+$("#menuBtns").find(".active").attr('id')+"Kind.jsp";
 		$.ajax({
 				method:"POST"
@@ -217,29 +202,21 @@ function getStorePreview(){
 
 <%@include file="../../include/include/subtop.jsp" %>
 
-<div class="ui basic segment">
+<div class="ui basic segment" style="margin-top: 50px;">
 <!-- ====================================검색과 글쓰기 버튼 ====================================-->
-  <div class="ui basic segment text container one column grid">
-	<div class="column"style="padding-bottom: 0px;">
-  		<!--===== 밥,술,놀 매뉴 버튼 =======-->
-  	   	<div class="three ui fluid buttons" id="menuBtns">
- 			<button class="ui active button" id="matjip" value="21">맛집</button>
-  			<button class="ui button" id="suljip" value="22">술집</button>
-  			<button class="ui button" id="nolgot" value="23">놀곳</button>
-		</div>
-  	   	<!--===== 밥,술,놀 매뉴 버튼 끝 =====-->
-  	</div>
-    	<input type="hidden" readonly="readonly" id="storeKind" name="storeKind" value="21">
-  	<div class="column" style="padding-top: 0px;padding-bottom: 0px;">
-  		<!-- ======== 검색창 ========-->
-		<div class="ui fluid action input">	
-  			<input type="text" placeholder="키워드를 선택 후 검색해보세요" id="searchWord" name="searchWord">
- 			<button class="ui button" id="searchButton" onclick="search8()">검색</button>
-		</div>
-		<!-- ======= 검색창 끝 =======-->
-    </div>
-    <div class="column" style="padding-top: 4px;">
+  <div class="ui fluid gray menu">
+  	<div class="ui simple item">가게 검색 조건</div>
+  	<!--===== 밥,술,놀 매뉴 버튼 =======-->
+  	<div class="ui simple item">
+  	<div class="three ui buttons" id="menuBtns">
+		<button class="ui active button" id="matjip" value="21">맛집</button>
+		<button class="ui button" id="suljip" value="22">술집</button>
+		<button class="ui button" id="nolgot" value="23">놀곳</button>
+	</div>
+	</div>
+	<!--===== 밥,술,놀 매뉴 버튼 끝 =====-->
     <!--===== 상세검색 드롭다운 시작 ======-->
+    <div class="ui simple item">
     <div id="d_search">
     	<select class="ui dropdown" id="store_business">
   			<option value="">업종</option>
@@ -260,18 +237,22 @@ function getStorePreview(){
   			<option value="5만원~">5만원~</option>
 		</select>
     </div>
-    <!--===== 상세검색 드롭다운 끝 ========-->
     </div>
+    <!--===== 상세검색 드롭다운 끝 ========-->
+    <!-- ======== 검색창 ========-->
+    <div class="right fluid item">
+		<div class="ui  input">	
+  			<input type="text" placeholder="키워드를 선택 후 검색해보세요" id="searchWord" name="searchWord" style="width: 380px; min-width: 150px;">
+ 			<button class="ui button" id="searchButton" onclick="searchAll()"style="width: 82px;">검색</button>
+		</div>
+	</div>
+		<!-- ======= 검색창 끝 =======-->
   </div>
 <!-- ===================================검색과 글쓰기 버튼 끝 ===================================-->
 <!--=================================== 지도와 핫플레이스 목록================================  -->
-<div class="ui basic segment container">
-   		
-   	
-  		<button class="ui toggle right floated active button" id="showHot" onclick="showHotplace()">핫플보기</button>
-  		<button class="ui right floated button" id="showAll" onclick="searchAll()">전체보기</button>
+<div class="ui basic segment fluid container"style="margin-top: 0px;padding-top: 0px;">
+	<button class="ui toggle right floated active button" id="showHot" onclick="showHotplace()">핫플보기</button>
   		
- 		
   <div class="ui top attached segment pushable">
   	<div class="ui right very wide sidebar" id="sidebar" style="padding-top: 5px;width: 485px;">
   		<!-- 핫플레이스 뿌려줄 div grid태그 -->

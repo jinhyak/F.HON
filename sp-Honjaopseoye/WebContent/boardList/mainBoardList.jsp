@@ -2,11 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>	
 <%
+
+
+	// 그냥 login
 	String smem_name = null;
 		List<Map<String, Object>> memList = (List<Map<String, Object>>) session.getAttribute("memList");
 	if ((List<Map<String, Object>>)memList != null) {
 		smem_name = memList.get(0).get("MEM_NAME").toString();
 	}
+	
+	// naver login
+	Map<String, Object> pMap = null;
+	if(session.getAttribute("nMem") != null){
+		pMap = (Map<String, Object>)session.getAttribute("nMem");
+		smem_name = pMap.get("nickname").toString();
+	}
+	
 %>
     
     
@@ -20,18 +31,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	$("#sul_go").click(function(){
-		location.href="./sulBoard.jsp";
-	});
-	
-	$("#bab_go").click(function(){
-		location.href="./babBoard.jsp";
-	});
-	
-	$("#nol_go").click(function(){
-		location.href="./nolBoard.jsp";
-	});
-	
 	$("#g_insert").click(function(){
 		location.href="./write.jsp";
 	});
@@ -40,20 +39,115 @@ $(document).ready(function(){
 
 </script>
 <body>
-
-
 <br>
 <br>
 <br>
+<br>
 
-<!-- 테이블 위 -->
-<table align="center" width="900px" height="100px">
+<table align="center" border="1" width="600px" height="300px">
 <tr>
 <td align="center">
-<font size="10" color="black">혼밥 게시판</font>
+혼밥 게시판 타이틀
 </td>
 </tr>
 </table>
+
+
+<!--  -->
+
+<table align="center" width="1000px" height="600px">
+<tr>
+<td>
+<div class="ui grid" align="center" style="text-align:center">
+        <div class="four wide column">
+        
+                <div class="ui card">
+  <div class="ui slide masked reveal image" style="width:350px; height:150px;">
+    <img src="./gui/i1.jpg" width="300px" height="300px" class="visible content">
+    <img src="./gui/i2.jpg" width="300px" height="300px" class="hidden content">
+  </div>
+  <div class="content">
+    <a class="header" href="./babBoard.jsp">평범한 일상</a>
+    <div class="meta">
+      <span class="date">혼밥 리뷰를 확인해 보세요!</span>
+    </div>
+  </div>
+</div>
+        
+        </div>
+        <div class="four wide column">
+        
+                <div class="ui card">
+  <div class="ui slide masked reveal image" style="width:350px; height:150px;">
+    <img src="./gui/i3.jpg" width="300px" height="300px" class="visible content">
+    <img src="./gui/i4.jpg" width="300px" height="300px" class="hidden content">
+  </div>
+  <div class="content">
+    <a class="header" href="./sulBoard.jsp">저녁의 여유</a>
+    <div class="meta">
+      <span class="date">혼술 리뷰를 확인해 보세요!</span>
+    </div>
+  </div>
+</div>
+        
+        
+        </div>
+        <div class="four wide column">
+        
+        
+                <div class="ui card">
+  <div class="ui slide masked reveal image" style="width:350px; height:150px;">
+    <img src="./gui/i5.jpg" width="300px" height="300px" class="visible content">
+    <img src="./gui/i6.jpg" width="300px" height="300px" class="hidden content">
+  </div>
+  <div class="content">
+    <a class="header" href="./nolBoard.jsp">혼자만의 여가</a>
+    <div class="meta">
+      <span class="date">혼놀 리뷰를 확인해 보세요!</span>
+    </div>
+  </div>
+</div>
+        
+        
+        </div>
+        <div class="four wide column">
+        
+                        <div class="ui card">
+  <div class="ui slide masked reveal image" style="width:350px; height:150px;">
+    <img src="./gui/i7.jpg" width="300px" height="300px" class="visible content">
+    <img src="./gui/i8.jpg" width="300px" height="300px" class="hidden content">
+  </div>
+  <div class="content">
+    <a class="header" href="./nolBoard.jsp">우리들의 세상</a>
+    <div class="meta">
+      <span class="date">모두 리뷰를 확인해 보세요!</span>
+    </div>
+  </div>
+</div>
+        
+        </div>
+        
+        <div class="four wide column"> </div>
+        
+        <div class="four wide column"> </div>
+        
+        
+        
+        
+      </div>
+</td>
+<tr>
+</table>
+
+
+
+<!--  -->
+
+<br>
+<br>
+<br>
+<br>
+<!-- 테이블 위 -->
 <!-- 테이블 위 끝  -->
 
 <!-- 전체 틀 -->
@@ -62,51 +156,7 @@ $(document).ready(function(){
 <tr>
 <td>
 <!--  조회수 업 -->
-<table width="890px" height="230px" align="center">
-<!-- 조회수 헤드  -->
-<thead>
 
-<tr>
-<td align="center" colspan="4" height="100px"><font size="5" color="black"><strong>월간 최고 조회수 리뷰</strong></font></td>
-</tr>
-
-</thead>
-<!-- 조회수 헤드  끝 -->
-<tr height="180px">
-<td align="center"><img src="../image/1.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="../image/2.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="../image/3.jpg" width="215px" height="200px"></td>
-<td align="center"><img src="../image/4.jpg" width="215px" height="200px"></td>
-</tr>
-<!-- 버튼 이벤트 라인  -->
-<tr>
-<td id="best_1" align="center" width="200px">
-<pre><font size="2" color="black"><strong>가산동 돈까스 맛집!! 리뷰</strong></font>
-
-조회수: 5250192</pre>
-</td>
-
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>치맥은 역시 강남! 치밥 치맥집</strong></font>
-
-조회수: 4432134</pre>
-</td>
-
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>혼밥 추천합니다!!</strong></font>
-
-조회수: 3387123</pre>
-</td>
-
-<td align="center" width="200px">
-<pre><font size="2" color="black"><strong>E마트 푸드코트 추천!</strong></font>
-
-조회수: 194720</pre>
-</td>
-<!-- 버튼 이벤트 라인 끝 -->
-</tr>
-
-</table>
 <!--  조회수 업 -->
 </td>
 </tr>
@@ -114,9 +164,6 @@ $(document).ready(function(){
 
 <tr>
 <td>
-<button class="positive ui button" id="bab_go">혼밥</button>
-<button class="positive ui button" id="sul_go">혼술</button>
-<button class="positive ui button" id="nol_go">혼놀</button>
 <!-- 목록  -->
 <table align="center" class="ui unstackable table">
   <thead>

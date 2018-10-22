@@ -15,43 +15,49 @@
 
 
 	/* DB데이터 뿌리기  */
-	List<Map<String, Object>> conBoardUpdateSubList = (List<Map<String, Object>>)request.getAttribute("conBoardUpdateSubList");
+	List<Map<String, Object>> conBoardUpdateSubList = (List<Map<String, Object>>)request.getAttribute("conBoardUpdateSub");
 	
-	String key = (String)request.getAttribute("categoryKey");
+	String key = (String)request.getAttribute("category");
 	
-	if(key.equals("혼밥")){
+	if(conBoardUpdateSubList != null){
 		
-		no = conBoardUpdateSubList.get(0).get("BAB_NO").toString();
-		id = conBoardUpdateSubList.get(0).get("BAB_ID").toString();
-		title = conBoardUpdateSubList.get(0).get("BAB_TITLE").toString();
-		category = conBoardUpdateSubList.get(0).get("BAB_CATEGORY").toString();
-		hit = conBoardUpdateSubList.get(0).get("BAB_HIT").toString();
-		date = conBoardUpdateSubList.get(0).get("BAB_DATE").toString();
-		text = conBoardUpdateSubList.get(0).get("BAB_TEXT").toString(); 
-		url = conBoardUpdateSubList.get(0).get("BAB_URL").toString(); 
-		
-	} else if(key.equals("혼술")){
-		
-		no = conBoardUpdateSubList.get(0).get("SUL_NO").toString();
-	   	id = conBoardUpdateSubList.get(0).get("SUL_ID").toString();
-	   	title = conBoardUpdateSubList.get(0).get("SUL_TITLE").toString();
-	   	category = conBoardUpdateSubList.get(0).get("SUL_CATEGORY").toString();
-	   	hit = conBoardUpdateSubList.get(0).get("SUL_HIT").toString();
-	   	date = conBoardUpdateSubList.get(0).get("SUL_DATE").toString();
-	   	text = conBoardUpdateSubList.get(0).get("SUL_TEXT").toString(); 
-	   	url = conBoardUpdateSubList.get(0).get("SUL_URL").toString(); 
-		
-		
-	} else if(key.equals("혼놀")){
-		
-		no = conBoardUpdateSubList.get(0).get("NOL_NO").toString();
-	   	id = conBoardUpdateSubList.get(0).get("NOL_ID").toString();
-	   	title = conBoardUpdateSubList.get(0).get("NOL_TITLE").toString();
-	   	category = conBoardUpdateSubList.get(0).get("NOL_CATEGORY").toString();
-	   	hit = conBoardUpdateSubList.get(0).get("NOL_HIT").toString();
-	   	date = conBoardUpdateSubList.get(0).get("NOL_DATE").toString();
-	   	text = conBoardUpdateSubList.get(0).get("NOL_TEXT").toString(); 
-	   	url = conBoardUpdateSubList.get(0).get("NOL_URL").toString(); 
+	
+		if(key.equals("혼밥")){
+			
+			no = conBoardUpdateSubList.get(0).get("BAB_NO").toString();
+			id = conBoardUpdateSubList.get(0).get("BAB_ID").toString();
+			title = conBoardUpdateSubList.get(0).get("BAB_TITLE").toString();
+			category = conBoardUpdateSubList.get(0).get("BAB_CATEGORY").toString();
+			hit = conBoardUpdateSubList.get(0).get("BAB_HIT").toString();
+			date = conBoardUpdateSubList.get(0).get("BAB_DATE").toString();
+			text = conBoardUpdateSubList.get(0).get("BAB_TEXT").toString(); 
+			url = conBoardUpdateSubList.get(0).get("BAB_URL").toString(); 
+			
+		} else if(key.equals("혼술")){
+			
+			no = conBoardUpdateSubList.get(0).get("SUL_NO").toString();
+		   	id = conBoardUpdateSubList.get(0).get("SUL_ID").toString();
+		   	title = conBoardUpdateSubList.get(0).get("SUL_TITLE").toString();
+		   	category = conBoardUpdateSubList.get(0).get("SUL_CATEGORY").toString();
+		   	hit = conBoardUpdateSubList.get(0).get("SUL_HIT").toString();
+		   	date = conBoardUpdateSubList.get(0).get("SUL_DATE").toString();
+		   	text = conBoardUpdateSubList.get(0).get("SUL_TEXT").toString(); 
+		   	url = conBoardUpdateSubList.get(0).get("SUL_URL").toString(); 
+			
+			
+		} else if(key.equals("혼놀")){
+			
+			no = conBoardUpdateSubList.get(0).get("NOL_NO").toString();
+		   	id = conBoardUpdateSubList.get(0).get("NOL_ID").toString();
+		   	title = conBoardUpdateSubList.get(0).get("NOL_TITLE").toString();
+		   	category = conBoardUpdateSubList.get(0).get("NOL_CATEGORY").toString();
+		   	hit = conBoardUpdateSubList.get(0).get("NOL_HIT").toString();
+		   	date = conBoardUpdateSubList.get(0).get("NOL_DATE").toString();
+		   	text = conBoardUpdateSubList.get(0).get("NOL_TEXT").toString(); 
+		   	url = conBoardUpdateSubList.get(0).get("NOL_URL").toString(); 
+			
+		}
+	} else {
 		
 	}
 
@@ -61,20 +67,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@include file="../include/include/subtop.jsp" %>
-<title>게시글 수정</title>
-<!--이미지 미리보기 스크립트 구간 -->
+<%@include file="/include/include/subtop.jsp" %>
+<title>Insert title here</title>
 <script type="text/javascript">
 
-// 이미지 미리보기임
+//이미지 미리보기임
 $(document).ready(function(){
-	var no = '<%=no %>';
-	var text = document.f_board.t_text;
-	text.value += '<%=text %>'; 
-	var sel = document.f_board.category
-	sel.value ='<%=category %>';
 	
- 	$(function() {
+	var no = '<%=no %>';
+	var texts = document.f_data.text;
+	texts.value += "<%=text %>";
+	var c = '<%=category %>';
+	$("#c_d").val(c);
+	
+	$('.ui.dropdown')
+	  .dropdown()
+	;
+	
+	var texts = document.f_data.text;
+	
+	$(function() {
 		$("#img_file").change(function() {
 			readURL(this);
 		});
@@ -96,9 +108,10 @@ $(document).ready(function(){
 				
 	} // readURL함수  
 	
+	
 	$("#b_img").click(function(){
 		
-		var formData = new FormData(document.getElementById('f_board'));
+		var formData = new FormData(document.getElementById('f_data'));
 		var img_file = $("#img_file").val();
 		img_file = img_file.substring(12);
 		
@@ -113,7 +126,7 @@ $(document).ready(function(){
 		   ,success:function(formData){
 			   
 				//img_file = img_file.substring(12);
-				text.value += "<br>" + "<img src='../images/" + img_file + "'>" +"<br>";
+				texts.value += "<br>" + "<img src='./images/" + img_file + "'>" +"<br>";
 				alert("이미지 태그가 추가 되었습니다.");
 			   
 		   }
@@ -122,6 +135,7 @@ $(document).ready(function(){
 		   }
 		});
 		
+	
 	});
 	
 	
@@ -129,164 +143,174 @@ $(document).ready(function(){
 		location.href="./mainBoardList.jsp";
 	});
 	
-	$("#b_up").click(function(){
-/* 	var t_category = $("#category").val();
-	var t_title =  $("#title").val();
-	var t_url = $("#url").val();
-	var text_a = text.value 
-		alert(category + t_title + t_url + text_a + no);
-		alert("저장하러갑니다.");
-		location.href='../boardList/Update.hon?num=' + no +"&category=" + t_category + "&title=" + t_title + "&url=" + t_url+"&text="+ text_a; */
+	$("#b_insert").click(function(){
+	var category = $("#category").dropdown("get value");
+	var id = "bey";
+		$("#f_data").attr('method', 'post');
+		$("#f_data").attr('action', '../board/Update.hon?category='+ category + "&id=" + id + "&no=" + no)
+		$("#f_data").submit();
 		
 	});
 	
 }) /* 레디 끝  */
 
-
-
 </script>
 <!-- 이미지 미리보기 스크립트 구간  끝-->
 
-<!-- 바디 스타일 -->
-<style>
-/* body {
-	background-image: url('writerBackground.jpg');
-} */
-
-</style>
-<!-- 바디 스타일 끝 -->
-
 </head>
-
-
 <body>
-<!-- 상단  -->
-
-<!-- 상단 끝 -->
-
-
-<!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form @@@@@@@@@@@@@@@@@@@@  -->
 <br>
 <br>
 <br>
-<form id="f_board" name="f_board" action="../boardList/Update.hon?num=<%=no %>" method="post">
+<br>
+<br>
+<br>
 
-<!-- 입력 게시판 테이블   -->
-<table align="center" border="1" width="800px" height="1000px" bgcolor="white">
-<!-- 게시판 머리  -->
-<thead align="center" style="width:800px; height:200px;">
+<table align="center">
+<tr><td>
+</td></tr>
 <tr>
-<td><img src="./images/logo.png" width="800px" height="200px"></td>
+<td>
+<h2 class="ui center aligned icon header">
+  <i class="circular users icon"></i>
+  자유롭게 포스팅을 시작하세요!
+</h2>
+
+</td>
 </tr>
-</thead>
-<!-- 게시판 머리 끝  -->
+</table>
 
 
-<!-- 테스트 -->
+<br>
+<br>
+<br>
+<!-- 입력 -->
+<form id="f_data" name="f_data">
 
-
-<!-- 테스트 -->
-
-
-
-<!-- 게시판 입력 GUI  -->
-
-<tbody style="width:800px; height:500px;" >
+<table align="center" width="1200px" height="1000px">
 <tr>
-<!-- 기능 메뉴 -->
-<td width="800px" height="100px">
+<td>
 
-<input type="text" style="width: 260px; height: 18px;" placeholder="동영상URL" id="url" name="url" value="<%=url %>">
+<table align="center" width="1200px" height="1000px">
+
+<thead>
+<tr>
+<td>
+
+<table width="1000px" height="50px">
+<tr>
+<td align="left" width="200px" height="30px">
+
+<div class="ui compact selection dropdown" id="category" name="category">
+ <input type="hidden" value="0" name="c_d" id="c_d"> 
+  <i class="dropdown icon"></i>
+  <div class="text">카테고리</div>
+  <div class="menu">
+    <div class="item">혼밥</div>
+    <div class="item">혼술</div>
+    <div class="item">혼놀</div>
+  </div>
+</div>
+
+</td>
+
+<td align="left" width="900px" height="30px">
+<div class="ui form">
+  <div class="field">
+    <input type="text" placeholder="제목을 입력해 주세요" id="title" name="title" value="<%=title %>">
+  </div>
+</div>
+</td>
+
+<td align="left" width="300px" height="30px">
 <input type="file" id="img_file" name="img_file" accept=".gif, .jpg, .png">
 </td>
-<!-- 기능 메뉴 끝 -->
-</tr>
 
-<!-- 글쓰기 -->
-<tr>
-<!-- 콤보박스  -->
-<td width="800px" height="400px">
-<select name="category" id="category">
-<%if(category.equals("혼밥")){
-%>
-<option value="혼놀">혼놀</option>
-<%
-} else if(category.equals("혼술")){
-%>
-<option value="혼술">혼술</option>
-<%
-}
-%>	
-<option value="혼밥" selected="selected">혼밥</option>
-</select>
-&nbsp;&nbsp;
-<!-- 제목입력  -->
-<div class="ui input focus">
-<input type="text" placeholder="제목입력" value="<%=title %>" style="width:730px; height:23px;" id="title" name="title">
+<td align="left" width="400px" height="30px">
+<div class="ui input">
+  <input type="text" placeholder="동영상 URL" id="url" name="url" value="<%=url %>">
 </div>
-<!-- 글 입력 -->
-<textarea style="width: 800px; height:600px;" id="t_text" name="t_text"></textarea>
-<!-- 글 입력끝 -->
-
+&nbsp;
+<i class="video icon"></i>
 </td>
-<!-- 글쓰기 끝 -->
 </tr>
-
-</tbody>
-
-<!-- 게시판 입력 GUI 끝  -->
-
-<!-- 테이블 하단 -->
-
- <tfoot align="center" style="width:800px; height:300px;">
-        <!-- 이미지 미리보기  -->
-        <!-- 이미지 미리보기 타이틀  -->
-        <tr>
-        <td><font size="3" color="blue">@이미지 미리보기@</font></td>
-        </tr>
-        <tr>
-            <td width="200px" height="200px" align="center">
-            <br>
-			<img align="middle" id="blah" src="#" alt="" width="200px" height="200px" />
-               <br>
-               <br>
-               <div class="ui animated button" tabindex="0" id="b_img" name="b_img">
-  				<div class="visible content">이미지 등록</div>
- 				 <div class="hidden content">
- 				   <i class="right arrow icon"></i>
- 					 </div>
-						</div>
-						<br>
-               <br>
-            </td>
-        </tr>
-        
-        <!-- 버튼 GUI  -->
-        <tr>
-        <td width="800px" height="100px">
-        <button class="negative ui button" id="b_cancel" name="b_cancel">취소하기</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class="positive ui button" id="b_insert" name="b_up">등록하기</button>
-        </td>
-        </tr>
-        
-    </tfoot>
-
-<!-- 테이블 하단 끝 -->
 
 </table>
 
+</td>
+<td align="center">
+포스팅
+</td>
+</tr>
+</thead>
+<!-- 게시판 글 -->
+
+<tr>
+<td align="center" colspan="4" height="400px">
+
+<textarea style="width:1200px; height:700px;" id="text" name="text"></textarea>
+
+</td>
+</tr>
+
+<!-- 비번입력  -->
+
+<tr>
+<td width="150px" height="30px">
+<div class="ui input">
+  <input type="text" placeholder="비밀번호 입력" id="pw" name="pw">
+</div>
+</td>
+</tr>
+
+<!-- 이미지 추가 -->
+
+<tr>
+<td align="center" width="300px" height="200px">
+<img align="middle" id="blah" src="#" alt="" width="200px" height="200px" />
+이미지 미리보기
+
+</td>
+<td width="1000px" height="200px" align="center" colspan="3">
+
+<div class="ui animated fade button" id="b_img" name="b_img" tabindex="0" style="width:150px; height:150px">
+  <div class="visible content"><pre>
+  
+ 
+  
+이미지
+  </pre></div>
+  <div class="hidden content">
+    이미지 등록하기
+  </div>
+</div>
+
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr> 
+</table>
 </form>
-<!-- 입력 게시판 테이블 끝  -->
+
+<table align="center" width="300px" height="300px">
+<tr>
+<td>
+<button class="negative ui button" id="b_cancel" name="b_cancel">취소하기</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="positive ui button" id="b_insert" name="b_insert">등록하기</button>
+</td>
+</tr>
+</table>
 
 
 <br>
 <br>
 <br>
 
-<!-- @@@@@@@@@@@@@@@@@@@@ 게시판 작성 form 끝 @@@@@@@@@@@@@@@@@@@@ -->
-
-<!-- 하단  -->
 <%@ include file="/include/include/bottom.jsp" %>
 </body>
 </html>

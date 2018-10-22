@@ -60,8 +60,8 @@
 	<select id="selectStore8" parameterType="map" resultType="map">
 		SELECT
 			store_score, store_no,
-			nvl(store_img,'noimg.png')as "store_img",
-			nvl(store_price,'가격정보 없음')as "store_price",
+			nvl(store_img,'noimg.png')as "STORE_IMG",
+			nvl(store_price,'가격정보 없음')as "STORE_PRICE",
 			store_name,store_addr,store_hit,store_business
  		FROM (select * from store 
  			<if test="searchWord != ''">
@@ -93,7 +93,7 @@
  				 OR REGEXP_LIKE(store_keyword,#{searchWord}) 
  			</if>
  		ORDER BY nvl(store_score,0) desc)
- 		<if test="store_business != null">
+ 		<if test="store_price != null">
  			<if test="store_business !=''">
 				WHERE store_business like '%'||#{store_business}||'%' 
 			</if>
@@ -105,7 +105,7 @@
 	<!-- 가게 별점 주기 -->
 	<update id="storeSetScore" parameterType="map">
 	UPDATE store
-	   SET store_score = round(((store_score*store_score_count)+#{setStore_score})/(1+store_score_count))
+	   SET store_score = round(((store_score*store_score_count)+#{setStore_score})/(1+store_score_count),1)
    	      ,store_score_count = store_score_count+1
    	      ,store_hit = store_hit -1
      WHERE store_no = #{store_no}

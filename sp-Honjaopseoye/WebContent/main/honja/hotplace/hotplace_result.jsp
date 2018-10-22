@@ -15,7 +15,7 @@
 	int length = list.size();
 	System.out.println(length);
 	String name = null;
-	String score = null;
+	double score = 0.0;
 	String img = null;
 	String price = null;
 	String no = null;
@@ -27,9 +27,9 @@
 		
 	for(int i=0;i<list.size();i++){
 		name = list.get(i).get("STORE_NAME").toString();
-		score = list.get(i).get("store_score").toString(); //nvl해준거는 대문자 안되는듯
-		img = list.get(i).get("store_img").toString();
-		price = list.get(i).get("store_price").toString();
+		score = Double.parseDouble((list.get(i).get("STORE_SCORE").toString()));
+		img = list.get(i).get("STORE_IMG").toString();
+		price = list.get(i).get("STORE_PRICE").toString();
 		no = list.get(i).get("STORE_NO").toString();
 		addr = list.get(i).get("STORE_ADDR").toString();
 		hit = list.get(i).get("STORE_HIT").toString();
@@ -49,10 +49,11 @@
     			<a class="header"><%=name %></a>
     		<div class="meta">
 	    		<%=business %> - <%=littleAddr %><br>
+	    	</div>
     	  		<span class="date"><i class="eye icon">&nbsp;<%=hit %></i></span>
       				<br>
-      			<div class="ui star rating" data-rating="<%=score%>" data-max-rating="5"></div>
-    		</div>
+      			<div class="ui star rating" data-rating="<%=Math.round(score)%>" data-max-rating="5"></div>
+      			<%=score %>
   		</div>
 	</div><!-- end of card -->
 </div><!-- end of column -->

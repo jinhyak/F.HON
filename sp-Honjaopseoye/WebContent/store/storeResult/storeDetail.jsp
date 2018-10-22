@@ -10,14 +10,15 @@
 	String tel 			= null;
 	String addr 		= null;
 	String name 		= null;
-	String business	= null;
+	String business		= null;
 	String introduce	= null;
-	int score			= 0;
+	double score		= 0.0;
 	int hit				= 0;
 	String img			= null;
 	String homepage		= null;
 	String price		= null;
 	String no 			= null;
+	
 	for(int i=0;i<list.size();i++){
 		no  = list.get(i).get("STORE_NO").toString();
 		tel = list.get(i).get("STORE_TEL").toString();
@@ -25,7 +26,7 @@
 		name = list.get(i).get("STORE_NAME").toString();
 		business = list.get(i).get("STORE_BUSINESS").toString();
 		introduce = list.get(i).get("STORE_INTRODUCE").toString();
-		score = Integer.parseInt((list.get(i).get("STORE_SCORE").toString()));
+		score = Double.parseDouble((list.get(i).get("STORE_SCORE").toString()));
 		hit = Integer.parseInt((list.get(i).get("STORE_HIT").toString()));
 		img = list.get(i).get("STORE_IMG").toString();
 		homepage = list.get(i).get("STORE_HOMEPAGE").toString();
@@ -120,8 +121,9 @@ function showMap(){
 		<div class="column">
 			<h1 class="ui header" id="store_name"><%=name %></h1>
 			<br>
-			<i class="eye icon">&nbsp;<%=hit %></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div class="ui star rating" data-rating="<%=score%>" data-max-rating="5"></div>
+			<i class="eye icon">&nbsp;<%=hit %></i><br>
+			<div class="ui star rating" data-rating="<%=Math.round(score)%>" data-max-rating="5"></div>
+			<%=score %>&nbsp;&nbsp;&nbsp;
 			<button class="circular ui icon button" onclick="$('.ui.modal').modal('show')">
   				<i class="star outline icon"></i>
   				별점주기
