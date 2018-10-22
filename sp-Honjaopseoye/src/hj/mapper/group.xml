@@ -80,17 +80,20 @@
 	       (select gstring from bang b, gubunja gb WHERE b.bang_age = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_AGE,
            b.bang_money BANG_MONEY, b.bang_date BANG_DATE, 
 	       (select gstring from bang b, gubunja gb WHERE b.bang_time = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_TIME,
-	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
-	from   bang b, store s
+	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE,
+	       m.mem_img MEM_IMG
+	from   bang b, store s, members m
 	where  b.store_no = s.store_no
 	and    b.bang_no = #{bang_no}
+	and	   b.bang_id = m.mem_id
 </select>
 
 <!-- 방 선택후 친구목록보기 버튼 클릭시 보여줄 친구내용 -->
 <select id="friendSelect" parameterType="string" resultType="map">
 	select *
-	from   bang_info
-	where  bang_no = #{bang_no}
+	from   bang_info b, members m
+	where  b.bang_no = #{bang_no}
+	and b.mem_id = m.mem_id	
 </select>
 
 <!-- 모임방 개설생성 버튼 누를시 input에 박은값들 다 받음 -->

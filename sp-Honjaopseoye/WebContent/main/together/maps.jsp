@@ -73,7 +73,7 @@
           });
          
          //띄울 인포윈도우 정의
-         var iwContent = '<img src="/sp-Honjaopseoye/image/'+position.STORE_IMG+'" style="width:145px;"><div style="padding:5px;word-wrap:break-word;">'
+         var iwContent = '<img src="/sp-Honjaopseoye/image/storeImg/'+position.STORE_IMG+'" style="width:145px;"><div style="padding:5px;word-wrap:break-word;">'
 		           +position.STORE_NAME+'<br/>'
 		           +position.STORE_INTRODUCE+'<br/></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 		            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다

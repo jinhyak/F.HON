@@ -42,6 +42,9 @@ $(document).ready(function () {
 			    store_img = result[0].STORE_IMG;
 		   		$("#large_img1").attr('src',"/sp-Honjaopseoye/image/storeImg/"+store_img);
 		   }
+		   
+		   $("#bang_jang_img").attr('src',"/sp-Honjaopseoye/image/member/"+result[0].MEM_IMG);
+		   
 		   $("#bang_title").text(result[0].BANG_NAME);
 		   
 		   $("#bang_id").text(result[0].BANG_ID);
@@ -384,14 +387,14 @@ $(document).ready(function () {
 						<div class="ui blue fluid large button" id="g_frilist_btn">
 							참석자 명단 보기 <i class="angle double down icon"></i></div>
 							<div class="ui item" style="margin-top:30px;">
-							    <img class="ui avatar image" src="../../image/male.jpg" style="width:30px;height:30px">
-							    <div class="middle aligned content" style="width:70px;">
+							    <div class="ui circular image" style="width:70px;height:70px">
+							    	 <img id="bang_jang_img" src="../../image/male.jpg">
+						    	</div> 
+							    <div class="middle aligned content" style="padding-left:15px;">
 							    	<div class="ui teal header" id="bang_jang_id"></div>
-							    </div>
-							    <div class="content" style="padding-left:5px">
-							    	<div class="ui header">
-							      	   모임의 방장입니다.
-							    	</div>
+							    	<div class="description">
+								      	<h3>모임의 방장입니다.</h3>
+							      	</div>
 							    </div>
 						    </div>
 						<div class="ui middle selection list" id="fri_list">
