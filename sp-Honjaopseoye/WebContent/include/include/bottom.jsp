@@ -13,41 +13,41 @@
     <div class="ui container">
       <div class="ui stackable inverted divided equal height stackable grid">
         <div class="three wide column grid">
-          <h3 class="ui inverted header">DB</h3>
+          <h3 class="ui inverted header">PM, KH</h3>
           <div class="ui inverted link list">
             <h4 style="color: grey;margin-bottom: 0px;">김 진 혁</h4>
              <div class="description" style="color: grey;">
-				Matthew is an interior designer living in New York.
+				항상 열심히 하는 팀원들에게 정말 감사합니다.
 			</div>
             <h4 style="color: grey;margin-bottom: 0px;margin-top: 20px;">이 길 한</h4>
             <div class="description" style="color: grey;">
-				Matthew is an interior designer living in New York.
+				진짜 고생 많이 했다. 애들아 취업 꼭 하자
 			</div>
           </div>
         </div>
         <div class="three wide column grid">
-          <h3 class="ui inverted header">Front</h3>
+          <h3 class="ui inverted header">PL, HJ</h3>
           <div class="ui inverted link list">
             <h4 style="color: grey;margin-bottom: 0px;">유 재 덕</h4>
             <div class="description" style="color: grey;">
-				Matthew is an interior designer living in New York.
+				고생했다. 회식하자
 			</div>
             <h4 style="color: grey;margin-bottom: 0px;margin-top: 20px;">김 희 진</h4>
             <div class="description" style="color: grey;">
-				Matthew is an interior designer living in New York.
+				다들 진짜 고생 하셨어요... 
 			</div>
           </div>
         </div>
         <div class="three wide column grid">
-          <h3 class="ui inverted header">Logic</h3>
+          <h3 class="ui inverted header">PF, MN</h3>
           <div class="ui inverted link list">
             <h4 style="color: grey;margin-bottom: 0px;">주 오 윤</h4>
             <div class="description" style="color: grey;">
-				팀원들 마지막까지 너무 열심히 해주셔서 정말 감사합니다. 누나도 진짜 고마웡.
+				팀원들 마지막까지 너무 열심히 해주셔서 감사합니다. 누나도 진짜 고맙습니다.
 			</div>
             <h4 style="color: grey;margin-bottom: 0px;margin-top: 20px;">최 재 영</h4>
             <div class="description" style="color: grey;">
-				Matthew is an interior designer living in New York.
+				형님 누님 고생요~
 			</div>
           </div>
         </div>

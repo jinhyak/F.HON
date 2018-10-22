@@ -252,7 +252,7 @@ function mainlist() {
 				</div>
 				<div class="four wide column" style="padding-top: 5px;">
 					<div class="content" style="text-align: left">
-						<strong>혼밥이 지겨운 그들의 이야기</strong> 
+						<strong>혼자가 지겨운 그들의 이야기</strong> 
 						<p></p>
 						<div class="meta" style="text-align: left;">
 							<font size="2">혼자하는 생활이 많이 외롭죠?

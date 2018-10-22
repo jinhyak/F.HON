@@ -48,7 +48,6 @@
 	
 %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,7 +66,6 @@ p {white-space: pre-wrap;}
 <br>
 <br>
 <br>
-
 <!-- 전체 테이블 @@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 
 <table width="1000px" height="1000px" align="center">
@@ -112,7 +110,7 @@ p {white-space: pre-wrap;}
 <!-- 2번줄 -->
 <table width="1000px">
 <tr>
-<td align="left" width="800px"><p><strong>작성자:</strong> <%=id %></p></td>
+<td align="left" width="480px"><p><strong>작성자:</strong> <%=id %></p></td>
 <td align="left" width="200px"><p><strong>조회수:</strong> <%=hit %></p></td>
 </tr>
 </table>
@@ -243,7 +241,7 @@ var v = "<%= url%>";
 	}
 %>
 <tr>
-<td align="left"><h2 class="ui dividing header">댓글수 :<%=conBoardCommentList.size() %></h2></td>
+<td align="left"><h2 class="ui dividing header">댓글수: &nbsp;<%=conBoardCommentList.size() %></h2></td>
 </tr>
 <tr>
 <td>
@@ -337,12 +335,22 @@ var v = "<%= url%>";
 		
 		<%
 		
+	} else {
+		
+		out.print("비회원은 쓰기 권한이 없습니다.");
 	}
 %>
 
 </td>
 
 </tr>
+</table>
+<table align="center" width="1000px" height="50px">
+<tr><td align="right">
+<a href="/sp-Honjaopseoye/boardList/babBoard.jsp"><button class="ui button">
+  목록
+</button></a>
+</td></tr>
 </table>
 <script type="text/javascript">
 
@@ -376,7 +384,6 @@ function bab_r(){
 	      
 	   });
 	}
-
 
 </script>
 

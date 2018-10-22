@@ -72,7 +72,7 @@ $(document).ready(function(){
 		   ,success:function(formData){
 			   
 				//img_file = img_file.substring(12);
-				texts.value += " " + "<img src='../boardList/images/" + img_file + "'>" +" ";
+				texts.value += " " + "<img src='/sp-Honjaopseoye/image/" + img_file + "'>" +" ";
 			   
 		   }
 		   ,error:function(xhrObject){
