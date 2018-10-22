@@ -43,11 +43,12 @@ String qna_depth = null;
 
 	$(document).ready(function() {
 
-		var keyword = '<%=keyword %>';
+		var keyword = "답글";
 		var no = '<%=qna_no %>';
 		var id = '<%=qna_writer %>';
-		var title = '<%=qna_title %>';
+		<%-- var title = '<%=qna_title %>';
 		var content = '<%=qna_content %>';
+		var category = '<%=qna_category %>' --%>
 
 		$("#list_sel").click(function() {
 
@@ -57,14 +58,14 @@ String qna_depth = null;
 		
 		$("#re_go").click(function() {
 
-			location.href='../menu/qView.hon?qna_no='+no+ "&keyword=" + keyword;
+			location.href='../menu/qReply.hon?qna_no=' + no+ '&keyword='+keyword;
 		});
 
-		$("#up_go").click(function() {
+		/* $("#up_go").click(function() {
 
 			location.href = "../menu/qUpdate.hon?qna_no=" + no+ "&qna_title=" + title+ "&qna_content=" + content;
 
-		});
+		}); */
 
 		$("#de_go").click(function() {
 			alert(no + id);
@@ -101,7 +102,7 @@ String qna_depth = null;
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%; background-color:gray">
+							<div class="ui segment button" style="width:100%; background-color:gray" onclick="location.href='/sp-Honjaopseoye/notice/notice/notice.jsp'">
 								<h3> 공지사항 </h3>
 							</div>
 						</div>
@@ -176,8 +177,7 @@ String qna_depth = null;
 
 			<tr>
 				<!-- 상단부터 순서대로....  -->
-				<td><pre>
-<%=qna_content%>
+				<td><pre><%=qna_content%>
 </pre></td>
 
 			</tr>
@@ -187,8 +187,8 @@ String qna_depth = null;
 					<!-- 목록 -->
 					<button class="positive ui button" id="re_go" name="re_go"
 						style="width: 100px;">답글</button>
-					<button class="positive ui button" id="up_go" name="up_go"
-						style="width: 100px;">수정</button>
+					<!-- <button class="positive ui button" id="up_go" name="up_go"
+						style="width: 100px;">수정</button> -->
 					<button class="positive ui button" id="de_go" name="de_go"
 						style="width: 100px;">삭제</button>  <!-- 목록 -->
 				<button class="ui primary button" id="list_sel">

@@ -112,7 +112,7 @@
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%; background-color:gray">
+							<div class="ui segment button" style="width:100%; background-color:gray" onclick="location.href='/sp-Honjaopseoye/notice/notice/notice.jsp'">
 								<h3> 공지사항 </h3>
 							</div>
 						</div>
@@ -178,7 +178,7 @@
 													} else if (noti_image != null) {
 												%>
 
-												<img id="imgs" src="/sp-Honjaopseoye/images/<%=noti_image%>">
+												<img id="imgs" src="/sp-Honjaopseoye/image/<%=noti_image%>">
 												<%
 													}
 												%>
@@ -281,7 +281,8 @@ function remover() {
 	}
 //다음글	
 	function next(){
-		console.log(NEXT_NOTI_NO);
+		var NEXT_NOTI_NO = <%= NEXT_NOTI_NO%>;
+		//console.log(NEXT_NOTI_NO);
 		if(NEXT_NOTI_NO=='0'){
 			alert("다음글이 존재하지 않습니다.")
 		}
@@ -292,7 +293,8 @@ function remover() {
 	}
 //이전글	
 	function prev(){
-		console.log(PREV_NOTI_NO)
+		var PREV_NOTI_NO = <%= PREV_NOTI_NO%>;
+		//console.log(PREV_NOTI_NO)
 		if(PREV_NOTI_NO=='0'){
 			alert('이전글이 존재하지 않습니다.');
 		}else{

@@ -398,6 +398,7 @@ public class memberController {
 	            	list = memberDao.select(pMap);
 					HttpSession mem_session = req.getSession();
 					mem_session.setAttribute("memList", list);
+					logger.info(mem_session);
 	            }
 	            else {
 	            	logger.info("네이버 로그인 실패");
@@ -406,7 +407,6 @@ public class memberController {
 	            logger.info(e.toString()+", "+e.getMessage());
 	        }
 			return "redirect:/main/main/main.jsp";
-	        
 	}
 	
 	

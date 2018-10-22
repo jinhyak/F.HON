@@ -91,13 +91,13 @@
 	<update id="stepUp" parameterType="int">
 		update qna
         set qna_step = qna_step+1
-        where qna_step >= #{step}
+        where qna_step > #{step}
 	</update>
 	
 	<!-- QnA 게시글 목록 조회 -->
 	<select id="getQnAList" parameterType="map" resultType="map">
 		SELECT qna_step, qna_title, qna_category, qna_writer, qna_hit, qna_date, qna_no
-        FROM qna order by TO_NUMBER(qna_step)
+        FROM qna order by TO_NUMBER(qna_step) desc
 	</select>
 	<!-- QnA 선택 게시글 조회 -->
 	<select id="getQnAIdList" parameterType="map" resultType="map">

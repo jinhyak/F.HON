@@ -4,7 +4,6 @@
 
 <%
 
-String keyword = "답글";
 String qna_no = null;
 String qna_title = null;
 String qna_category = null;

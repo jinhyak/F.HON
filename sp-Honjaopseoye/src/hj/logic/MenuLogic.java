@@ -95,6 +95,7 @@ public class MenuLogic {
 			logger.info("step"+pMap.get("qna_step").toString()+"depth"+pMap.get("qna_depth").toString());
 			step = Integer.parseInt(pMap.get("qna_step").toString());
 			menuDao.stepUp(step);
+			step = step+1;
 		}
 			//±Û µî·Ï
 			pMap.put("qna_depth", depth);

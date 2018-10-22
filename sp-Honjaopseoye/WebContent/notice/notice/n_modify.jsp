@@ -67,7 +67,7 @@ textarea {
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%; onclick="location.href='/sp-Honjaopseoye/notice/notice/notice.jsp'">
+							<div class="ui segment button" style="width:100%;" onclick="location.href='/sp-Honjaopseoye/notice/notice/notice.jsp'">
 								<h3> 공지사항 </h3>
 							</div>
 						</div>

@@ -87,7 +87,7 @@ $(document).ready(function() {
 							</div>
 						</div>
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%;background-color:gray">
+							<div class="ui segment button" style="width:100%;background-color:gray" onclick="location.href='../qna/qna.jsp'">
 								<h3> QnA </h3>
 							</div>
 						</div>

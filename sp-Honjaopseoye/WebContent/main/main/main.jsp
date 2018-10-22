@@ -16,6 +16,7 @@
 	if (session.getAttribute("memList") != null) {
 		smem_name = memList2.get(0).get("MEM_NAME").toString();
 	}
+	System.out.print(smem_name);
 %>	
 <% 
 	String clientId = "rMQSr12DQcrxNQeItZQ5"; //애플리케이션 클라이언트 아이디값";

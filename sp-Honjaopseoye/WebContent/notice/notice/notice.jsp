@@ -33,7 +33,7 @@
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%; background-color:gray">
+							<div class="ui segment button" style="width:100%; background-color:gray" onclick="location.href='../notice/notice.jsp'">
 								<h3> 공지사항 </h3>
 							</div>
 						</div>

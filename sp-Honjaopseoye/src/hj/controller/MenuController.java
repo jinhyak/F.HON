@@ -201,23 +201,36 @@ public class MenuController {
 		return pMapList;
 	}
 
+	/*문의 상세보기*/
 	@RequestMapping("/qView.hon")
-	public String qView(HttpServletRequest req, HttpServletResponse res, @RequestParam String qna_no, @RequestParam String keyword,
+	public String qView(Model mod, @RequestParam String qna_no, @RequestParam String keyword,
 			Map<String, Object> pMap) throws ServletException, IOException {
 		logger.info("qView 메소드 진입");
 		List<Map<String, Object>> conQnABoardIdList = null;
 		String page = null;
 		pMap = new HashMap<String, Object>();
 		pMap.put("qna_no", qna_no);
+		logger.info("아아아아앙"+keyword+qna_no);
 		conQnABoardIdList = qnaLogic.qnaBoardIdListLogic(pMap);
-		req.setAttribute("conQnABoardIdList", conQnABoardIdList);
-		page="forward:../notice/qna/qnaView.jsp";
-		if("답글".equals(keyword)) {
-		page="forward:../notice/qna/qnaReply.jsp";
-		}
-		return page;
+		mod.addAttribute("conQnABoardIdList", conQnABoardIdList);
+		logger.info(mod.toString());
+		return "forward:../notice/qna/qnaView.jsp";
+		
 	}
-
+	
+	/*문의 답글가기*/
+	@RequestMapping("/qReply.hon")
+	public String qReply(Model mod, @RequestParam String qna_no, @RequestParam String keyword,
+			Map<String, Object> pMap) throws ServletException, IOException {
+		logger.info("qReply 메소드 진입");
+		List<Map<String, Object>> conQnABoardIdList = null;
+		pMap = new HashMap<String, Object>();
+		pMap.put("qna_no", qna_no);
+		conQnABoardIdList = qnaLogic.qnaBoardIdListLogic(pMap);
+		mod.addAttribute("conQnABoardIdList", conQnABoardIdList);
+		return "forward:../notice/qna/qnaReply.jsp";
+		
+	}
 	@RequestMapping("/qnaInsert.hon")
 	public String qnaBoardInsert(@RequestParam String qna_category, @RequestParam String qna_title,
 			@RequestParam String qna_content, @RequestParam String qna_pw, Map<String, Object> pMap)

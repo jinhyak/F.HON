@@ -66,7 +66,7 @@ $(document).ready(function() {
 						<div class="center aligned column">
 							<div class="ui segment" style="width:100%;">
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<form class="ui form" action="../../menu/qnaInsert.hon?qna_writer=<%=mem_id%>" method="post"accept-charset="UTF-8">
+<form class="ui form" action="../../menu/qInsert.hon?qna_writer=<%=mem_id%>&keyword=새글" method="post"accept-charset="UTF-8">
 	<div class="ui basic segment"><!-- start of segment -->
 		<div class="ui grid"  style="text-align:left"><!-- start of grid -->
 			<div class="row"><!-- first row start -->
