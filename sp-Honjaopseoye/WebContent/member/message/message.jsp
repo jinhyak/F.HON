@@ -53,7 +53,6 @@ var mem_id;
 var fri_id;
 mem_id = '<%=mem_id%>'
 fri_id = '<%=fri_id%>'
-alert(mem_id+"::::"+fri_id)
 var Lastno=0;
 	$('#msg_button').click(function(){
 		msgSubmit();
@@ -65,7 +64,6 @@ var Lastno=0;
 			alert("오류입니다.")
 		}
 		else{
-			alert(param);
 			$.ajax({
 				 method:"post"
 				,url:"../../message/insert.hon"
@@ -75,7 +73,6 @@ var Lastno=0;
 						$("#scroll").scrollTop($("#msgList").height());
 					}
 					else{
-						alert(data);
 						alert("전송 실패")
 					}
 				}
@@ -90,7 +87,7 @@ var Lastno=0;
 	function msgList(lastno){
 		var param = "msg_from="+mem_id+"&msg_to="+fri_id+"&msg_no="+lastno;
 		if(mem_id==""||mem_id==null||fri_id==""||fri_id==null){
-			alert('ㅡㅡ비회원 꺼지삼')
+			alert('비회원은 이용하실 수 없습니다.')
 		}
 		else{
 			$.ajax({
@@ -118,7 +115,6 @@ var Lastno=0;
 	}
 	$(document).ready(function(){
 		if(mem_id!='비회원'){
-			alert("시작")
 			msgList('0');
 			infinityMsg();
 		}

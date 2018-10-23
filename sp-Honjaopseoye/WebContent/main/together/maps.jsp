@@ -28,7 +28,6 @@
 </head>
 <body>
 
-<i class="close icon"></i>
 	<div class="content">
 		<div class="body">
 			<div class="ui basic segment container"style="padding-top: 0px;padding-bottom: 0px;">
@@ -72,27 +71,29 @@
 	</div>
 <script>
 	var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-	    center : new daum.maps.LatLng(37.47268617374468, 126.8837183789525), // 지도의 중심좌표 
-	    level : 12 // 지도의 확대 레벨 
+	    center : new daum.maps.LatLng(37.4814335948223, 126.883859005074), // 지도의 중심좌표 
+	    level : 6 // 지도의 확대 레벨 
 	});
 	
 	var clusterer = new daum.maps.MarkerClusterer({
 	    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
 	    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
 	    gridSize: 100,
-	    minLevel: 2, // 클러스터 할 최소 지도 레벨
-	    minClusterSize: 2,
+	    minLevel: 3, // 클러스터 할 최소 지도 레벨
+	    minClusterSize: 3,
 	});
  	
  $.get("/sp-Honjaopseoye/store/store_select.hon", function(data) {
-	 
+			$("#map").load(function() {    
+			     $('#loading').hide();  
+			    });
      var markers = $(data.positions).map(function(i, position) {
          var marker = new daum.maps.Marker({
              position : new daum.maps.LatLng(position.STORE_LATITUDE, position.STORE_LONGITUDE)
           });
          
          //띄울 인포윈도우 정의
-         var iwContent = '<img src="/sp-Honjaopseoye/image/'+position.STORE_IMG+'" style="width:145px;"><div style="padding:5px;word-wrap:break-word;">'
+         var iwContent = '<img src="/sp-Honjaopseoye/image/storeImg/'+position.STORE_IMG+'" style="width:145px;"><div style="padding:5px;word-wrap:break-word;">'
 		           +position.STORE_NAME+'<br/>'
 		           +position.STORE_INTRODUCE+'<br/></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 		            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
@@ -122,7 +123,7 @@
               // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
               infowindow.close();
           });
-         
+          
           //생성된 마커를 반환합니다.
          return marker;
  	 });
@@ -135,15 +136,11 @@
        function confirm(){
    		var address = $('#address').val();
    		var name = $('#name').val();
+   		var store_no = $("#store_no").val();
     	opener.document.getElementById("store_address").value=address+','+name;
+    	opener.document.getElementById("store_no").value=store_no;
     	self.close();
        }
-</script>
-  <div id="loading"><img id="loading-image" src="/sp-Honjaopseoye/image/loading.gif" alt="Loading..." /></div>
-<script type="text/javascript">
-	$(window).load(function() {    
-	     $('#loading').hide();  
-	    });
 </script>
 
 </body>

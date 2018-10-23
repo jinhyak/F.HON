@@ -112,7 +112,7 @@
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%; background-color:gray" onclick="location.href='/sp-Honjaopseoye/notice/notice/notice.jsp'">
+							<div class="ui segment button" style="width:100%; background-color:gray">
 								<h3> 공지사항 </h3>
 							</div>
 						</div>
@@ -149,7 +149,7 @@
 											</div>
 											<div id="date" class="left aligned column;"
 												style="text-align: left; margin-left: 30px; margin-top: 5px;">
-												<h5>2018.10.13</h5>
+												<h5><%=noti_date %></h5>
 											</div>
 											<div style="float: right; margin-right: 10px" id="hit">
 												<h5 style="color: #747474">
@@ -195,7 +195,8 @@
 														</tr>
 														<tr>
 															<th width="100px;">다음글 <i class="angle down icon"></i></th>
-															<td><a id="NextTag" style="color: black"
+															<td>
+															<a id="NextTag" style="color: black"
 																href="#" onClick="next()"><%=NEXT_TITLE%></a></td>
 														</tr>
 													</thead>
@@ -224,20 +225,21 @@
 										</tr>
 									</table>
 						<!-- start of modal -->
-						<div class="ui mini modal" id="del_modal" style="text-align:center">
+							<div class="ui mini modal" id="del_modal" style="text-align:center">
 						  <div class="header" style="text-align:center">삭제하시겠습니까</div>
 						    <div class="description"style="text-align:center">
-									<h3>비밀번호를 입력해주십시오.</h3>
+									<h3 style="margin-top:3px;">비밀번호를 입력해주십시오.</h3>
 										<div class="ui input focus">
-											<input type="password" placeholder="비밀번호를 입력해주십시오." id="pw">
+											<input type="password" placeholder="비밀번호를 입력해주십시오." id="pw" style="margin-bottom:10px;">
 										</div>
-					 				 <div class="actions">
-					 				  <div class="ui ok red button">확인</div>
-					 				  <div class="ui cancel green button">닫기</div>
+					 				 <div class="actions" style="margin-bottom:10px;">
+					 				  <div class="ui ok red button" style="margin:0px">확인</div>
+					 				  <div class="ui cancel green button" style="margin:0px">닫기</div>
 					 				 </div>
 						    </div>
 						</div>
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+					<!-- end of modal -->	
+									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기만 바뀌면 됨 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 								</div>
 							</div>
 						</div>
@@ -245,21 +247,26 @@
 				</div>
 			</div>
 		</div>
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	<div>
 </div>
 <script type="text/javascript">
 //삭제  modal창 띄우기
 function remover() {
+	alert("정말로 삭제하시겠습니까?");
 	$('#del_modal')
 	  .modal({
 	    blurring: true,
 	    onApprove : function() {
 	    	var pw = $("#pw").val();
 	    	if (pw == noti_pw) {
+				alert("입력된 pw는 : "+pw);
+				alert("원래 pw는 : "+noti_pw);
 				location.href = "/sp-Honjaopseoye/menu/nDelete.hon?NOTI_NO=" + noti_no;
 			} else if (pw != noti_pw) {
-				alert("비밀번호가 올바르지 않습니다.");
+				alert(pw);
+				alert(noti_pw);
+				alert("비밀번호를 제대로 입력해주세요.");
 				return false;
 			}
 	      },
@@ -275,14 +282,14 @@ function remover() {
 	}
 //수정하기	
 	function modifier(){
+		alert("들감");
 	    $("#f_update").attr('method','post');
 	    $("#f_update").attr('action','../notice/notice/n_modify.jsp');
 		$("#f_update").submit();
 	}
 //다음글	
 	function next(){
-		var NEXT_NOTI_NO = <%= NEXT_NOTI_NO%>;
-		//console.log(NEXT_NOTI_NO);
+	var NEXT_NOTI_NO = '<%=NEXT_NOTI_NO%>'
 		if(NEXT_NOTI_NO=='0'){
 			alert("다음글이 존재하지 않습니다.")
 		}
@@ -293,8 +300,7 @@ function remover() {
 	}
 //이전글	
 	function prev(){
-		var PREV_NOTI_NO = <%= PREV_NOTI_NO%>;
-		//console.log(PREV_NOTI_NO)
+	var PREV_NOTI_NO = '<%=PREV_NOTI_NO%>';
 		if(PREV_NOTI_NO=='0'){
 			alert('이전글이 존재하지 않습니다.');
 		}else{
@@ -303,7 +309,7 @@ function remover() {
 	}
 	$(document).ready(function() {
 		if (level == 'master') {
-			//alert(level)
+			alert(level)
 			$("#noti_modify").show();
 			$("#noti_delete").show();
 	

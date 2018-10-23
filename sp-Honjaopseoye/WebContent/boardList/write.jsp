@@ -99,7 +99,7 @@ $(document).ready(function(){
 	var text = $("#text").val();
 	var pw = $("#pw").val();
 	
-		alert("1 :"+category+"2 :"+id+"3 :"+title+"4 :"+text+"5 :"+pw);
+		//alert("1 :"+category+"2 :"+id+"3 :"+title+"4 :"+text+"5 :"+pw);
 	
 		if(category=="" || title=="" || text=="" || pw==""){
 			

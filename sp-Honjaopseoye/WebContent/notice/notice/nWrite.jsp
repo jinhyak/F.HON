@@ -189,7 +189,7 @@ function Ins_write() {
 	      return;
 	   }
 	   else { 
-	      //alert(noti_content);
+	      console.log(noti_content);
 	      $("#f_insert").attr("action","../../menu/nInsert.hon");
 	      $("#f_insert").submit();//이 때 서버로 전송이 일어남  
 	   }

@@ -137,14 +137,14 @@
 		if(pmem_pw == mem_pw) {
 			alert("탈퇴 요청이 완료되었습니다.");
 			$("#f_form").attr("method","post");
-			$("#f_form").attr("action","../../member/empty/delete.test");
+			$("#f_form").attr("action","../../member/mDelete.hon");
 			$("#f_form").submit();//이 때 서버로 전송이 일어남
 		}
 		else {
 			alert("비밀번호가 일치하지 않습니다.");
 			$("#pmem_pw").val('');
 		}
-	});// /main/member/empty/delet.test
+	});
 </script>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ header @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 </div>

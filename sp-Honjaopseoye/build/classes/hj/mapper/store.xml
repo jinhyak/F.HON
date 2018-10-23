@@ -32,11 +32,11 @@
 		INSERT INTO store(store_no,store_name,store_tel,store_business,
 							  store_price,store_img,store_introduce,store_homepage,
 							  store_keyword,store_addr,store_latitude,
-							  store_longitude,store_score,store_hit)
+							  store_longitude,store_score,store_hit,store_score_count)
 			VALUES(seq_store_no.nextval,#{store_name},#{store_tel},
 					#{store_business},#{store_price},#{store_img},
 					#{store_introduce},#{store_homepage},#{store_keyword},
-					#{store_addr},#{store_latitude},#{store_longitude},0,0)
+					#{store_addr},#{store_latitude},#{store_longitude},0,0,0)
 	</insert>
 	<!-- 가게 조회수 증가 -->
 	<update id="storeHitUp" parameterType="java.lang.String">
@@ -50,7 +50,7 @@
             NVL(store_tel,'없음')as"STORE_TEL",store_addr,store_name,
             NVL(store_business,'없음')as"STORE_BUSINESS",
             NVL(store_introduce,'없음')as"STORE_INTRODUCE",
-            store_score,store_hit,store_img,
+            nvl(store_score,0)as "STORE_SCORE",store_hit,store_img,
             NVL(store_homepage,'없음')as"STORE_HOMEPAGE",
             NVL(store_price,'없음')as"STORE_PRICE",store_no
           FROM store
@@ -59,7 +59,7 @@
 	<!-- 8건만 핫플리스트에 띄우는 것만 검색하는 select문임 -->
 	<select id="selectStore8" parameterType="map" resultType="map">
 		SELECT
-			store_score, store_no,store_img,
+			nvl(store_score,0)as "STORE_SCORE", store_no,store_img,
 			nvl(store_price,'가격정보 없음')as "STORE_PRICE",
 			store_name,store_addr,store_hit,store_business
  		FROM (select * from store 
@@ -79,7 +79,7 @@
 	<select id="selectStoreAll" parameterType="map" resultType="map">
 		SELECT * FROM (
 			SELECT
-				rownum rno,store_score, store_no,store_img,
+				rownum rno,nvl(store_score,0)as "STORE_SCORE", store_no,store_img,
 				nvl(store_price,'가격정보 없음')as "STORE_PRICE",
 				store_name,store_addr,store_hit,store_business
  			  FROM (select * from store 
@@ -112,7 +112,7 @@
 	<!-- 별점순보기 -->
 	<select id="selectStoreAllStar" parameterType="map" resultType="map">
 		SELECT
-			rownum,store_score, store_no,store_img,
+			nvl(store_score,0)as "STORE_SCORE", store_no,store_img,
 			nvl(store_price,'가격정보 없음')as "STORE_PRICE",
 			store_name,store_addr,store_hit,store_business
  		FROM (select * from store 
@@ -172,6 +172,13 @@
 		FROM store
 		WHERE gubun = #{gubun}
 	</select>
+	<select id="store_select" parameterType="map" resultType="map">
+   select * from( 
+       select * from store
+       order by DBMS_RANDOM.RANDOM)
+      where
+      <![CDATA[ rownum <= 10000 ]]> 
+   </select>   
 </mapper>
 
         

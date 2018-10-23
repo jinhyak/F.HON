@@ -2,6 +2,7 @@ package hj.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,7 +70,7 @@ public class StoreController{
 	public String imgUpload(MultipartHttpServletRequest multi) {
 		logger.info("storeImg호출성공");
 		//저장경로 설정
-		String path = "C:\\Users\\516\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\image\\storeImg";
+		String path = "C:\\git\\F.HON\\sp-Honjaopseoye\\WebContent\\image\\storeImg";
 		//파일 저장 경로 확인, 없으면 만듬
 		File dir = new File(path);
 		if(!dir.exists()) {
@@ -205,5 +205,19 @@ public class StoreController{
 		}
 		return "별점 등록 실패";
 	}
+	
+	//가게 전체 검색 클러스터로 뿌려주기
+	   @ResponseBody
+	   @RequestMapping(value="/store_select.hon")
+	   public Map<String, List<Map<String,Object>>> store_select(@RequestParam Map<String,Object> pMap) {
+	      logger.info("store_select 호출 성공");
+	      List<Map<String,Object>> storeList = new ArrayList<Map<String, Object>>();
+	      storeList = storeDao.store_select(pMap);
+	      //logger.info(storeList);
+	      Map<String, List<Map<String,Object>>> rMap = new HashMap<String, List<Map<String,Object>>>();
+	       rMap.put("positions", storeList);
+	       //logger.info(rMap);
+	      return rMap;
+	   }
 
 }

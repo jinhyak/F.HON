@@ -219,7 +219,7 @@ $(document).ready(function(){
 				//alert(data);
 				if(data=='1'){
 					alert('회원정보가 수정되었습니다.')
-					location.href="../../main/main/main.jsp"
+					location.href="../../member/login/logout.jsp"
 				}
 				else{
 					alert("회원정보 수정에 실패하셨습니다")

@@ -83,10 +83,10 @@ public class MemberDao {
 	}
 
 /*[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ 회원 탈퇴 ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]*/
-	public int delete(Map<String, Object> pMap) throws IOException {
-		logger.info("delete 호출성공");
+	public int mDelete(String mem_id) {
+		logger.info("delete 호출성공"+mem_id);
 		int result = 0;
-		result = sqlSessionTemplate.delete("delete", pMap);
+		result = sqlSessionTemplate.delete("mDelete", mem_id);
 		logger.info("result : " + result);
 		return result;
 	}
@@ -137,7 +137,6 @@ public class MemberDao {
 		idSearch = sqlSessionTemplate.selectList("idSearch", pMap);
 		// String user_pw = idSearch.get(0).get("mem_pw").toString();
 		logger.info("idSearch : " + idSearch);
-		sqlSessionTemplate.close();
 		return idSearch;
 	}
 
@@ -149,7 +148,6 @@ public class MemberDao {
 		logger.info(pMap.get("e_mail"));
 		e_idSearch = sqlSessionTemplate.selectList("e_idSearch", pMap);
 		logger.info("e_idSearch : " + e_idSearch);
-		sqlSessionTemplate.close();
 		return e_idSearch;
 	}
 
@@ -161,7 +159,6 @@ public class MemberDao {
 		logger.info("mdao : pwCheck 메소드 호출 성공");
 		result = sqlSessionTemplate.selectOne("membermap.pwCheck", pMap);
 		logger.info("result는" + result);
-		
 		return result;
 	}
 
@@ -183,7 +180,6 @@ public class MemberDao {
 		sqlSessionTemplate.selectOne("proc_pw", pMap);
 		res = pMap.get("res").toString();
 		logger.info("proc_pw : " + res);
-		sqlSessionTemplate.close();
 		return res;
 	}
 
@@ -195,7 +191,6 @@ public class MemberDao {
 		sqlSessionTemplate.selectOne("proc_epw", pMap);
 		res = pMap.get("res").toString();
 		logger.info("proc_epw : " + res);
-		sqlSessionTemplate.close();
 		return res;
 	}
 

@@ -67,7 +67,7 @@ textarea {
 						</div>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 목록 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 						<div class="right aligned column">
-							<div class="ui segment button" style="width:100%;" onclick="location.href='/sp-Honjaopseoye/notice/notice/notice.jsp'">
+							<div class="ui segment button" style="width:100%; background-color:gray">
 								<h3> 공지사항 </h3>
 							</div>
 						</div>
@@ -115,7 +115,10 @@ textarea {
 														<td align="center">작성자</td>
 														<td align="left">
 															<div class="ui input focus" style="align: left;">
-																<input type="text" style="width: 1000px;"id="noti_writer" name="noti_writer"value='<%= mem_id%>' readonly="readonly">
+																<input type="text" style="width: 1000px;"
+																	id="noti_writer" name="noti_writer"
+																	value='<%= mem_id%>'>
+																	<input type="hidden" name="noti_writer"value="<%= mem_id%>">
 															</div>
 														</td>
 													</tr>
@@ -150,9 +153,8 @@ textarea {
 														<td align="left"><textarea id="noti_content" name="noti_content" style="width: 100%; height: 500px; text-align: left;"><%=noti_content%></textarea></td>
 														<tr>
 														<td align="center">첨부파일</td>
-														<td align="left"><input type="file" id="noti_file"
-															name="noti_file">
-															</td>
+														<td align="left"><input type="file" id="noti_file" name="noti_file">
+														</td>
 													</tr>
 												</tbody>
 											</table>
@@ -160,6 +162,7 @@ textarea {
 										<div style="margin-bottom: 30px"></div>
 										<script>
 											$(document).ready(function() {
+										
 												$('#noti_category')
 													.dropdown()
 												;
@@ -192,19 +195,17 @@ textarea {
 	<script>
 	var noti_no = '<%=noti_no%>'
 		function modify(){
-			var noti_content = $("#noti_content").val();
-			var noti_title = $("#noti_title").val();
-			//alert(noti_title)
-			var noti_pw = $("#noti_pw").val();
+		var noti_content = $("#noti_content").val();
+		var noti_title = $("#noti_title").val();
+		var noti_pw = $("#noti_pw").val();
 		if(noti_content == null || noti_content==""){
 			alert('글을 작성해 주세요.');
-		}
-		else if(noti_title == null || noti_title==""){
+		}if(noti_title == null || noti_title==""){
 			alert('제목을 작성해주세요.');
-		}
-		else if(noti_pw == null || noti_pw==""){
+		}if(noti_pw == null || noti_pw==""){
 			alert('비밀번호를 입력해주세요.');
 		}
+		
 		else{
 			$("#f_insert").attr('method','post');
 			$("#f_insert").attr('action','../../menu/nUpdate.hon');

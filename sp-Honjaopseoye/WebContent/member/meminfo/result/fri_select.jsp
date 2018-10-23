@@ -40,10 +40,7 @@ if(list!=null){
 		var item = button.parent().parent()
 		var id = item.children().eq(3)
 		var fri_id = id.children().eq(0).text()
-		alert(mem_id);
-		alert(fri_id)
 		var param = "mem_id="+mem_id+"&fri_id="+fri_id
-		alert(param);
 		$.ajax({
 			method:"post",
 			url:"../../friend/delete.hon",
@@ -65,7 +62,6 @@ if(list!=null){
 		var id = item.children().eq(3)
 		var to_id = id.children().eq(0).text()
 		var from_id = mem_id;
-		alert(to_id+":::"+from_id);
 		var messagewin = cmm_window_popup("../message/message.jsp?mem_id="+from_id+"&fri_id="+to_id, "751", "555", "채팅창");
 	})
 	</script>

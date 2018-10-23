@@ -5,56 +5,69 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상단</title>
+<style type="text/css">
+#top_imgs{ background: url("/sp-Honjaopseoye/image/bg/eating.png")}
+
+#guel{
+	position: relative;
+    top: 25%;
+    background-color:rgba(0,0,0,0.8);
+    padding-left:10px;
+    text-shadow: 2px 1px 0px #6E6E6E;
+}
+
+#menus{
+	font-weight: bold;
+}
+#mungu{
+	font-size : 40px;
+	font-family: "arial",san-serif;
+	font-weight: bold;
+}
+h1{
+	padding-bottom:0px;
+}
+
+</style>
+<%@include file="../../include/include/commonUI.jsp" %> 
 </head>
 <body>
 <div class="floating">
-<div class="ui inverted vertical masthead center aligned segment">
+<div class="ui inverted vertical masthead center aligned segment" id="top_imgs" style="width:100%; height:700px; padding:0px;">
 
-    <div class="ui container">
-      <div class="ui large secondary inverted pointing menu">
-        <a class="toc item">
-          <i class="sidebar icon"></i>
-        </a>
-        	<a class="active item" href="../../notice/notice/notice.jsp">공지사항</a>
-	        <a class="item" href="../../main/honja/honja_main.jsp">혼밥하자</a>
-	        <a class="item" href="../../main/together/together_main.jsp">모임하자</a>
-	        <a class="item" href="/sp-Honjaopseoye/board/boardMaxHit.hon">리뷰보기</a>
-        
-        <div class="ui grid">
-        <div class="four wide two wide large screen one wide widescreen column"></div>
-        <div class="four wide two wide large screen one wide widescreen column">
-        
-        </div>
-        <div class="four wide two wide large screen one wide widescreen column">
-        
-        </div>
-        <div class="four wide two wide large screen one wide widescreen column"></div>
+    
+      <div class="ui large secondary inverted menu" style="background-color:black; margin-top:0px; background-color: rgba(0,0,0,0.8);">
+      <div class="ui container" style="font-weight:bold">
+      <div style="float:left">
       </div>
-        
+        <a class="toc item">
+        </a>
+			<a class="active item" href="../../notice/notice/notice.jsp" id="menus">공지사항</a>
+	        <a class="item" href="../../main/honja/honja_main.jsp" id="menus">혼자하자</a>
+	        <a class="item" href="../../main/together/together_main.jsp" id="menus">같이하자</a>
+	        <a class="item" href="/sp-Honjaopseoye/board/boardMaxHit.hon" id="menus">리뷰보기</a>
         <div class="right item">
-        <!-- #########################로그인 버튼 있는 로그인 폼 시작################################ --> 
-      
-       <div class="ui text container"> 
-       	<div id="loginForm">
+         <!-- #########################로그인 버튼 있는 로그인 폼 시작################################ --> 
+         <div id="loginForm" style="font-weight:bold">
           <a class="ui inverted button" href="../../member/login/login.jsp">로그인</a>
           <a class="ui inverted button" href="../../member/join/gaip.jsp">회원가입</a>
-        </div>
-        </div>
           <!-- ########################로그인 버튼 있는 로그인 폼 끝################################# --> 
+         </div>
+         </div>
         </div>
       </div>
-    </div>
-			<div class="ui text container">
-      <h1 class="ui inverted header">
-       <br>
-          <br>
-        메인화면에 고심을 거듭하고 있어 열심히 제작중입니다.<br>
-        기존에 만들었던 화면을 일단 보여드리겠습니다.<br>
-        완성된 화면은 목요일날 공개됩니다!<br>
-        Comming Soon...
+      
+    <div class="ui text container" id="guel" style="float:right;margin-right:100px; border:8px solid white;box-shadow: 1px 1px 0px 1px #999;">
+    	<!-- <div style="border:solid 1.5px white; border-right:0px; float:left;" > -->
+      <h1 class="ui inverted header" id="mungu" style="float:left; text-align:left; padding-top:5px;">
+        당신의 라이프 스타일을 <br>
+        <span style="text-align:left;"><h1 id="mungu">찾아보세요.</h1></span>
+        당신의 취향을 
+        <span><h1 id="mungu">다른사람들과 공유해보세요.</h1></span> 
       </h1>
-      <br>
+    <!--   </div> -->
     </div>
+
   </div>
 </div>
 </body>

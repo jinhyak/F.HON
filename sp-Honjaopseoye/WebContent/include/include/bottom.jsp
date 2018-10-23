@@ -5,12 +5,23 @@
 <script type="text/javascript">
 	function mlist(){
   		if(mem_id!='비회원'){
-  		location.href="/sp-Honjaopseoye/member/meminfo/meminfo.jsp";
+  			location.href="/sp-Honjaopseoye/member/meminfo/meminfo.jsp";
   		}
   		else{
   			alert("로그인 후 이용 가능합니다")
   		}
   	}
+	function together(){
+		
+		if(mem_id!="비회원"){
+			
+			location.href = "/sp-Honjaopseoye/main/together/together_main.jsp";
+			
+		}
+		else{
+			alert("비회원은 이용하실수없습니다")
+		}
+	}
 </script>
 <div class="ui inverted vertical footer segment" style="height: 250px;padding-left: 100px;padding-right: 100px;height: auto;padding-bottom: 20px;">
 <h1 style="margin-top: 10px;color: grey;">PRODUCT</h1>

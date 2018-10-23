@@ -85,6 +85,31 @@ var msg_count=0;
  left: 50%; 
  z-index: 100; }
 </style>
+<script type="text/javascript">
+	  	$(document).ready(function(){
+	  		var mem_id = '<%=mem_id%>'
+	  		$('#loginForm').show();	
+	  		$('#logoutForm').hide();
+	  	
+	
+	  <%
+		if(mem_id=="비회원"){	 
+			System.out.println(mem_id);
+	  %>
+	  	$('#logoutForm').hide();
+	  	$('#loginForm').show();
+	  <%
+	  }
+		else{
+	  %>
+	  		$('#logoutForm').show();
+	  		$('#loginForm').hide();
+
+	  	<% 
+	  	}
+	  	%>
+	  	});
+	  </script>
 </head>
 <body>
   <div class="ui fixed inverted menu">
@@ -97,19 +122,9 @@ var msg_count=0;
         <div class="menu">
           <a class="item" href="javascript:mlist()">회원정보</a>
           <a class="item" href="/sp-Honjaopseoye/notice/notice/notice.jsp">공지사항</a>
-          <a class="item" href="/sp-Honjaopseoye/main/honja/honja_main.jsp">혼자페이지</a>
-          <a class="item" href="/sp-Honjaopseoye/main/together/together_main.jsp">만남페이지</a>
+          <a class="item" href="/sp-Honjaopseoye/main/honja/honja_main.jsp">혼자하자</a>
+          <a class="item" href="javascript:together()">같이하자</a>
           <a class="item" href="/sp-Honjaopseoye/board/boardMaxHit.hon">리뷰보기</a>
-          <div class="divider"></div>
-          <div class="header">보조 메뉴</div>
-          <div class="item">
-            <i class="dropdown icon"></i>
-            	로그인
-            <div class="menu">
-              <a class="item" href="/sp-Honjaopseoye/member/login/login.jsp">로그인</a>
-              <a class="item" href="/sp-Honjaopseoye/member/login/logout.jsp">로그아웃</a>
-            </div>
-          </div>
         </div>
       </div>
       <div class="right item"><script>document.write(level)</script></div>
@@ -119,9 +134,33 @@ var msg_count=0;
 	    <i class="icon mail"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 메시지
 	    </font></font><div class="ui red label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><span id="msg_count">0</span></font></font></div>
 	  </a>
+		  <div id="loginForm" style="margin-top:8px;font-weight:bold">
+		  <a class="ui inverted button" href="/sp-Honjaopseoye/member/login/login.jsp">로그인</a>
+	      <a class="ui inverted button" href="/sp-Honjaopseoye/member/join/gaip.jsp">회원가입</a>
+     	 </div>
+         <div id="logoutForm" style="margin-top:8px;font-weight:bold" style="font-weight:bold">
+          <a class="ui inverted button" href="/sp-Honjaopseoye/member/login/logout.jsp">로그아웃</a>
+          <a class="ui inverted button" href="/sp-Honjaopseoye/member/meminfo/meminfo.jsp">정보수정</a>
+          <a class="ui inverted button" onClick="gageInsert()">가게등록</a>
+         </div>
 	</div>
   </div>
   <script type="text/javascript">
+  
+  function gageInsert(){
+	  
+	  if("master"==level){
+		  
+	  cmm_window_popup("/sp-Honjaopseoye/store/storeAdd/storeAdd.jsp", "600px", "800px", "가게 등록");
+		  
+	  } else {
+		  alert("관리자만 가능 합니다.");
+	  }
+	  
+  }
+  
+  
+  
   	function mlist(){
   		if(mem_id!='비회원'){
   		location.href="/sp-Honjaopseoye/member/meminfo/meminfo.jsp";

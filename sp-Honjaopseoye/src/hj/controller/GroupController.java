@@ -124,5 +124,13 @@ public class GroupController {
 	   result = groupDao.groupDelete(pMap);
 	   return result;
    }
-   
+   @ResponseBody
+   @RequestMapping("/filterSelect.hon")
+   public List<Map<String, Object>> filterSelect(Model mod,@RequestParam Map<String, Object> pMap) throws IOException {
+	   logger.info("filterSelect 호출 성공");
+		List<Map<String,Object>> filterSelect = null;
+		filterSelect = groupDao.filterSelect(pMap);
+		logger.info("groupInfoList: "+filterSelect);
+		return filterSelect;
+   }
 }

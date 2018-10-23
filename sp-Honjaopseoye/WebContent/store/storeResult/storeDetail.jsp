@@ -43,16 +43,41 @@
 		color: black;
 	}
 	.scoreText{
-		font-size: large;
+		font-size: x-large;
+		font-weight: bold;
+		color: orange;
 	}
+	.view{
+		font-size: x-large;
+		font-weight: bold;
+		color: gray;
+	}
+	.storename{
+		font-size: xx-large;
+		font-weight: bold;
+	}
+	.td1{
+		font-size: large;
+		font-weight: bold;
+		color: gray;
+	}
+	.td2{
+		font-size: large;
+		font-weight: 600;
+	}
+	.info{
+		font-size: medium;
+		font-weight: 600;
+		
+	}
+
 </style>
 </head>
 <script type="text/javascript">
 
 function setScore(){
-		//alert($('.ui.huge.rating').rating("get rating"));
-		var score = $('.ui.huge.rating').rating("get rating")
-		 $.ajax({
+		var score = $('.ui.massive.rating').rating("get rating")
+		  $.ajax({
 			method:"GET"
 		   ,url:"/sp-Honjaopseoye/store/storeSetScore.hon?setStore_score="+
 			    score+"&store_no=<%=no%>"
@@ -68,7 +93,6 @@ function setScore(){
 			   alert(xhrObject.responseText);
 		   }
 		})////end of ajax 
-
 }/////////////end of setScore
 function showMap(){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -80,7 +104,7 @@ function showMap(){
 	  };
 		
 		 mapContainer.style.width = "400px";
-		 mapContainer.style.height = "400px"; 
+		 mapContainer.style.height = "500px"; 
 
 	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	 map = new daum.maps.Map(mapContainer, mapOption);
@@ -102,7 +126,7 @@ function showMap(){
 			       map.setBounds(bounds);
 			       //인포윈도우 만들기
 			       iwContent 
-			       		= '<div style="padding:5px;">&nbsp;&nbsp;'+store_name+'</div>'
+			       		= '<div class="info" style="padding:3px;">&nbsp;&nbsp;'+store_name+'</div>'
 		    	   iwPosition = new daum.maps.LatLng(result[0].y, result[0].x); //인포윈도우 표시 위치입니다
 			    	// 인포윈도우를 생성합니다
 			       var infowindow = new daum.maps.InfoWindow({
@@ -141,29 +165,30 @@ function searchAll(){
 </script>
 <body style="min-width: 1000px;">
 <%@include file="../../include/include/subtop.jsp"%>
-<div class="ui container" style="margin-top: 65px;height:850px">
+<div class="ui container" style="margin-top: 65px;height:950px">
 	<div class="ui one column grid">
 		<div class="column" style="padding-bottom: 0px;">
-			<div class="ui teal buttons" id="menuBtns" style="width: 282px;">
+			<div class="ui buttons" id="menuBtns" style="width: 282px;">
   				<button class="ui active button" id="matjip" value="21">맛집</button>
   				<button class="ui button" id="suljip" value="22">술집</button>
   				<button class="ui button" id="nolgot" value="23">놀곳</button>
 			</div>
 		</div>
 		<div class="column" style="padding-top: 0px;">
-			<div class="ui input">	
+			<div class="ui input focus">	
   				<input type="text" placeholder="검색어를 입력하세요" id="searchWord" name="searchWord" style="width: 210px;">
- 				<button class="ui blue button" id="searchButton" onclick="searchAll()"style="width: 72px;">검색</button>
+ 				<button class="ui linkedin button" id="searchButton" onclick="searchAll()"style="width: 72px;">검색</button>
 			</div>
 		</div>
 	</div>
 	<div class="ui two column grid">
 		<!-- 가게정보 -->
 		<div class="column">
-			<h1 class="ui header" id="store_name"><%=name %></h1>
+			<span class="storename" id="store_name"><%=name %></span>
 			<br>
-			<i class="eye icon">&nbsp;<%=hit %></i><br>
-			<div class="ui star rating" data-rating="<%=Math.round(score)%>" data-max-rating="5"></div>
+			<br>
+			<span class="view"><i class="eye icon">&nbsp;<%=hit %></i></span><br>
+			<div class="ui huge star rating" data-rating="<%=Math.round(score)%>" data-max-rating="5"></div>
 			<span class="scoreText"><%=score %></span>&nbsp;&nbsp;&nbsp;
 			<button class="circular ui icon yellow button" onclick="$('.ui.modal').modal('show')">
   				<span class="starText">
@@ -176,28 +201,28 @@ function searchAll(){
 		<table class="ui very basic table"style="height: 400px;">
 			<tbody>
 	  			<tr>
-      				<td><h3>주소</h3></td>
-      				<td><%=addr %></td>
+      				<td class="td1">주소</td>
+      				<td class="td2"><%=addr %></td>
     			</tr>
 	  			<tr>
-      				<td><h3>업종</h3></td>
-      				<td><%=business %></td>
+      				<td class="td1">업종</td>
+      				<td class="td2"><%=business %></td>
     			</tr>
 	  			<tr>
-      				<td><h3>전화번호</h3></td>
-      				<td><%=tel %></td>
+      				<td class="td1">전화번호</td>
+      				<td class="td2"><%=tel %></td>
     			</tr>
 	  			<tr>
-      				<td><h3>가격대</h3></td>
-      				<td><%=price %></td>
+      				<td class="td1">가격대</td>
+      				<td class="td2"><%=price %></td>
     			</tr>
 	  			<tr>
-      				<td><h3>홈페이지</h3></td>
-      				<td><%=homepage %></td>
+      				<td class="td1">홈페이지</td>
+      				<td class="td2"><a href="<%=homepage%>"><%=homepage%></a></td>
     			</tr>
 	  			<tr>
-      				<td><h3>가게 소개</h3></td>
-      				<td><%=introduce %></td>
+      				<td class="td1">가게 소개</td>
+      				<td class="td2"><%=introduce %></td>
     			</tr>
 			</tbody>
 		</table>
@@ -212,20 +237,21 @@ function searchAll(){
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	 $('.ui.rating').rating('disable');
-		$('.ui.huge.rating')
+	 $('.ui.huge.rating').rating('disable');
+		$('.ui.massive.rating')
 		  .rating({
-		    initialRating: 0
+		    initialRating: 3
 	});
 	showMap();
 	chooseMenu();
+	
 })////////////end of ready
 </script>
 <!--======================== 별점주기 모달 =================-->
 <div class="ui modal">
   <div class="header">별점주기</div>
   <div class="content">
-   	<div class="ui huge star rating" data-max-rating="5" id="storeSetScore"></div>
+   	<div class="ui massive star rating" data-max-rating="5" id="storeSetScore"></div>
    	<br>
    	<button class="ui primary button" id="ok" onclick="setScore()">
   		확인

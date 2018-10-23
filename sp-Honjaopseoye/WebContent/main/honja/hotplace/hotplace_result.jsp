@@ -8,6 +8,27 @@
 <!-- #hotplaceList에 뿌려줄 div태그들 포문 돌려서 최대 8개 까지 생성함  -->
 <!-- semantic으로 만들어서 뿌려야함-->
 <!-- 로직에서 list에 담을때 최대 8개 까지만!! 그이상이면 이상할거 같음 -->
+<style>
+.name{
+ font-size: medium;
+ font-weight: bold;
+}
+.scoreText{
+	font-size: large;
+	font-weight: bold;
+	color: orange;
+}
+.addr{
+	font-size: small;
+	font-weight: normal;
+	color: gray;
+}
+.view{
+	font-size: medium;
+	font-weight: bold;
+	color: gray;
+}
+</style>
 <%
 	System.out.println("hotplace_result호출성공");
 	List<Map<String,Object>> list
@@ -41,19 +62,19 @@
 	<input type="hidden" value="<%=addr%>">
 	<input type="hidden" value="<%=name%>">
 	<input type="hidden" value="<%=no%>">
-	<div class="ui link card" onclick="showDetailStore(<%=no%>)" style="margin-top: 0px;">
+	<div class="ui link card" onclick="showDetailStore(<%=no%>)" style="margin-top: 0px;height: 235px;">
   		<div class="image">
     		<img src="/sp-Honjaopseoye/image/storeImg/<%=img%>"style="width: 210px;height: 140px;">
   		</div>
-  		<div class="content"style="display:inline-block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-    			<a class="header"><%=name %></a>
+  		<div class="content"style="display:inline-block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left: 8px;padding-top: 8px;">
+    			<span class="name"><%=name %></span>
     		<div class="meta">
-	    		<%=business %> - <%=littleAddr %><br>
+	    		<span class="addr"><%=business %> - <%=littleAddr %><br></span>
 	    	</div>
-    	  		<span class="date"><i class="eye icon">&nbsp;<%=hit %></i></span>
+    	  		<span class="view"><i class="eye icon">&nbsp;<%=hit %></i></span>
       				<br>
-      			<div class="ui star rating" data-rating="<%=Math.round(score)%>" data-max-rating="5"></div>
-      			<%=score %>
+      			<div class="ui large star rating" data-rating="<%=Math.round(score)%>" data-max-rating="5"></div>
+      			<span class="scoreText"><%=score %></span>
   		</div>
 	</div><!-- end of card -->
 </div><!-- end of column -->

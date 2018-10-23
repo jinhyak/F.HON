@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="select" parameterType="map" resultType="map">
 		 select * from members,grade where mem_id = grade_id and mem_id = #{mem_id}
 	</select>
-	<delete id="delete" parameterType="java.util.Map">
+	<delete id="mDelete" parameterType="String">
 		DELETE FROM members
 		WHERE mem_id = #{mem_id}
 	</delete>
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             and mem_email = #{e_mail}
    </select>
    
-   	<select id="pwCheck" resultType="String" parameterType="map">
+   	<select id="pwCheck" resultType="java.lang.String" parameterType="map">
 		select nvl2(
         (select '1' from dual where exists(select mem_pw from members where mem_id = #{mem_id}))
        ,(select nvl((select '1' from members where mem_id=#{mem_id} and mem_tel =#{mem_tel}), '-1') from dual)

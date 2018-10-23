@@ -1,7 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
 
 <%@ page import="java.security.SecureRandom"%>
 <%@ page import="java.math.BigInteger"%>
@@ -16,8 +15,7 @@
 	if (session.getAttribute("memList") != null) {
 		smem_name = memList2.get(0).get("MEM_NAME").toString();
 	}
-	System.out.print(smem_name);
-%>	
+%>
 <% 
 	String clientId = "rMQSr12DQcrxNQeItZQ5"; //애플리케이션 클라이언트 아이디값";
 	String clientSecret = "uu3M2Y2xdg"; //애플리케이션 클라이언트 시크릿값";
@@ -87,31 +85,167 @@
 <script type="text/javascript">
 var smem_name = '<%=smem_name%>'
 </script>
-<%@include file="../../include/include/commonUI.jsp" %>
+<%@include file="../../include/include/commonUI.jsp"%>
 <title>메인</title>
+<style type="text/css">
+#titles {
+	font-family: Helvetica, sans-serif;
+}
+
+#pinkTitles {
+   font-family: Malgun Gothic, sans-serif;
+   font-weight: bold;
+   margin-top: 15px;
+   margin-bottom: 15px;
+   font-size: 50px;
+   color:white;
+   text-shadow: 2px 1px 0px #6E6E6E;
+}
+
+img {
+	margin-bottom: 25px;
+}
+
+#geuls {
+	font-family: Malgun Gothic, sans-serif;
+	font-weight: bold;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 12px;
+}
+
+#hon {
+	font-size: 27px;
+	font-weight: bold;
+}
+</style>
+
 </head>
-<body>
-		<% 
+<% 
 			if(smem_name==null || smem_name=="" ){
-		%>	
-			<%@ include file="../../include/include/logout_top.jsp" %>
-		<% 	
+		%>
+<%@ include file="../../include/include/logout_top.jsp"%>
+<% 	
 			}else {
 		%>
-			<%@ include file="../../include/include/top.jsp" %>
-		<% 	
+<jsp:include page="../../include/include/top.jsp" />
+<% 	
 			}
 		%>
-<div class="ui two column stackable grid" style="height:850px">
-    <div class="column">
-		<a  id="btn1" href="../honja/honja_main.jsp" style="width:100%; height:100%;"><img src="../../image/person.PNG" style="width:100%; height:100%;"></a>
-    </div>
-    <div class="column">
- 		 <a id="btn2" href="../together/together_main.jsp" style="width:100%; height:100%;"><img src="../../image/with.jpg"style="width:100%; height:100%;"></a>
-    </div>
-</div>
-<!--  -->
+<div style="margin-bottom: 0px;"></div>
 
-<%@ include file="../../include/include/bottom.jsp" %>
+<!-- start description -->
+<diV>
+	<table class="ui table" style="background-color:#e2e2e2; border: 0px; height: 300px;">
+		<tbody>
+			<tr>
+				<td align="center">
+					<div class="center aligned">
+						<img src="../../image/bg/restaurant.png" width="25px;" height="25px;">
+					</div>
+					<div align="center" id="hon">혼밥</div>
+					<div style="text-align: center" id="geuls" style="font-weight:bold">
+						혼밥은 혼자 먹는 밥 또는 그런 행위를 말합니다.<br> 이제는 혼밥이라는 단어가 고유명사화되다시피 했습니다.<br> 혼밥에 관련된 조사를 보면 20대는 특히나 혼밥을 친숙하게 느끼는 것을<br> 확인할 수 있습니다.
+					</div>
+
+				</td>
+				<td align="center">
+					<div class="center aligned">
+						<img src="../../image/bg/beer.png" width="35px;" height="35px;">
+					</div>
+					<div align="center" id="hon">혼술</div>
+					<div style="text-align: center" id="geuls" style="font-weight:bold">
+						혼술은 혼자 먹는 술 또는 그런 행위를 말합니다.<br> 이제는 혼술이라는 단어가 고유명사화되다시피 했습니다.<br> 혼술에 관련된 조사를 보면 20대는 특히나 혼술을 친숙하게 느끼는 것을<br> 확인할 수 있습니다.
+					</div>
+
+				</td>
+				<td align="center">
+					<div class="center aligned">
+						<img src="../../image/bg/happy-children.png" width="35px;" height="35px;">
+					</div>
+					<div align="center" id="hon">혼놀</div>
+					<div style="text-align: center" id="geuls" style="font-weight:bold">
+						혼놀은 혼자 노는 것 또는 그런 행위를 말합니다.<br> 이제는 혼놀이라는 단어가 고유명사화되다시피 했습니다.<br> 혼놀에 관련된 조사를 보면 20대는 특히나 혼놀을 친숙하게 느끼는 것을<br> 확인할 수 있습니다.
+					</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div style="padding: 50px;"></div>
+
+<div style="background-color:#E0C8C8">
+<div align="center" id="pinkTitles" style="padding-top:50px;">What do you Want?</div>
+<div class="ui two column grid container" style="padding-top:50px; padding-bottom:100px" >
+   <div class="column">
+      <div class="ui segment">
+         <div class="ui special cards">
+            <!-- 카드 1 -->
+            <div class="card" style="width: 100%; height: 100%;">
+               <div class="blurring dimmable image" style="width: 100%; height: 100%;">
+                  <div class="ui dimmer">
+                     <div class="content">
+                        <div class="center">
+                           <div align="center" class="ui inverted button" style="width: 140px; height: 50px; text-align: center" onClick="alone()">혼자 페이지</div>
+                        </div>
+                     </div>
+                  </div>
+                  <img src="../../image/bg/honjaPage.jpg" style="width: 100%; height: 100%;">
+               </div>
+            </div>
+            <!-- 카드 1 끝 -->
+         </div>
+      </div>
+   </div>
+   <div class="column">
+      <div class="ui segment">
+         <div class="ui special cards">
+            <!-- 카드 2 -->
+            <div class="card" style="width: 100%; height: 100%;">
+               <div class="blurring dimmable image" style="width:100%; height: 100%;">
+                  <div class="ui dimmer">
+                     <div class="content">
+                        <div class="center">
+                           <div align="center" class="ui inverted button" style="width: 140px; height: 50px; text-align: center" onClick="together()">같이 페이지</div>
+                        </div>
+                     </div>
+                  </div>
+                  <img src="../../image/bg/modu.jpg" style="width:100%; height: 100%;">
+               </div>
+            </div>
+            <!-- 카드2 끝 -->
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+   
+$('.special.cards .image').dimmer({
+     on: 'hover'
+   });
+   
+})
+
+
+</script>
+<script>
+var mem_id = '<%=smem_name %>';
+	if(mem_id=="null"){
+		mem_id = "비회원";
+	}
+	function alone(){
+		location.href="../honja/honja_main.jsp";
+	}
+</script>
+
+<div style="margin-top:0px;"></div>
+
+
+<%@ include file="../../include/include/bottom.jsp"%>
 </body>
 </html>

@@ -43,54 +43,59 @@
 	       b.bang_topic BANG_TOPIC, s.store_keyword STORE_KEYWORD, 
 	       b.bang_gender BANG_GENDER, b.bang_age BANG_AGE, b.bang_money BANG_MONEY, 
 	       b.bang_date BANG_DATE, b.bang_time BANG_TIME,
-	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
+	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE,
+	       s.store_latitude STORE_LATITUDE, s.store_longitude STORE_LONGITUDE,
+	       s.store_no STORE_NO, s.store_img STORE_IMG
 	from   bang b, store s
 	<where>
 		   b.store_no = s.store_no        
-	 	<if test='key!=null and key.equals("bang_topic")'>
-	    	AND b.bang_topic LIKE '%'||#{keyword}||'%'
+	 	<if test='bang_topic!=null and bang_topic!=0'>
+	    	AND b.bang_topic LIKE '%'||#{bang_topic}||'%'
 	 	</if>		
-	 	<if test='key!=null and key.equals("bang_gender")'>
-	    	AND b.bang_gender LIKE '%'||#{keyword}||'%'
+	 	<if test='bang_gender!=null and bang_gender!=0'>
+	    	AND b.bang_gender LIKE '%'||#{bang_gender}||'%'
 	 	</if>		
-	 	<if test='key!=null and key.equals("bang_age")'>
-	    	AND b.bang_age LIKE '%'||#{keyword}||'%'
+	 	<if test='bang_age!=null and bang_age!=0'>
+	    	AND b.bang_age LIKE '%'||#{bang_age}||'%'
 	 	</if>	
-	 	<if test='key!=null and key.equals("bang_money")'>
-	    	AND b.bang_money LIKE '%'||#{keyword}||'%'
+	 	<if test='bang_money!=null and bang_money!=0'>
+	    	AND b.bang_money LIKE '%'||#{bang_money}||'%'
 	 	</if>	
-	 	<if test='key!=null and keyword.equals("bang_limit_people")'>
-	    	AND b.bang_limit_people LIKE '%'||#{keyword}||'%'
+	 	<if test='bang_limit_people!=null and bang_limit_people!=0'>
+	    	AND b.bang_limit_people LIKE '%'||#{bang_limit_people}||'%'
 	 	</if>	
-	 	<if test='key!=null and key.equals("store_business")'>
-	    	AND s.store_business LIKE '%'||#{keyword}||'%'
+	 	<if test='store_business!=null and bang_business!=0'>
+	    	AND s.store_business LIKE '%'||#{store_business}||'%'
 	 	</if>	
  	</where>
 </select>
 
 <!-- 지도 옆 목록에서 방 선택시 store_no, bang_no 받음 -->
-<select id="groupSelect" parameterType="map" resultType="map">	
-	select b.bang_id BANG_ID, b.bang_no BANG_NO, s.store_no STORE_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
-		   s.store_latitude STORE_LATITUDE, s.store_longitude STROE_LONGITUDE,	
-	       s.store_name STORE_NAME, s.store_addr STORE_ADDR, s.store_score STORE_SCORE, s.store_img STORE_IMG,
-	       (select gstring from store s, gubunja gb WHERE s.store_business = gb.gprotocol AND  s.store_no = #{store_no}) STORE_BUSINESS,
-	       (select gstring from bang b, gubunja gb WHERE b.bang_topic = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_TOPIC,
-	       s.store_keyword STORE_KEYWORD, 
-	       (select gstring from bang b, gubunja gb WHERE b.bang_gender = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_GENDER,
-	       (select gstring from bang b, gubunja gb WHERE b.bang_age = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_AGE,
-           b.bang_money BANG_MONEY, b.bang_date BANG_DATE, 
-	       (select gstring from bang b, gubunja gb WHERE b.bang_time = gb.gprotocol AND  b.bang_no = #{bang_no}) BANG_TIME,
-	       b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE
-	from   bang b, store s
-	where  b.store_no = s.store_no
-	and    b.bang_no = #{bang_no}
+<select id="groupSelect" parameterType="map" resultType="map">   
+   select b.bang_id BANG_ID, b.bang_no BANG_NO, s.store_no STORE_NO, b.bang_name BANG_NAME, b.bang_memo BANG_MEMO,
+           s.store_latitude STORE_LATITUDE, s.store_longitude STROE_LONGITUDE,    
+           s.store_name STORE_NAME, s.store_addr STORE_ADDR, s.store_score STORE_SCORE, s.store_img STORE_IMG,
+           decode(s.STORE_BUSINESS, (select GPROTOCOL from gubunja where gprotocol=s.STORE_BUSINESS), (select GSTRING from gubunja where gprotocol=s.STORE_BUSINESS)) STORE_BUSINESS,
+           decode(b.BANG_TOPIC, (select GPROTOCOL from gubunja where gprotocol=b.BANG_TOPIC), (select GSTRING from gubunja where gprotocol=b.BANG_TOPIC)) BANG_TOPIC,
+           s.store_keyword STORE_KEYWORD,
+           decode(b.BANG_GENDER, (select GPROTOCOL from gubunja where gprotocol=b.BANG_GENDER), (select GSTRING from gubunja where gprotocol=b.BANG_GENDER)) BANG_GENDER, 
+           decode(b.BANG_AGE, (select GPROTOCOL from gubunja where gprotocol=b.BANG_AGE), (select GSTRING from gubunja where gprotocol=b.BANG_AGE)) BANG_AGE,          
+           b.bang_money BANG_MONEY, b.bang_date BANG_DATE,
+           decode(b.BANG_TIME, (select GPROTOCOL from gubunja where gprotocol=b.BANG_TIME), (select GSTRING from gubunja where gprotocol=b.BANG_TIME)) BANG_TIME,
+           b.bang_limit_people BANG_LIMIT_PEOPLE, b.bang_cur_people BANG_CUR_PEOPLE,
+           m.mem_img MEM_IMG
+    from   bang b, members m, store s
+    where  b.store_no = s.store_no
+    and    b.bang_no = #{bang_no}
+    and    b.bang_id = m.mem_id
 </select>
 
 <!-- 방 선택후 친구목록보기 버튼 클릭시 보여줄 친구내용 -->
 <select id="friendSelect" parameterType="string" resultType="map">
-	select *
-	from   bang_info
-	where  bang_no = #{bang_no}
+   select *
+   from   bang_info b, members m
+   where  b.bang_no = #{bang_no}
+   and b.mem_id = m.mem_id   
 </select>
 
 <!-- 모임방 개설생성 버튼 누를시 input에 박은값들 다 받음 -->

@@ -69,7 +69,7 @@ var map;
     			<div class="item" data-value="10000">~1만원</div>
     			<div class="item" data-value="20000">1만원~2만원</div>
     			<div class="item" data-value="30000">2만원~3만원</div>
-    			<div class="item" data-value="500000">3만원~5만원</div>
+    			<div class="item" data-value="50000">3만원~5만원</div>
     			<div class="item" data-value="100000">5만원~10만원</div>
     			<div class="item" data-value="200000">10만원~20만원</div>
     			<div class="item" data-value="400000">30만원~50만원</div>
@@ -315,7 +315,7 @@ var map;
 		var bang_topic = $("#bang_topic").val();
 		var store_no = $("#store_no").val();
 		var mem_id = '<%=mem_id%>';
-		alert(store_no)
+		//alert(store_no);
 		var param = "bang_limit_people="+bang_li+"&bang_address="+bang_address+"&bang_time="+bang_time+
 				    "&bang_date="+bang_date+"&bang_memo="+bang_memo+"&bang_name="+bang_name+
 				    "&bang_gubun="+bang_gubun+"&bang_money="+bang_money+"&bang_age="+bang_age+

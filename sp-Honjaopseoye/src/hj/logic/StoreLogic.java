@@ -6,17 +6,23 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hj.dao.StoreDao;
+import hj.util.PageBar;
 @Service
 public class StoreLogic {
 	Logger logger = Logger.getLogger(this.getClass());
 	
 	@Autowired
 	private StoreDao storeDao = null;
+	
+	PageBar pageBar = null;
 
 	public List<Map<String, Object>> searchStore8(Map<String, Object> pMap) throws IOException {
 		List<Map<String,Object>> list = null;
@@ -220,6 +226,7 @@ public class StoreLogic {
 			list.get(i).put("STORE_LITTLEADDR",little_addr);
 			logger.info(list.get(i).get("STORE_LITTLEADDR"));
 		}
+		
 
 		
 		return list;
@@ -412,5 +419,6 @@ public class StoreLogic {
 		
 		return list;
 	}
+	
 }
 	

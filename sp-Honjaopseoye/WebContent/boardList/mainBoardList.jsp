@@ -155,7 +155,7 @@ $(document).ready(function(){
 								style="width:230px; height:220px;" class="hidden content">
 						</div>
 						<div class="content">
-							<a class="header" href="/sp-Honjaopseoye/boardList/nolBoard.jsp">우리들은 하나</a>
+							<a class="header" href="/sp-Honjaopseoye/main/together/together_main.jsp">우리들은 하나</a>
 							<div class="meta">
 								<span class="date">혼족들이 모여 소통할 수 있는 공간</span>
 							</div>
@@ -419,14 +419,12 @@ $(document).ready(function(){
 							</div>
 						</div>
 
-
 						<%
 							}
 						%>
 
 					</div>
 				<!-- 혼놀 for문 끝  -->
-			
 	</div>
 	</div>
 	</div>

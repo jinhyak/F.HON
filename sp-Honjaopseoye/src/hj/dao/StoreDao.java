@@ -72,5 +72,14 @@ public class StoreDao {
 		result = sqlSessionTemplate.update("storeSetScore",pMap);		
 		return result;
 	}
+	
+	//지도 클러스터 뿌려질 목록
+	   public List<Map<String, Object>> store_select(Map<String, Object> pMap) {
+	      logger.info("store_select호출 성공");
+	      List<Map<String, Object>> storeList = null;
+	      storeList = sqlSessionTemplate.selectList("store_select", pMap);
+	      //logger.info(storeList);
+	      return storeList;
+	   }
 }
 	

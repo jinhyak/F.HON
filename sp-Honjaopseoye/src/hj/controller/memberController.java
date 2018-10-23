@@ -43,7 +43,7 @@ public class memberController {
 	private MemberDao memberDao = null;
 	
 /*메인페이지 이동 테스트*/
-	@RequestMapping("/empty.hon")
+	@RequestMapping("/")
 	public String empty(Model mod, @RequestParam Map<String,Object> pMap, HttpServletResponse res) {
 		List<Map<String,Object>> emptyList = null;
 		logger.info("empty메소드 호출");
@@ -54,7 +54,7 @@ public class memberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		return "redirect:./join/addr_result.jsp";
+		return "redirect:./sp-Honjaopseoye/main/main/main.jsp";
 	}
 	
 /*아이디 중복 체크*/
@@ -152,6 +152,17 @@ public class memberController {
 		result = memberDao.iUpdate(pMap);
 		mod.addAttribute("result",result);
 		return result;
+	}
+	
+/*회원 탈퇴*/
+	@RequestMapping("/mDelete.hon")
+	public String mDelete(@RequestParam Map<String,Object> pMap) {
+		logger.info("id"+pMap);
+		String mem_id = pMap.get("mem_id").toString();
+		int result = 0;
+		result = memberDao.mDelete(mem_id);
+		
+		return "redirect:../member/login/logout.jsp";
 	}
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 아이디 찾기(전화번호로) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@RequestMapping(value = "/check.hon", method= {RequestMethod.POST, RequestMethod.GET}) //POST, GET 모두 받을 수 있음

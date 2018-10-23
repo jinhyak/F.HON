@@ -35,6 +35,7 @@ public class GroupDao {
 		public List<Map<String, Object>> filterSelect(Map<String, Object> pMap) {
 			logger.info("filterSelect");
 			List<Map<String, Object>> filterList = null;
+			logger.info(pMap);
 			filterList = sqlSessionTemplate.selectList("groupMapper.filterSelect", pMap);
 			logger.info("filterList:"+filterList);
 			return filterList;

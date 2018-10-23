@@ -1,5 +1,3 @@
-<%@page import="java.util.Map"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,12 +23,14 @@ var markers = [];
 var infowindow;
 var datas = [];
 var datacounter = 0;
+var temp;
 </script>
 </head>
 <body>
 <div class="ui basic segment" style="margin-top:30px;" style=""><!-- big segment -->
 	<div class="ui basic segment grid" style="">
 	<div class="ui basic segment" style="width:78%">
+<form id="f_search">
 			<div class="ui category search">
 			  <div class="ui icon input">
 			    <input class="prompt" type="text" id="value" placeholder="모임 검색" >
@@ -38,16 +38,8 @@ var datacounter = 0;
 			  </div>
 			</div>
 			<div class="ui segment">
-			<div class="ui multiple selection dropdown" style="width:100px">
-				<input type="hidden" value="0" id="bang_gubun" name="bang_gubun"> <i class="dropdown icon"></i>
-			<div class="text" id="gubun">분류</div>
-				<div class="menu">
-					<div class="item" data-value="1">놀놀</div>
-					<div class="item" data-value="2">밥밥</div>
-					<div class="item" data-value="3">술술</div>
-				</div>
-			</div>
-			<div class="ui multiple selection dropdown">
+			<button class="ui button"> 초기화 </button>
+			<div class="ui selection dropdown">
 				<input type="hidden" value="0" id="bang_age"name="bang_age"> <i class="dropdown icon"></i>
 			<div class="text" id="age">나이대</div>
 				<div class="menu">
@@ -59,7 +51,7 @@ var datacounter = 0;
 					<div class="item" data-value="3105">60대이상</div>
 				</div>
 			</div>
-			<div class="ui multiple selection dropdown">
+			<div class="ui selection dropdown">
 				<input type="hidden" value="0" id="bang_gender" name="bang_gender"> <i class="dropdown icon"></i>
 			<div class="text" id="age">성별</div>
 				<div class="menu">
@@ -68,20 +60,19 @@ var datacounter = 0;
 					<div class="item" data-value="1302">혼성</div>
 				</div>
 			</div>
-			<div class="ui multiple selection dropdown">
+			<div class="ui selection dropdown">
 				<input type="hidden" value="0" id="bang_money" name="bang_money"> <i class="dropdown icon"></i>
 			<div class="text" id="money">금액대</div>
 				<div class="menu">
-					<div class="item" data-value="1">~3만원</div>
-					<div class="item" data-value="3">3만원~5만원</div>
-					<div class="item" data-value="5">5만원~10만원</div>
-					<div class="item" data-value="10">10만원~15만원</div>
-					<div class="item" data-value="15">15만원~20만원</div>
-					<div class="item" data-value="20">20만원~30만원</div>
-					<div class="item" data-value="40">30만원~50만원</div>
+					<div class="item" data-value="10000">~2만원</div>
+					<div class="item" data-value="30000">2만원~3만원</div>
+					<div class="item" data-value="50000">3만원~5만원</div>
+					<div class="item" data-value="100000">5만원~10만원</div>
+					<div class="item" data-value="200000">10만원~20만원</div>
+					<div class="item" data-value="400000">30만원~50만원</div>
 				</div>
 			</div>
-			<div class="ui multiple selection dropdown">
+			<div class="ui selection dropdown">
 				<input type="hidden" value="0" name="bang_limit_people" id="bang_limit_people"> <i class="dropdown icon"></i>
 			<div class="text">최대 인원</div>
 				<div class="menu">
@@ -97,7 +88,7 @@ var datacounter = 0;
 					<div class="item" data-value="10">10명</div>
 				</div>
 			</div>
-			<div class="ui multiple selection dropdown">
+			<div class="ui selection dropdown">
 				<input type="hidden" value="0" name="bang_topic" id="bang_topic"> <i class="dropdown icon"></i>
 			<div class="text">관심사</div>
 				<div class="menu">
@@ -119,6 +110,7 @@ var datacounter = 0;
 				</div>
 			</div>
 			</div>
+</form>
 	</div>
 	<div style="width:22%">
 	<div class="ui segment">
@@ -138,11 +130,8 @@ var datacounter = 0;
 					<div class="ui grid grouplist" id="placesList">
 					</div>
 				</div>
+					<div id="pagination-container"></div>
 			</div>
-		<div class="row">
-			<div class="ui grid">
-			</div>
-		</div>
 	</div>
 </div><!-- big segment -->
 <script type="text/javascript">
@@ -210,10 +199,16 @@ var datacounter = 0;
 				method:"post",
 				url:"/sp-Honjaopseoye/group/gListSelect.hon",
 				success:function(data){
+					datas=[];
+					for(var i=0;i<data.length;i++){
+						datas.push(i);
+					}
+					temp = data;
 					change_addr(data);
 				}
 			})
 		}
+		
 		function change_addr(data){
 		    var listEl = document.getElementById('placesList'), 
 		    fragment = document.createDocumentFragment(), 
@@ -225,9 +220,11 @@ var datacounter = 0;
 		    removeMarker();
 			var geocoder = new daum.maps.services.Geocoder();
 			datacounter = data.length;
+			counter = 0;
+			console.log("temp:"+temp);
 			data.forEach(function(data){
 					//alert(data);
-					
+				console.log(data);
 				geocoder.addressSearch(data.STORE_ADDR, function(result, status) {
 				    // 정상적으로 검색이 완료됐으면 
 				     if (status === daum.maps.services.Status.OK) {
@@ -238,18 +235,73 @@ var datacounter = 0;
 					    displayPlaces(data,fragment,bounds,coord,counter-1);
 				        if(datacounter===counter){
 				        	// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-						    listEl.appendChild(fragment); 
+						    listEl.appendChild(fragment);
+									$('#pagination-container').pagination({    
+										dataSource: datas,
+										pageSize:6,
+									    callback: function(temp, pagination) {
+									        // template method of yourself
+									        console.log(pagination)
+									        var html = simpleTemplating(temp);
+									        $('#placesList').html(html);
+									    }
+									});
 						    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 						    map.setBounds(bounds);
 				        }
 				     }
 				     else{
-				    	 alert("s");
+				    	 //alert("s");
 				     }
 				})
 			});
 		}
 		// 검색 결과 목록과 마커를 표출하는 함수입니다
+		function simpleTemplating(data) {
+			var html =  '<div class="ui grid">';
+			 $.each(data, function(index, item){
+					var date = temp[item].BANG_DATE
+					var a = date.substr(5);
+					var img;
+					if(temp[item].STORE_IMG!=null||temp[item].STORE_IMG!=""){
+						img = temp[item].STORE_IMG;
+					}
+					else{
+						img = 'noimg.png';
+					}
+				    html+= 	'<div class="eight wide column item">'+
+				    		'<a href="./gView.jsp?bang_no='+temp[item].BANG_NO+'&store_no='+temp[item].STORE_NO+'">'+
+							    '<div class="ui card info">'+
+							    '<div class="content" style="display:inline-block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+
+							      '<div class="right floated meta">'+a+'</div>'+
+							      temp[item].BANG_NAME+
+							    '</div>'+
+							    '<div class="image">'+
+							      '<img src="../../image/storeImg/'+img+'" style="height: 80px;object-fit:contain;max-height: 100%;max-width: 100%;display: block;margin: auto;">'+
+							    '</div>'+
+							    '<div class="content">'+
+							      '<span class="right floated">'+
+							        '<i class="users icon"></i>'+
+							        temp[item].BANG_LIMIT_PEOPLE+
+							      '</span>'+
+							      '<i class="user icon"></i>'+
+							      temp[item].BANG_CUR_PEOPLE+
+							    '</div>'+
+							    '<div class="extra content">'+
+							      '<div class="ui large left icon input" style="display:inline-block;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+
+							        '<h4>'+temp[item].BANG_MEMO+'</h4>'+
+							      '</div>'+
+							    '</div>'+
+							  '<input type="hidden" value='+temp[item].BANG_NO+'>'+
+							  '<input type="hidden" value='+temp[item].STORE_NO+'>'+
+							  '</div>'+
+							  '</a>'+
+							  '</div>'
+				 });
+				html +="</div>";
+			return html;
+				
+		}
 		function displayPlaces(places,fragment,bounds,coord,i) {
 		        // 마커를 생성하고 지도에 표시합니다
 		        var placePosition = coord,
@@ -294,7 +346,7 @@ var datacounter = 0;
 			var date = places.BANG_DATE
 			var a = date.substr(5);
 			var img;
-			if(places.STORE_IMG!=null){
+			if(places.STORE_IMG!=null||places.STORE_IMG!=""){
 				img = places.STORE_IMG;
 			}
 			else{
@@ -308,7 +360,7 @@ var datacounter = 0;
 					      places.BANG_NAME+
 					    '</div>'+
 					    '<div class="image">'+
-					      '<img src="/sp-Honjaopseoye/image/storeImg/'+img+'" style="height: 80px;object-fit:contain;max-height: 100%;max-width: 100%;display: block;margin: auto;">'+
+					      '<img src="../../image/storeImg/'+img+'" style="height: 80px;object-fit:contain;max-height: 100%;max-width: 100%;display: block;margin: auto;">'+
 					    '</div>'+
 					    '<div class="content">'+
 					      '<span class="right floated">'+
@@ -359,35 +411,6 @@ var datacounter = 0;
 		    }   
 		    markers = [];
 		}
-
-		// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-		function displayPagination(pagination) {
-		    var paginationEl = document.getElementById('pagination'),
-		        fragment = document.createDocumentFragment(),
-		        i; 
-
-		    // 기존에 추가된 페이지번호를 삭제합니다
-		    while (paginationEl.hasChildNodes()) {
-		        paginationEl.removeChild (paginationEl.lastChild);
-		    }
-		    for (i=1; i<=pagination.last; i++) {
-		        var el = document.createElement('a');
-		        el.href = "#";
-		        el.innerHTML = i;
-		        if (i===pagination.current) {
-		            el.className = 'on';
-		        } else {
-		            el.onclick = (function(i) {
-		                return function() {
-		                    pagination.gotoPage(i);
-		                }
-		            })(i);
-		        }
-		        fragment.appendChild(el);
-		    }
-		    paginationEl.appendChild(fragment);
-		}
-		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 		// 인포윈도우에 장소명을 표시합니다
 		function displayInfowindow(marker, title) {
 		    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
@@ -400,6 +423,25 @@ var datacounter = 0;
 		        el.removeChild (el.lastChild);
 		    }
 		}
+ 		$(".ui.selection.dropdown").dropdown({
+ 		    onChange: function () {
+ 		    	var param = $("#f_search").serialize();
+ 				$.ajax({
+ 					method:"post",
+ 					data:param,
+ 					url:"/sp-Honjaopseoye/group/filterSelect.hon",
+ 					success:function(data){
+ 						datas = [];
+ 						for(var i=0;i<data.length;i++){
+ 							datas.push(i);
+ 						}
+ 						temp = data;
+ 						change_addr(data);
+ 					}
+ 				})
+ 		    }
+ 		});
+ 		
 </script>
 <%@include file="../../include/include/bottom.jsp" %>
 </body>
