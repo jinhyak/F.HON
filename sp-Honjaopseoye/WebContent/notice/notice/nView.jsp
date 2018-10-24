@@ -54,6 +54,7 @@
 		noti_content = updateList.get(0).get("NOTI_CONTENT").toString();
 		noti_pw = updateList.get(0).get("NOTI_PW").toString();
 		noti_category = updateList.get(0).get("NOTI_CATEGORY").toString();
+		noti_date = updateList.get(0).get("NOTI_DATE").toString();
 		if(updateList.get(0).get("NOTI_IMAGE")!=null){
 		noti_image = updateList.get(0).get("NOTI_IMAGE").toString();
 		}
@@ -253,6 +254,8 @@
 <script type="text/javascript">
 //삭제  modal창 띄우기
 function remover() {
+	var noti_no = '<%=noti_no%>'
+	var noti_pw = '<%=noti_pw%>'
 	alert("정말로 삭제하시겠습니까?");
 	$('#del_modal')
 	  .modal({

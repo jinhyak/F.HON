@@ -345,7 +345,7 @@ var map;
 		$("#modal_location").modal('hide');
 	} 
 	function locationInput(){
-		cmm_window_popup("./maps.jsp", 600, 600, "모임 장소 등록");
+		cmm_window_popup("./maps.jsp", 1200, 800, "모임 장소 등록");
 	}
 $("#datepicker").datepicker({
 	  dateFormat: 'yy-mm-dd',

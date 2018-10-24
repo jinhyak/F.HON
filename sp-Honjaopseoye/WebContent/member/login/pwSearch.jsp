@@ -219,7 +219,7 @@
 
                            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 이메일 인증  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
                            <form id="f_email" name="f_email">
-                              <div class="ui segment" style="border: 1px solid #556852" id="email">
+                              <div class="ui segment" id="email">
                                  <div class="left aligned column">
                                     <div class="ui container"
                                        style="padding-bottom: 15px; text-align: left">

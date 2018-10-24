@@ -74,6 +74,8 @@ public class MenuDao {
 		}
 		return hitUp;
 	}
+	
+	
 	/* [[[[[[[[[[[[[[[[[[[[[[[[[[[[ 문의하기 ]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
 	public int qInsert(Map<String, Object> pMap) {
 		logger.info("qInsert 호출 성공");

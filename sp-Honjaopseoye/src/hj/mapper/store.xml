@@ -89,7 +89,7 @@
  				</if>
  				ORDER BY store_hit desc)
  			<where>
- 				<if test="store_business !='' and store_price != null">
+ 				<if test="store_business !='' and store_business != null">
 					AND store_business like '%'||#{store_business}||'%' 
 				</if>
 				<if test="store_price != '' and store_price != null">

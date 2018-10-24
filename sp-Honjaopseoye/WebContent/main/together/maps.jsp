@@ -38,9 +38,9 @@
     		</div>
 			<div class="ui divider"></div>
 			<!-- ==========지도 세그먼트 =========-->
-  			<div class="ui top attached segment pushable"style="height: 400px;">
+  			<div class="ui top attached segment pushable"style="height: 600px;">
 	  		<!--======= 지도 시작 =======-->
-		      	<div id="map" style="width:100%;height:400px;"></div>
+		      	<div id="map" style="width:100%;height:600px;"></div>
   			<!--======= 지도 끝  =======-->
   			</div>
   			<!-- ==========지도 세그먼트 끝=========-->
@@ -79,8 +79,8 @@
 	    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
 	    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
 	    gridSize: 100,
-	    minLevel: 3, // 클러스터 할 최소 지도 레벨
-	    minClusterSize: 3,
+	    minLevel: 4, // 클러스터 할 최소 지도 레벨
+	    minClusterSize: 4,
 	});
  	
  $.get("/sp-Honjaopseoye/store/store_select.hon", function(data) {

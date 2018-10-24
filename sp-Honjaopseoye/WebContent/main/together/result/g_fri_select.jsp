@@ -10,8 +10,8 @@ if(gfriendList!=null){
 	for(int i=0;i<gfriendList.size();i++){
 %>
   <div class="item">
-  	<div class="ui circular image">
-      <img src="../../image/member/<%=gfriendList.get(i).get("MEM_IMG")%>" style="width:60px;height:60px;">
+  	<div class="ui circular image" style="width:50px;height:50px;">
+      <img src="../../image/member/<%=gfriendList.get(i).get("MEM_IMG")%>" style="width:50px;height:50px;">
     </div>
     <div class="middle aligned content" style="padding-left:15px;">
     	<div class="ui header teal">

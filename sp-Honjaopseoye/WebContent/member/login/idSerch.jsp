@@ -201,7 +201,7 @@
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 휴대전화번호 인증 @@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 									<form id="f_phone" name="f_phone" method="post">
 										<div class="ui segment"
-											style="border: 1px solid #556852; margin-bottom: 50px;"
+											style="margin-bottom: 50px;"
 											id="phone">
 											<div class="left aligned column">
 												<div class="ui container"
@@ -223,23 +223,15 @@
 													</div>
 													<div class="ui column container">
 														<span style="margin-right: 31px"><label>휴대전화</label></span>
-														<!--                                           <select class="ui search dropdown" id="select_ph"
-                                             style="border: 1px solid #85B7D9; border-radius: 3px;">
-                                             <option value="">선택</option>
-                                             <option value="f_ph">010</option>
-                                             <option value="s_ph">011</option>
-                                             <option value="th_ph">019</option>
-                                          </select> -->
 														<div class="ui input focus" style="width: 250px">
 															<input type="text" placeholder="전화번호" id="mem_tel"
 																name="mem_tel">
 																<input type="hidden" name="mem_tel">
 														</div>
 													</div>
-													<div style="margin-top: 10px; margin-left: 170px;">
+													<div style="margin-top: 10px; margin-left: 90px;">
 														<button class="ui gray button" id="btn_search"
-															type="button" onClick="btn_find()" style="width: 250px;">아이디
-															찾기</button>
+															type="button" onClick="btn_find()" style="width: 250px;">아이디 찾기</button>
 													</div>
 												</div>
 											</div>
@@ -250,8 +242,7 @@
 									<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 이메일 인증  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 									<form id="f_email" name="f_email"
 										action="../../member/empty/e_idSearch.test">
-										<div class="ui segment" style="border: 1px solid #556852"
-											id="email">
+										<div class="ui segment" id="email">
 											<div class="left aligned column">
 												<div class="ui container"
 													style="padding-bottom: 15px; text-align: left">

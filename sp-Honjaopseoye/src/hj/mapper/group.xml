@@ -13,6 +13,7 @@
 	       s.store_no STORE_NO, s.store_img STORE_IMG
 	from   bang b, store s
 	where  b.store_no = s.store_no
+	order by b.bang_no desc
 </select>
 	
 <!-- 모임방 검색시 검색어-string value 받음 -->

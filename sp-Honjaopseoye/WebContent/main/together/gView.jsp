@@ -116,7 +116,7 @@ $(document).ready(function () {
 					  <div class="sides">
 						<div class="active side">
 							<div class="ui large image">
-								<img id="large_img1" src="../../image/logo.png" style="width:500px; height:400px;">
+								<img id="large_img1" src="../../image/logo.png" style="width:800px; height:400px;">
 							</div>
 						</div>
 					    <div class="side">
@@ -406,8 +406,8 @@ $(document).ready(function () {
 						<div class="ui blue fluid large button" id="g_frilist_btn">
 							참석자 명단 보기 <i class="angle double down icon"></i></div>
 							<div class="ui item" style="margin-top:30px;">
-							    <div class="ui circular image">
-							    	 <img id="bang_jang_img" src="../../image/male.jpg"  style="width:70px;height:70px">
+							    <div class="ui circular image" style="width:70px;height:70px">
+							    	 <img id="bang_jang_img" src="../../image/male.jpg" style="width:70px;height:70px">
 						    	</div> 
 							    <div class="middle aligned content" style="padding-left:15px;">
 							    	<div class="ui teal header" id="bang_jang_id"></div>

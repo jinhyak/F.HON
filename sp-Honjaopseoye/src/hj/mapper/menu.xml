@@ -31,6 +31,10 @@
             )
          }
    </select>
+   
+	<delete id="nDelete" parameterType="String">
+		delete from notice where noti_no = #{noti_no}
+	</delete>
 	
 	<select id="qSelect" parameterType="map" resultType="map">
 		select qna_title,qna_writer,qna_date,qna_depth,qna_step,qna_group
