@@ -313,7 +313,7 @@ $(document).ready(function(){
   			</div>
   			<input type="text" name="store_addr" readonly="readonly"
 				  placeholder="주소가 입력되지 않았습니다" id="store_addr">
-				 <div class="ui icon button" onclick="locationInput()" style="padding-top: 20px; width:100px;">
+				 <div class="ui icon linkedin button" onclick="locationInput()" style="padding-top: 20px; width:100px;">
 				  	<i class="plus icon"></i>
 				  	주소등록
 				 </div>
@@ -326,7 +326,7 @@ $(document).ready(function(){
    				<h2>대표이미지</h2>
   			</div>
   				<input type="text" placeholder="이미지파일 이름이 영문이여야 합니다." readonly="readonly" id="store_img" name="store_img">
-  				<label class="ui button" for="fileinput" style="padding-top: 20px; width:150px;">
+  				<label class="ui linkedin button" for="fileinput" style="padding-top: 20px; width:150px;">
   					<i class="ui upload icon"></i> 
     				이미지등록
 			   </label>
@@ -395,7 +395,7 @@ $(document).ready(function(){
 			<!--========주소 검색 버튼========  -->
 			<div class="ui action input">
  				<input type="text" placeholder="주소를 입력하세요" id="search_addr">
-  				<button class="ui button" id="addr_btn">검색</button>
+  				<button class="ui linkedin button" id="addr_btn">검색</button>
 			</div>
 			<!--========주소 검색 버튼 끝========-->
 			<div class="ui basic right floated segment"
@@ -430,7 +430,7 @@ $(document).ready(function(){
 	  			<div class="ui primary button" onclick="addr_confirm()" style="margin-left: 3px;">
   				확인
   				</div>
-  				<div class="ui primary button" onclick="cancel()"style="margin-right: 0px;">
+  				<div class="ui button" onclick="cancel()"style="margin-right: 0px;">
   				취소	
   				</div>
 			</div>

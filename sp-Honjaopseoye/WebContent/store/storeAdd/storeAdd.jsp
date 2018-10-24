@@ -2,6 +2,24 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style>
+<!--
+.business{
+	font-size: medium;
+	font-weight: bold;
+	
+}
+.gubun{
+	font-size: large;
+	font-weight: bold;
+	color: gray;
+}
+.keyword{
+	font-size: x-large;
+	font-weight: bold;
+}
+-->
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>가게등록</title>
@@ -31,37 +49,37 @@
 </head>
 <body style="min-width: 588px;">
 <%@include file="../../include/include/subtop.jsp"%>
-<div class="ui basic segment">
+<div class="ui basic segment" style="margin-top: 0px;padding-top: 0px;">
 
 <!-- ====================본문===================== -->
   <div class="ui basic segment text container one column grid"style="margin-top: 35px;padding-top: 50px;">
   	<div class="column">
-  		<h3>매장을 등록하세요</h3>
+  		<span class="keyword">매장을 등록하세요</span>
   	</div>
   <!--================== 선택매뉴 시작 =============== -->
-  	<div class="column">
+  	<div class="column" style="padding-bottom: 0px;">
   		<div class="ui form" id="chooseMenu">
   			<div class="inline fields">
-    			<label>매장 구분 선택</label>
+    			<label><span class="gubun">매장 구분 선택</span></label>
     			<div class="field">
 			      <div class="ui radio checkbox">
         			<input type="radio" name="frequency" checked="checked" value="matjip">
-        			<label>맛집 등록</label>
+        			<label><span class="business">맛집 등록</span></label>
       			  </div>
     		    </div>
-    		<div class="field">
+    			<div class="field">
       			<div class="ui radio checkbox">
         			<input type="radio" name="frequency" value="suljip">
-        			<label>술집 등록</label>
+        			<label><span class="business">술집 등록</span></label>
       			</div>
     	   </div>
     	   <div class="field">
-      		<div class="ui radio checkbox">
+      	   <div class="ui radio checkbox">
         		<input type="radio" name="frequency" value="nolgot">
-        		<label>놀곳 등록</label>
+        		<label><span class="business">놀곳 등록</span></label>
       	  	</div>
     	  </div>
-    	  <div class="ui button" id="choiceButton" onclick="chooseMenu()">
+    	  <div class="ui linkedin button" id="choiceButton" onclick="chooseMenu()">
     	  	확인
     	  </div>
   		</div>
@@ -69,7 +87,7 @@
 	</div>
 	<!--================== 선택매뉴 끝 =============== -->
 	<!-- ====================가게정보 입력 시작===================== -->
-	<div class="column" id="storeInput">
+	<div class="column" id="storeInput" style="min-height: 850px; padding-top: 0px;">
 		
 	</div>
   	<!-- ====================가게정보 입력 끝===================== -->

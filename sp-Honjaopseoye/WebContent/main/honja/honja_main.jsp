@@ -6,6 +6,13 @@
 
 
 %>
+<style>
+.info{
+	font-size: medium;
+	font-weight: 600;
+	
+}
+</style>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,7 +43,7 @@ function showMap(){
   };
 	
 	 mapContainer.style.width = "2100px";
-	 mapContainer.style.height = "809px"; 
+	 mapContainer.style.height = "803px"; 
 
 //지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
  map = new daum.maps.Map(mapContainer, mapOption); 
@@ -57,8 +64,7 @@ function searchAll(){
 		location.href = "/sp-Honjaopseoye/store/storeSearchAll.hon?searchWord="+$.trim($('#searchWord').val())+
 						"&gubun="+$('#menuBtns').find(".active").val()+
 						"&store_business="+$('#store_business').dropdown('get value')+
-						"&store_price="+$('#store_price').dropdown('get value')+
-						"&";
+						"&store_price="+$('#store_price').dropdown('get value');
 	
 	}/////end of else
 }
@@ -96,7 +102,7 @@ function showMarker(addr,store_name,store_no){
 	       marker.setMap(map);
 	       //인포윈도우 만들기
 	       iwContent 
-	       		= '<div style="padding:5px;">'+store_name+'</div><input type="hidden" value='+store_no+'>'
+	       		= '<div class="info" style="padding:5px;">'+store_name+'</div><input type="hidden" value='+store_no+'>'
     	   iwPosition = new daum.maps.LatLng(result[0].y, result[0].x); //인포윈도우 표시 위치입니다
 	    	// 인포윈도우를 생성합니다
 	       var infowindow = new daum.maps.InfoWindow({
@@ -236,19 +242,19 @@ function getStorePreview(){
     <!--===== 상세검색 드롭다운 끝 ========-->
     <!-- ======== 검색창 ========-->
     <div class="right fluid item">
-		<div class="ui  input">	
+		<div class="ui focus input">	
   			<input type="text" placeholder="키워드를 선택 후 검색해보세요" id="searchWord" name="searchWord" style="width: 380px; min-width: 150px;">
- 			<button class="ui blue button" id="searchButton" onclick="searchAll()"style="width: 82px;">검색</button>
+ 			<button class="ui linkedin button" id="searchButton" onclick="searchAll()"style="width: 82px;">검색</button>
 		</div>
 	</div>
 		<!-- ======= 검색창 끝 =======-->
   </div>
 <!-- ===================================검색과 글쓰기 버튼 끝 ===================================-->
 <!--=================================== 지도와 핫플레이스 목록================================  -->
-<div class="ui basic segment fluid container"style="margin-top: 0px;padding-top: 0px;">
+<div class="ui basic segment fluid container"style="margin-top: 0px;padding-top: 0px; height: 820px;">
 	<button class="ui toggle right floated active button" id="showHot" onclick="showHotplace()">핫플보기</button>
   		
-  <div class="ui top attached segment pushable">
+  <div class="ui top attached segment pushable" style="810px;">
   	<div class="ui right very wide sidebar" id="sidebar" style="padding-top: 5px;width: 485px;">
   		<!-- 핫플레이스 뿌려줄 div grid태그 -->
 		<div class="ui two column grid" id="hotPlaceList"style="width: 475px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;margin-top: 0px;">
